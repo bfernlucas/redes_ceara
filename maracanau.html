@@ -43,15 +43,15 @@ button,select,input,textarea{font:inherit}
 .grid{display:grid;gap:22px}
 .grid.two{grid-template-columns:1fr 1fr}
 @media(max-width:1100px){.grid.two{grid-template-columns:1fr}}
-.panel{background:linear-gradient(180deg,#ffffff 0%,#fcfdff 100%);border:1px solid rgba(221,230,238,.95);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.panel{background:linear-gradient(180deg,#ffffff 0%,#fcfdff 100%);border:1px solid rgba(221,230,238,.95);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
 .panel-head{padding:22px 24px 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .panel-title{font-size:18px;font-weight:800;color:var(--navy);margin:0}
 .panel-sub{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
 .filters{display:flex;flex-wrap:wrap;gap:12px}
 .filters select{appearance:none;min-width:180px;border-radius:14px;padding:12px 42px 12px 14px;border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.7);background-color:#fff;background-image:linear-gradient(45deg,transparent 50%,#6a7f91 50%),linear-gradient(135deg,#6a7f91 50%,transparent 50%);background-position:calc(100% - 18px) calc(50% - 3px),calc(100% - 12px) calc(50% - 3px);background-size:6px 6px;background-repeat:no-repeat;color:var(--text);font-weight:600}
 .filters select:focus{outline:none;border-color:#8bb0c8;box-shadow:0 0 0 4px rgba(15,95,146,.10)}
-.map-box{height:500px;margin:10px 24px 0;border-radius:22px;border:1px solid #dfe7ee;overflow:hidden;background:#eef2f5;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 12px 32px rgba(16,42,67,.07)}
-.map-box.split{margin:0;height:470px}
+.map-box{height:500px;margin:10px 24px 0;border-radius:14px;border:1px solid #dfe7ee;overflow:hidden;background:#eef2f5;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 12px 32px rgba(16,42,67,.07)}
+.map-box.split{margin:0;height:460px}
 .map-footer{display:grid;grid-template-columns:1.4fr .8fr;gap:18px;padding:16px 24px 24px;align-items:start}
 @media(max-width:900px){.map-footer{grid-template-columns:1fr}}
 .legend-wrap{display:flex;flex-direction:column;gap:10px}
@@ -66,7 +66,7 @@ button,select,input,textarea{font:inherit}
 .kpi-grid.six{grid-template-columns:repeat(6,1fr)}
 @media(max-width:1100px){.kpi-grid.six{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.kpi-grid.six{grid-template-columns:repeat(2,1fr)}}
-.kpi{padding:18px;border:1px solid #e8eff5;border-radius:18px;background:linear-gradient(180deg,#ffffff 0%,#f8fbfd 100%);box-shadow:0 8px 20px rgba(16,42,67,.04)}
+.kpi{padding:18px;border:1px solid #e8eff5;border-radius:14px;background:linear-gradient(180deg,#ffffff 0%,#f8fbfd 100%);box-shadow:0 8px 20px rgba(16,42,67,.04)}
 .kpi .label{text-transform:uppercase;letter-spacing:.05em;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px}
 .kpi .value{font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--navy)}
 .kpi .sub{margin-top:6px;font-size:12px;color:var(--muted)}
@@ -75,12 +75,12 @@ button,select,input,textarea{font:inherit}
 .footer-credit{margin-top:8px;font-size:12px;color:var(--muted)}
 .map-analytics-layout{display:grid;grid-template-columns:1.15fr minmax(340px,.85fr);gap:24px;padding:0 24px 4px;align-items:stretch}
 .analysis-side{display:flex;flex-direction:column;gap:14px}
-.analysis-card{border-radius:20px;padding:20px;background:linear-gradient(180deg,#ffffff 0%,#f9fbfd 100%);border:1px solid var(--line);box-shadow:0 10px 24px rgba(16,42,67,.05);min-height:220px}
+.analysis-card{border-radius:14px;padding:20px;background:linear-gradient(180deg,#ffffff 0%,#f9fbfd 100%);border:1px solid var(--line);box-shadow:0 10px 24px rgba(16,42,67,.05);min-height:220px}
 .analysis-kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#eef5fb;color:var(--brand);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
 .analysis-title{margin:14px 0 10px;font-size:22px;line-height:1.15;letter-spacing:-.02em;color:var(--navy)}
 .analysis-text{margin:0;color:var(--text);font-size:13px;line-height:1.8}
 .analysis-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.analysis-stat{border-radius:18px;padding:16px;background:linear-gradient(180deg,#ffffff 0%,#f8fbfd 100%);border:1px solid var(--line-2);box-shadow:0 6px 18px rgba(16,42,67,.04)}
+.analysis-stat{border-radius:14px;padding:16px;background:linear-gradient(180deg,#ffffff 0%,#f8fbfd 100%);border:1px solid var(--line-2);box-shadow:0 6px 18px rgba(16,42,67,.04)}
 .analysis-stat-label{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;line-height:1.4}
 .analysis-stat-value{font-size:24px;font-weight:800;letter-spacing:-.03em;color:var(--navy)}
 .analysis-stat-sub{margin-top:6px;color:var(--muted);font-size:11px;line-height:1.5}
@@ -228,7 +228,7 @@ body{
   background:#F3E8FF;
   border:1px solid #DDD6FE;
   border-left:4px solid var(--brand);
-  border-radius:var(--radius);
+  border-radius:14px;
   padding:14px 18px;
   margin:16px 0 20px;
   box-shadow:none;
@@ -248,7 +248,7 @@ body{
 .panel{
   background:#FFFFFF;
   border:1px solid var(--line);
-  border-radius:var(--radius);
+  border-radius:14px;
   box-shadow:var(--shadow);
 }
 .panel-head{
@@ -292,12 +292,12 @@ body{
 .map-box{
   margin:0 20px;
   height:440px;
-  border-radius:4px;
+  border-radius:14px;
   border:1px solid var(--line);
   background:#EBF0F5;
   box-shadow:none;
 }
-.map-box.split{height:440px;margin:0}
+.map-box.split{height:460px;margin:0}
 .map-analytics-layout{gap:16px;padding:12px 20px 4px}
 .map-footer{padding:12px 20px 20px;gap:16px}
 .map-overlay-controls{
@@ -694,7 +694,7 @@ body{background:#fff;font-family:'Open Sans','Segoe UI',system-ui,-apple-system,
 .panel-sub{font-size:11px;color:#5C6E7E}
 .analysis-kicker{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:var(--brand-5);color:var(--brand);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:none}
 .analysis-title{margin:14px 0 10px;font-size:22px;line-height:1.15;letter-spacing:-.02em;color:var(--navy)}
-.kpi{padding:18px;border:1px solid #e8eff5;border-radius:18px;background:linear-gradient(180deg,#ffffff 0%,#f8fbfd 100%);box-shadow:0 8px 20px rgba(16,42,67,.04)}
+.kpi{padding:18px;border:1px solid #e8eff5;border-radius:14px;background:linear-gradient(180deg,#ffffff 0%,#f8fbfd 100%);box-shadow:0 8px 20px rgba(16,42,67,.04)}
 .kpi .label{text-transform:uppercase;letter-spacing:.05em;font-size:11px;font-weight:700;color:#5C6E7E;margin-bottom:8px}
 .kpi .value{font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--navy)}
 .kpi .sub{margin-top:6px;font-size:12px;color:#7F91A3}
@@ -1051,7 +1051,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <!-- KPIs resumo economia -->
     <div class="kpi-grid four" id="kpi-econ-resumo" style="margin-bottom:4px"></div>
 
-    <div style="margin:0 0 12px;padding:0 4px;margin-bottom:8px">
+    <div style="margin:0 0 12px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Médias e grandes empresas</span>
         <span style="flex:1;height:1px;background:var(--line-2)"></span>
@@ -3453,7 +3453,7 @@ function initComp(){
     const hdrCols = [{key:'_reg',label:'Região',fmt:null,align:'left'}]
                     .concat(TABLE_INDS.map(i=>({key:i.key,label:i.label,fmt:i.fmt,align:'right'})));
     const arrow = k => regionSortKey===k ? (regionSortDir===-1?' ↓':' ↑') : '';
-    const headers = '<tr>'+hdrCols.map(c=>`<th class="sortable-region" data-k="${c.key}" style="text-align:${c.align};cursor:pointer;user-select:none">${c.label}${arrow(c.key)}</th>`).join('')+'</tr>';
+    const headers = '<tr>'+hdrCols.map(c=>`<th class="sortable${regionSortKey===c.key?' sort-'+(regionSortDir===1?'asc':'desc'):''}" data-k="${c.key}" style="text-align:${c.align};cursor:pointer;user-select:none">${c.label}<span class="sort-icon">${regionSortKey===c.key?(regionSortDir===1?' ↑':' ↓'):' ↕'}</span></th>`).join('')+'</tr>';
     const rows = GROUPS.slice().map(g=>({_reg:g, ...groupAgg[g].values, _col:GROUP_COLORS[g]||'#888'}));
     rows.sort((a,b)=>{
       const ka = regionSortKey==='_reg' ? a._reg : a[regionSortKey];
@@ -3469,12 +3469,12 @@ function initComp(){
         ${TABLE_INDS.map(i=>`<td>${fmt(r[i.key], i.fmt)}</td>`).join('')}
       </tr>`;
     }).join('');
-    const muniRow = `<tr style="background:#F3F6FA;font-weight:700">
+    const muniRow = `<tr style="background:#F3F6FA;font-weight:700" class="no-sort">
       <td style="text-align:left">Maracanaú (total)</td>
       ${TABLE_INDS.map(i=>`<td>${fmt(muni.values[i.key], i.fmt)}</td>`).join('')}
     </tr>`;
     tbl.innerHTML = `<thead>${headers}</thead><tbody>${body}${muniRow}</tbody>`;
-    tbl.querySelectorAll('th.sortable-region').forEach(th=>{
+    tbl.querySelectorAll('th.sortable').forEach(th=>{
       th.onclick = () => {
         const k = th.dataset.k;
         if(regionSortKey===k) regionSortDir = -regionSortDir; else { regionSortKey=k; regionSortDir = k==='_reg'?1:-1; }
@@ -3489,8 +3489,7 @@ function initComp(){
     const tbl = document.getElementById('synth-bairro-table');
     const hdrCols = [{key:'b',label:'Bairro',fmt:null,align:'left'},{key:'_grp',label:'Região',fmt:null,align:'left'}]
                     .concat(TABLE_INDS.map(i=>({key:i.key,label:i.label,fmt:i.fmt,align:'right'})));
-    const arrow = k => sortKey===k ? (sortDir===-1?' ↓':' ↑') : '';
-    const headers = '<tr>'+hdrCols.map(c=>`<th class="sortable" data-k="${c.key}" style="text-align:${c.align};cursor:pointer;user-select:none">${c.label}${arrow(c.key)}</th>`).join('')+'</tr>';
+    const headers = '<tr>'+hdrCols.map(c=>`<th class="sortable${sortKey===c.key?' sort-'+(sortDir===1?'asc':'desc'):''}" data-k="${c.key}" style="text-align:${c.align};cursor:pointer;user-select:none">${c.label}<span class="sort-icon">${sortKey===c.key?(sortDir===1?' ↑':' ↓'):' ↕'}</span></th>`).join('')+'</tr>';
     const rows = DATA.slice().map(d=>({...d, _grp:groupOf(d.b)}));
     rows.sort((a,b)=>{
       const va=a[sortKey], vb=b[sortKey];
@@ -3710,14 +3709,15 @@ function initComp(){
     });
     const tbl = document.getElementById('synth-ipt-table');
     if(!tbl) return;
-    const arrow = k => iptSortKey===k ? (iptSortDir===-1?' ↓':' ↑') : '';
     const thStyle = 'cursor:pointer;user-select:none';
+    const sIcon = k => `<span class="sort-icon">${iptSortKey===k?(iptSortDir===-1?' ↓':' ↑'):' ↕'}</span>`;
+    const sClass = k => iptSortKey===k?' sort-'+(iptSortDir===1?'asc':'desc'):'';
     tbl.innerHTML = `<thead><tr>
-      <th style="text-align:center;width:40px;${thStyle}" data-ipt-k="ipt">#</th>
-      <th style="text-align:left;${thStyle}" data-ipt-k="name">Região${arrow('name')}</th>
-      <th style="text-align:center;${thStyle}" data-ipt-k="ipt">IPT${arrow('ipt')}</th>
-      <th style="text-align:center;min-width:80px">Classificação</th>
-      ${iptLabels.map((l,i)=>`<th style="text-align:center;font-size:10px;${thStyle}" data-ipt-k="${i}">${l}${arrow(String(i))}</th>`).join('')}
+      <th class="sortable${sClass('ipt')}" style="text-align:center;width:40px;${thStyle}" data-ipt-k="ipt">#${sIcon('ipt')}</th>
+      <th class="sortable${sClass('name')}" style="text-align:left;${thStyle}" data-ipt-k="name">Região${sIcon('name')}</th>
+      <th class="sortable${sClass('ipt')}" style="text-align:center;${thStyle}" data-ipt-k="ipt">IPT${sIcon('ipt')}</th>
+      <th style="text-align:center;min-width:80px" class="no-sort">Classificação</th>
+      ${iptLabels.map((l,i)=>`<th class="sortable${sClass(String(i))}" style="text-align:center;font-size:10px;${thStyle}" data-ipt-k="${i}">${l}${sIcon(String(i))}</th>`).join('')}
     </tr></thead><tbody>${sorted.map((r,i) => `<tr>
       <td style="text-align:center;font-weight:700;color:var(--brand)">${i+1}º</td>
       <td style="text-align:left;font-weight:700">${r.name}</td>
