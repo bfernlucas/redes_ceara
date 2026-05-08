@@ -1052,21 +1052,21 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <div class="mge-map-wrap">
           <div class="map-box split" id="map-mge" style="min-height:520px"></div>
           <div class="map-filter-overlay" id="mge-filter-overlay">
-            <input type="search" id="mge-map-search" placeholder="Buscar empresa…" autocomplete="off" style="flex:2;min-width:160px">
-            <select id="mge-bairro-filter" title="Filtrar por bairro">
-              <option value="">Todos os bairros</option>
-            </select>
-            <select id="mge-setor-filter" title="Filtrar por setor">
-              <option value="">Todos os setores</option>
-            </select>
-            <select id="mge-regiao-filter" title="Filtrar por região">
-              <option value="">Todas as regiões</option>
-            </select>
             <select id="mge-tipo-filter" title="Filtrar por tipo">
               <option value="">Matriz e Filial</option>
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
             </select>
+            <select id="mge-bairro-filter" title="Filtrar por bairro">
+              <option value="">Todos os bairros</option>
+            </select>
+            <select id="mge-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
+            </select>
+            <select id="mge-setor-filter" title="Filtrar por setor">
+              <option value="">Todos os setores</option>
+            </select>
+            <input type="search" id="mge-map-search" placeholder="Buscar empresa…" autocomplete="off" style="flex:2;min-width:160px">
             <button class="mge-clear-btn" id="mge-clear-filters" title="Limpar filtros" style="display:none">✕ Limpar</button>
             <span class="mge-filter-badge" id="mge-filter-count" style="display:none"></span>
           </div>
@@ -1150,10 +1150,10 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <span class="table-count" id="mge-table-count"></span>
       </div>
       <div class="table-filter-bar">
-        <input type="search" id="mge-table-search" placeholder="Buscar empresa…" autocomplete="off">
+        <select id="mge-table-tipo"><option value="">Matriz e Filial</option><option value="M">Somente Matrizes</option><option value="F">Somente Filiais</option></select>
         <select id="mge-table-regiao"><option value="">Todas as regiões</option></select>
         <select id="mge-table-setor"><option value="">Todos os setores</option></select>
-        <select id="mge-table-tipo"><option value="">Matriz e Filial</option><option value="M">Somente Matrizes</option><option value="F">Somente Filiais</option></select>
+        <input type="search" id="mge-table-search" placeholder="Buscar empresa…" autocomplete="off">
       </div>
       <div class="table-wrap" style="max-height:550px"><table id="table-mge-list"></table></div>
     </div>
@@ -3417,7 +3417,7 @@ function initComp(){
     const el = document.getElementById('synth-region-cards');
     el.innerHTML = GROUPS.map(g=>{
       const gd = groupAgg[g];
-      const col = GROUP_COLORS[g] || '#888';
+      const col = GROUP_COLORS[g] || '#7C3AED';
       const shareMuni = muni.pop ? (gd.pop/muni.pop)*100 : 0;
       const desc = GROUP_DESC[g] || '';
       return `<div style="background:#fff;border:1px solid var(--line-2);border-left:4px solid ${col};border-radius:8px;padding:12px 14px">
@@ -3425,12 +3425,12 @@ function initComp(){
           <strong style="font-size:13px;color:var(--navy)">${g}</strong>
           <span style="font-size:10px;color:var(--muted);font-weight:600">${gd.bairros} bairros</span>
         </div>
-        <div style="display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--navy)">
+        <div style="display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--navy);flex-wrap:wrap">
           <div><span style="color:var(--muted);font-weight:600">Pop.</span> <strong>${fmt(gd.pop,'int')}</strong></div>
           <div><span style="color:var(--muted);font-weight:600">%&nbsp;munic.</span> <strong>${shareMuni.toFixed(1)}%</strong></div>
           <div><span style="color:var(--muted);font-weight:600">Ext. pobreza</span> <strong>${fmt(gd.values.epob,'pct')}</strong></div>
         </div>
-        ${desc?`<div style="font-size:11px;color:#5C6E7E;margin-top:6px;line-height:1.45">${desc}</div>`:''}
+        ${desc?`<div style="font-size:11px;color:#5C6E7E;margin-top:8px;line-height:1.5">${desc}</div>`:''}
       </div>`;
     }).join('');
   }
@@ -3519,7 +3519,7 @@ function initComp(){
     });
     const labels = RADAR_INDS.map(i=>i.label);
     const datasets = GROUPS.map(g=>{
-      const col = GROUP_COLORS[g] || '#888';
+      const col = GROUP_COLORS[g] || '#7C3AED';
       return {
         label: g,
         data: RADAR_INDS.map((ind,i)=>{
@@ -3571,7 +3571,7 @@ function initComp(){
     // Legenda clicável
     const leg = document.getElementById('synth-radar-legend');
     leg.innerHTML = GROUPS.map((g,i)=>{
-      const col = GROUP_COLORS[g] || '#888';
+      const col = GROUP_COLORS[g] || '#7C3AED';
       return `<span data-i="${i}" class="synth-leg-item" style="cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px">
         <span style="width:10px;height:10px;border-radius:2px;background:${col};display:inline-block"></span>
         <span style="font-weight:600;color:var(--navy)">${g}</span>
@@ -3594,11 +3594,9 @@ function initComp(){
     const el = document.getElementById('synth-reading');
     // Para cada região, identifica pontos críticos (piores vs. município) e pontos positivos
     const critIdxs = ['epob','cad','anal'];
-    const sanIdxs = ['esg'];
-    const econIdxs = ['rendaPC'];
     el.innerHTML = GROUPS.map(g=>{
       const gd = groupAgg[g];
-      const col = GROUP_COLORS[g] || '#888';
+      const col = GROUP_COLORS[g] || '#7C3AED';
       // Vulnerabilidade comparada ao município: quanto maior o desvio positivo, mais crítico
       const critDiff = critIdxs.map(k=>{
         const v = gd.values[k]||0, m = muni.values[k]||0;
@@ -3641,7 +3639,7 @@ function initComp(){
     dims.forEach(d => { html += `<th>${d}</th>`; });
     html += '</tr></thead><tbody>';
     GROUPS.forEach(g=>{
-      const col = GROUP_COLORS[g] || '#888';
+      const col = GROUP_COLORS[g] || '#7C3AED';
       html += `<tr><td style="text-align:left;font-weight:700;color:var(--navy)"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:${col}"></span>${g}</span></td>`;
       RADAR_INDS.forEach((ind,i)=>{
         const v = groupAgg[g].values['rdr_'+ind.key] || 0;
