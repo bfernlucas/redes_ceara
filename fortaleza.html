@@ -189,10 +189,6 @@ button,select,input,textarea{font:inherit}
 .grid.two{grid-template-columns:1fr 1fr}
 .grid.three{grid-template-columns:repeat(3,1fr)}
 .grid.four{grid-template-columns:repeat(4,1fr)}
-@media (max-width:1100px){
-  .grid.hero,.grid.two,.grid.three,.grid.four{grid-template-columns:1fr}
-  .tabs{top:94px}
-}
 .panel{
   background:var(--panel);
   border:1px solid var(--line);
@@ -220,7 +216,6 @@ button,select,input,textarea{font:inherit}
   font-size:12px;
   line-height:1.5;
 }
-.panel-body{padding:0 20px 20px}
 .filters{
   display:flex;
   flex-wrap:wrap;
@@ -374,12 +369,6 @@ button,select,input,textarea{font:inherit}
   font-size:11px;
   line-height:1.5;
 }
-@media (max-width:1100px){
-  .map-analytics-layout{grid-template-columns:1fr}
-}
-@media (max-width:900px){
-  .map-footer{grid-template-columns:1fr}
-}
 .legend-wrap{
   display:flex;
   flex-direction:column;
@@ -513,7 +502,6 @@ th{
   font-size:12px;
   font-weight:700;
 }
-tbody tr:hover{background:#f8fbff}
 .rank{
   font-weight:800;
   color:var(--brand);
@@ -729,7 +717,6 @@ tbody tr:hover{background:#f8fbff}
   grid-template-columns:1.05fr .95fr;
   gap:20px;
 }
-@media (max-width:1100px){.comparison-grid{grid-template-columns:1fr}}
 .small{
   font-size:12px;
   color:var(--muted);
@@ -898,7 +885,6 @@ tbody tr:hover{background:#f8fbff}
 .popup-grid{gap:10px}
 .hr{margin:14px 0}
 @media (max-width:1100px){
-  .tabs{top:80px}
   .panel-head{align-items:flex-start}
   .filters select{min-width:160px}
 }
