@@ -1796,9 +1796,10 @@ th{background:#F4F6F9;color:var(--muted);font-size:11px;font-weight:700;text-tra
 tbody tr{background:#fff}tbody tr:nth-child(even){background:#F9FAFB}tbody tr:hover{background:var(--brand-5)}
 th.sortable{cursor:pointer;user-select:none;white-space:nowrap}
 th.sortable:hover{color:var(--brand)}
+.sort-icon{font-size:10px;color:var(--muted);margin-left:2px}
 th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left:4px}
-th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
-th.sortable:hover{background:rgba(11,79,168,.04)}
+th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand,#0B4FA8)}
+th.sortable:hover{background:rgba(11,79,168,.06)}
 th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
 .comp-table{border-collapse:collapse;width:100%}
 .comp-table th,.comp-table td{padding:10px 14px;text-align:right;font-size:13px;border-bottom:1px solid var(--line)}
@@ -2275,6 +2276,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
 
     <!-- KPIs resumo economia -->
     <div class="kpi-grid four" id="kpi-econ-resumo" style="margin-bottom:4px"></div>
+    <div class="note-box" style="margin:10px 0 16px"><strong>Nota:</strong> Os dados empresariais são da Receita Federal (base dez/2024). Filtros no mapa permitem explorar por tipo (Matriz/Filial), bairro, setor e território.</div>
 
     <!-- KPIs MGE -->
     <div style="margin:0 0 12px;padding:0 4px">
@@ -2412,6 +2414,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
 
     <!-- KPI row -->
     <div class="kpi-grid six" id="kpi-osc" style="padding-bottom:20px"></div>
+    <div class="note-box" style="margin:0 0 16px"><strong>Navegação:</strong> Use o mapa coroplético para visualizar a densidade de OSCs por bairro. Clique nos marcadores para detalhes de cada organização. A rede de afinidade abaixo mapeia conexões potenciais entre as organizações âncoras e as OSCs locais.</div>
 
     <!-- Map + sidebar -->
     <div class="panel" style="margin-bottom:20px">
@@ -2788,19 +2791,19 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
           <tbody>
             <tr>
               <td><span class="region-label"><span class="region-dot" style="background:#1E40AF"></span>Grande Bom Jardim</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell alto"><span>Baixo risco</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell alto"><span>Alto</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Baixo risco</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
             </tr>
             <tr>
               <td><span class="region-label"><span class="region-dot" style="background:#0B4FA8"></span>Grande Mucuripe</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell medio"><span>Médio</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
             </tr>
           </tbody>
         </table>
@@ -2933,28 +2936,28 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
           <tbody>
             <tr>
               <td>Pacto Contra a Fome<span class="p-scope">Segurança alimentar · articulação nacional</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f1" title="Baixa prioridade"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa prioridade"></span></td>
             </tr>
             <tr>
               <td>Movimento BemMaior<span class="p-scope">Mobilização cidadã · engajamento comunitário</span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
             </tr>
             <tr>
               <td>Astor Capital<span class="p-scope">Capital social · investimento estruturante</span></td>
-              <td><span class="fit f1" title="Baixa viabilidade"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa viabilidade"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
             </tr>
             <tr>
               <td>Instituto Localiza<span class="p-scope">Capacitação profissional · empregabilidade</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
             </tr>
             <tr>
               <td>Somos Um<span class="p-scope">Articulação comunitária · base territorial</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
             </tr>
           </tbody>
         </table>
@@ -5610,6 +5613,7 @@ function initComp(){
   }
 
   // ─── 7) Heatmap de vulnerabilidades ─────────────────────────────────────────
+  let heatSortKey = null, heatSortDir = -1;
   function renderHeatmap(){
     const tbl = document.getElementById('synth-heatmap');
     if(!tbl) return;
@@ -5617,10 +5621,21 @@ function initComp(){
     const maxPerDim = RADAR_INDS.map(ind=>{
       return Math.max(...GROUPS.map(g=>groupAgg[g].values['rdr_'+ind.key]||0), 0.001);
     });
-    let html = '<thead><tr><th style="text-align:left">Território</th>';
-    dims.forEach(d => { html += `<th>${d}</th>`; });
+    const arrow = k => heatSortKey===k ? (heatSortDir===-1?' ↓':' ↑') : '';
+    let html = '<thead><tr><th class="sortable" data-hk="name" style="text-align:left;cursor:pointer;user-select:none">Território'+arrow('name')+'</th>';
+    dims.forEach((d,i) => { html += `<th class="sortable" data-hk="${i}" style="cursor:pointer;user-select:none">${d}${arrow(String(i))}</th>`; });
     html += '</tr></thead><tbody>';
-    GROUPS.forEach(g=>{
+    const sorted = GROUPS.slice();
+    if(heatSortKey !== null){
+      sorted.sort((a,b)=>{
+        let va, vb;
+        if(heatSortKey === 'name'){ va=a; vb=b; }
+        else { const ind = RADAR_INDS[parseInt(heatSortKey)]; va=groupAgg[a].values['rdr_'+ind.key]||0; vb=groupAgg[b].values['rdr_'+ind.key]||0; }
+        if(typeof va==='number'&&typeof vb==='number') return heatSortDir===-1?vb-va:va-vb;
+        return heatSortDir===-1?String(vb).localeCompare(String(va),'pt'):String(va).localeCompare(String(vb),'pt');
+      });
+    }
+    sorted.forEach(g=>{
       const col = GROUP_COLORS[g] || '#0B4FA8';
       html += `<tr><td style="text-align:left;font-weight:700;color:var(--navy)"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:${col}"></span>${g}</span></td>`;
       RADAR_INDS.forEach((ind,i)=>{
@@ -5634,6 +5649,14 @@ function initComp(){
     });
     html += '</tbody>';
     tbl.innerHTML = html;
+    tbl.querySelectorAll('thead th.sortable').forEach(th=>{
+      th.onclick = () => {
+        const k = th.dataset.hk;
+        if(heatSortKey===k) heatSortDir*=-1;
+        else { heatSortKey=k; heatSortDir=-1; }
+        renderHeatmap();
+      };
+    });
   }
 
   // ─── 0) KPIs resumo da Síntese ──────────────────────────────────────────────
@@ -5887,7 +5910,7 @@ function initFavelasMap(mun, bairrosGeo){
 function enableTableSorting(root){
   (root||document).querySelectorAll('table').forEach(tbl => {
     // Tabelas que possuem lógica própria de ordenação (re-render completo)
-    if(tbl.id === 'table-econ' || tbl.id === 'table-mge-list' || tbl.id === 'table-osc-list' || tbl.id === 'synth-region-table' || tbl.id === 'synth-bairro-table' || tbl.id === 'synth-ipt-table') return;
+    if(tbl.id === 'table-econ' || tbl.id === 'table-mge-list' || tbl.id === 'table-osc-list' || tbl.id === 'synth-region-table' || tbl.id === 'synth-bairro-table' || tbl.id === 'synth-ipt-table' || tbl.id === 'synth-heatmap') return;
     const ths = tbl.querySelectorAll('thead th');
     ths.forEach(th => {
       if(th.classList.contains('no-sort')) return;
@@ -5934,7 +5957,7 @@ document.addEventListener('click', e => {
   if(th.classList.contains('no-sort')) return;
   if(th.dataset.col !== undefined || th.dataset.econCol !== undefined) return;
   const tbl = th.closest('table'); if(!tbl || !tbl.tBodies[0]) return;
-  if(tbl.id === 'table-econ' || tbl.id === 'table-mge-list' || tbl.id === 'table-osc-list' || tbl.id === 'synth-region-table' || tbl.id === 'synth-bairro-table' || tbl.id === 'synth-ipt-table') return;
+  if(tbl.id === 'table-econ' || tbl.id === 'table-mge-list' || tbl.id === 'table-osc-list' || tbl.id === 'synth-region-table' || tbl.id === 'synth-bairro-table' || tbl.id === 'synth-ipt-table' || tbl.id === 'synth-heatmap') return;
   const ths = Array.from(th.parentElement.cells);
   const idx = ths.indexOf(th);
   if(idx < 0) return;
