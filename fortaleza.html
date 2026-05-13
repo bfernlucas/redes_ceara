@@ -5746,7 +5746,7 @@ function activateTab(tab){
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
   document.querySelectorAll('.section').forEach(sec => sec.classList.toggle('active', sec.id === `section-${tab}`));
   initTab(tab);
-  if(MAPS[tab]) setTimeout(() => MAPS[tab].map.invalidateSize(), 120);
+  Object.keys(MAPS).forEach(k=>{if(MAPS[k]?.map)setTimeout(()=>MAPS[k].map.invalidateSize(),150)});
 }
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => activateTab(btn.dataset.tab));

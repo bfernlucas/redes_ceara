@@ -1455,7 +1455,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     </div>
     <div class="decision">
       <h3>Como ler a matriz</h3>
-      <p>A matriz cruza as 6 regiões com os 8 indicadores do radar, colorindo cada célula pelo grau de vulnerabilidade relativa entre as regiões. <strong style="color:#7F1D1D">Vermelho</strong> indica maior vulnerabilidade (terço superior), <strong style="color:#854D0E">Amarelo</strong> indica vulnerabilidade intermediária (terço médio) e <strong style="color:#14532D">Verde</strong> indica menor vulnerabilidade (terço inferior). A leitura por linha mostra o perfil de cada região; por coluna, revela qual dimensão é mais crítica no município.</p>
+      <p>A matriz cruza as 6 regiões com os 8 indicadores do radar, colorindo cada célula pelo grau de vulnerabilidade relativa entre as regiões. <strong style="color:#14532D">Verde</strong> indica menor vulnerabilidade (terço inferior), <strong style="color:#854D0E">Amarelo</strong> indica vulnerabilidade intermediária (terço médio) e <strong style="color:#7F1D1D">Vermelho</strong> indica maior vulnerabilidade (terço superior). A leitura por linha mostra o perfil de cada região; por coluna, revela qual dimensão é mais crítica no município.</p>
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
@@ -3438,12 +3438,12 @@ function initComp(){
           <strong style="font-size:13px;color:var(--navy)">${g}</strong>
           <span style="font-size:10px;color:var(--muted);font-weight:600">${gd.bairros} bairros</span>
         </div>
-        <div style="display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--navy)">
+        <div style="display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--navy);flex-wrap:wrap">
           <div><span style="color:var(--muted);font-weight:600">Pop.</span> <strong>${fmt(gd.pop,'int')}</strong></div>
           <div><span style="color:var(--muted);font-weight:600">%&nbsp;munic.</span> <strong>${shareMuni.toFixed(1)}%</strong></div>
           <div><span style="color:var(--muted);font-weight:600">Ext. pobreza</span> <strong>${fmt(gd.values.epob,'pct')}</strong></div>
         </div>
-        ${desc?`<div style="font-size:11px;color:#5C6E7E;margin-top:6px;line-height:1.45">${desc}</div>`:''}
+        ${desc?`<div style="font-size:11px;color:#5C6E7E;margin-top:8px;line-height:1.5">${desc}</div>`:''}
       </div>`;
     }).join('');
   }
@@ -3607,8 +3607,6 @@ function initComp(){
     const el = document.getElementById('synth-reading');
     // Para cada região, identifica pontos críticos (piores vs. município) e pontos positivos
     const critIdxs = ['epob','cad','anal'];
-    const sanIdxs = ['esg'];
-    const econIdxs = ['rendaPC'];
     el.innerHTML = GROUPS.map(g=>{
       const gd = groupAgg[g];
       const col = GROUP_COLORS[g] || '#888';
