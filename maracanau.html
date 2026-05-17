@@ -1242,6 +1242,11 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <!-- KPIs resumo economia -->
     <div class="kpi-grid four" id="kpi-econ-resumo" style="margin-bottom:4px"></div>
 
+    <div class="decision" style="margin:12px 0 16px">
+      <h3>Destaques econômicos</h3>
+      <p>Maracanaú apresenta forte concentração econômica no eixo Pajuçara–Jereissati e no Distrito Industrial. A participação de MEIs ultrapassa 80% em vários bairros, indicando economia predominantemente informal. O Distrito Industrial se destaca com médias e grandes empresas de alto capital, enquanto os bairros residenciais dependem de microempreendimentos. Essa assimetria demanda estratégias diferenciadas: fortalecimento de pequenos negócios na periferia e articulação com o setor formal no Distrito Industrial.</p>
+    </div>
+
     <div style="margin:0 0 12px;padding:0 4px;margin-bottom:8px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Médias e grandes empresas</span>
@@ -1251,6 +1256,13 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
     <!-- KPIs MGE -->
     <div class="kpi-grid six" id="kpi-mge"></div>
+
+    <div style="margin:20px 0 6px;padding:0 4px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Mapa de concentração</span>
+        <span style="flex:1;height:1px;background:var(--line-2)"></span>
+      </div>
+    </div>
 
     <!-- MAPA CAPITAL SOCIAL POR BAIRRO -->
     <div class="panel" style="margin-top:18px">
@@ -1334,7 +1346,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
     <div class="panel" style="margin-top:18px">
       <div class="panel-head">
-        <div><h3 class="panel-title">Atividade empresarial por bairro (dez/2024)</h3><p class="panel-sub">Todos os portes · ordenável por qualquer coluna</p></div>
+        <div><h3 class="panel-title">Atividade empresarial por bairro (dez/2024)</h3><p class="panel-sub">Todos os portes · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p></div>
         <span class="table-count" id="econ-table-count"></span>
       </div>
       <div class="table-filter-bar">
@@ -1348,7 +1360,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
     <div class="panel" style="margin-top:18px">
       <div class="panel-head">
-        <div><h3 class="panel-title">Lista completa de empresas M/G (dez/2024)</h3><p class="panel-sub">Todas as empresas de porte "Demais" · ordenável por qualquer coluna</p></div>
+        <div><h3 class="panel-title">Lista completa de empresas M/G (dez/2024)</h3><p class="panel-sub">Todas as empresas de porte "Demais" · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p></div>
         <span class="table-count" id="mge-table-count"></span>
       </div>
       <div class="table-filter-bar">
@@ -1371,7 +1383,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
     <div class="decision">
       <h3>Análise</h3>
-      <p>Maracanaú conta com 413 OSCs ativas distribuídas em 44 bairros. A rede de organizações se concentra nas áreas urbanas mais adensadas, com destaque para Pajuçara e Jereissati. As áreas de atuação predominantes incluem assistência social, cultura e educação, formando uma base institucional diversificada que pode ser articulada pela Coalizão para ampliar o impacto territorial.</p>
+      <p>Maracanaú conta com 413 OSCs ativas distribuídas em 44 bairros e 6 regiões. A rede de organizações se concentra nas áreas urbanas mais adensadas, com destaque para Pajuçara e Jereissati. As áreas de atuação predominantes incluem assistência social, cultura e educação, formando uma base institucional diversificada. A densidade de OSCs por habitante é maior nas regiões centrais, mas as periferias apresentam organizações de base com forte enraizamento comunitário — oportunidade-chave para a Coalizão articular ações de segurança alimentar e inclusão produtiva.</p>
     </div>
 
     <!-- KPI row -->
@@ -1536,7 +1548,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <!-- Tabela completa de OSCs -->
     <div class="panel" style="margin-top:20px">
       <div class="panel-head">
-        <div><h3 class="panel-title">Lista completa de OSCs (IPEA, 2024)</h3><p class="panel-sub">Todas as organizações geolocalizadas · ordenável por qualquer coluna</p></div>
+        <div><h3 class="panel-title">Lista completa de OSCs (IPEA, 2024)</h3><p class="panel-sub">Todas as organizações geolocalizadas · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p></div>
         <span class="table-count" id="osc-table-count"></span>
       </div>
       <div class="table-filter-bar">
@@ -1583,7 +1595,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <div class="panel-head">
         <div>
           <h3 class="panel-title">Indicadores consolidados por região</h3>
-          <p class="panel-sub">Totais somados e médias ponderadas por população, uma linha por região.</p>
+          <p class="panel-sub">Totais somados e médias ponderadas por população · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p>
         </div>
       </div>
       <div class="table-wrap" style="padding:0 24px 20px">
@@ -1596,7 +1608,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <div class="panel-head">
         <div>
           <h3 class="panel-title">Comparativo por bairro</h3>
-          <p class="panel-sub">Os 44 bairros lado a lado · clique no cabeçalho para ordenar qualquer coluna.</p>
+          <p class="panel-sub">Os 44 bairros lado a lado · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p>
         </div>
       </div>
       <div class="table-wrap" style="padding:0 24px 20px;max-height:640px;overflow:auto">
@@ -1672,12 +1684,23 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <div class="panel-head">
         <div>
           <h3 class="panel-title">Ranking de Priorização por Região</h3>
-          <p class="panel-sub">Regiões ordenadas pelo IPT (Índice de Priorização Territorial) · clique no cabeçalho para ordenar.</p>
+          <p class="panel-sub">Regiões ordenadas pelo IPT (Índice de Priorização Territorial) · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p>
         </div>
       </div>
       <div class="table-wrap" style="padding:0 24px 20px">
         <table id="synth-ipt-table" class="comp-table"></table>
       </div>
+    </div>
+
+    <div style="margin:28px 0 6px;padding:0 4px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Conclusões e recomendações</span>
+        <span style="flex:1;height:1px;background:var(--line-2)"></span>
+      </div>
+    </div>
+    <div class="decision" style="margin-top:12px">
+      <h3>Síntese estratégica para a Coalizão</h3>
+      <p>A análise integrada dos 44 bairros de Maracanaú em 6 regiões revela um gradiente de vulnerabilidade bem definido. As regiões periféricas concentram os maiores IPTs, combinando extrema pobreza, déficit sanitário e informalidade econômica em populações densas. As regiões centrais e industriais apresentam melhor infraestrutura mas desigualdades internas significativas. Para a Coalizão, recomenda-se: (1) priorizar as regiões com IPT "Crítico" ou "Alto" para ações de segurança alimentar e proteção social; (2) articular a rede de OSCs existente nas regiões centrais para ampliar cobertura nas periferias; (3) potencializar o eixo Distrito Industrial–CEASA para geração de emprego e inclusão produtiva; (4) monitorar o radar e o IPT anualmente para avaliar impacto territorial.</p>
     </div>
   </section>
 
@@ -4102,7 +4125,7 @@ function sortTableByColumn(tbl, idx, th){
   const tbody = tbl.tBodies[0]; if(!tbody) return;
   const rows = Array.from(tbody.rows).filter(r => !r.classList.contains('no-sort'));
   const curr = th.classList.contains('sort-desc') ? 'desc' : (th.classList.contains('sort-asc') ? 'asc' : null);
-  const next = curr === 'desc' ? 'asc' : 'desc';
+  const next = !curr ? 'desc' : (curr === 'desc' ? 'asc' : 'desc');
   tbl.querySelectorAll('thead th').forEach(h => {
     h.classList.remove('sort-asc','sort-desc');
     const ic = h.querySelector('.sort-icon'); if(ic && !h.dataset.col && !h.dataset.econCol) ic.textContent = ' ↕';
