@@ -460,6 +460,28 @@ th.sortable:hover{color:var(--brand);background:rgba(11,79,168,.04)}
 th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left:4px}
 th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
 th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
+th.sortable[title]::after{content:''}
+.sort-hint{position:relative}
+.sort-hint::after{
+  content:'clique para ordenar';
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--navy);
+  color:#fff;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em;
+  padding:4px 10px;
+  border-radius:4px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s;
+  z-index:10;
+}
+.sort-hint:hover::after{opacity:1}
 
 /* Comparison table */
 .comp-table{border-collapse:collapse;width:100%}
@@ -1323,7 +1345,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
     </div>
     <div class="decision">
       <h3>Análise</h3>
-      <p>O Grande Mucuripe reúne a maior densidade econômica, concentrada em Papicu, Mucuripe e Varjota. O Grande Bom Jardim tem peso relativo maior de microempreendimentos e MEIs: um ecossistema menos denso, mas mais aderente a estratégias de fortalecimento de pequenos negócios, formalização e circuitos econômicos de bairro.</p>
+      <p>O <strong>Grande Mucuripe</strong> reúne a maior densidade econômica — concentrada em Papicu, Mucuripe e Varjota — e responde pela maior fatia do capital social acumulado nos dois territórios, com presença significativa de médias e grandes empresas nos setores de serviços qualificados e comércio. O <strong>Grande Bom Jardim</strong>, por sua vez, tem peso relativo maior de microempreendimentos e MEIs (acima de 80% em vários bairros), configurando um ecossistema menos denso em capital, mas com forte potencial para estratégias de formalização, microcrédito, economia solidária e fortalecimento de circuitos econômicos de bairro. Essa assimetria sugere ações diferenciadas: no GM, articulação com o setor privado formal; no GBJ, apoio à base empreendedora de proximidade.</p>
     </div>
 
     <!-- KPIs resumo economia -->
@@ -1331,7 +1353,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
 
     <div class="decision" style="margin:12px 0 16px">
       <h3>Destaques econômicos</h3>
-      <p>O diagnóstico econômico revela dois perfis complementares: o <strong>Grande Mucuripe</strong> concentra capital social, médias e grandes empresas e setores de serviços qualificados; o <strong>Grande Bom Jardim</strong> é dominado por microempreendedores individuais (MEIs acima de 80%), com economia de base voltada ao comércio local. Essa dualidade aponta oportunidades para programas de formalização, microcrédito e circuitos econômicos solidários no GBJ, enquanto o GM oferece possibilidades de articulação com o setor privado formal.</p>
+      <p>O diagnóstico revela dois perfis complementares de tecido econômico. O <strong>Grande Mucuripe</strong> concentra a maior parcela do capital social acumulado, abriga médias e grandes empresas e setores de serviços qualificados — o que viabiliza articulação direta com o setor privado formal e programas de investimento social corporativo. Bairros como Papicu e Varjota funcionam como polos empregadores com potencial de transbordamento para o entorno. O <strong>Grande Bom Jardim</strong> é dominado por MEIs (acima de 80% em vários bairros), com economia de base voltada ao comércio local e serviços de proximidade — um perfil que demanda estratégias diferenciadas. A complementaridade entre os territórios aponta caminhos concretos: no GBJ, programas de formalização, microcrédito e circuitos de economia solidária; no GM, parcerias com empresas âncoras para transferência de tecnologia, responsabilidade social e geração de emprego qualificado.</p>
     </div>
 
     <!-- KPIs MGE -->
@@ -1352,7 +1374,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
-        <div><h3 class="panel-title">Concentração de capital social por bairro (dez/2024)</h3><p class="panel-sub">Médias e grandes empresas (porte "Demais") · Use os filtros para explorar por filiais/matrizes, bairro, território ou setor</p></div>
+        <div><h3 class="panel-title">Concentração de capital social por bairro (dez/2024)</h3><p class="panel-sub">Médias e grandes empresas (porte "Demais") · Use os 5 filtros acima do mapa (busca, tipo, bairro, território e setor CNAE) para refinar a visualização · Clique nos clusters para expandir e nos bairros sombreados para ver capital acumulado e detalhes</p></div>
       </div>
       <div class="map-analytics-layout">
         <div class="mge-map-wrap">
@@ -1449,7 +1471,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
     </div>
     <div class="panel" style="margin-top:18px">
       <div class="panel-head">
-        <div><h3 class="panel-title">Lista completa de empresas M/G (dez/2024)</h3><p class="panel-sub">Todas as empresas de porte "Demais" · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p></div>
+        <div><h3 class="panel-title">Lista completa de empresas M/G (dez/2024)</h3><p class="panel-sub">Registro individual de todas as empresas de porte "Demais" nos territórios da Coalizão — ordene por qualquer coluna (1.º clique: maior → menor) · filtre por território, setor ou tipo (matriz/filial) para localizar parceiros estratégicos</p></div>
         <span class="table-count" id="mge-table-count"></span>
       </div>
       <div class="table-filter-bar">
@@ -1471,7 +1493,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
 
     <div class="decision">
       <h3>Análise</h3>
-      <p>Os dois territórios da Coalizão em Fortaleza apresentam perfis distintos de sociedade civil. O Grande Mucuripe possui maior densidade de OSCs, com organizações mais diversificadas em áreas de atuação. O Grande Bom Jardim, apesar de menor volume, concentra organizações de assistência social e educação com forte enraizamento comunitário, criando oportunidades para articulação em rede pela Coalizão.</p>
+      <p>Os dois territórios apresentam perfis complementares de sociedade civil. O <strong>Grande Mucuripe</strong> possui maior densidade absoluta de OSCs, com organizações mais diversificadas em áreas de atuação — incluindo cultura, defesa de direitos e desenvolvimento comunitário — e maior presença de entidades formalizadas com CNPJ ativo. O <strong>Grande Bom Jardim</strong>, apesar de menor volume total, concentra organizações de assistência social e educação com forte enraizamento comunitário e atuação de base, o que favorece a articulação em rede e a mobilização territorial. As <strong>4 organizações âncoras</strong> da Coalizão (CCBJ, Movimento Saúde Mental, Escola de Gastronomia Social e Instituto Metamorfose) atuam como pontos de conexão entre os dois territórios, viabilizando parcerias temáticas e geográficas cruzadas em cultura, saúde mental, gastronomia social e defesa de direitos.</p>
     </div>
 
     <!-- KPI row -->
@@ -1479,7 +1501,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
 
     <div class="decision" style="margin:0 0 16px">
       <h3>Como interpretar</h3>
-      <p>O mapa coroplético representa a densidade de OSCs por bairro — cores mais intensas indicam maior concentração. Os marcadores individuais mostram a localização georreferenciada de cada organização, agrupados por proximidade (clique nos clusters para expandir). Use os filtros acima do mapa para explorar por <strong>bairro</strong>, <strong>território</strong> ou <strong>área de atuação</strong>. A rede de afinidade, abaixo, revela conexões potenciais entre as 4 organizações âncoras da Coalizão e as OSCs locais, inferidas por afinidade temática e proximidade geográfica.</p>
+      <p>No mapa abaixo, cores mais intensas indicam maior concentração de OSCs. Use os filtros de <strong>bairro</strong>, <strong>território</strong> e <strong>área de atuação</strong> para isolar segmentos de interesse e clique nos clusters para expandir marcadores individuais. Abaixo do mapa, a <strong>rede de afinidade</strong> identifica parceiros prioritários por proximidade geográfica e alinhamento temático com as 4 âncoras.</p>
     </div>
 
     <!-- Map + sidebar -->
@@ -1518,7 +1540,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
 
     <div class="decision" style="margin-top:12px">
       <h3>Rede institucional</h3>
-      <p>A rede de afinidade mapeia conexões potenciais entre as 4 organizações âncoras da Coalizão e as OSCs locais, baseadas em proximidade geográfica e alinhamento temático. O Grande Bom Jardim apresenta maior concentração de organizações com afinidade em assistência social e educação, enquanto o Grande Mucuripe conta com rede mais diversificada em cultura e defesa de direitos.</p>
+      <p>A rede de afinidade mapeia conexões potenciais entre as <strong>4 organizações âncoras</strong> da Coalizão e as OSCs locais dos dois territórios. As âncoras são: <strong>CCBJ</strong> (cultura, Bom Jardim), <strong>Movimento Saúde Mental</strong> (saúde mental comunitária, Bom Jardim), <strong>Escola de Gastronomia Social</strong> (educação e gastronomia social, Cais do Porto) e <strong>Instituto Metamorfose</strong> (assistência social e defesa de direitos, Cais do Porto). Cada conexão é calculada por proximidade geográfica e alinhamento temático (score de 2 a 6+). No <strong>Grande Bom Jardim</strong>, predominam afinidades em assistência social e educação; no <strong>Grande Mucuripe</strong>, a rede é mais diversificada, com destaque para cultura e defesa de direitos. Filtre por território, bairro ou âncora para identificar parceiros prioritários.</p>
     </div>
 
     <!-- Network analysis -->
@@ -1663,11 +1685,11 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
     </div>
 
     <!-- KPIs resumo -->
-    <div class="kpi-grid four" id="kpi-synth" style="margin-bottom:4px"></div>
+    <div class="kpi-grid six" id="kpi-synth" style="margin-bottom:4px"></div>
 
     <div class="decision">
-      <h3>Metodologia do Radar</h3>
-      <p>O gráfico de radar compara os 2 territórios da Coalizão em Fortaleza em 8 dimensões integradas, agrupadas em três categorias: <strong>Vulnerabilidade social</strong> (extrema pobreza, CadÚnico e analfabetismo), <strong>Infraestrutura e renda</strong> (déficit de esgoto e déficit de renda) e <strong>Perfil socioeconômico</strong> (informalidade/MEI, população não-branca e chefia feminina). Cada eixo é normalizado de 0 a 1 em relação ao máximo observado entre os territórios, permitindo comparação direta. Quanto maior a área do polígono, maior o acúmulo de vulnerabilidades e pressões naquele território. A leitura cruzada das dimensões revela quais territórios concentram múltiplas fragilidades simultaneamente, orientando a priorização territorial da Coalizão.</p>
+      <h3>O que esta síntese contém</h3>
+      <p>Esta aba consolida os dados de todas as dimensões anteriores (demografia, vulnerabilidade, infraestrutura, economia e sociedade civil) em um panorama integrado. O <strong>mapa de divisão territorial</strong> mostra como os 13 bairros se agrupam nos dois territórios da Coalizão. As <strong>tabelas consolidadas</strong> permitem comparar indicadores entre territórios e bairros lado a lado. O <strong>radar de vulnerabilidades</strong> compara 8 dimensões normalizadas (0 a 1) agrupadas em três categorias: <em>Vulnerabilidade social</em> (extrema pobreza, CadÚnico e analfabetismo), <em>Infraestrutura e renda</em> (déficit de esgoto e déficit de renda) e <em>Perfil socioeconômico</em> (informalidade/MEI, pop. não-branca e chefia feminina). A <strong>matriz de vulnerabilidades</strong> traduz o radar em cores para leitura rápida, e o <strong>Índice de Priorização Territorial (IPT)</strong> sintetiza tudo em um score único por território. Quanto maior a área do polígono no radar ou o IPT, maior o acúmulo de vulnerabilidades e a prioridade de intervenção.</p>
     </div>
 
     <!-- 1 — Divisão territorial: mapa + cards -->
@@ -1738,7 +1760,7 @@ th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
     </div>
     <div class="decision">
       <h3>Leitura integrada</h3>
-      <p>O radar revela padrões complementares entre os dois territórios. O <strong>Grande Bom Jardim</strong> apresenta um polígono mais amplo, concentrando múltiplas fragilidades simultâneas — extrema pobreza elevada, déficit sanitário e alta informalidade econômica — demandando intervenções multisetoriais articuladas. O <strong>Grande Mucuripe</strong> mostra fragilidades mais pontuais, com melhor infraestrutura mas desigualdade interna significativa entre bairros. A comparação cruzada dos eixos indica que o Grande Bom Jardim oferece maior potencial de adicionalidade para a Coalizão: a necessidade é ampla e homogênea, enquanto a base institucional existente é proporcionalmente menor, criando espaço para ganhos de articulação em rede.</p>
+      <p>O radar revela dois perfis territoriais complementares em Fortaleza. O <strong>Grande Bom Jardim</strong> apresenta um polígono consistentemente amplo em todos os eixos, concentrando múltiplas fragilidades simultâneas — extrema pobreza elevada, déficit sanitário e alta informalidade econômica — demandando intervenções multisetoriais articuladas. A homogeneidade das vulnerabilidades neste território cria condições favoráveis para programas de escala. O <strong>Grande Mucuripe</strong> mostra um perfil mais contido e assimétrico: melhor infraestrutura e renda média, mas com desigualdade interna significativa entre bairros (p.ex. Papicu vs. Cais do Porto). Seus desafios são mais focalizados, demandando estratégias por bairro. A comparação cruzada dos 8 eixos é essencial: um território com alto déficit de esgoto <em>e</em> alta informalidade demanda resposta diferente de outro com déficit apenas em renda. O Grande Bom Jardim oferece maior potencial de adicionalidade para a Coalizão — a necessidade é ampla e homogênea, enquanto a base institucional existente é proporcionalmente menor.</p>
     </div>
     <div style="margin:24px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
@@ -3874,7 +3896,7 @@ function initOsc(){
       cBairro.parentElement.style.height='auto';
       const terrMap={};
       OSC_POINTS.forEach(p=>{if(!terrMap[p.b])terrMap[p.b]=p.t;});
-      CHARTS['chart-osc-bairro']=new Chart(cBairro,{type:'bar',data:{labels:bairroEntries.map(e=>e[0]),datasets:[{data:bairroEntries.map(e=>e[1]),backgroundColor:bairroEntries.map(e=>terrMap[e[0]]==='Grande Mucuripe'?'rgba(11,79,168,.7)':'rgba(44,123,181,.7)'),borderRadius:3}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+' OSCs'}}},scales:{x:{grid:{display:false}},y:{grid:{display:false},ticks:{font:{size:11}}}}}});
+      CHARTS['chart-osc-bairro']=new Chart(cBairro,{type:'bar',data:{labels:bairroEntries.map(e=>e[0]),datasets:[{data:bairroEntries.map(e=>e[1]),backgroundColor:bairroEntries.map(e=>terrMap[e[0]]==='Grande Mucuripe'?'rgba(11,79,168,.75)':'rgba(30,64,175,.55)'),borderRadius:3}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+' OSCs'}}},scales:{x:{grid:{display:false}},y:{grid:{display:false},ticks:{font:{size:11}}}}}});
     }
   }
 
@@ -4724,10 +4746,14 @@ function initComp(){
   if(kpiSynth){
     const totalOsc = DATA.reduce((s,d)=>s+(+d.osc||0),0);
     const totalEmp = DATA.reduce((s,d)=>s+(+d.emp||0),0);
+    const avgEsg = muni.values.esg;
+    const avgCad = muni.values.cad;
     kpiSynth.innerHTML = [
       {label:'População acompanhada',value:fmt(muni.pop,'int'),sub:GROUPS.length+' territórios · '+DATA.length+' bairros'},
       {label:'Extrema pobreza média',value:fmt(muni.values.epob,'pct'),sub:'Ponderada por população (MDS, 2025)'},
       {label:'Renda per capita média',value:fmt(muni.values.rendaPC,'money'),sub:'Ponderada por população (IBGE, 2022)'},
+      {label:'Cobertura de esgoto',value:fmt(avgEsg,'pct'),sub:'Média ponderada por população'},
+      {label:'CadÚnico',value:fmt(avgCad,'pct'),sub:'Famílias registradas (MDS, 2025)'},
       {label:'OSCs + Empresas',value:fmt(totalOsc,'int')+' + '+fmt(totalEmp,'int'),sub:fmt(totalOsc,'int')+' OSCs e '+fmt(totalEmp,'int')+' empresas'}
     ].map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="value">${k.value}</div><div class="sub">${k.sub}</div></div>`).join('');
   }
