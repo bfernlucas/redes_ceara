@@ -1229,8 +1229,8 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       </div>
     </div>
     <div class="grid two" style="margin-top:22px">
-      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Saúde pública por bairro (CNES, 2024)</h3><p class="panel-sub">Estabelecimentos de saúde por bairro</p></div></div><div class="chart-box"><canvas id="chart-infra-saude" class="chart"></canvas></div></div>
-      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Rede escolar pública (Censo Escolar, 2023)</h3><p class="panel-sub">Escolas públicas por bairro</p></div></div><div class="chart-box"><canvas id="chart-infra-esc" class="chart"></canvas></div></div>
+      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Saúde pública por bairro (CNES, 2024)</h3><p class="panel-sub">Estabelecimentos de saúde, nº de unidades por bairro</p></div></div><div class="chart-box"><canvas id="chart-infra-saude" class="chart"></canvas></div></div>
+      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Rede escolar pública (Censo Escolar, 2023)</h3><p class="panel-sub">Escolas públicas, nº de unidades por bairro</p></div></div><div class="chart-box"><canvas id="chart-infra-esc" class="chart"></canvas></div></div>
     </div>
   </section>
 
@@ -1834,10 +1834,13 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
           </tbody>
         </table>
       </div>
-      <div class="fit-legend" style="border-top:1px dashed var(--line-2);margin-top:0">
-        <span class="item"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#DCFCE7;border:1px solid #BBF7D0"></span> Alto · condição favorável</span>
-        <span class="item"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#FEF9C3;border:1px solid #FEF08A"></span> Médio · parcialmente presente</span>
-        <span class="item"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#FEE2E2;border:1px solid #FECACA"></span> Baixo · condição limitante</span>
+      <div class="fit-legend" style="border-top:1px dashed var(--line-2);margin-top:0;flex-direction:column;align-items:flex-start;gap:6px">
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+          <span class="item"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#DCFCE7;border:1px solid #BBF7D0"></span> Condição favorável</span>
+          <span class="item"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#FEF9C3;border:1px solid #FEF08A"></span> Condição intermediária</span>
+          <span class="item"><span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:#FEE2E2;border:1px solid #FECACA"></span> Condição limitante</span>
+        </div>
+        <div style="font-size:11px;color:var(--muted);font-style:italic">A cor reflete a favorabilidade do critério, não o nível absoluto. Em <strong>Riscos político-institucionais</strong>, "Baixo risco" é condição favorável (verde) e "Alto risco" é condição limitante (vermelho); em <strong>Potencial</strong>, "Alto" é favorável.</div>
       </div>
     </div>
 
