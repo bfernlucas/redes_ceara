@@ -29,7 +29,7 @@ python3 -m http.server 8000
 ## Estrutura do repositório
 
 ```
-coalizao_ce/
+redes_ceara/
 ├── README.md
 ├── .gitignore
 ├── index.html              # landing
