@@ -61,7 +61,7 @@ button,select,input,textarea{font:inherit}
   display:flex;
   align-items:center;
   box-shadow:none;
-  border-bottom:3px solid #4C1D95;
+  border-bottom:3px solid var(--brand);
 }
 .topbar-inner{
   width:100%;
@@ -362,11 +362,11 @@ button,select,input,textarea{font:inherit}
   border:1px solid var(--line);
   height:12px;
 }
-.legend-scale span:nth-child(1){background:#F3E8FF}
-.legend-scale span:nth-child(2){background:#DDD6FE}
-.legend-scale span:nth-child(3){background:#C084FC}
-.legend-scale span:nth-child(4){background:#A855F7}
-.legend-scale span:nth-child(5){background:#7C3AED}
+.legend-scale span:nth-child(1){background:var(--brand-5)}
+.legend-scale span:nth-child(2){background:var(--brand-4)}
+.legend-scale span:nth-child(3){background:var(--brand-3)}
+.legend-scale span:nth-child(4){background:var(--brand-2)}
+.legend-scale span:nth-child(5){background:var(--brand)}
 .legend-scale span:nth-child(6){background:#5B21B6}
 .legend-labels{display:flex;justify-content:space-between;gap:10px;font-size:10px;color:var(--muted)}
 
@@ -410,14 +410,14 @@ button,select,input,textarea{font:inherit}
   padding:16px;
   background:#fff!important;
   border:1px solid #E8EDF2;
-  border-left:3px solid #7C3AED;
+  border-left:3px solid var(--brand);
   border-radius:0!important;
   box-shadow:none!important;
-  color:#0B2B44;
+  color:var(--navy);
 }
-.territory-card.alt{background:#fff!important;border-left-color:#A855F7}
-.territory-card h4{margin:0 0 8px;font-size:12px;font-weight:700;color:#7C3AED!important;text-transform:uppercase;letter-spacing:.06em}
-.territory-card.alt h4{color:#A855F7!important}
+.territory-card.alt{background:#fff!important;border-left-color:var(--brand-2)}
+.territory-card h4{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--brand)!important;text-transform:uppercase;letter-spacing:.06em}
+.territory-card.alt h4{color:var(--brand-2)!important}
 .territory-card p{margin:0 0 12px;font-size:12px;line-height:1.55;color:#5C6E7E!important}
 .territory-card .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:0!important}
 .territory-card .mini div{background:#F8FAFB!important;border:1px solid #E8EDF2!important;border-radius:3px!important;padding:10px 8px}
@@ -459,6 +459,28 @@ th.sortable:hover{color:var(--brand);background:rgba(124,58,237,.04)}
 th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left:4px}
 th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
 th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
+th.sortable[title]::after{content:''}
+.sort-hint{position:relative}
+.sort-hint::after{
+  content:'clique para ordenar';
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--navy);
+  color:#fff;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em;
+  padding:4px 10px;
+  border-radius:4px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s;
+  z-index:10;
+}
+.sort-hint:hover::after{opacity:1}
 .mei-high td:nth-child(4){color:#B07C20;font-weight:700}
 
 /* Comparison table */
@@ -847,8 +869,8 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .mge-cluster-lg{width:52px;height:52px;background:rgba(124,58,237,.85);border:3px solid rgba(255,255,255,.8);font-size:13px}
 .mge-popup{padding:14px 16px}
 .mge-popup h4{margin:0 0 4px;font-size:14px;font-weight:700;color:#062040;line-height:1.25}
-.mge-popup .mge-cap{font-size:18px;font-weight:700;color:#7C3AED;margin:6px 0}
-.mge-popup .mge-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;margin-right:3px;background:#F3E8FF;color:#7C3AED}
+.mge-popup .mge-cap{font-size:18px;font-weight:700;color:var(--brand);margin:6px 0}
+.mge-popup .mge-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;margin-right:3px;background:var(--brand-5);color:var(--brand)}
 .mge-popup .mge-meta{font-size:11px;color:#5C6E7E;margin-top:6px}
 .mge-popup .mge-detail{margin-top:10px;padding-top:8px;border-top:1px solid #e6ebf0;display:grid;grid-template-columns:1fr;gap:6px}
 .mge-popup .mge-detail .row{font-size:11px;color:#23354d;line-height:1.4}
@@ -858,9 +880,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .cap-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
 .cap-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;border:1.5px solid rgba(255,255,255,.5)}
 .tipo-badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em}
-.tipo-m{background:#e0f2e9;color:#7C3AED}
+.tipo-m{background:#e0f2e9;color:var(--brand)}
 .tipo-f{background:#fef3cd;color:#7c5c00}
-.sector-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:600;background:#F3E8FF;color:#7C3AED;white-space:nowrap}
+.sector-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--brand-5);color:var(--brand);white-space:nowrap}
 .region-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
 
 /* Adicionalidade tab */
@@ -943,7 +965,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .dim-insights{margin-top:0}
 .dim-insight-row{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #EEF1F4}
 .dim-insight-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.dim-insight-key{font-size:11px;font-weight:700;color:#7C3AED;margin-bottom:2px}
+.dim-insight-key{font-size:11px;font-weight:700;color:var(--brand);margin-bottom:2px}
 .dim-insight-val{font-size:11px;color:#5C6E7E;line-height:1.6}
 
 /* Priority list */
@@ -1236,15 +1258,18 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
   <!-- TECIDO ECONÔMICO -->
   <section id="section-econ" class="section">
-    <div class="section-head"><span class="section-kicker">Economia local</span><h2 class="section-title">Tecido econômico</h2><p class="section-desc">Atividade empresarial, MEIs e capital social acumulado por bairro (Receita Federal, 2024).</p></div>
+    <div class="section-head"><span class="section-kicker">Economia local</span><h2 class="section-title">Tecido econômico e atividade empresarial</h2><p class="section-desc">Panorama completo da atividade empresarial, distribuição de MEIs, capital social acumulado e perfil setorial por bairro (Receita Federal, dez/2024).</p></div>
+
+    <!-- Análise geral -->
     <div class="decision"><h3>Análise</h3><p>Pajuçara e Jereissati A concentram o maior volume de empresas, respondendo juntos por cerca de 25% dos estabelecimentos do município. O Distrito Industrial se destaca em médias e grandes empresas e em capital social acumulado, concentrando mais de 60% do capital total registrado. A participação de MEIs é altíssima, ultrapassando 80% em pelo menos 15 bairros — sinal de economia predominantemente informal nas áreas residenciais. Entre as 2.392 empresas de porte "Demais", o capital social total atinge R$ 1,49 trilhão (valor inflado por filiais de grandes bancos e redes nacionais com sede registrada no município). Excluídas essas distorções, a base produtiva local depende fortemente de microempreendimentos.</p></div>
 
-    <!-- KPIs resumo economia -->
-    <div class="kpi-grid four" id="kpi-econ-resumo" style="margin-bottom:4px"></div>
+    <!-- KPI summary strip — 6 indicadores-chave da economia -->
+    <div class="kpi-grid six" id="kpi-econ-resumo" style="margin-bottom:4px"></div>
 
+    <!-- Destaques econômicos -->
     <div class="decision" style="margin:12px 0 16px">
       <h3>Destaques econômicos</h3>
-      <p>Maracanaú apresenta forte concentração econômica no eixo Pajuçara–Jereissati e no Distrito Industrial. Enquanto o Distrito Industrial abriga empresas com capital social médio na casa dos milhões, bairros como Piratininga, Novo Oriente e Timbó registram quase exclusivamente MEIs, com participação superior a 90%. A taxa média de MEI nos bairros residenciais (>80%) contrasta com menos de 40% no Distrito Industrial — evidência de uma economia dual. Essa assimetria demanda estratégias diferenciadas: programas de formalização e crédito para pequenos negócios na periferia, e articulação com o setor formal no Distrito Industrial para geração de emprego e inclusão produtiva das populações vulneráveis do entorno.</p>
+      <p>O <strong>Distrito Industrial</strong> concentra mais de 60% do capital social e abriga as maiores empresas do município — viabilizando articulação com o setor privado formal. Os <strong>bairros residenciais</strong> são dominados por MEIs (acima de 80%), evidenciando uma economia dual. A assimetria demanda estratégias diferenciadas: formalização e microcrédito na periferia; articulação empresarial e inclusão produtiva no eixo industrial.</p>
     </div>
 
     <div style="margin:0 0 12px;padding:0 4px;margin-bottom:8px">
@@ -1257,6 +1282,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <!-- KPIs MGE -->
     <div class="kpi-grid six" id="kpi-mge"></div>
 
+    <!-- ── Mapa de concentração ── -->
     <div style="margin:20px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Mapa de concentração</span>
@@ -1264,14 +1290,14 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       </div>
     </div>
 
-    <!-- MAPA CAPITAL SOCIAL POR BAIRRO -->
+    <!-- MAPA CAPITAL SOCIAL POR BAIRRO — destaque principal -->
     <div class="panel" style="margin-top:18px">
       <div class="panel-head">
         <div><h3 class="panel-title">Concentração de capital social por bairro (dez/2024)</h3><p class="panel-sub">Médias e grandes empresas (porte "Demais") · Filtros disponíveis: tipo (matriz/filial), bairro, região administrativa e setor CNAE · Clique nos clusters para expandir e nos bairros para detalhes</p></div>
       </div>
       <div class="map-analytics-layout">
         <div class="mge-map-wrap">
-          <div class="map-box split" id="map-mge" style="min-height:520px"></div>
+          <div class="map-box split" id="map-mge" style="min-height:560px"></div>
           <div class="map-filter-overlay" id="mge-filter-overlay">
             <input type="search" id="mge-map-search" placeholder="Buscar empresa…" autocomplete="off" style="flex:2;min-width:160px">
             <select id="mge-tipo-filter" title="Filtrar por tipo">
@@ -1293,7 +1319,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
           </div>
         </div>
         <div class="analysis-side">
-          <div class="analysis-card" style="flex:1;display:flex;flex-direction:column;max-height:520px">
+          <div class="analysis-card" style="flex:1;display:flex;flex-direction:column;max-height:560px">
             <div class="analysis-kicker">Empresas no filtro</div>
             <p class="analysis-text" id="mge-analysis-text" style="margin:6px 0 8px;font-size:12px"></p>
             <div id="mge-top-list" style="flex:1;overflow-y:auto;min-height:0"></div>
@@ -1312,12 +1338,20 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       </div>
     </div>
 
-    <!-- CAPITAL POR SETOR -->
+    <!-- ── Perfil setorial ── -->
+    <div style="margin:24px 0 6px;padding:0 4px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Perfil setorial</span>
+        <span style="flex:1;height:1px;background:var(--line-2)"></span>
+      </div>
+    </div>
+
     <div class="grid two" style="margin-top:18px">
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Capital social por setor (dez/2024)</h3><p class="panel-sub">Top 15 setores · médias e grandes empresas</p></div></div><div class="chart-box"><canvas id="chart-mge-setor" class="chart tall"></canvas></div></div>
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Empresas médias e grandes por bairro (dez/2024)</h3><p class="panel-sub">Quantidade de estabelecimentos porte "Demais"</p></div></div><div class="chart-box"><canvas id="chart-mge-bairro" class="chart tall"></canvas></div></div>
     </div>
 
+    <!-- ── Volume empresarial ── -->
     <div style="margin:24px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Volume empresarial</span>
@@ -1330,13 +1364,18 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <p>Pajuçara e Jereissati concentram o maior volume absoluto de empresas. A alta participação de MEIs (acima de 80% em vários bairros) indica uma economia predominantemente informal, com potencial para programas de formalização e fortalecimento de pequenos negócios locais.</p>
     </div>
 
-    <!-- CHARTS ORIGINAIS -->
     <div class="grid two" style="margin-top:18px">
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Volume empresarial por bairro (dez/2024)</h3><p class="panel-sub">Todos os portes</p></div></div><div class="chart-box"><canvas id="chart-econ-emp" class="chart tall"></canvas></div></div>
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Participação de MEIs (dez/2024)</h3><p class="panel-sub">% das empresas que são MEIs</p></div></div><div class="chart-box"><canvas id="chart-econ-mei" class="chart tall"></canvas></div></div>
     </div>
 
+    <!-- Perfil setorial — top 3 setores por número de empresas -->
+    <div class="decision" style="margin:20px 0 14px">
+      <h3>Perfil setorial</h3>
+      <p id="econ-perfil-setorial"></p>
+    </div>
 
+    <!-- ── Tabelas detalhadas ── -->
     <div style="margin:24px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Tabelas detalhadas</span>
@@ -1624,7 +1663,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <!-- 4 — Radar + síntese por região -->
     <div class="decision" style="margin-top:20px">
       <h3>Como ler o radar</h3>
-      <p>Cada eixo representa um indicador normalizado de 0 a 1 e ponderado pela população dos bairros. Quanto maior a área do polígono, mais concentrado o perfil de vulnerabilidade naquela região. <strong>Extrema pobreza</strong> mede a proporção de famílias abaixo da linha de pobreza extrema (MDS, 2025). <strong>CadÚnico</strong> indica a cobertura do Cadastro Único — valores altos significam maior dependência de programas sociais. <strong>Analfabetismo</strong> revela o déficit educacional adulto. <strong>Déficit de esgoto</strong> e <strong>Déficit de renda</strong> captam, respectivamente, a precariedade sanitária e a insuficiência econômica. <strong>Informalidade (MEI)</strong> mostra a proporção de microempreendedores individuais sobre o total de empresas — valores altos indicam economia predominantemente informal, com menor geração de emprego formal. <strong>Pop. não-branca</strong> e <strong>Chefia feminina</strong> completam o perfil demográfico, revelando a interseccionalidade entre vulnerabilidade racial e de gênero nos territórios.</p>
+      <p>Cada eixo representa um indicador normalizado de 0 a 1 e ponderado pela população dos bairros. Quanto maior a área do polígono, mais concentrado o perfil de vulnerabilidade naquela região. <strong>Extrema pobreza</strong> mede a proporção de famílias abaixo da linha de pobreza extrema (MDS, 2025). <strong>CadÚnico</strong> indica a cobertura do Cadastro Único — valores altos significam maior dependência de programas sociais. <strong>Analfabetismo</strong> revela o déficit educacional adulto. <strong>Déficit de esgoto</strong> e <strong>Déficit de renda</strong> captam, respectivamente, a precariedade sanitária e a insuficiência econômica. <strong>Informalidade (MEI)</strong> mostra a proporção de microempreendedores individuais sobre o total de empresas — valores altos indicam economia predominantemente informal, com menor geração de emprego formal. <strong>Pop. não-branca</strong> e <strong>Chefia feminina</strong> completam o perfil demográfico, revelando a interseccionalidade entre vulnerabilidade racial e de gênero nos territórios. Os 8 indicadores estão agrupados em três categorias para facilitar a leitura: <em>Vulnerabilidade social</em> (3 eixos superiores), <em>Infraestrutura e renda</em> (2 eixos laterais) e <em>Perfil socioeconômico</em> (3 eixos inferiores). Todos os valores são normalizados entre 0 e 1, onde valores mais altos indicam maior vulnerabilidade ou fragilidade.</p>
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
@@ -1683,7 +1722,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     </div>
     <div class="decision">
       <h3>Metodologia do IPT</h3>
-      <p>O <strong>Índice de Priorização Territorial (IPT)</strong> combina as 8 dimensões do radar em um score único por região, calculado como a média aritmética dos valores normalizados (0 a 1). Quanto maior o IPT, maior a concentração de vulnerabilidades e, consequentemente, maior a prioridade para intervenção da Coalizão. A classificação segue: <strong>Crítico</strong> (≥ 0,70), <strong>Alto</strong> (≥ 0,50), <strong>Moderado</strong> (≥ 0,30) e <strong>Baixo</strong> (&lt; 0,30). O índice complementa a análise visual do radar com uma métrica direta e comparável.</p>
+      <p>O <strong>Índice de Priorização Territorial (IPT)</strong> combina as 8 dimensões do radar em um score único por região, calculado como a média aritmética dos valores normalizados (0 a 1). Quanto maior o IPT, maior a concentração de vulnerabilidades e, consequentemente, maior a prioridade para intervenção da Coalizão. A classificação segue: <strong>Crítico</strong> (≥ 0,70), <strong>Alto</strong> (≥ 0,50), <strong>Moderado</strong> (≥ 0,30) e <strong>Baixo</strong> (&lt; 0,30). O índice complementa a análise visual do radar com uma métrica direta e comparável. A normalização utiliza: indicadores percentuais (extrema pobreza, CadÚnico, analfabetismo, % MEI, pop. não-branca, chefia feminina) mantém seu valor original (0 a 1); déficit de esgoto é calculado como 1 menos a cobertura; e déficit de renda é normalizado com referência de R$ 3.000 como valor máximo observado na amostra.</p>
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
@@ -1706,6 +1745,20 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="decision" style="margin-top:12px">
       <h3>Síntese estratégica para a Coalizão</h3>
       <p>A análise integrada dos 44 bairros de Maracanaú em 6 regiões revela um gradiente de vulnerabilidade bem definido. As regiões periféricas concentram os maiores IPTs, combinando extrema pobreza, déficit sanitário e informalidade econômica em populações densas. As regiões centrais e industriais apresentam melhor infraestrutura mas desigualdades internas significativas. Para a Coalizão, recomenda-se: (1) priorizar as regiões com IPT "Crítico" ou "Alto" para ações de segurança alimentar e proteção social; (2) articular a rede de OSCs existente nas regiões centrais para ampliar cobertura nas periferias; (3) potencializar o eixo Distrito Industrial–CEASA para geração de emprego e inclusão produtiva; (4) monitorar o radar e o IPT anualmente para avaliar impacto territorial.</p>
+    </div>
+    <div class="panel" style="margin-top:20px">
+      <div class="panel-head">
+        <div>
+          <h3 class="panel-title">Fontes e metodologia</h3>
+          <p class="panel-sub">Base de dados e indicadores utilizados na construção da síntese</p>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:16px 20px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:12px;color:var(--muted);line-height:1.7">
+          <div><strong style="color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.05em">Indicadores do radar</strong><br>Extrema pobreza (MDS/CadÚnico, 2025) · CadÚnico (MDS, 2025) · Analfabetismo (IBGE Censo, 2022) · Rede de esgoto (IBGE Censo, 2022) · Renda per capita (IBGE Censo, 2022) · % MEI (Receita Federal, 2024) · Pop. não-branca (IBGE Censo, 2022) · Chefia feminina (IBGE Censo, 2022)</div>
+          <div><strong style="color:var(--navy);font-size:11px;text-transform:uppercase;letter-spacing:.05em">Indicadores complementares</strong><br>População (IBGE Censo, 2022) · Empresas ativas (Receita Federal, 2024) · OSCs (IPEA/Mapa OSC, 2024) · Capital social (Receita Federal, 2024) · Equipamentos de saúde (CNES, 2024)</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2450,10 +2503,14 @@ function initEcon(){
   const totalCoops=DATA.reduce((s,d)=>s+(+d.coops||0),0);
   const avgMeiAll=DATA.filter(d=>d.meiShare!=null).reduce((s,d,_,a)=>s+d.meiShare/a.length,0);
   const econResumo=document.getElementById('kpi-econ-resumo');
+  const totalMGEAll=DATA.reduce((s,d)=>s+(+d.mge||0),0);
+  const totalCapMGE=MGE_BAIRRO.reduce((s,b)=>s+b.cap,0);
   if(econResumo) econResumo.innerHTML=`
     <div class="kpi"><div class="label">Total de empresas</div><div class="value">${totalEmpAll.toLocaleString('pt-BR')}</div><div class="sub">Todos os portes · Receita Federal, 2024</div></div>
-    <div class="kpi"><div class="label">MEIs</div><div class="value">${totalMEI.toLocaleString('pt-BR')}</div><div class="sub">${(avgMeiAll*100).toFixed(0)}% do total em média</div></div>
-    <div class="kpi"><div class="label">Micro e pequenas</div><div class="value">${DATA.reduce((s,d)=>s+(+d.mpe||0),0).toLocaleString('pt-BR')}</div><div class="sub">Porte MPE</div></div>
+    <div class="kpi"><div class="label">Total MEIs</div><div class="value">${totalMEI.toLocaleString('pt-BR')}</div><div class="sub">${(totalMEI/totalEmpAll*100).toFixed(0)}% do total geral</div></div>
+    <div class="kpi"><div class="label">% MEI médio</div><div class="value">${(avgMeiAll*100).toFixed(0)}%</div><div class="sub">Participação média nos bairros</div></div>
+    <div class="kpi"><div class="label">Capital Social M/G</div><div class="value">${fmtCap(totalCapMGE)}</div><div class="sub">Médias e grandes empresas</div></div>
+    <div class="kpi"><div class="label">Empresas M/G</div><div class="value">${totalMGEAll.toLocaleString('pt-BR')}</div><div class="sub">Porte "Demais"</div></div>
     <div class="kpi"><div class="label">Cooperativas</div><div class="value">${totalCoops.toLocaleString('pt-BR')}</div><div class="sub">Cooperativas ativas</div></div>`;
 
   // --- Original charts ---
@@ -2461,6 +2518,16 @@ function initEcon(){
   makeBar('chart-econ-emp',withEmp.map(d=>d.b),[{data:withEmp.map(d=>d.emp),backgroundColor:UI.blue,borderRadius:5}]);
   const withMei=DATA.filter(d=>d.meiShare!=null).sort((a,b)=>b.meiShare-a.meiShare);
   makeBar('chart-econ-mei',withMei.map(d=>d.b),[{data:withMei.map(d=>(d.meiShare*100).toFixed(1)),backgroundColor:withMei.map(d=>d.meiShare>.8?UI.gold:d.meiShare>.6?UI.blue:UI.teal),borderRadius:5}],{plugins:{tooltip:{callbacks:{label:ctx=>ctx.parsed.x+'%'}}}});
+
+  // --- Perfil setorial: top 3 setores por número de empresas ---
+  const setorCount={};
+  MGE_BUBBLES.forEach(function(r){var s=r[3];setorCount[s]=(setorCount[s]||0)+1;});
+  const topSetores=Object.entries(setorCount).sort(function(a,b){return b[1]-a[1];}).slice(0,3);
+  const perfilEl=document.getElementById('econ-perfil-setorial');
+  if(perfilEl && topSetores.length>=3){
+    var pctTop3=((topSetores[0][1]+topSetores[1][1]+topSetores[2][1])/MGE_BUBBLES.length*100).toFixed(0);
+    perfilEl.innerHTML='Os três principais setores por número de empresas de médio e grande porte são: <strong>'+topSetores[0][0]+'</strong> ('+topSetores[0][1]+' empresas), <strong>'+topSetores[1][0]+'</strong> ('+topSetores[1][1]+' empresas) e <strong>'+topSetores[2][0]+'</strong> ('+topSetores[2][1]+' empresas). Juntos, esses setores representam '+pctTop3+'% das empresas M/G do município, evidenciando uma concentração setorial relevante para a formulação de políticas de desenvolvimento econômico local.';
+  }
 
   // --- MGE KPIs ---
   const totalMGE=MGE_BUBBLES.length;
@@ -2788,7 +2855,7 @@ function renderMGETable() {
   const tbl = document.getElementById('table-mge-list');
   tbl.innerHTML = `<thead><tr>${cols.map(c =>
     `<th class="sortable${mgeTableSort===c.k?' sort-'+(mgeTableDir===1?'asc':'desc'):''}" data-mge-col="${c.k}">${c.label}<span class="sort-icon">${mgeTableSort===c.k?(mgeTableDir===1?'↑':'↓'):'↕'}</span></th>`
-  ).join('')}</tr></thead><tbody>${rows.slice(0,500).map((r,i) => {
+  ).join('')}</tr></thead><tbody>${rows.map((r,i) => {
     const reg = REGION_MAP[r[4]] || '';
     const regCol = REGION_COLORS[reg] || '#999';
     return `<tr>
@@ -2799,7 +2866,7 @@ function renderMGETable() {
       <td><span style="display:inline-flex;align-items:center;gap:5px;font-size:11px;white-space:nowrap"><span class="region-dot" style="background:${regCol}"></span>${reg}</span></td>
       <td><span class="tipo-badge ${r[6]==='M'?'tipo-m':'tipo-f'}">${r[6]==='M'?'Matriz':'Filial'}</span></td>
     </tr>`;
-  }).join('')}${rows.length>500?`<tr><td colspan="6" style="text-align:center;color:var(--muted);font-size:12px;padding:12px">Mostrando 500 de ${rows.length} empresas. Use os filtros para refinar.</td></tr>`:''}</tbody>`;
+  }).join('')}</tbody>`;
 
   document.querySelectorAll('#table-mge-list th.sortable').forEach(th => {
     th.onclick = () => {
@@ -3101,11 +3168,11 @@ function initOsc(){
     const cols=[{k:'nome',label:'Organização'},{k:'bairro',label:'Bairro'},{k:'area',label:'Área de atuação'},{k:'regiao',label:'Região'}];
     const tbl=document.getElementById('table-osc-list');
     if(!tbl) return;
-    tbl.innerHTML=`<thead><tr>${cols.map(c=>`<th class="sortable${oscTableSort===c.k?' sort-'+(oscTableDir===1?'asc':'desc'):''}" data-osc-col="${c.k}">${c.label}<span class="sort-icon">${oscTableSort===c.k?(oscTableDir===1?'↑':'↓'):'↕'}</span></th>`).join('')}</tr></thead><tbody>${rows.slice(0,500).map(r=>{
+    tbl.innerHTML=`<thead><tr>${cols.map(c=>`<th class="sortable${oscTableSort===c.k?' sort-'+(oscTableDir===1?'asc':'desc'):''}" data-osc-col="${c.k}">${c.label}<span class="sort-icon">${oscTableSort===c.k?(oscTableDir===1?'↑':'↓'):'↕'}</span></th>`).join('')}</tr></thead><tbody>${rows.map(r=>{
       const reg=REGION_MAP[r.bairro]||'';
       const rCol=REGION_COLORS[reg]||'#999';
       return `<tr><td style="font-weight:600;max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${r.n||''}">${r.n||'—'}</td><td>${r.bairro||'—'}</td><td><span class="tag" style="margin:1px 2px">${r.a||'—'}</span></td><td><span class="region-dot" style="background:${rCol};margin-right:4px"></span>${reg||'—'}</td></tr>`;
-    }).join('')}${rows.length>500?`<tr><td colspan="4" style="text-align:center;color:var(--muted);font-size:12px;padding:12px">Mostrando 500 de ${rows.length} organizações.</td></tr>`:''}</tbody>`;
+    }).join('')}</tbody>`;
     document.querySelectorAll('#table-osc-list th.sortable').forEach(th=>{
       th.onclick=()=>{
         const col=th.dataset.oscCol;
@@ -3577,7 +3644,8 @@ function initComp(){
     {key:'rendaPC',  label:'Renda PC',         fmt:'money', agg:'wmean', higher:'bom'},
     {key:'meiShare', label:'% MEI',            fmt:'pct',   agg:'wmean', higher:null},
     {key:'emp',      label:'Empresas',         fmt:'int',   agg:'sum',   higher:'bom'},
-    {key:'osc',      label:'OSCs',             fmt:'int',   agg:'sum',   higher:'bom'}
+    {key:'osc',      label:'OSCs',             fmt:'int',   agg:'sum',   higher:'bom'},
+    {key:'cras',     label:'CRAS',             fmt:'int',   agg:'sum',   higher:'bom'}
   ];
 
   // Indicadores percentuais heterogêneos para o radar
@@ -4119,7 +4187,7 @@ function enableTableSorting(root){
     const ths = tbl.querySelectorAll('thead th');
     ths.forEach(th => {
       if(th.classList.contains('no-sort')) return;
-      if(th.dataset.col !== undefined || th.dataset.econCol !== undefined) return;
+      if(th.dataset.col !== undefined || th.dataset.econCol !== undefined || th.dataset.mgeCol !== undefined || th.dataset.oscCol !== undefined || th.dataset.iptK !== undefined) return;
       if(!th.classList.contains('sortable')) th.classList.add('sortable');
       if(!th.querySelector('.sort-icon')){
         const ic = document.createElement('span');
@@ -4160,7 +4228,7 @@ document.addEventListener('click', e => {
   const th = e.target.closest('thead th');
   if(!th) return;
   if(th.classList.contains('no-sort')) return;
-  if(th.dataset.col !== undefined || th.dataset.econCol !== undefined) return; // handled by custom logic
+  if(th.dataset.col !== undefined || th.dataset.econCol !== undefined || th.dataset.mgeCol !== undefined || th.dataset.oscCol !== undefined || th.dataset.iptK !== undefined) return; // handled by custom logic
   const tbl = th.closest('table'); if(!tbl || !tbl.tBodies[0]) return;
   if(tbl.id === 'table-econ' || tbl.id === 'table-mge-list' || tbl.id === 'table-osc-list' || tbl.id === 'synth-region-table' || tbl.id === 'synth-bairro-table' || tbl.id === 'synth-ipt-table') return;
   const ths = Array.from(th.parentElement.cells);
