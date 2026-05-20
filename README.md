@@ -1,6 +1,6 @@
-# Coalizão CE · Diagnóstico Territorial
+# Redes Ceará · Diagnóstico Territorial
 
-Painel interativo e policy brief que mapeiam pobreza, inclusão produtiva e rede institucional nos municípios onde a Coalizão CE atua na Região Metropolitana de Fortaleza.
+Painel interativo e policy brief que mapeiam pobreza, inclusão produtiva e rede institucional nos municípios onde a Redes Ceará atua na Região Metropolitana de Fortaleza.
 
 A entrega é composta por quatro páginas HTML estáticas, pensadas para leitura direta pelo cliente sem dependência de backend ou build.
 
@@ -9,7 +9,7 @@ A entrega é composta por quatro páginas HTML estáticas, pensadas para leitura
 | Arquivo | O que é |
 |---|---|
 | `index.html` | Página inicial com seleção de município e contexto do diagnóstico. |
-| `policy_brief.html` | Policy brief com a revisão de literatura e as recomendações à Coalizão. |
+| `policy_brief.html` | Policy brief com a revisão de literatura e as recomendações à Redes Ceará. |
 | `fortaleza.html` | Painel de Fortaleza: 13 bairros organizados em 2 territórios (Grande Bom Jardim e Grande Mucuripe). |
 | `maracanau.html` | Painel de Maracanaú: 44 bairros organizados em 6 regiões. |
 
@@ -63,10 +63,10 @@ A pasta `data/` guarda as bases utilizadas na construção dos indicadores. Os p
 
 Os painéis cruzam indicadores de vulnerabilidade (extrema pobreza, CadÚnico, renda), infraestrutura (esgoto, CRAS, unidades de saúde), economia local (MEIs, MPEs, MGEs, vínculos formais) e sociedade civil organizada (OSCs) em dois recortes territoriais:
 
-- **Fortaleza**: agregação dos 13 bairros de atuação da Coalizão em 2 territórios (Grande Bom Jardim e Grande Mucuripe).
+- **Fortaleza**: agregação dos 13 bairros de atuação da Redes Ceará em 2 territórios (Grande Bom Jardim e Grande Mucuripe).
 - **Maracanaú**: todos os 44 bairros do município, agrupados nas 6 regiões político-administrativas.
 
-A aba **Adicionalidade** aplica sobre esses indicadores uma leitura qualitativa em três pilares (necessidade relativa, viabilidade institucional e vácuo de articulação), cruzando com o perfil de cada parceiro da Coalizão para sugerir alocação preferencial.
+A aba **Adicionalidade** aplica sobre esses indicadores uma leitura qualitativa em três pilares (necessidade relativa, viabilidade institucional e vácuo de articulação), cruzando com o perfil de cada parceiro da Redes Ceará para sugerir alocação preferencial.
 
 ## Tecnologia
 
@@ -78,7 +78,7 @@ HTML, CSS e JavaScript puros. Sem framework, sem build. As únicas dependências
 
 Todas carregadas via CDN no `<head>` de cada página.
 
-## Coalizão CE
+## Redes Ceará
 
 Iniciativa que reúne Pacto Contra a Fome, Movimento BemMaior, Astor Capital, Instituto Localiza e Somos Um em torno do combate à fome e da inclusão produtiva no Ceará.
 
