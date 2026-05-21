@@ -11,13 +11,13 @@
 :root{
   --bg:#FFFFFF;
   --bg-soft:#FAFAF7;
-  --navy:#0A2540;
-  --ink:#0A2540;
-  --ink-2:#3B4E63;
-  --muted:#6B7A8A;
-  --muted-2:#A0AAB6;
-  --line:rgba(10,37,64,.10);
-  --line-strong:rgba(10,37,64,.22);
+  --navy:#1F2937;
+  --ink:#1F2937;
+  --ink-2:#4B5563;
+  --muted:#6B7280;
+  --muted-2:#9CA3AF;
+  --line:rgba(31,41,55,.10);
+  --line-strong:rgba(31,41,55,.22);
   --blue:#0B4FA8;
   --blue-2:#1E40AF;
   --purple:#7C3AED;
@@ -52,11 +52,11 @@ body{
 /* HERO — bounded by max-width */
 .hero-wrap{padding:0 0 0}
 .hero{
-  display:grid;grid-template-columns:1.05fr 1fr;gap:0;
-  align-items:stretch;
+  display:grid;grid-template-columns:1fr 1.15fr;gap:56px;
+  align-items:center;
 }
 .hero-text{
-  padding:80px 56px 72px 0;
+  padding:72px 0 64px 0;
   display:flex;flex-direction:column;justify-content:center;
 }
 .hero-text .h-eyebrow{
@@ -89,8 +89,8 @@ body{
 .cta-primary:hover .arrow,.cta-secondary:hover .arrow{transform:translateX(3px)}
 
 .hero-photo{
-  position:relative;overflow:hidden;background:#0A2540;
-  aspect-ratio:4/5;align-self:stretch;
+  position:relative;overflow:hidden;background:#1F2937;
+  aspect-ratio:4/3;align-self:center;width:100%;
 }
 .hero-photo img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -98,7 +98,8 @@ body{
 .hero-photo .credit{
   position:absolute;bottom:14px;right:18px;
   font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.85);
+  color:rgba(255,255,255,.95);
+  text-shadow:0 1px 2px rgba(0,0,0,.55);
 }
 
 /* STATS BAND — same bounded container */
@@ -142,25 +143,25 @@ body{
 }
 .mun-card:hover{transform:translateY(-4px)}
 .mun-photo{
-  aspect-ratio:16/10;overflow:hidden;background:#0A2540;
+  aspect-ratio:16/10;overflow:hidden;background:#1F2937;
   position:relative;
 }
 .mun-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
 .mun-card:hover .mun-photo img{transform:scale(1.04)}
 .mun-photo::before{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 50%,rgba(10,37,64,.55) 100%);
+  background:linear-gradient(180deg,transparent 50%,rgba(31,41,55,.55) 100%);
   z-index:1;
 }
 .mun-photo .mun-tag{
   position:absolute;top:18px;left:18px;z-index:2;
   font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
-  color:#fff;padding:6px 10px;background:rgba(10,37,64,.85);
+  color:#fff;padding:6px 10px;background:rgba(31,41,55,.85);
   backdrop-filter:blur(4px);
 }
 .mun-card[data-mun="fortaleza"] .mun-tag{background:var(--blue-2)}
 .mun-card[data-mun="maracanau"] .mun-tag{background:var(--purple)}
-.mun-info{padding:22px 4px 0;display:flex;flex-direction:column;gap:14px}
+.mun-info{padding:22px 4px 0;display:flex;flex-direction:column;gap:14px;flex:1}
 .mun-name{font-weight:900;font-size:32px;letter-spacing:-.025em;color:var(--navy);line-height:1}
 .mun-card[data-mun="fortaleza"] .mun-name{color:var(--blue-2)}
 .mun-card[data-mun="maracanau"] .mun-name{color:var(--purple)}
@@ -168,11 +169,12 @@ body{
 .mun-desc strong{color:var(--navy);font-weight:600}
 .mun-bottom{
   display:flex;align-items:baseline;justify-content:space-between;gap:14px;
-  padding-top:16px;border-top:1px solid var(--line);margin-top:6px;
+  padding-top:16px;border-top:1px solid var(--line);margin-top:auto;
 }
 .mun-stats{display:flex;gap:22px}
 .mun-stats .s{display:flex;flex-direction:column;gap:3px}
-.mun-stats .s strong{font-size:18px;font-weight:900;color:var(--navy);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.mun-stats .s strong{font-size:18px;font-weight:900;color:var(--navy);letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;display:inline-flex;align-items:baseline;gap:3px}
+.mun-stats .s strong small{font-size:11px;font-weight:700;color:var(--muted)}
 .mun-stats .s span{font-size:9.5px;color:var(--muted);font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .mun-cta{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy)}
 .mun-card[data-mun="fortaleza"] .mun-cta{color:var(--blue-2)}
@@ -180,34 +182,38 @@ body{
 .mun-cta .arrow{display:inline-block;transition:transform .18s}
 .mun-card:hover .mun-cta .arrow{transform:translateX(4px)}
 
-/* LEITURAS — typographic (sem foto) */
-.leituras-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+/* LEITURAS — photo-led */
+.leituras-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .leitura{
   text-decoration:none;color:var(--ink);
-  display:flex;flex-direction:column;gap:16px;
-  padding:32px;
-  border:1px solid var(--line);
-  position:relative;
-  transition:all .22s;
-  background:var(--bg);
+  display:flex;flex-direction:column;
+  transition:transform .25s cubic-bezier(.2,.6,.2,1);
 }
-.leitura::before{
-  content:"";position:absolute;top:0;left:0;width:4px;height:100%;
-  background:var(--c-color, var(--green-deep));
-  transition:width .22s;
-}
-.leitura:hover{border-color:var(--line-strong);background:var(--bg-soft)}
-.leitura:hover::before{width:7px}
+.leitura:hover{transform:translateY(-4px)}
 .leitura[data-l="brief"]{--c-color:var(--green-deep)}
 .leitura[data-l="resumo"]{--c-color:var(--navy)}
-
-.leitura .l-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px}
-.leitura .l-tag{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--c-color, var(--green-deep))}
+.leitura-photo{
+  aspect-ratio:16/10;overflow:hidden;background:#1F2937;position:relative;
+}
+.leitura-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
+.leitura:hover .leitura-photo img{transform:scale(1.04)}
+.leitura-photo::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(31,41,55,.55) 100%);
+  z-index:1;
+}
+.leitura-photo .l-tag{
+  position:absolute;top:18px;left:18px;z-index:2;
+  font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:#fff;padding:6px 10px;background:var(--c-color, var(--green-deep));
+  backdrop-filter:blur(4px);
+}
+.leitura-info{padding:22px 4px 0;display:flex;flex-direction:column;gap:12px;flex:1}
 .leitura .l-meta{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-2)}
 .leitura .l-title{font-weight:900;font-size:22px;letter-spacing:-.022em;color:var(--navy);line-height:1.18;max-width:460px}
 .leitura .l-desc{font-size:13.5px;line-height:1.6;color:var(--ink-2);max-width:480px}
 .leitura .l-cta{
-  margin-top:auto;padding-top:14px;border-top:1px solid var(--line);
+  margin-top:auto;padding-top:16px;border-top:1px solid var(--line);
   font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
   color:var(--c-color, var(--green-deep));display:flex;align-items:center;gap:6px;
 }
@@ -217,7 +223,7 @@ body{
 /* SOBRE COM FOTO */
 .about-section{padding:72px 0}
 .about-grid{display:grid;grid-template-columns:.95fr 1.1fr;gap:48px;align-items:start}
-.about-grid .ap-photo{aspect-ratio:4/5;overflow:hidden;background:#0A2540}
+.about-grid .ap-photo{aspect-ratio:4/5;overflow:hidden;background:#1F2937}
 .about-grid .ap-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .about-grid .ap-content{display:flex;flex-direction:column;gap:24px;padding-top:12px}
 .about-grid .ap-content .ap-eyebrow{
@@ -237,13 +243,27 @@ body{
 
 /* PARCEIROS */
 .partners-band{
-  padding:44px 0;
+  padding:48px 0;
   border-top:1px solid var(--line);background:var(--bg-soft);
 }
 .partners-band .container{text-align:center}
-.partners-band .p-label{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
-.partners-band .p-list{font-size:15px;font-weight:600;color:var(--navy);letter-spacing:-.005em;line-height:1.8}
-.partners-band .p-list span{margin:0 12px;color:var(--muted-2)}
+.partners-band .p-label{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.partners-logos{
+  display:flex;align-items:center;justify-content:center;
+  gap:48px;flex-wrap:wrap;max-width:1080px;margin:0 auto;
+}
+.partners-logos .p-logo{
+  display:flex;align-items:center;justify-content:center;
+  height:64px;flex-shrink:0;
+}
+.partners-logos .p-logo img{
+  max-height:64px;max-width:180px;width:auto;height:auto;
+  object-fit:contain;display:block;
+  opacity:.88;transition:opacity .25s ease;
+}
+.partners-logos .p-logo:hover img{opacity:1}
+.partners-logos .p-logo[data-tall]{height:88px}
+.partners-logos .p-logo[data-tall] img{max-height:88px;max-width:120px}
 
 /* FOOTER */
 .footer{
@@ -296,11 +316,12 @@ body{
         <div class="hero-ctas">
           <a href="#municipios" class="cta-primary">Ver painéis <span class="arrow">→</span></a>
           <a href="resumo_executivo.html" class="cta-secondary">Resumo Executivo <span class="arrow">→</span></a>
+          <a href="policy_brief.html" class="cta-secondary">Policy Brief <span class="arrow">→</span></a>
         </div>
       </div>
       <div class="hero-photo">
-        <img src="assets/images/guilherme-hilton-OF3Kmr0hO_A-unsplash.jpg" alt="Skyline de Fortaleza ao entardecer" loading="eager">
-        <span class="credit">Foto · Guilherme Hilton / Unsplash</span>
+        <img src="assets/images/ednilson-cardoso-dos-santos-dTcPE9YtuDY-unsplash.jpg" alt="Praia de Fortaleza com pier e banhistas" loading="eager">
+        <span class="credit">Foto · Ednilson Cardoso / Unsplash</span>
       </div>
     </section>
   </div>
@@ -355,7 +376,7 @@ body{
             <div class="mun-stats">
               <div class="s"><strong>2</strong><span>Territórios</span></div>
               <div class="s"><strong>13</strong><span>Bairros</span></div>
-              <div class="s"><strong>345k</strong><span>Habitantes</span></div>
+              <div class="s"><strong>345<small>mil</small></strong><span>Habitantes</span></div>
             </div>
             <span class="mun-cta">Ver painel <span class="arrow">→</span></span>
           </div>
@@ -374,7 +395,7 @@ body{
             <div class="mun-stats">
               <div class="s"><strong>6</strong><span>Regiões</span></div>
               <div class="s"><strong>44</strong><span>Bairros</span></div>
-              <div class="s"><strong>239k</strong><span>Habitantes</span></div>
+              <div class="s"><strong>239<small>mil</small></strong><span>Habitantes</span></div>
             </div>
             <span class="mun-cta">Ver painel <span class="arrow">→</span></span>
           </div>
@@ -396,23 +417,29 @@ body{
     </div>
     <div class="leituras-grid">
       <a href="policy_brief.html" class="leitura" data-l="brief">
-        <div class="l-head">
+        <div class="leitura-photo">
+          <img src="assets/images/rafael-oliveira-c8AUezbHsBQ-unsplash.jpg" alt="Estação de metrô no entardecer" loading="lazy">
           <span class="l-tag">Policy Brief</span>
-          <span class="l-meta">Síntese teórica</span>
         </div>
-        <div class="l-title">O que a literatura informa sobre inclusão produtiva e insegurança alimentar.</div>
-        <p class="l-desc">Síntese de evidências internacionais aplicadas à Região Metropolitana de Fortaleza. Cinco recomendações com base em revisão sistemática.</p>
-        <span class="l-cta">Ler o brief <span class="arrow">→</span></span>
+        <div class="leitura-info">
+          <span class="l-meta">Síntese teórica · 5 recomendações</span>
+          <div class="l-title">O que a literatura informa sobre inclusão produtiva e insegurança alimentar.</div>
+          <p class="l-desc">Síntese de evidências internacionais aplicadas à Região Metropolitana de Fortaleza, com base em revisão sistemática.</p>
+          <span class="l-cta">Ler o brief <span class="arrow">→</span></span>
+        </div>
       </a>
 
       <a href="resumo_executivo.html" class="leitura" data-l="resumo">
-        <div class="l-head">
+        <div class="leitura-photo">
+          <img src="assets/images/anderson-oliveira-NpUahck-xck-unsplash.jpg" alt="Beco urbano com perspectiva vertical" loading="lazy">
           <span class="l-tag">Resumo Executivo</span>
-          <span class="l-meta">3 apresentações</span>
         </div>
-        <div class="l-title">Apresentações navegáveis com metodologia, achados e adicionalidade.</div>
-        <p class="l-desc">Três decks de slides (Fortaleza, Maracanaú e síntese geral), exportáveis em PDF e com links para os painéis interativos.</p>
-        <span class="l-cta">Ver apresentações <span class="arrow">→</span></span>
+        <div class="leitura-info">
+          <span class="l-meta">3 apresentações navegáveis</span>
+          <div class="l-title">Apresentações com metodologia, achados e adicionalidade.</div>
+          <p class="l-desc">Três decks de slides (Fortaleza, Maracanaú e síntese geral), exportáveis em PDF e com links para os painéis interativos.</p>
+          <span class="l-cta">Ver apresentações <span class="arrow">→</span></span>
+        </div>
       </a>
     </div>
   </div>
@@ -456,8 +483,22 @@ body{
 <section class="partners-band">
   <div class="container">
     <div class="p-label">Iniciativa apoiada por</div>
-    <div class="p-list">
-      Pacto Contra a Fome <span>·</span> Movimento BemMaior <span>·</span> Astor Capital <span>·</span> Instituto Localiza <span>·</span> Somos Um
+    <div class="partners-logos">
+      <div class="p-logo" title="Astor Capital">
+        <img src="assets/images/AstorCapital-LogoBlack(EMAIL).PNG" alt="Astor Capital" loading="lazy">
+      </div>
+      <div class="p-logo" title="Instituto Localiza">
+        <img src="assets/images/Nova-marca-Instituto-Localiza.png" alt="Instituto Localiza" loading="lazy">
+      </div>
+      <div class="p-logo" data-tall title="Movimento BemMaior">
+        <img src="assets/images/MBM_Logo_Vertical_Cor_RGB.png" alt="Movimento BemMaior" loading="lazy">
+      </div>
+      <div class="p-logo" title="Pacto Contra a Fome">
+        <img src="assets/images/images.png" alt="Pacto Contra a Fome" loading="lazy">
+      </div>
+      <div class="p-logo" title="Somos Um">
+        <img src="assets/images/somos-um-lpgp-p.webp" alt="Somos Um" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
