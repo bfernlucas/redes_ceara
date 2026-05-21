@@ -164,8 +164,14 @@ body{
   font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
   margin-top:auto;
 }
-.footer .container{display:flex;align-items:center;justify-content:space-between}
+.footer .container{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
 .footer span strong{color:var(--navy);font-weight:700}
+.footer .elab{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
+.footer .elab .contact{
+  text-transform:none;letter-spacing:.04em;font-weight:500;
+  color:var(--muted);text-decoration:none;
+}
+.footer .elab .contact:hover{color:var(--navy)}
 
 @media(max-width:900px){
   .container{padding:0 20px}
@@ -293,7 +299,10 @@ body{
 <footer class="footer">
   <div class="container">
     <span><strong>Redes Ceará</strong> · Resumo Executivo · 2026</span>
-    <span>Elaboração · <strong>Lucas Fernandes</strong></span>
+    <span class="elab">
+      <span>Elaboração · <strong>Lucas Fernandes</strong></span>
+      <a href="mailto:limbersocial@gmail.com" class="contact">limbersocial@gmail.com</a>
+    </span>
   </div>
 </footer>
 
