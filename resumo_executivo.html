@@ -158,6 +158,39 @@ body{
 .card-cta .pdf-link svg{flex-shrink:0;transition:transform .18s}
 .card-cta .pdf-link:hover svg{transform:translateY(1px)}
 
+/* PARTNERS COMPACT */
+.partners-compact{
+  border-top:1px solid var(--line);
+  padding:22px 0 20px;
+  background:#fff;
+}
+.partners-compact .pc-inner{
+  display:flex;align-items:center;justify-content:center;
+  gap:36px;flex-wrap:wrap;max-width:1120px;margin:0 auto;padding:0 24px;
+}
+.partners-compact .pc-label{
+  font-size:9.5px;font-weight:700;letter-spacing:.20em;
+  text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;
+}
+.partners-compact .pc-row{
+  display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:center;
+}
+.partners-compact .pc-logo{
+  display:flex;align-items:center;justify-content:center;
+  height:34px;
+}
+.partners-compact .pc-logo img{
+  max-height:34px;max-width:110px;
+  width:auto;height:auto;
+  object-fit:contain;display:block;
+  mix-blend-mode:multiply;
+}
+.partners-compact .pc-logo[data-tall]{height:46px}
+.partners-compact .pc-logo[data-tall] img{max-height:46px;max-width:74px}
+.partners-compact .pc-logo[data-square]{height:42px}
+.partners-compact .pc-logo[data-square] img{max-height:42px;max-width:58px}
+
 /* FOOTER */
 .footer{
   border-top:1px solid var(--line);padding:28px 0;
@@ -295,6 +328,29 @@ body{
     </div>
   </div>
 </main>
+
+<section class="partners-compact">
+  <div class="pc-inner">
+    <span class="pc-label">Iniciativa apoiada por</span>
+    <div class="pc-row">
+      <div class="pc-logo" title="Astor Capital">
+        <img src="assets/images/AstorCapital-LogoBlack(EMAIL).PNG" alt="Astor Capital" loading="lazy">
+      </div>
+      <div class="pc-logo" title="Instituto Localiza">
+        <img src="assets/images/Nova-marca-Instituto-Localiza.png" alt="Instituto Localiza" loading="lazy">
+      </div>
+      <div class="pc-logo" data-tall title="Movimento BemMaior">
+        <img src="assets/images/MBM_Logo_Vertical_Cor_RGB.png" alt="Movimento BemMaior" loading="lazy">
+      </div>
+      <div class="pc-logo" title="Pacto Contra a Fome">
+        <img src="assets/images/images.png" alt="Pacto Contra a Fome" loading="lazy">
+      </div>
+      <div class="pc-logo" data-square title="Somos Um">
+        <img src="assets/images/somos-um-lpgp-p.webp" alt="Somos Um" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="container">
