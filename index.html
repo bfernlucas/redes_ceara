@@ -243,35 +243,45 @@ body{
 
 /* PARCEIROS */
 .partners-band{
-  padding:48px 0;
-  border-top:1px solid var(--line);background:var(--bg-soft);
+  padding:56px 0 64px;
+  border-top:1px solid var(--line);background:var(--bg);
 }
 .partners-band .container{text-align:center}
-.partners-band .p-label{font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.partners-band .p-label{
+  font-size:10.5px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:36px;
+}
 .partners-logos{
   display:flex;align-items:center;justify-content:center;
-  gap:48px;flex-wrap:wrap;max-width:1080px;margin:0 auto;
+  gap:64px;flex-wrap:wrap;max-width:1120px;margin:0 auto;
 }
 .partners-logos .p-logo{
   display:flex;align-items:center;justify-content:center;
-  height:64px;flex-shrink:0;
+  height:72px;flex-shrink:0;
 }
 .partners-logos .p-logo img{
-  max-height:64px;max-width:180px;width:auto;height:auto;
+  max-height:72px;max-width:200px;width:auto;height:auto;
   object-fit:contain;display:block;
-  opacity:.88;transition:opacity .25s ease;
+  mix-blend-mode:multiply;
+  transition:transform .25s ease;
 }
-.partners-logos .p-logo:hover img{opacity:1}
-.partners-logos .p-logo[data-tall]{height:88px}
-.partners-logos .p-logo[data-tall] img{max-height:88px;max-width:120px}
+.partners-logos .p-logo:hover img{transform:scale(1.04)}
+.partners-logos .p-logo[data-tall]{height:104px}
+.partners-logos .p-logo[data-tall] img{max-height:104px;max-width:140px}
 
 /* FOOTER */
 .footer{
   border-top:1px solid var(--line);padding:28px 0;
   font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
 }
-.footer .container{display:flex;align-items:center;justify-content:space-between}
+.footer .container{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
 .footer span strong{color:var(--navy);font-weight:700}
+.footer .elab{display:flex;flex-direction:column;align-items:flex-end;gap:6px;text-align:right}
+.footer .elab .contact{
+  text-transform:none;letter-spacing:.04em;font-weight:500;
+  color:var(--muted);text-decoration:none;
+}
+.footer .elab .contact:hover{color:var(--navy)}
 
 @media(max-width:900px){
   .container{padding:0 20px}
@@ -326,32 +336,6 @@ body{
     </section>
   </div>
 </div>
-
-<!-- STATS BAND -->
-<section class="stats-wrap">
-  <div class="container">
-    <div class="stats-band">
-      <div class="stats-grid">
-        <div class="stat-cell">
-          <div class="v">585<small>mil</small></div>
-          <div class="l">Habitantes acompanhados</div>
-        </div>
-        <div class="stat-cell">
-          <div class="v">57</div>
-          <div class="l">Bairros analisados</div>
-        </div>
-        <div class="stat-cell">
-          <div class="v">1.548</div>
-          <div class="l">OSCs ativas</div>
-        </div>
-        <div class="stat-cell">
-          <div class="v">2.518</div>
-          <div class="l">Estab. alimentícios</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- MUNICÍPIOS -->
 <section class="section" id="municipios">
@@ -506,7 +490,10 @@ body{
 <footer class="footer">
   <div class="container">
     <span><strong>Redes Ceará</strong> · Diagnóstico Territorial · 2026</span>
-    <span>Elaboração · <strong>Lucas Fernandes</strong></span>
+    <span class="elab">
+      <span>Elaboração · <strong>Lucas Fernandes</strong></span>
+      <a href="mailto:limbersocial@gmail.com" class="contact">limbersocial@gmail.com</a>
+    </span>
   </div>
 </footer>
 
