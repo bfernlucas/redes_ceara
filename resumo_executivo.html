@@ -91,7 +91,7 @@ body{
   padding:32px 32px 28px;display:flex;flex-direction:column;gap:14px;
   border-bottom:1px solid var(--line);
   transition:background .2s ease;
-  position:relative;
+  position:relative;cursor:pointer;
 }
 .card+.card{border-left:1px solid var(--line)}
 .card:hover{background:var(--bg-soft)}
@@ -123,14 +123,27 @@ body{
 .card-stat span{font-size:9.5px;color:var(--muted);font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 
 .card-cta{
-  margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  margin-top:auto;display:flex;flex-direction:column;gap:10px;
   padding-top:18px;
+}
+.card-cta .cta-top{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
   font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
 }
 .card-cta .src{color:var(--muted);font-weight:600;letter-spacing:.12em}
 .card-cta .go{color:var(--c-color, var(--navy));font-weight:800}
 .card-cta .go .arrow{display:inline-block;transition:transform .18s}
 .card:hover .card-cta .go .arrow{transform:translateX(4px)}
+.card-cta .pdf-link{
+  display:inline-flex;align-items:center;gap:6px;align-self:flex-start;
+  font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  padding:6px 0;border-top:1px solid var(--line);width:100%;
+  margin-top:4px;
+}
+.card-cta .pdf-link:hover{color:var(--c-color, var(--navy))}
+.card-cta .pdf-link svg{flex-shrink:0;transition:transform .18s}
+.card-cta .pdf-link:hover svg{transform:translateY(1px)}
 
 /* ABOUT — minimal editorial */
 .about{
@@ -198,19 +211,17 @@ body{
 <div class="page-header">
   <span class="h-eyebrow">Apresentações executivas</span>
   <h1>Resumo<br>Executivo<span class="accent">.</span></h1>
-  <p class="h-lead">Síntese visual em formato de apresentação dos diagnósticos territoriais, organizada pelas dimensões do Termo de Referência. <strong>Três apresentações navegáveis</strong>, exportáveis em PDF, com links para os painéis interativos.</p>
 </div>
 
 <main class="content">
 
   <div class="section-lab">
     <span>Apresentações disponíveis</span>
-    <span class="lab-meta">3 entregas · 53 slides no total</span>
   </div>
 
   <div class="cards">
 
-    <a href="report_fortaleza.html" class="card" data-mun="fortaleza">
+    <div class="card" data-mun="fortaleza" data-href="report_fortaleza.html">
       <span class="card-tag">Município I</span>
       <span class="card-name">Fortaleza</span>
       <p class="card-desc">Diagnóstico dos 13 bairros acompanhados nos territórios <strong>Grande Bom Jardim</strong> e <strong>Grande Mucuripe</strong>, organizados em 5 atos com síntese de adicionalidade.</p>
@@ -220,12 +231,18 @@ body{
         <div class="card-stat"><strong>13</strong><span>Bairros</span></div>
       </div>
       <div class="card-cta">
-        <span class="src">7 dimensões do TR</span>
-        <span class="go">Abrir <span class="arrow">→</span></span>
+        <div class="cta-top">
+          <span class="src">7 dimensões do TR</span>
+          <span class="go">Abrir <span class="arrow">→</span></span>
+        </div>
+        <a href="report_fortaleza.pdf" download="Resumo_Executivo_Fortaleza.pdf" class="pdf-link" onclick="event.stopPropagation()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </a>
       </div>
-    </a>
+    </div>
 
-    <a href="report_maracanau.html" class="card" data-mun="maracanau">
+    <div class="card" data-mun="maracanau" data-href="report_maracanau.html">
       <span class="card-tag">Município II</span>
       <span class="card-name">Maracanaú</span>
       <p class="card-desc">Diagnóstico das <strong>6 regiões</strong> e dos 44 bairros que compõem o município, organizados em 5 atos do contexto demográfico à síntese de adicionalidade.</p>
@@ -235,12 +252,18 @@ body{
         <div class="card-stat"><strong>44</strong><span>Bairros</span></div>
       </div>
       <div class="card-cta">
-        <span class="src">7 dimensões do TR</span>
-        <span class="go">Abrir <span class="arrow">→</span></span>
+        <div class="cta-top">
+          <span class="src">7 dimensões do TR</span>
+          <span class="go">Abrir <span class="arrow">→</span></span>
+        </div>
+        <a href="report_maracanau.pdf" download="Resumo_Executivo_Maracanau.pdf" class="pdf-link" onclick="event.stopPropagation()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </a>
       </div>
-    </a>
+    </div>
 
-    <a href="report_geral.html" class="card" data-mun="geral">
+    <div class="card" data-mun="geral" data-href="report_geral.html">
       <span class="card-tag">Visão geral</span>
       <span class="card-name">Síntese do trabalho</span>
       <p class="card-desc">Apresentação consolidada com <strong>metodologia, bases utilizadas e resumos por município</strong>, fechando com takeaways e considerações finais.</p>
@@ -250,38 +273,18 @@ body{
         <div class="card-stat"><strong>5</strong><span>Blocos</span></div>
       </div>
       <div class="card-cta">
-        <span class="src">Síntese · takeaways</span>
-        <span class="go">Abrir <span class="arrow">→</span></span>
+        <div class="cta-top">
+          <span class="src">Síntese · takeaways</span>
+          <span class="go">Abrir <span class="arrow">→</span></span>
+        </div>
+        <a href="report_geral.pdf" download="Visao_Geral_Redes_Ceara.pdf" class="pdf-link" onclick="event.stopPropagation()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </a>
       </div>
-    </a>
+    </div>
 
   </div>
-
-  <section class="about">
-    <h3 class="about-title">Sobre o Resumo Executivo</h3>
-    <div class="about-grid">
-      <div class="about-item">
-        <span class="lab">Origem dos dados</span>
-        <span class="val">Os números são extraídos diretamente dos <strong>painéis interativos</strong> de cada município. Cada slide inclui link de retorno ao painel para análise aprofundada.</span>
-      </div>
-      <div class="about-item">
-        <span class="lab">Estrutura</span>
-        <span class="val">Cada apresentação cobre as <strong>7 dimensões</strong> do Produto 2 do TR (demografia, renda, vulnerabilidade, infraestrutura, tecido econômico, sociedade civil) e fecha com a síntese de adicionalidade do Produto 3.</span>
-      </div>
-      <div class="about-item">
-        <span class="lab">Como apresentar</span>
-        <span class="val">Cada relatório é uma apresentação navegável por teclado, com tela cheia, exportação em PDF e atalhos para navegação direta entre slides.</span>
-      </div>
-    </div>
-    <div class="shortcuts">
-      <span class="sc"><kbd>←</kbd><kbd>→</kbd> Navegar</span>
-      <span class="sc"><kbd>Espaço</kbd> Avançar</span>
-      <span class="sc"><kbd>Esc</kbd> Menu</span>
-      <span class="sc"><kbd>F</kbd> Tela cheia</span>
-      <span class="sc"><kbd>P</kbd> Exportar PDF</span>
-      <span class="sc"><kbd>#N</kbd> Deep link</span>
-    </div>
-  </section>
 
 </main>
 
@@ -289,6 +292,15 @@ body{
   <span><strong>Redes Ceará</strong> · Resumo Executivo · 2026</span>
   <span>Elaboração · <strong>Lucas Fernandes</strong></span>
 </footer>
+
+<script>
+document.querySelectorAll('.card[data-href]').forEach(card => {
+  card.addEventListener('click', e => {
+    if(e.target.closest('a')) return;
+    window.location.href = card.dataset.href;
+  });
+});
+</script>
 
 </body>
 </html>
