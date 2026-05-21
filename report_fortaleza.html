@@ -6,294 +6,356 @@
 <title>Resumo Executivo · Fortaleza · Redes Ceará</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root{
-  --text:#0B2B44;
-  --text-2:#3B4C5C;
-  --muted:#6B7280;
-  --line:#E5E7EB;
-  --line-2:#D8E0E8;
-  --bg:#fff;
-  --bg-soft:#F9FAFB;
-  --brand:#0B4FA8;
-  --brand-2:#1E40AF;
-  --terr-gbj:#1E40AF;
-  --terr-gm:#0B4FA8;
-  --accent:#059669;
-  --warn:#DC2626;
-  --slide-w:1280px;
-  --slide-h:720px;
+  --navy:#0B2B44;
+  --navy-soft:#1A3A55;
+  --navy-deep:#072135;
+  --blue:#0B4FA8;
+  --blue-2:#1E40AF;
+  --blue-light:#93C5FD;
+  --green:#059669;
+  --green-deep:#047857;
+  --green-light:#10B981;
+  --cream:#F4F1EA;
+  --cream-2:#EDE7DA;
+  --cream-light:#FAF8F4;
+  --ink:#0B2B44;
+  --ink-2:#3B4C5C;
+  --muted:#7E8A9A;
+  --line:rgba(11,43,68,.12);
+  --line-soft:rgba(11,43,68,.06);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  background:#0B2B44;
-  color:var(--text);
+  background:#070d14;
+  color:var(--ink);
   font-family:'Inter',system-ui,-apple-system,sans-serif;
   -webkit-font-smoothing:antialiased;
-  line-height:1.5;
-  overflow:hidden;
-  min-height:100vh;
+  line-height:1.5;overflow:hidden;min-height:100vh;
 }
 
-/* DECK CONTAINER */
-.deck{
-  position:fixed;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  padding:24px;
-}
+/* ═══ DECK FRAMEWORK ════════════════════════════════════════ */
+.deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px}
 .slide{
-  width:100%;max-width:var(--slide-w);
+  width:100%;max-width:1280px;
   aspect-ratio:16/9;max-height:calc(100vh - 100px);
-  background:#fff;border-radius:14px;
-  box-shadow:0 30px 60px -20px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06);
-  display:none;flex-direction:column;
-  padding:56px 64px;
-  position:relative;overflow:hidden;
+  border-radius:6px;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
+  display:none;flex-direction:column;position:relative;overflow:hidden;
 }
 .slide.active{display:flex;animation:fade .35s ease}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.slide::before{
-  content:"";position:absolute;top:0;left:0;right:0;height:5px;
-  background:linear-gradient(90deg,var(--terr-gbj) 0%,var(--terr-gm) 100%);
-}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* SLIDE CONTENT */
-.slide-eyebrow{
-  font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--brand);margin-bottom:12px;
+/* ═══ TIPOGRAFIA ════════════════════════════════════════════ */
+.serif{font-family:'Source Serif Pro',Georgia,serif}
+.eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;
 }
-.slide-headline{
-  font-size:38px;font-weight:800;line-height:1.12;letter-spacing:-.02em;
-  color:var(--text);margin-bottom:10px;
+.eyebrow::before{content:"";display:inline-block;width:22px;height:2px;background:var(--green)}
+.slide-num{
+  position:absolute;top:38px;right:64px;z-index:5;
+  font-family:'Source Serif Pro',serif;font-weight:400;font-style:italic;
+  font-size:13px;color:rgba(0,0,0,.32);letter-spacing:.04em;
 }
-.slide-headline em{color:var(--brand);font-style:normal}
-.slide-subhead{
-  font-size:16px;color:var(--text-2);line-height:1.55;margin-bottom:24px;font-weight:500;
-}
-.slide-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:20px}
-.slide-footer{
-  position:absolute;bottom:24px;left:64px;right:64px;
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:11px;color:var(--muted);
+.slide-src{
+  position:absolute;bottom:34px;left:64px;right:64px;z-index:5;
+  font-size:10.5px;color:var(--muted);letter-spacing:.04em;
   border-top:1px solid var(--line);padding-top:14px;
+  display:flex;justify-content:space-between;align-items:center;
 }
-.slide-footer a{color:var(--brand);font-weight:600;text-decoration:none}
-.slide-footer a:hover{text-decoration:underline}
+.slide-src a{color:var(--green);text-decoration:none;font-weight:600}
+.slide-src a:hover{text-decoration:underline}
 
-/* COVER (slide 1) */
-.cover{
-  background:linear-gradient(135deg,#0B2B44 0%,#1E40AF 100%);
-  color:#fff;justify-content:center;align-items:center;text-align:center;
-  padding:64px;
-}
-.cover::before{display:none}
-.cover .eyebrow{
-  font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.7);margin-bottom:20px;
-}
-.cover h1{
-  font-size:80px;font-weight:900;line-height:1;letter-spacing:-.04em;
-  margin-bottom:20px;
-}
-.cover h1 span{color:#93C5FD;display:block}
-.cover .city{
-  font-size:32px;font-weight:600;color:#BFDBFE;letter-spacing:-.02em;margin-bottom:36px;
-}
-.cover .meta{
-  display:flex;gap:32px;font-size:13px;color:rgba(255,255,255,.7);
-  border-top:1px solid rgba(255,255,255,.15);padding-top:20px;
-}
-.cover .meta strong{color:#fff;font-weight:700;display:block;margin-bottom:2px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+/* ═══ TEMPLATES DE SLIDE ═══════════════════════════════════ */
 
-/* SUMÁRIO */
-.toc{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:8px 32px;
-  align-content:start;font-size:14px;
-}
-.toc-item{
-  display:flex;align-items:baseline;gap:12px;padding:8px 4px;
-  border-bottom:1px dashed var(--line);
-}
-.toc-item .num{font-size:11px;font-weight:800;color:var(--muted);min-width:28px;letter-spacing:.05em}
-.toc-item .name{color:var(--text);font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.toc-item .dim{color:var(--muted);font-size:11px;font-style:italic}
+/* — Slide com tema NAVY (capa, openers, quotes) — */
+.s-navy{background:var(--navy);color:var(--cream)}
+.s-navy .eyebrow{color:var(--green-light)}
+.s-navy .eyebrow::before{background:var(--green-light)}
+.s-navy .slide-num{color:rgba(250,246,239,.32)}
+.s-navy .slide-src{color:rgba(250,246,239,.45);border-top-color:rgba(250,246,239,.18)}
+.s-navy .slide-src a{color:var(--green-light)}
 
-/* HERO STATS */
-.hero-row{
-  display:grid;grid-template-columns:repeat(var(--cols,3),1fr);gap:20px;
-}
-.hero-stat{
-  padding:24px 22px;border-radius:12px;
-  background:linear-gradient(180deg,#fff 0%,#F8FAFC 100%);
-  border:1px solid var(--line);
-  position:relative;
-}
-.hero-stat.gbj{background:linear-gradient(180deg,#EFF6FF 0%,#DBEAFE 100%);border-color:#BFDBFE}
-.hero-stat.gm{background:linear-gradient(180deg,#F0F9FF 0%,#E0F2FE 100%);border-color:#BAE6FD}
-.hero-stat.warn{background:linear-gradient(180deg,#FEF2F2 0%,#FEE2E2 100%);border-color:#FECACA}
-.hero-stat.good{background:linear-gradient(180deg,#F0FDF4 0%,#DCFCE7 100%);border-color:#BBF7D0}
-.hero-stat .label{
-  font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:8px;
-}
-.hero-stat .num{
-  font-size:46px;font-weight:900;line-height:1;color:var(--text);
-  letter-spacing:-.03em;margin-bottom:6px;display:block;
-}
-.hero-stat .num.large{font-size:64px}
-.hero-stat .sub{
-  font-size:12.5px;color:var(--text-2);line-height:1.4;font-weight:500;
-}
-.hero-stat .delta{
-  display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;
-  margin-top:6px;
-}
-.hero-stat .delta.up{background:#DCFCE7;color:#166534}
-.hero-stat .delta.down{background:#FEE2E2;color:#991B1B}
+/* — Slide com tema CREAM — */
+.s-cream{background:var(--cream);color:var(--ink)}
+.s-cream .eyebrow{color:var(--green-deep)}
 
-/* INSIGHTS */
-.insight-box{
-  padding:14px 18px;background:#F8FAFC;border-left:3px solid var(--brand);
-  border-radius:0 8px 8px 0;font-size:13.5px;color:var(--text);line-height:1.55;
+/* ─────────────── CAPA ─────────────── */
+.s-cover{
+  background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 50%,var(--navy-soft) 100%);
+  color:var(--cream);padding:64px 80px;display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;
 }
-.insight-box strong{color:var(--brand)}
-.insight-list{display:flex;flex-direction:column;gap:8px}
-.insight-list li{
-  list-style:none;padding:8px 0 8px 22px;position:relative;
-  font-size:13px;color:var(--text-2);line-height:1.5;
+.s-cover::after{
+  content:"";position:absolute;top:-180px;right:-180px;width:540px;height:540px;
+  border-radius:50%;background:radial-gradient(circle,rgba(5,150,105,.22) 0%,transparent 65%);
+  pointer-events:none;
 }
-.insight-list li::before{
-  content:"";position:absolute;left:0;top:14px;width:8px;height:8px;border-radius:50%;
-  background:var(--brand);
+.s-cover .eyebrow{color:var(--green-light);margin-bottom:32px}
+.s-cover h1{
+  font-family:'Inter',sans-serif;font-weight:900;
+  font-size:88px;line-height:.92;letter-spacing:-.04em;color:#fff;margin-bottom:24px;
 }
+.s-cover h1 .city{color:var(--green-light);display:block}
+.s-cover .lede{
+  font-family:'Source Serif Pro',serif;font-style:italic;font-weight:400;
+  font-size:20px;line-height:1.45;color:rgba(250,246,239,.78);max-width:520px;
+}
+.s-cover .meta{
+  position:absolute;bottom:48px;left:80px;right:300px;z-index:2;
+  display:flex;gap:32px;padding-top:18px;border-top:1px solid rgba(250,246,239,.15);
+  font-size:11px;color:rgba(250,246,239,.6);
+}
+.s-cover .meta strong{display:block;font-weight:700;color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.s-cover .illus{position:relative;z-index:1;display:flex;align-items:center;justify-content:center}
+.s-cover .illus svg{max-width:100%;height:auto}
 
-/* CHART CONTAINER */
-.slide-chart{
-  flex:1;min-height:0;position:relative;
-  background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;
+/* ─────────────── SECTION OPENER ─────────────── */
+.s-opener{
+  background:var(--navy);color:var(--cream);padding:64px 80px;justify-content:center;
 }
-.slide-chart canvas{max-height:100%}
-.slide-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;min-height:0}
-.slide-cols.narrow{grid-template-columns:1.4fr 1fr}
+.s-opener::after{
+  content:"";position:absolute;bottom:-120px;right:-120px;width:380px;height:380px;
+  border-radius:50%;background:radial-gradient(circle,rgba(5,150,105,.20) 0%,transparent 70%);
+  pointer-events:none;
+}
+.s-opener .ato-label{font-family:'Source Serif Pro',serif;font-style:italic;font-size:22px;color:rgba(250,246,239,.5);margin:24px 0 0}
+.s-opener .ato-num{
+  font-family:'Source Serif Pro',serif;font-weight:700;font-size:240px;line-height:.82;
+  letter-spacing:-.04em;color:var(--green);margin:4px 0 28px;display:block;
+}
+.s-opener h1{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:84px;line-height:.95;letter-spacing:-.03em;
+  color:#fff;max-width:920px;margin-bottom:24px;
+}
+.s-opener h1 em{font-style:normal;color:var(--green-light)}
+.s-opener .turn{
+  font-family:'Source Serif Pro',serif;font-style:italic;font-size:21px;line-height:1.5;
+  color:rgba(250,246,239,.78);max-width:680px;
+}
+.s-opener .ato-footer{
+  position:absolute;bottom:40px;left:80px;right:80px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(250,246,239,.5);padding-top:16px;border-top:1px solid rgba(250,246,239,.15);
+}
+.s-opener .ato-footer strong{color:var(--green-light);font-weight:700}
+.s-opener .deco-svg{position:absolute;top:60px;right:80px;opacity:.92;z-index:1}
 
-/* TERRITORY CARDS */
-.terr-card{
-  padding:24px;border-radius:12px;display:flex;flex-direction:column;gap:14px;
-  position:relative;overflow:hidden;
+/* ─────────────── HERO NUMBER ─────────────── */
+.s-hero{padding:56px 80px 84px;display:grid;grid-template-rows:auto 1fr auto;gap:8px}
+.s-hero .hero-body{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:center;padding:8px 0}
+.s-hero .big-num{
+  font-family:'Inter',sans-serif;font-weight:900;
+  font-size:220px;line-height:.84;letter-spacing:-.05em;color:var(--navy);position:relative;
 }
-.terr-card.gbj{background:linear-gradient(180deg,#EFF6FF 0%,#fff 70%);border:1px solid #BFDBFE}
-.terr-card.gm{background:linear-gradient(180deg,#F0F9FF 0%,#fff 70%);border:1px solid #BAE6FD}
-.terr-card::after{content:"";position:absolute;top:0;left:0;width:5px;height:100%;background:var(--terr-c,var(--brand))}
-.terr-card.gbj{--terr-c:var(--terr-gbj)}
-.terr-card.gm{--terr-c:var(--terr-gm)}
-.terr-card .terr-name{
-  font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--terr-c);
-}
-.terr-card .terr-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:-.02em;line-height:1.1}
-.terr-card .terr-desc{font-size:13px;color:var(--text-2);line-height:1.55}
-.terr-card .terr-stats{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:10px 16px;
-  border-top:1px dashed var(--line-2);padding-top:12px;margin-top:auto;
-}
-.terr-card .terr-stat strong{display:block;font-size:20px;font-weight:800;color:var(--text);letter-spacing:-.02em}
-.terr-card .terr-stat span{font-size:11px;color:var(--muted);font-weight:600}
+.s-hero .big-num .unit{display:block;font-size:32px;font-weight:700;letter-spacing:0;color:var(--green-deep);margin-top:4px}
+.s-hero .read{font-family:'Source Serif Pro',serif;font-size:22px;line-height:1.42;color:var(--ink-2);font-style:italic}
+.s-hero .read strong{font-style:normal;font-weight:700;color:var(--navy)}
+.s-hero .read .em{color:var(--green-deep);font-weight:700;font-style:normal}
+.s-hero .micro{display:flex;gap:32px;margin-top:22px;border-top:1px solid var(--line);padding-top:16px;flex-wrap:wrap}
+.s-hero .micro div span{display:block;font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-bottom:3px}
+.s-hero .micro div strong{font-size:20px;font-weight:800;color:var(--navy);letter-spacing:-.02em}
 
-/* COMPARE BARS */
-.cmp{
-  display:flex;flex-direction:column;gap:18px;
-}
-.cmp-row{display:grid;grid-template-columns:140px 1fr 60px;align-items:center;gap:12px}
-.cmp-row .cmp-label{font-size:12px;font-weight:600;color:var(--text);text-align:right}
-.cmp-row .cmp-bar{position:relative;height:22px;background:#F1F5F9;border-radius:11px;overflow:hidden}
-.cmp-row .cmp-fill{position:absolute;top:0;left:0;bottom:0;border-radius:11px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:10.5px;font-weight:700}
-.cmp-row .cmp-fill.gbj{background:var(--terr-gbj)}
-.cmp-row .cmp-fill.gm{background:var(--terr-gm)}
-.cmp-row .cmp-val{font-size:12px;font-weight:700;color:var(--text)}
+/* — Variante Hero NAVY (para grandes números chocantes) — */
+.s-hero.s-navy .big-num{color:#fff}
+.s-hero.s-navy .big-num .unit{color:var(--green-light)}
+.s-hero.s-navy .read{color:rgba(250,246,239,.78)}
+.s-hero.s-navy .read strong{color:#fff}
+.s-hero.s-navy .read .em{color:var(--green-light)}
+.s-hero.s-navy .micro{border-top-color:rgba(250,246,239,.15)}
+.s-hero.s-navy .micro div span{color:rgba(250,246,239,.5)}
+.s-hero.s-navy .micro div strong{color:#fff}
 
-/* RECOMMENDATIONS */
-.recs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+/* ─────────────── ACTION TITLE + CHART ─────────────── */
+.s-action{padding:48px 80px 84px;display:grid;grid-template-rows:auto 1fr;gap:18px}
+.s-action header h2{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:42px;line-height:1.1;
+  letter-spacing:-.025em;color:var(--navy);margin-top:12px;max-width:1080px;
+}
+.s-action header h2 em{font-style:normal;color:var(--green-deep)}
+.s-action header h2 .blue{font-style:normal;color:var(--blue)}
+.s-action header .lede{
+  font-family:'Source Serif Pro',serif;font-size:15px;font-style:italic;
+  color:var(--ink-2);margin-top:10px;line-height:1.5;max-width:920px;
+}
+.s-action .chart-wrap{position:relative;background:#fff;border:1px solid var(--line);border-radius:4px;padding:22px 24px}
+.s-action .chart-wrap canvas{max-height:100%}
+
+/* ─────────────── ACTION TITLE + 2 COLUMNS (texto + visual) ─────── */
+.s-split{padding:48px 80px 84px;display:grid;grid-template-rows:auto 1fr;gap:18px}
+.s-split header h2{font-family:'Inter',sans-serif;font-weight:900;font-size:42px;line-height:1.1;letter-spacing:-.025em;color:var(--navy);margin-top:12px;max-width:1080px}
+.s-split header h2 em{font-style:normal;color:var(--green-deep)}
+.s-split .split-body{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;padding-top:8px}
+.s-split .split-body .col-text p{font-size:14px;line-height:1.65;color:var(--ink-2);margin-bottom:10px}
+.s-split .split-body .col-text p strong{color:var(--navy);font-weight:700}
+.s-split .split-body .col-text .pullnum{
+  display:flex;align-items:baseline;gap:14px;margin:14px 0 8px;
+  padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.s-split .split-body .col-text .pullnum b{font-family:'Inter',sans-serif;font-size:48px;font-weight:900;color:var(--green-deep);letter-spacing:-.03em;line-height:1}
+.s-split .split-body .col-text .pullnum span{font-size:13px;color:var(--ink-2);font-weight:500;flex:1}
+
+/* ─────────────── QUOTE ─────────────── */
+.s-quote{padding:80px 100px;justify-content:center;display:flex;flex-direction:column}
+.s-quote::before{
+  content:"\201C";font-family:'Source Serif Pro',serif;
+  position:absolute;top:24px;left:80px;font-size:280px;line-height:1;color:var(--green);
+  font-weight:700;opacity:.92;pointer-events:none;
+}
+.s-quote .q-eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green-light);margin-bottom:24px;position:relative;z-index:1}
+.s-quote blockquote{
+  font-family:'Source Serif Pro',serif;font-weight:400;font-style:italic;
+  font-size:38px;line-height:1.32;letter-spacing:-.012em;color:#fff;
+  max-width:980px;margin-left:0;position:relative;z-index:1;
+}
+.s-quote blockquote strong{font-style:normal;font-weight:700;color:var(--green-light)}
+.s-quote cite{
+  display:block;margin-top:32px;font-style:normal;font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:rgba(250,246,239,.7);font-family:'Inter',sans-serif;font-weight:600;
+}
+.s-quote cite span{display:block;color:rgba(250,246,239,.45);font-size:11px;letter-spacing:.04em;margin-top:3px;text-transform:none;font-weight:400}
+
+/* ─────────────── TERRITORY CARD ─────────────── */
+.s-terr{padding:48px 80px 84px;display:grid;grid-template-rows:auto 1fr;gap:18px}
+.s-terr header h2{font-family:'Inter',sans-serif;font-weight:900;font-size:38px;line-height:1.1;letter-spacing:-.025em;color:var(--navy);margin-top:10px}
+.s-terr header h2 em{font-style:normal;color:var(--green-deep)}
+.s-terr .terr-card{
+  background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);
+  border-radius:4px;padding:36px 40px;display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:start;
+}
+.s-terr .terr-card.gbj{border-left-color:var(--blue-2)}
+.s-terr .terr-card.gm{border-left-color:var(--blue)}
+.s-terr .terr-card .tlabel{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-2);margin-bottom:8px}
+.s-terr .terr-card.gm .tlabel{color:var(--blue)}
+.s-terr .terr-card h3{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:32px;letter-spacing:-.02em;
+  color:var(--navy);line-height:1.05;margin-bottom:18px;
+}
+.s-terr .terr-card h3 em{font-style:normal;color:var(--green-deep)}
+.s-terr .terr-card .desc{font-family:'Source Serif Pro',serif;font-size:17px;line-height:1.5;color:var(--ink-2);font-style:italic}
+.s-terr .terr-card .desc strong{font-style:normal;font-weight:700;color:var(--navy)}
+.s-terr .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 32px;align-content:start}
+.s-terr .stats-grid .st{display:flex;flex-direction:column;gap:2px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.s-terr .stats-grid .st b{font-family:'Inter',sans-serif;font-size:26px;font-weight:900;color:var(--navy);letter-spacing:-.02em;line-height:1}
+.s-terr .stats-grid .st b.green{color:var(--green-deep)}
+.s-terr .stats-grid .st span{font-size:10.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+
+/* ─────────────── RECOMMENDATION ─────────────── */
+.s-rec{padding:48px 80px 84px;display:grid;grid-template-rows:auto 1fr;gap:24px}
+.s-rec header h2{font-family:'Inter',sans-serif;font-weight:900;font-size:42px;line-height:1.08;letter-spacing:-.025em;color:var(--navy);margin-top:12px;max-width:1000px}
+.s-rec header h2 em{font-style:normal;color:var(--green-deep)}
+.recs{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-content:start}
 .rec{
-  padding:18px;border-radius:10px;border:1px solid var(--line);
-  background:#fff;display:flex;flex-direction:column;gap:8px;
+  background:#fff;border:1px solid var(--line);border-left:4px solid var(--green);
+  border-radius:4px;padding:24px 22px;display:flex;flex-direction:column;gap:10px;position:relative;
 }
-.rec .rec-num{font-size:11px;font-weight:800;color:var(--brand);letter-spacing:.08em}
-.rec .rec-title{font-size:14px;font-weight:800;color:var(--text);line-height:1.25}
-.rec .rec-desc{font-size:11.5px;color:var(--text-2);line-height:1.5}
+.rec .num{font-family:'Source Serif Pro',serif;font-style:italic;font-weight:700;font-size:46px;line-height:.9;color:var(--green);letter-spacing:-.03em;margin-bottom:4px}
+.rec h3{font-family:'Inter',sans-serif;font-weight:800;font-size:16px;letter-spacing:-.01em;color:var(--navy);line-height:1.25}
+.rec p{font-size:12.5px;line-height:1.55;color:var(--ink-2)}
+.rec .badge{display:inline-block;margin-top:auto;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;background:var(--cream-2);color:var(--green-deep);border-radius:3px;align-self:flex-start}
 
-/* DECK CONTROLS */
+/* ─────────────── QUESTION SLIDE ─────────────── */
+.s-question{padding:64px 100px;justify-content:center;display:flex;flex-direction:column;background:var(--cream)}
+.s-question .qeyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--green-deep);margin-bottom:30px}
+.s-question .qeyebrow::before{content:"";display:inline-block;width:22px;height:2px;background:var(--green);margin-right:10px;vertical-align:middle}
+.s-question h2{
+  font-family:'Inter',sans-serif;font-weight:900;font-size:64px;line-height:1.05;letter-spacing:-.03em;color:var(--navy);max-width:980px;
+}
+.s-question h2 em{font-style:normal;color:var(--green-deep)}
+.s-question .qlede{font-family:'Source Serif Pro',serif;font-style:italic;font-size:20px;line-height:1.5;color:var(--ink-2);max-width:760px;margin-top:24px}
+.s-question .acts{
+  display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;
+}
+.s-question .acts .act-chip{
+  display:flex;align-items:center;gap:10px;padding:10px 14px;
+  border:1px solid var(--line);border-radius:999px;
+  font-size:12px;color:var(--ink-2);background:rgba(255,255,255,.55);
+}
+.s-question .acts .act-chip b{
+  font-family:'Source Serif Pro',serif;font-style:italic;font-weight:700;color:var(--green-deep);font-size:13px;
+}
+
+/* ─────────────── CONTEXT / MAP ─────────────── */
+.s-context{padding:48px 80px 84px;display:grid;grid-template-rows:auto 1fr;gap:18px;background:var(--cream)}
+.s-context header h2{font-family:'Inter',sans-serif;font-weight:900;font-size:42px;line-height:1.1;letter-spacing:-.025em;color:var(--navy);margin-top:12px;max-width:1080px}
+.s-context header h2 em{font-style:normal;color:var(--green-deep)}
+.s-context .ctx-body{display:grid;grid-template-columns:1fr 1.3fr;gap:36px;align-items:center}
+.s-context .ctx-stats{display:flex;flex-direction:column;gap:24px}
+.s-context .ctx-stat{padding:18px 0;border-bottom:1px dashed var(--line)}
+.s-context .ctx-stat:last-child{border-bottom:0}
+.s-context .ctx-stat .v{font-family:'Inter',sans-serif;font-size:54px;font-weight:900;color:var(--navy);letter-spacing:-.03em;line-height:1}
+.s-context .ctx-stat .v .green{color:var(--green-deep)}
+.s-context .ctx-stat .l{font-size:13px;color:var(--ink-2);margin-top:4px;font-weight:500}
+.s-context .ctx-stat .l strong{color:var(--navy);font-weight:700}
+.s-context .map-svg{display:flex;align-items:center;justify-content:center}
+
+/* ═══ ILUSTRAÇÕES SVG ════════════════════════════════════════ */
+.illu-fade{opacity:.92}
+
+/* ═══ CONTROLS ════════════════════════════════════════════════ */
 .controls{
   position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
-  background:rgba(255,255,255,.96);backdrop-filter:blur(6px);
-  border-radius:999px;padding:6px 10px;
-  display:flex;align-items:center;gap:6px;
-  box-shadow:0 12px 30px -10px rgba(0,0,0,.4);
-  z-index:100;font-size:12px;
+  background:rgba(11,43,68,.95);backdrop-filter:blur(8px);color:var(--cream);
+  border-radius:999px;padding:6px 10px;display:flex;align-items:center;gap:6px;
+  box-shadow:0 12px 30px -10px rgba(0,0,0,.6);z-index:100;font-size:12px;
 }
-.controls button{
-  background:transparent;border:0;padding:6px 10px;cursor:pointer;
-  font-size:13px;font-weight:600;color:var(--text);
-  border-radius:999px;display:flex;align-items:center;gap:5px;
-}
-.controls button:hover{background:#F1F5F9}
-.controls button.icon{padding:8px 10px;font-size:14px}
-.controls .counter{
-  padding:0 10px;font-weight:700;color:var(--text);font-size:12px;
-  font-variant-numeric:tabular-nums;
-}
-.controls .sep{width:1px;height:18px;background:var(--line-2)}
-.progress{
-  position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.1);z-index:99;
-}
-.progress .bar{height:100%;background:linear-gradient(90deg,#93C5FD,#1E40AF);transition:width .35s ease;width:0%}
+.controls button{background:transparent;border:0;padding:6px 10px;cursor:pointer;font-size:12.5px;font-weight:600;color:var(--cream);border-radius:999px;display:flex;align-items:center;gap:5px}
+.controls button:hover{background:rgba(250,246,239,.12)}
+.controls .counter{padding:0 10px;font-weight:700;font-variant-numeric:tabular-nums}
+.controls .sep{width:1px;height:18px;background:rgba(250,246,239,.2)}
+.controls a{text-decoration:none}
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.05);z-index:99}
+.progress .bar{height:100%;background:var(--green);transition:width .35s ease;width:0%}
 
-/* MENU OVERLAY */
-.menu{
-  position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
-  display:none;align-items:center;justify-content:center;z-index:200;padding:32px;
-}
+/* ═══ MENU ════════════════════════════════════════════════════ */
+.menu{position:fixed;inset:0;background:rgba(7,13,20,.84);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200;padding:32px}
 .menu.open{display:flex}
-.menu-content{
-  background:#fff;border-radius:16px;max-width:680px;width:100%;max-height:80vh;
-  display:flex;flex-direction:column;overflow:hidden;
-}
-.menu-head{
-  padding:18px 24px;border-bottom:1px solid var(--line);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.menu-head h2{font-size:16px;font-weight:800;color:var(--text);letter-spacing:-.01em}
-.menu-close{background:transparent;border:0;font-size:20px;color:var(--muted);cursor:pointer;padding:4px 10px;border-radius:6px}
-.menu-close:hover{background:#F1F5F9}
+.menu-content{background:var(--cream);border-radius:6px;max-width:740px;width:100%;max-height:80vh;display:flex;flex-direction:column;overflow:hidden}
+.menu-head{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.menu-head h2{font-family:'Inter',sans-serif;font-size:16px;font-weight:800;color:var(--navy);letter-spacing:-.01em}
+.menu-close{background:transparent;border:0;font-size:20px;color:var(--muted);cursor:pointer;padding:4px 10px;border-radius:4px}
+.menu-close:hover{background:rgba(11,43,68,.08)}
 .menu-list{flex:1;overflow-y:auto;padding:8px 0}
-.menu-list a{
-  display:flex;align-items:center;gap:14px;padding:10px 24px;
-  color:var(--text);text-decoration:none;font-size:13.5px;
-}
-.menu-list a:hover{background:#F8FAFC}
-.menu-list a .num{font-size:11px;font-weight:800;color:var(--muted);min-width:28px;letter-spacing:.05em}
+.menu-list a{display:flex;align-items:center;gap:14px;padding:10px 24px;color:var(--ink);text-decoration:none;font-size:13.5px;border-left:3px solid transparent}
+.menu-list a:hover{background:rgba(11,43,68,.04)}
+.menu-list a .num{font-family:'Source Serif Pro',serif;font-style:italic;font-size:13px;color:var(--muted);min-width:36px;letter-spacing:.05em}
 .menu-list a .name{flex:1;font-weight:600}
-.menu-list a.current{background:#EFF6FF;color:var(--brand)}
-.menu-list a.current .num{color:var(--brand)}
+.menu-list a .ato-tag{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;background:var(--cream-2);padding:2px 7px;border-radius:3px}
+.menu-list a.current{background:rgba(5,150,105,.08);color:var(--green-deep);border-left-color:var(--green)}
+.menu-list a.current .num{color:var(--green-deep)}
 
-/* RESPONSIVE / MOBILE */
-@media (max-width:900px), (max-aspect-ratio: 4/3){
+/* ═══ RESPONSIVE ══════════════════════════════════════════════ */
+@media (max-width:900px),(max-aspect-ratio:4/3){
   body{overflow:auto}
-  .deck{position:static;padding:14px;flex-direction:column;gap:16px;min-height:auto}
+  .deck{position:static;padding:14px;flex-direction:column;gap:16px}
   .slide{aspect-ratio:auto;max-height:none;display:flex!important;padding:32px 24px;animation:none}
-  .slide.active{animation:none}
-  .slide-headline{font-size:24px}
-  .cover h1{font-size:42px}
-  .cover .city{font-size:22px}
-  .controls{position:sticky;bottom:auto;top:10px;transform:none;left:auto;margin:0 auto}
+  .s-cover,.s-opener,.s-quote,.s-question,.s-context,.s-action,.s-split,.s-hero,.s-terr,.s-rec{padding:32px 24px 64px}
+  .s-cover{grid-template-columns:1fr}
+  .s-cover h1{font-size:42px}
+  .s-cover .meta{position:static;margin-top:20px}
+  .s-cover .illus{display:none}
+  .s-opener .ato-num{font-size:120px}
+  .s-opener h1,.s-question h2{font-size:36px}
+  .s-quote blockquote{font-size:24px}
+  .s-quote::before{font-size:160px}
+  .s-hero .big-num{font-size:120px}
+  .s-hero .hero-body{grid-template-columns:1fr;gap:24px}
+  .s-action header h2,.s-split header h2,.s-rec header h2,.s-context header h2,.s-terr header h2{font-size:26px}
+  .recs,.s-context .ctx-body,.s-split .split-body{grid-template-columns:1fr}
+  .s-terr .terr-card{grid-template-columns:1fr;padding:24px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .controls{position:sticky;top:10px;bottom:auto;transform:none;left:auto;margin:0 auto}
   .progress{position:sticky;top:0}
-  .hero-row{grid-template-columns:1fr!important}
-  .slide-cols{grid-template-columns:1fr!important}
-  .recs{grid-template-columns:1fr}
+  .slide-num{top:18px;right:24px}
+  .slide-src{position:static;margin-top:18px;border-top:1px solid var(--line)}
 }
 
-/* PRINT — exporta tudo como sequência de páginas A4-landscape */
+/* ═══ PRINT ═══════════════════════════════════════════════════ */
 @media print{
   @page{size:A4 landscape;margin:0}
   html,body{background:#fff!important;overflow:visible!important;height:auto}
@@ -304,11 +366,9 @@ body{
     height:100vh!important;max-height:none!important;
     page-break-after:always!important;break-after:page!important;
     box-shadow:none!important;border-radius:0!important;
-    padding:48px 56px!important;
   }
   .slide:last-child{page-break-after:auto!important}
   .controls,.progress,.menu{display:none!important}
-  .cover{background:linear-gradient(135deg,#0B2B44 0%,#1E40AF 100%)!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
 }
 </style>
@@ -319,459 +379,723 @@ body{
 
 <div class="deck" id="deck">
 
-  <!-- 01 · CAPA -->
-  <section class="slide cover active" data-title="Capa">
-    <div class="eyebrow">Resumo Executivo · Redes Ceará</div>
-    <h1>Diagnóstico<br><span>Territorial</span></h1>
-    <div class="city">Fortaleza · Região Metropolitana</div>
-    <div class="meta">
-      <div><strong>Período</strong>2024–2025</div>
-      <div><strong>Territórios</strong>Grande Bom Jardim · Grande Mucuripe</div>
-      <div><strong>Bairros</strong>13 acompanhados</div>
-      <div><strong>Elaboração</strong>Lucas Fernandes</div>
-    </div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     01 · CAPA
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-cover active" data-title="Capa" data-ato="I">
+  <div>
+    <span class="eyebrow">Resumo Executivo · Redes Ceará</span>
+    <h1>Diagnóstico<br>territorial em<br><span class="city">Fortaleza.</span></h1>
+    <p class="lede">Dois territórios, treze bairros, 345 mil pessoas — e a pergunta de onde a articulação institucional pode fazer diferença real.</p>
+  </div>
+  <div class="illus">
+    <svg width="380" height="380" viewBox="0 0 380 380" fill="none">
+      <!-- Anel externo -->
+      <circle cx="190" cy="190" r="170" stroke="rgba(147,197,253,.18)" stroke-width="1" stroke-dasharray="2 6"/>
+      <circle cx="190" cy="190" r="120" stroke="rgba(147,197,253,.25)" stroke-width="1"/>
+      <!-- Grupo GBJ (5 dots blue) -->
+      <g fill="#1E40AF">
+        <circle cx="120" cy="130" r="11"/>
+        <circle cx="92" cy="160" r="9"/>
+        <circle cx="150" cy="155" r="8"/>
+        <circle cx="100" cy="195" r="10"/>
+        <circle cx="135" cy="190" r="9"/>
+      </g>
+      <!-- Grupo GM (8 dots green) -->
+      <g fill="#10B981">
+        <circle cx="240" cy="155" r="7"/>
+        <circle cx="265" cy="180" r="9"/>
+        <circle cx="290" cy="160" r="6"/>
+        <circle cx="270" cy="210" r="8"/>
+        <circle cx="245" cy="200" r="6"/>
+        <circle cx="295" cy="200" r="7"/>
+        <circle cx="225" cy="235" r="7"/>
+        <circle cx="270" cy="240" r="6"/>
+      </g>
+      <!-- Linhas conectoras sutis -->
+      <g stroke="rgba(250,246,239,.25)" stroke-width="1" fill="none">
+        <line x1="120" y1="130" x2="135" y2="190"/>
+        <line x1="92" y1="160" x2="150" y2="155"/>
+        <line x1="240" y1="155" x2="270" y2="210"/>
+        <line x1="265" y1="180" x2="295" y2="200"/>
+      </g>
+      <!-- Labels -->
+      <text x="120" y="105" fill="#93C5FD" font-family="Inter" font-size="10" font-weight="700" letter-spacing="1">GBJ · 5 bairros</text>
+      <text x="225" y="265" fill="#10B981" font-family="Inter" font-size="10" font-weight="700" letter-spacing="1">GM · 8 bairros</text>
+    </svg>
+  </div>
+  <div class="meta">
+    <div><strong>Período</strong>2024 – 2025</div>
+    <div><strong>Recorte</strong>13 bairros · 2 territórios</div>
+    <div><strong>Fontes</strong>IBGE · MDS · IPEA · Receita Federal</div>
+    <div><strong>Autoria</strong>Lucas Fernandes</div>
+  </div>
+</section>
 
-  <!-- 02 · SUMÁRIO -->
-  <section class="slide" data-title="Sumário">
-    <div class="slide-eyebrow">02 · Roteiro da apresentação</div>
-    <h1 class="slide-headline">Sumário</h1>
-    <p class="slide-subhead">20 slides organizados nas 7 dimensões do Termo de Referência, fechando com a síntese de adicionalidade.</p>
-    <div class="slide-body">
-      <ol class="toc" id="toc-list"></ol>
-    </div>
-    <div class="slide-footer">
-      <span>Resumo Executivo · Fortaleza</span><span>02 / 20</span>
-    </div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     02 · A PERGUNTA ORIENTADORA
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-question" data-title="A pergunta orientadora" data-ato="I">
+  <span class="slide-num serif">02 · 21</span>
+  <span class="qeyebrow">A pergunta que orienta esta apresentação</span>
+  <h2>Onde a Redes Ceará <em>faz diferença</em> nos territórios em que decidiu atuar?</h2>
+  <p class="qlede">A resposta exige cruzar pobreza, fome, violência, infraestrutura e a base institucional que já está no chão. Cinco atos.</p>
+  <div class="acts">
+    <span class="act-chip"><b>I</b> O cenário</span>
+    <span class="act-chip"><b>II</b> Quem mora aqui</span>
+    <span class="act-chip"><b>III</b> A forma da vulnerabilidade</span>
+    <span class="act-chip"><b>IV</b> O tecido que existe</span>
+    <span class="act-chip"><b>V</b> Onde fazer diferença</span>
+  </div>
+  <div class="slide-src">
+    <span>Fontes integradas · IBGE · MDS · IPEA · Receita Federal</span>
+    <a href="fortaleza.html">Painel interativo de Fortaleza →</a>
+  </div>
+</section>
 
-  <!-- 03 · CONTEXTO -->
-  <section class="slide" data-title="Contexto territorial">
-    <div class="slide-eyebrow">03 · Contexto territorial</div>
-    <h1 class="slide-headline">Onde a Redes Ceará atua em <em>Fortaleza</em></h1>
-    <p class="slide-subhead">Dois territórios estratégicos, 13 bairros acompanhados e cerca de <strong>345 mil habitantes</strong> — uma fração do município, mas uma população do porte de uma cidade média.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat"><span class="label">População total</span><span class="num">345k</span><span class="sub">Soma dos 13 bairros · Censo IBGE 2022</span></div>
-        <div class="hero-stat gbj"><span class="label">Grande Bom Jardim</span><span class="num">216k</span><span class="sub">5 bairros · 62,6% do total</span></div>
-        <div class="hero-stat gm"><span class="label">Grande Mucuripe</span><span class="num">129k</span><span class="sub">8 bairros · 37,4% do total</span></div>
-        <div class="hero-stat"><span class="label">Densidade</span><span class="num">2x</span><span class="sub">GBJ é cerca de 2× mais denso que GM em média</span></div>
+<!-- ═══════════════════════════════════════════════════════════
+     03 · CONTEXTO TERRITORIAL
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-context" data-title="Contexto territorial" data-ato="I">
+  <span class="slide-num serif">03 · 21</span>
+  <header>
+    <span class="eyebrow">03 · Ato I · Onde estamos olhando</span>
+    <h2>Dois <em>territórios</em>, treze bairros — uma cidade dentro da cidade.</h2>
+  </header>
+  <div class="ctx-body">
+    <div class="ctx-stats">
+      <div class="ctx-stat">
+        <div class="v">345<span class="green"> mil</span></div>
+        <p class="l">habitantes nos 13 bairros acompanhados — <strong>população do porte de uma cidade média</strong></p>
       </div>
-      <div class="insight-box">
-        <strong>Duas gramáticas territoriais distintas.</strong> O Grande Bom Jardim concentra escala populacional e vulnerabilidade contínua; o Grande Mucuripe é menor em população, mas com densidades pontuais altas e contrastes internos muito maiores entre bairros.
+      <div class="ctx-stat">
+        <div class="v">2<span class="green"> territórios</span></div>
+        <p class="l">com gramáticas operacionais distintas — pobreza ampla no <strong>GBJ</strong>, heterogeneidade no <strong>GM</strong></p>
+      </div>
+      <div class="ctx-stat">
+        <div class="v">13 + 108</div>
+        <p class="l">bairros: 13 acompanhados + 108 demais para comparação no painel interativo</p>
       </div>
     </div>
-    <div class="slide-footer">
-      <span>Fontes: IBGE Censo 2022 · Painel Redes Ceará</span>
-      <a href="fortaleza.html#section-visao" target="_blank">Ver mapa interativo →</a>
+    <div class="map-svg">
+      <svg width="440" height="320" viewBox="0 0 440 320" fill="none">
+        <!-- Background blob -->
+        <ellipse cx="220" cy="160" rx="200" ry="130" fill="rgba(11,43,68,.04)" stroke="rgba(11,43,68,.08)" stroke-width="1"/>
+        <!-- GBJ — agglomerated zone left -->
+        <g>
+          <path d="M 60 130 Q 80 110 120 115 Q 160 122 175 145 Q 180 175 155 195 Q 120 215 90 200 Q 55 180 60 130 Z" fill="rgba(30,64,175,.12)" stroke="#1E40AF" stroke-width="1.5"/>
+          <text x="80" y="100" fill="#1E40AF" font-family="Inter" font-size="11" font-weight="800">GRANDE BOM JARDIM</text>
+          <text x="80" y="115" fill="#1E40AF" font-family="Inter" font-size="9" font-weight="600">5 bairros · 216 mil hab.</text>
+        </g>
+        <!-- GM — coastal east -->
+        <g>
+          <path d="M 260 100 Q 320 105 360 130 Q 395 155 385 200 Q 365 240 310 235 Q 250 230 240 195 Q 235 145 260 100 Z" fill="rgba(11,79,168,.12)" stroke="#0B4FA8" stroke-width="1.5"/>
+          <text x="265" y="280" fill="#0B4FA8" font-family="Inter" font-size="11" font-weight="800">GRANDE MUCURIPE</text>
+          <text x="265" y="295" fill="#0B4FA8" font-family="Inter" font-size="9" font-weight="600">8 bairros · 129 mil hab.</text>
+        </g>
+        <!-- Bairros dots GBJ -->
+        <g fill="#1E40AF">
+          <circle cx="95" cy="150" r="5"/>
+          <circle cx="120" cy="138" r="6"/>
+          <circle cx="138" cy="165" r="5"/>
+          <circle cx="105" cy="180" r="5"/>
+          <circle cx="148" cy="180" r="4"/>
+        </g>
+        <!-- Bairros dots GM -->
+        <g fill="#0B4FA8">
+          <circle cx="280" cy="130" r="5"/>
+          <circle cx="300" cy="150" r="6"/>
+          <circle cx="320" cy="170" r="5"/>
+          <circle cx="295" cy="180" r="4"/>
+          <circle cx="345" cy="160" r="5"/>
+          <circle cx="335" cy="195" r="4"/>
+          <circle cx="305" cy="210" r="5"/>
+          <circle cx="280" cy="195" r="4"/>
+        </g>
+        <!-- Compass rose tiny -->
+        <g opacity=".4">
+          <line x1="410" y1="20" x2="410" y2="40" stroke="#0B2B44" stroke-width="1.5"/>
+          <polygon points="410,15 405,25 415,25" fill="#0B2B44"/>
+          <text x="402" y="55" fill="#0B2B44" font-family="Inter" font-size="9" font-weight="700">N</text>
+        </g>
+      </svg>
     </div>
-  </section>
+  </div>
+  <div class="slide-src">
+    <span>Fontes · IBGE Censo Demográfico, 2022 · Recorte oficial de bairros do município</span>
+    <a href="fortaleza.html#section-visao">Ver mapa interativo →</a>
+  </div>
+</section>
 
-  <!-- 04 · DEMOGRAFIA I -->
-  <section class="slide" data-title="Demografia I — Quem mora aqui">
-    <div class="slide-eyebrow">04 · Demografia I — Perfil populacional</div>
-    <h1 class="slide-headline">População & perfil de gênero</h1>
-    <p class="slide-subhead">Maioria feminina nos dois territórios, com chefia familiar feminina expressiva — um marcador relevante para programas de transferência de renda e inclusão produtiva.</p>
-    <div class="slide-body">
-      <div class="slide-cols">
-        <div>
-          <div class="hero-row" style="--cols:1;gap:12px">
-            <div class="hero-stat gbj"><span class="label">Grande Bom Jardim</span><span class="num">216.366</span><span class="sub">52,4% mulheres · 44,6% chefia feminina</span></div>
-            <div class="hero-stat gm"><span class="label">Grande Mucuripe</span><span class="num">129.134</span><span class="sub">52,8% mulheres · 41,8% chefia feminina</span></div>
-          </div>
-        </div>
-        <div>
-          <div class="slide-chart"><canvas id="ch-gender"></canvas></div>
-        </div>
-      </div>
-      <div class="insight-box">
-        <strong>Maioria feminina nos dois territórios</strong>, com chefia familiar de mulheres mais alta no GBJ (44,6%) que no GM (41,8%). Implica priorizar mulheres como porta de entrada para programas de inclusão produtiva e transferência de renda.
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fonte: IBGE Censo 2022</span><span>04 / 20</span></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     04 · SECTION OPENER · ATO II
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-opener s-navy" data-title="Ato II · Quem mora aqui" data-ato="II">
+  <span class="slide-num serif">04 · 21</span>
+  <div class="deco-svg">
+    <svg width="280" height="280" viewBox="0 0 280 280" fill="none">
+      <!-- Pattern of person dots -->
+      <g fill="#10B981" opacity=".85">
+        <circle cx="40" cy="40" r="6"/>
+        <circle cx="80" cy="40" r="6"/>
+        <circle cx="120" cy="40" r="6"/>
+        <circle cx="160" cy="40" r="6"/>
+        <circle cx="200" cy="40" r="6"/>
+        <circle cx="240" cy="40" r="6"/>
+        <circle cx="40" cy="80" r="6"/>
+        <circle cx="80" cy="80" r="6"/>
+        <circle cx="120" cy="80" r="6"/>
+        <circle cx="160" cy="80" r="6"/>
+        <circle cx="200" cy="80" r="6"/>
+        <circle cx="240" cy="80" r="6"/>
+        <circle cx="40" cy="120" r="6"/>
+        <circle cx="80" cy="120" r="6"/>
+        <circle cx="120" cy="120" r="6"/>
+        <circle cx="160" cy="120" r="6"/>
+        <circle cx="200" cy="120" r="6"/>
+        <circle cx="240" cy="120" r="6"/>
+      </g>
+      <g fill="#93C5FD" opacity=".7">
+        <circle cx="40" cy="160" r="6"/>
+        <circle cx="80" cy="160" r="6"/>
+        <circle cx="120" cy="160" r="6"/>
+        <circle cx="160" cy="160" r="6"/>
+        <circle cx="200" cy="160" r="6"/>
+        <circle cx="240" cy="160" r="6"/>
+        <circle cx="40" cy="200" r="6"/>
+        <circle cx="80" cy="200" r="6"/>
+      </g>
+      <g fill="rgba(250,246,239,.25)">
+        <circle cx="120" cy="200" r="6"/>
+        <circle cx="160" cy="200" r="6"/>
+        <circle cx="200" cy="200" r="6"/>
+        <circle cx="240" cy="200" r="6"/>
+      </g>
+    </svg>
+  </div>
+  <span class="eyebrow">Resumo Executivo · Fortaleza</span>
+  <span class="ato-label serif">Ato II</span>
+  <span class="ato-num">02</span>
+  <h1>Quem <em>mora aqui</em>.</h1>
+  <p class="turn">A escala humana dos territórios — quem são, quantos são, onde estão.</p>
+  <div class="ato-footer">
+    <span>Redes Ceará · Fortaleza</span>
+    <span>I Cenário · <strong>II Quem mora aqui</strong> · III Vulnerabilidade · IV Tecido · V Caminhos</span>
+  </div>
+</section>
 
-  <!-- 05 · DEMOGRAFIA II -->
-  <section class="slide" data-title="Demografia II — Etário e racial">
-    <div class="slide-eyebrow">05 · Demografia II — Perfil etário e racial</div>
-    <h1 class="slide-headline">Composição etária e racial</h1>
-    <p class="slide-subhead">População jovem e majoritariamente não-branca, com infância e juventude pesando mais no GBJ — base demográfica para intervenções de longo prazo.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat gbj"><span class="label">GBJ · pop. 0–9</span><span class="num">26k</span><span class="sub">~12% da população</span></div>
-        <div class="hero-stat gm"><span class="label">GM · pop. 0–9</span><span class="num">15k</span><span class="sub">~12% da população</span></div>
-        <div class="hero-stat gbj"><span class="label">GBJ · pop. não-branca 15+</span><span class="num">77%</span><span class="sub">Indicador de vulnerabilidade racial</span></div>
-        <div class="hero-stat gm"><span class="label">GM · pop. não-branca 15+</span><span class="num">66%</span><span class="sub">Mais heterogêneo</span></div>
-      </div>
-      <div class="slide-chart"><canvas id="ch-race"></canvas></div>
-      <div class="insight-box">
-        <strong>População majoritariamente não-branca em ambos os territórios</strong>, com peso ainda maior no GBJ (77% vs 66% no GM). A juventude (0-9 anos) representa ~12% em ambos — uma janela demográfica relevante para programas educacionais e de qualificação técnica.
+<!-- ═══════════════════════════════════════════════════════════
+     05 · HERO NUMBER (345 mil)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-hero s-cream" data-title="345 mil pessoas" data-ato="II">
+  <span class="slide-num serif">05 · 21</span>
+  <header>
+    <span class="eyebrow">Ato II · Escala humana</span>
+  </header>
+  <div class="hero-body">
+    <div>
+      <span class="big-num">345<span class="unit">mil pessoas</span></span>
+    </div>
+    <div>
+      <p class="read">Os 13 bairros acompanhados pela Redes Ceará abrigam <strong>uma população do porte de uma cidade média</strong>. <span class="em">62%</span> deles vivem no Grande Bom Jardim — escala que muda toda a equação operacional.</p>
+      <div class="micro">
+        <div><span>Bom Jardim</span><strong>216 mil</strong></div>
+        <div><span>Mucuripe</span><strong>129 mil</strong></div>
+        <div><span>Bairros</span><strong>13</strong></div>
       </div>
     </div>
-    <div class="slide-footer"><span>Fonte: IBGE Censo 2022</span><span>05 / 20</span></div>
-  </section>
+  </div>
+  <div class="slide-src">
+    <span>Fonte · IBGE Censo Demográfico, 2022</span>
+    <a href="fortaleza.html#section-demo">Ver perfil populacional →</a>
+  </div>
+</section>
 
-  <!-- 06 · EMPREGO & RENDA I -->
-  <section class="slide" data-title="Emprego e Renda I — Renda média">
-    <div class="slide-eyebrow">06 · Emprego e Renda I — Renda do trabalho</div>
-    <h1 class="slide-headline">Renda média do responsável</h1>
-    <p class="slide-subhead">Diferencial de <strong>2,7×</strong> entre os territórios — o GBJ está bem abaixo do salário mínimo médio nacional para chefes de domicílio.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:3">
-        <div class="hero-stat gbj warn"><span class="label">GBJ · renda média</span><span class="num">R$ 1,4k</span><span class="sub">R$ 1.428,94 por responsável</span></div>
-        <div class="hero-stat gm"><span class="label">GM · renda média</span><span class="num">R$ 3,9k</span><span class="sub">R$ 3.886,97 por responsável</span></div>
-        <div class="hero-stat"><span class="label">Diferencial</span><span class="num">2,7×</span><span class="sub">GM/GBJ — gap estrutural</span></div>
-      </div>
-      <div class="slide-chart"><canvas id="ch-renda"></canvas></div>
-      <div class="insight-box">
-        <strong>O GBJ tem renda média 64% menor que a do GM.</strong> Isso indica que mesmo os domicílios formalmente "empregados" no GBJ enfrentam renda comprometida — o desafio de inclusão produtiva ali é menos sobre criar postos e mais sobre ampliar a remuneração e a estabilidade dos vínculos existentes.
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fonte: IBGE Censo 2022 · Painel Redes Ceará</span><span>06 / 20</span></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     06 · ACTION TITLE + CHART (demografia)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-action s-cream" data-title="Maioria mulher, jovem, não-branca" data-ato="II">
+  <span class="slide-num serif">06 · 21</span>
+  <header>
+    <span class="eyebrow">Ato II · Perfil demográfico</span>
+    <h2>Maioria <em>mulher</em>, <em>jovem</em> e <em>não-branca</em> — o público preferencial dos programas de inclusão produtiva já está aqui.</h2>
+    <p class="lede">Indicadores demográficos dos dois territórios. Diferenças sutis na composição mascaram divergências importantes na chefia familiar.</p>
+  </header>
+  <div class="chart-wrap"><canvas id="ch-demo"></canvas></div>
+  <div class="slide-src">
+    <span>Fonte · IBGE Censo Demográfico, 2022</span>
+    <a href="fortaleza.html#section-demo">Detalhes no painel →</a>
+  </div>
+</section>
 
-  <!-- 07 · EMPREGO & RENDA II -->
-  <section class="slide" data-title="Emprego e Renda II — Proteção social">
-    <div class="slide-eyebrow">07 · Emprego e Renda II — Cobertura assistencial</div>
-    <h1 class="slide-headline">CadÚnico & transferência de renda</h1>
-    <p class="slide-subhead">No GBJ, mais de <strong>1 em cada 2 domicílios</strong> está no CadÚnico — escala que demanda programas de proteção social robustos.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat gbj warn"><span class="label">GBJ · CadÚnico</span><span class="num">53,3%</span><span class="sub">Domicílios inscritos</span></div>
-        <div class="hero-stat gm"><span class="label">GM · CadÚnico</span><span class="num">39,2%</span><span class="sub">Domicílios inscritos</span></div>
-        <div class="hero-stat gbj"><span class="label">GBJ · Famílias inscritas</span><span class="num">47k</span><span class="sub">Volume absoluto</span></div>
-        <div class="hero-stat gm"><span class="label">GM · Famílias inscritas</span><span class="num">23k</span><span class="sub">Volume absoluto</span></div>
-      </div>
-      <div class="insight-box">
-        <strong>O Bolsa Família e auxílios assistenciais já chegam.</strong> O gargalo não é cobertura inicial, mas <strong>conexão entre proteção e oportunidade</strong>: transformar transferência em porta para geração de renda exige acoplar programas, OSCs, SINE e cadeias locais.
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fontes: MDS / CadÚnico 2025</span><span>07 / 20</span></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     07 · QUOTE (policy brief)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-quote s-navy" data-title="Voz do Policy Brief" data-ato="II">
+  <span class="slide-num serif">07 · 21</span>
+  <span class="q-eyebrow">Voz do Policy Brief</span>
+  <blockquote>
+    Inclusão produtiva sustentável <strong>depende, sobretudo, de acesso estável à demanda</strong> — não basta apoiar alguém para produzir, é preciso que exista quem compre.
+  </blockquote>
+  <cite>
+    Síntese do Policy Brief · Redes Ceará
+    <span>A partir de Card et al. (2018) e Kline &amp; Moretti (2014)</span>
+  </cite>
+</section>
 
-  <!-- 08 · VULNERABILIDADE I -->
-  <section class="slide" data-title="Vulnerabilidade I — Pobreza">
-    <div class="slide-eyebrow">08 · Vulnerabilidade I — Pobreza e IDH</div>
-    <h1 class="slide-headline">Extrema pobreza e desenvolvimento humano</h1>
-    <p class="slide-subhead">Extrema pobreza atinge <strong>42% dos domicílios</strong> no GBJ — um patamar que coloca o território entre as áreas mais vulneráveis da capital.</p>
-    <div class="slide-body">
-      <div class="slide-cols">
-        <div class="cmp">
-          <div class="cmp-row"><span class="cmp-label">Extrema pobreza</span><div class="cmp-bar"><div class="cmp-fill gbj" style="width:84%">GBJ 42,4%</div></div><span class="cmp-val">2,3×</span></div>
-          <div class="cmp-row"><span class="cmp-label"></span><div class="cmp-bar"><div class="cmp-fill gm" style="width:47%">GM 18,3%</div></div><span class="cmp-val"></span></div>
-          <div class="cmp-row"><span class="cmp-label">IDHM (escala)</span><div class="cmp-bar"><div class="cmp-fill gbj" style="width:17%">GBJ 0,167</div></div><span class="cmp-val">0,4×</span></div>
-          <div class="cmp-row"><span class="cmp-label"></span><div class="cmp-bar"><div class="cmp-fill gm" style="width:40%">GM 0,402</div></div><span class="cmp-val"></span></div>
-          <div class="cmp-row"><span class="cmp-label">Analfabetismo 15+</span><div class="cmp-bar"><div class="cmp-fill gbj" style="width:65%">GBJ 6,5%</div></div><span class="cmp-val">~2,1×</span></div>
-          <div class="cmp-row"><span class="cmp-label"></span><div class="cmp-bar"><div class="cmp-fill gm" style="width:31%">GM 3,1%</div></div><span class="cmp-val"></span></div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="insight-box">
-            <strong>GBJ concentra vulnerabilidade estrutural ampla e contínua</strong> entre os 5 bairros que compõem o território — escala importa.
-          </div>
-          <div class="insight-box">
-            <strong>GM tem média menos vulnerável</strong>, mas com contrastes internos muito maiores: bairros como Praia do Futuro II têm indicadores próximos aos do GBJ.
-          </div>
-          <div class="insight-box">
-            <strong>Educação é a face menos visível</strong> da vulnerabilidade — o analfabetismo do GBJ (6,5%) é mais que o dobro do GM, com efeitos em cadeia para inclusão produtiva.
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fontes: MDS 2025 · IBGE Censo 2022 · PNUD 2010</span><span>08 / 20</span></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     08 · SECTION OPENER · ATO III
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-opener s-navy" data-title="Ato III · A forma da vulnerabilidade" data-ato="III">
+  <span class="slide-num serif">08 · 21</span>
+  <div class="deco-svg">
+    <svg width="280" height="280" viewBox="0 0 280 280" fill="none">
+      <!-- Stratified jagged layers -->
+      <path d="M 0 40 L 40 30 L 80 50 L 120 25 L 160 45 L 200 28 L 240 50 L 280 32 L 280 60 L 0 60 Z" fill="rgba(16,185,129,.55)"/>
+      <path d="M 0 90 L 30 80 L 70 95 L 110 78 L 150 92 L 190 80 L 230 98 L 280 85 L 280 110 L 0 110 Z" fill="rgba(16,185,129,.4)"/>
+      <path d="M 0 140 L 40 130 L 80 142 L 130 128 L 170 145 L 220 130 L 280 142 L 280 160 L 0 160 Z" fill="rgba(147,197,253,.35)"/>
+      <path d="M 0 190 L 35 182 L 75 195 L 115 180 L 155 196 L 200 185 L 240 198 L 280 188 L 280 210 L 0 210 Z" fill="rgba(147,197,253,.22)"/>
+      <path d="M 0 240 L 40 232 L 90 245 L 140 230 L 190 244 L 240 235 L 280 246 L 280 280 L 0 280 Z" fill="rgba(250,246,239,.12)"/>
+    </svg>
+  </div>
+  <span class="eyebrow">Resumo Executivo · Fortaleza</span>
+  <span class="ato-label serif">Ato III</span>
+  <span class="ato-num">03</span>
+  <h1>A forma da<br><em>vulnerabilidade</em>.</h1>
+  <p class="turn">Como pobreza, fome, infraestrutura e violência se entrelaçam — e por que o Grande Bom Jardim concentra o problema na sua forma mais aguda.</p>
+  <div class="ato-footer">
+    <span>Redes Ceará · Fortaleza</span>
+    <span>I Cenário · II Quem mora aqui · <strong>III Vulnerabilidade</strong> · IV Tecido · V Caminhos</span>
+  </div>
+</section>
 
-  <!-- 09 · VULNERABILIDADE II — Insegurança Alimentar -->
-  <section class="slide" data-title="Vulnerabilidade II — Insegurança alimentar">
-    <div class="slide-eyebrow">09 · Vulnerabilidade II — Insegurança alimentar</div>
-    <h1 class="slide-headline">Insegurança alimentar como proxy</h1>
-    <p class="slide-subhead">Não há indicador direto por bairro, mas o cruzamento <strong>CadÚnico × extrema pobreza × acesso a equipamentos</strong> sinaliza onde o problema é mais agudo.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:3">
-        <div class="hero-stat warn"><span class="label">Risco alto · GBJ</span><span class="num">5</span><span class="sub">de 5 bairros acompanhados</span></div>
-        <div class="hero-stat"><span class="label">Risco alto · GM</span><span class="num">3</span><span class="sub">de 8 bairros (Cais do Porto, V. Pinzón, Praia Futuro II)</span></div>
-        <div class="hero-stat good"><span class="label">Estabelec. alimentícios</span><span class="num">1.343</span><span class="sub">617 GBJ + 726 GM (Receita Federal, dez/2024)</span></div>
-      </div>
-      <div class="insight-box">
-        <strong>Os mesmos bairros que concentram pobreza estão entre os com menor densidade de estabelecimentos alimentícios formais</strong> — uma intersecção que torna programas de compras públicas e cadeias locais especialmente potentes nesses territórios.
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fontes: MDS · IBGE · Receita Federal 2024</span><a href="fortaleza.html#section-econ" target="_blank">Ver mapa do setor alimentício →</a></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     09 · ACTION TITLE + CHART (renda)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-action s-cream" data-title="GBJ ganha 1/3 do que ganha o GM" data-ato="III">
+  <span class="slide-num serif">09 · 21</span>
+  <header>
+    <span class="eyebrow">Ato III · Renda do trabalho</span>
+    <h2>O Grande Bom Jardim ganha <em>um terço do que ganha o Mucuripe</em> — e isso muda toda a tática de inclusão produtiva.</h2>
+    <p class="lede">Renda média do responsável pelo domicílio (R$ por mês). A diferença não é só de magnitude: é de modelo — onde inserir, onde proteger, onde encadear.</p>
+  </header>
+  <div class="chart-wrap"><canvas id="ch-renda"></canvas></div>
+  <div class="slide-src">
+    <span>Fonte · IBGE Censo Demográfico, 2022</span>
+    <a href="fortaleza.html#section-vuln">Ver detalhes no painel →</a>
+  </div>
+</section>
 
-  <!-- 10 · VULNERABILIDADE III — Violência -->
-  <section class="slide" data-title="Vulnerabilidade III — Violência">
-    <div class="slide-eyebrow">10 · Vulnerabilidade III — Indicadores de violência</div>
-    <h1 class="slide-headline">Violência letal e violência de gênero</h1>
-    <p class="slide-subhead">A violência opera como um <strong>amplificador de vulnerabilidade</strong> — afeta saúde mental, deslocamento, capacidade de organização e disposição empresarial para investir.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat warn"><span class="label">GBJ · homicídios/100k</span><span class="num">69,7</span><span class="sub">5× a média mundial recomendada</span></div>
-        <div class="hero-stat"><span class="label">GM · homicídios/100k</span><span class="num">51,3</span><span class="sub">Ainda alto, abaixo do GBJ</span></div>
-        <div class="hero-stat warn"><span class="label">CVLI · média anual</span><span class="num">8,6</span><span class="sub">Crimes violentos letais (GBJ)</span></div>
-        <div class="hero-stat"><span class="label">M. Penha · média anual</span><span class="num">1.423</span><span class="sub">Ocorrências/ano (GBJ)</span></div>
+<!-- ═══════════════════════════════════════════════════════════
+     10 · ACTION TITLE + 2 COLUMNS (insegurança alimentar)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-split s-cream" data-title="Insegurança alimentar" data-ato="III">
+  <span class="slide-num serif">10 · 21</span>
+  <header>
+    <span class="eyebrow">Ato III · Insegurança alimentar</span>
+    <h2>1.343 estabelecimentos alimentícios — mas <em>nem sempre onde o problema está mais agudo</em>.</h2>
+  </header>
+  <div class="split-body">
+    <div class="col-text">
+      <p>Não há indicador direto de insegurança alimentar por bairro. O cruzamento <strong>CadÚnico × extrema pobreza × densidade de estabelecimentos</strong> sinaliza onde o problema é mais agudo.</p>
+      <p>No GBJ, <strong>5 dos 5 bairros</strong> apresentam combinação de alta vulnerabilidade e baixa densidade formal de alimentação. No GM, 3 dos 8 (Cais do Porto, Vicente Pinzón, Praia Futuro II) replicam o padrão.</p>
+      <div class="pullnum">
+        <b>1.343</b>
+        <span>estabelecimentos alimentícios nos 13 bairros (617 GBJ + 726 GM) — base operacional concreta para compras públicas e cadeias locais</span>
       </div>
-      <div class="insight-box">
-        <strong>O GBJ tem um perfil de violência letal 36% mais alto</strong> que o GM. Em territórios assim, a presença de equipamentos públicos (CRAS, escolas, postos) tem peso adicional como <em>infraestrutura de paz</em> — não só como serviço.
-      </div>
+      <p>Restaurantes e lanchonetes representam <strong>~78%</strong>; supermercados (âncoras potenciais para compras institucionais) são apenas <strong>~3%</strong>.</p>
     </div>
-    <div class="slide-footer"><span>Fontes: SSPDS-CE · ISP · 2024</span><span>10 / 20</span></div>
-  </section>
+    <div style="display:flex;align-items:center;justify-content:center">
+      <svg width="380" height="320" viewBox="0 0 380 320" fill="none">
+        <!-- Heatmap-style abstract grid showing density -->
+        <g>
+          <rect x="20" y="20" width="50" height="50" fill="rgba(220,38,38,.75)" rx="3"/>
+          <rect x="80" y="20" width="50" height="50" fill="rgba(220,38,38,.55)" rx="3"/>
+          <rect x="140" y="20" width="50" height="50" fill="rgba(245,158,11,.6)" rx="3"/>
+          <rect x="200" y="20" width="50" height="50" fill="rgba(5,150,105,.4)" rx="3"/>
+          <rect x="260" y="20" width="50" height="50" fill="rgba(5,150,105,.45)" rx="3"/>
+          <rect x="20" y="80" width="50" height="50" fill="rgba(220,38,38,.85)" rx="3"/>
+          <rect x="80" y="80" width="50" height="50" fill="rgba(220,38,38,.5)" rx="3"/>
+          <rect x="140" y="80" width="50" height="50" fill="rgba(245,158,11,.5)" rx="3"/>
+          <rect x="200" y="80" width="50" height="50" fill="rgba(5,150,105,.55)" rx="3"/>
+          <rect x="260" y="80" width="50" height="50" fill="rgba(16,185,129,.55)" rx="3"/>
+          <rect x="20" y="140" width="50" height="50" fill="rgba(245,158,11,.5)" rx="3"/>
+          <rect x="80" y="140" width="50" height="50" fill="rgba(245,158,11,.4)" rx="3"/>
+          <rect x="140" y="140" width="50" height="50" fill="rgba(5,150,105,.5)" rx="3"/>
+          <rect x="200" y="140" width="50" height="50" fill="rgba(16,185,129,.5)" rx="3"/>
+          <rect x="260" y="140" width="50" height="50" fill="rgba(16,185,129,.7)" rx="3"/>
+        </g>
+        <g font-family="Inter" font-size="9" font-weight="700" fill="#0B2B44" letter-spacing="0.5">
+          <text x="20" y="215">GBJ</text>
+          <text x="265" y="215" text-anchor="start">GM →</text>
+        </g>
+        <g font-family="Inter" font-size="10" font-weight="700" fill="#0B2B44">
+          <text x="20" y="245" fill="#dc2626">■ Alto risco</text>
+          <text x="120" y="245" fill="#f59e0b">■ Médio</text>
+          <text x="200" y="245" fill="#059669">■ Favorável</text>
+        </g>
+        <text x="20" y="280" font-family="Source Serif Pro" font-style="italic" font-size="11" fill="#7E8A9A">Cruzamento CadÚnico × extrema pobreza ×</text>
+        <text x="20" y="296" font-family="Source Serif Pro" font-style="italic" font-size="11" fill="#7E8A9A">densidade alimentícia por bairro</text>
+      </svg>
+    </div>
+  </div>
+  <div class="slide-src">
+    <span>Fontes · MDS · IBGE · Receita Federal, dez/2024</span>
+    <a href="fortaleza.html#section-econ">Ver mapa do setor alimentício →</a>
+  </div>
+</section>
 
-  <!-- 11 · INFRA I — Saneamento -->
-  <section class="slide" data-title="Infraestrutura I — Saneamento">
-    <div class="slide-eyebrow">11 · Infraestrutura I — Saneamento básico</div>
-    <h1 class="slide-headline">Cobertura de esgoto, água e lixo</h1>
-    <p class="slide-subhead">Gap dramático em esgoto: apenas <strong>43% dos domicílios</strong> do GBJ têm coleta — quase metade do GM (78%).</p>
-    <div class="slide-body">
-      <div class="slide-cols">
-        <div class="slide-chart"><canvas id="ch-sanit"></canvas></div>
-        <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
-          <div class="hero-stat gbj warn"><span class="label">GBJ · Rede de esgoto</span><span class="num">43,4%</span><span class="sub">Domicílios atendidos</span></div>
-          <div class="hero-stat gm"><span class="label">GM · Rede de esgoto</span><span class="num">77,8%</span><span class="sub">Domicílios atendidos</span></div>
-          <div class="insight-box">
-            <strong>Saneamento é o maior gap de infraestrutura</strong> — afeta saúde, mortalidade infantil e capacidade de instalação de pequenos negócios alimentícios.
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fontes: IBGE Censo 2022 · CAGECE</span><span>11 / 20</span></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     11 · ACTION TITLE + CHART (saneamento)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-action s-cream" data-title="Apenas 43% têm esgoto" data-ato="III">
+  <span class="slide-num serif">11 · 21</span>
+  <header>
+    <span class="eyebrow">Ato III · Saneamento básico</span>
+    <h2>Apenas <em>43% dos domicílios</em> do GBJ têm esgoto — o básico ainda não chegou.</h2>
+    <p class="lede">Cobertura de saneamento, em %. Água e lixo já chegam praticamente em todos os domicílios; o esgoto é o gargalo persistente, com impacto direto em saúde, mortalidade infantil e capacidade de instalar pequenos negócios alimentícios.</p>
+  </header>
+  <div class="chart-wrap"><canvas id="ch-sanit"></canvas></div>
+  <div class="slide-src">
+    <span>Fonte · IBGE Censo Demográfico, 2022 · CAGECE</span>
+    <a href="fortaleza.html#section-infra">Ver painel de infraestrutura →</a>
+  </div>
+</section>
 
-  <!-- 12 · INFRA II — Saúde -->
-  <section class="slide" data-title="Infraestrutura II — Saúde">
-    <div class="slide-eyebrow">12 · Infraestrutura II — Atenção básica</div>
-    <h1 class="slide-headline">Cobertura da Estratégia Saúde da Família</h1>
-    <p class="slide-subhead">Cobertura de eSF abaixo do alvo de 100% no GBJ (68%) e razoável no GM (87%), mas com bairros do GM como Vicente Pinzón a apenas 30%.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat gbj warn"><span class="label">GBJ · Cobertura eSF</span><span class="num">68%</span><span class="sub">% da população coberta</span></div>
-        <div class="hero-stat gm"><span class="label">GM · Cobertura eSF</span><span class="num">87%</span><span class="sub">Média ponderada</span></div>
-        <div class="hero-stat"><span class="label">GBJ · CRAS</span><span class="num">3</span><span class="sub">unidades · ~72k hab./CRAS</span></div>
-        <div class="hero-stat"><span class="label">GM · CRAS</span><span class="num">6</span><span class="sub">unidades · ~22k hab./CRAS</span></div>
-      </div>
-      <div class="insight-box">
-        <strong>O GBJ tem 3,3× mais habitantes por CRAS</strong> que o GM — gargalo claro de capilaridade da assistência social. Reforça a lógica de "ganho de escala por articulação" no GBJ vs "ativação de rede existente" no GM.
+<!-- ═══════════════════════════════════════════════════════════
+     12 · HERO NUMBER (violência - 69,7 homicídios)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-hero s-navy" data-title="A violência amplifica" data-ato="III">
+  <span class="slide-num serif">12 · 21</span>
+  <header>
+    <span class="eyebrow">Ato III · Violência letal</span>
+  </header>
+  <div class="hero-body">
+    <div>
+      <span class="big-num">69,7<span class="unit">homicídios por 100 mil hab.</span></span>
+    </div>
+    <div>
+      <p class="read">A taxa de homicídios no GBJ é <span class="em">5× a média mundial recomendada</span> pela OMS. A violência <strong>opera como amplificador</strong> da vulnerabilidade — afeta saúde mental, deslocamento, capacidade de organização e disposição empresarial.</p>
+      <div class="micro">
+        <div><span>GBJ</span><strong>69,7</strong></div>
+        <div><span>GM</span><strong>51,3</strong></div>
+        <div><span>Diferencial</span><strong>+36%</strong></div>
       </div>
     </div>
-    <div class="slide-footer"><span>Fontes: CNES 2024 · SUAS</span><span>12 / 20</span></div>
-  </section>
+  </div>
+  <div class="slide-src">
+    <span>Fonte · SSPDS-CE · ISP, 2024</span>
+    <a href="fortaleza.html#section-vuln">Ver indicadores no painel →</a>
+  </div>
+</section>
 
-  <!-- 13 · INFRA III — Educação -->
-  <section class="slide" data-title="Infraestrutura III — Educação">
-    <div class="slide-eyebrow">13 · Infraestrutura III — Rede educacional</div>
-    <h1 class="slide-headline">Escolas, IDEB e Ensino Superior</h1>
-    <p class="slide-subhead">Volume razoável de escolas públicas, mas presença quase nula de Ensino Superior nos territórios — gargalo para qualificação profissional local.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat gbj"><span class="label">GBJ · escolas públicas</span><span class="num">89</span><span class="sub">~2.430 hab./escola</span></div>
-        <div class="hero-stat gm"><span class="label">GM · escolas públicas</span><span class="num">39</span><span class="sub">~3.310 hab./escola</span></div>
-        <div class="hero-stat warn"><span class="label">IES nos territórios</span><span class="num">1</span><span class="sub">Apenas 1 IES em todos os 13 bairros</span></div>
-        <div class="hero-stat"><span class="label">IDEB médio (anos finais)</span><span class="num">5,0</span><span class="sub">Próximo da média nacional</span></div>
-      </div>
-      <div class="insight-box">
-        <strong>A qualificação profissional precisa ser trazida para o território</strong> — a baixíssima presença de IES e a ausência de Sistema S nos bairros acompanhados são oportunidades claras de parceria com instituições externas.
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fontes: INEP/Censo Escolar 2023 · IDEB 2023</span><span>13 / 20</span></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     13 · SECTION OPENER · ATO IV
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-opener s-navy" data-title="Ato IV · O tecido que existe" data-ato="IV">
+  <span class="slide-num serif">13 · 21</span>
+  <div class="deco-svg">
+    <svg width="280" height="280" viewBox="0 0 280 280" fill="none">
+      <!-- Network of connected nodes -->
+      <g stroke="rgba(16,185,129,.5)" stroke-width="1.2" fill="none">
+        <line x1="50" y1="60" x2="120" y2="50"/>
+        <line x1="120" y1="50" x2="180" y2="80"/>
+        <line x1="180" y1="80" x2="230" y2="60"/>
+        <line x1="50" y1="60" x2="80" y2="130"/>
+        <line x1="120" y1="50" x2="150" y2="120"/>
+        <line x1="180" y1="80" x2="200" y2="140"/>
+        <line x1="230" y1="60" x2="240" y2="130"/>
+        <line x1="80" y1="130" x2="150" y2="120"/>
+        <line x1="150" y1="120" x2="200" y2="140"/>
+        <line x1="200" y1="140" x2="240" y2="130"/>
+        <line x1="80" y1="130" x2="60" y2="200"/>
+        <line x1="150" y1="120" x2="130" y2="200"/>
+        <line x1="200" y1="140" x2="180" y2="210"/>
+        <line x1="240" y1="130" x2="220" y2="220"/>
+        <line x1="60" y1="200" x2="130" y2="200"/>
+        <line x1="130" y1="200" x2="180" y2="210"/>
+        <line x1="180" y1="210" x2="220" y2="220"/>
+      </g>
+      <g fill="#10B981">
+        <circle cx="50" cy="60" r="7"/>
+        <circle cx="120" cy="50" r="9"/>
+        <circle cx="180" cy="80" r="8"/>
+        <circle cx="230" cy="60" r="6"/>
+        <circle cx="80" cy="130" r="8"/>
+        <circle cx="150" cy="120" r="11"/>
+        <circle cx="200" cy="140" r="9"/>
+        <circle cx="240" cy="130" r="7"/>
+        <circle cx="60" cy="200" r="6"/>
+        <circle cx="130" cy="200" r="8"/>
+        <circle cx="180" cy="210" r="9"/>
+        <circle cx="220" cy="220" r="7"/>
+      </g>
+    </svg>
+  </div>
+  <span class="eyebrow">Resumo Executivo · Fortaleza</span>
+  <span class="ato-label serif">Ato IV</span>
+  <span class="ato-num">04</span>
+  <h1>O tecido<br><em>que existe</em>.</h1>
+  <p class="turn">Empresas, OSCs, equipamentos públicos — o que já está instalado nos dois territórios, e como isso muda a estratégia de adicionalidade.</p>
+  <div class="ato-footer">
+    <span>Redes Ceará · Fortaleza</span>
+    <span>I Cenário · II Quem mora aqui · III Vulnerabilidade · <strong>IV Tecido</strong> · V Caminhos</span>
+  </div>
+</section>
 
-  <!-- 14 · TECIDO ECONÔMICO I -->
-  <section class="slide" data-title="Tecido econômico I — Volume e informalidade">
-    <div class="slide-eyebrow">14 · Tecido econômico I — Volume e perfil</div>
-    <h1 class="slide-headline">Empresas formais e informalidade</h1>
-    <p class="slide-subhead">Volumes semelhantes nos dois territórios, mas com perfis opostos: GBJ é território de <strong>microempreendedorismo de sobrevivência</strong>.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat gbj"><span class="label">GBJ · empresas ativas</span><span class="num">16.255</span><span class="sub">Receita Federal · dez/2024</span></div>
-        <div class="hero-stat gm"><span class="label">GM · empresas ativas</span><span class="num">15.074</span><span class="sub">Receita Federal · dez/2024</span></div>
-        <div class="hero-stat gbj warn"><span class="label">GBJ · MEI%</span><span class="num">63,3%</span><span class="sub">2 em cada 3 empresas são MEI</span></div>
-        <div class="hero-stat gm"><span class="label">GM · MEI%</span><span class="num">42,2%</span><span class="sub">Distribuição mais diversa</span></div>
-      </div>
-      <div class="insight-box">
-        <strong>A diferença na composição é o que importa.</strong> No GBJ, MEI é a forma dominante — sinal de informalidade e renda instável. No GM, há mais MPEs e médias empresas — base para encadeamentos produtivos com a Coalizão.
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fonte: Receita Federal dez/2024</span><span>14 / 20</span></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     14 · ACTION TITLE + CHART (MEI)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-action s-cream" data-title="Microempreendedorismo de sobrevivência" data-ato="IV">
+  <span class="slide-num serif">14 · 21</span>
+  <header>
+    <span class="eyebrow">Ato IV · Tecido econômico</span>
+    <h2><em>63% das empresas</em> do GBJ são MEI — território de microempreendedorismo de sobrevivência, não de prosperidade.</h2>
+    <p class="lede">Composição das empresas formais por tipo. No GBJ, 2 em cada 3 empresas são MEI — sinal de informalidade e renda instável. No GM, há mais MPEs e médias empresas, base natural para encadeamentos produtivos.</p>
+  </header>
+  <div class="chart-wrap"><canvas id="ch-mei"></canvas></div>
+  <div class="slide-src">
+    <span>Fonte · Receita Federal, dez/2024</span>
+    <a href="fortaleza.html#section-econ">Ver volume empresarial →</a>
+  </div>
+</section>
 
-  <!-- 15 · TECIDO ECONÔMICO II — Capital social -->
-  <section class="slide" data-title="Tecido econômico II — Capital social">
-    <div class="slide-eyebrow">15 · Tecido econômico II — Capital social</div>
-    <h1 class="slide-headline">Médias e grandes empresas</h1>
-    <p class="slide-subhead">O GM concentra <strong>capital social formal</strong> em escala muito superior — Mucuripe sozinho responde por bilhões em capital declarado.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:3">
-        <div class="hero-stat gbj"><span class="label">GBJ · M/G empresas</span><span class="num">478</span><span class="sub">Porte "Demais" · Receita Federal 2024</span></div>
-        <div class="hero-stat gm"><span class="label">GM · M/G empresas</span><span class="num">2.119</span><span class="sub">4,4× mais que GBJ</span></div>
-        <div class="hero-stat"><span class="label">Top setores no GM</span><span class="num" style="font-size:18px;font-weight:700">Petroquímico · Financeiro · Telecom</span><span class="sub">Concentração em poucos players grandes</span></div>
-      </div>
-      <div class="insight-box">
-        <strong>O GM tem ancoragem natural para parcerias com setor privado de grande porte</strong> (Petrobras, Itaú, Telefônica, etc.). No GBJ, a estratégia é diferente: priorizar adensamento de MPEs e cadeias produtivas locais.
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fonte: Receita Federal dez/2024</span><a href="fortaleza.html#section-econ" target="_blank">Ver mapa de capital social →</a></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     15 · ACTION TITLE + CHART (OSCs)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-action s-cream" data-title="GM tem 4,4× mais OSCs por habitante" data-ato="IV">
+  <span class="slide-num serif">15 · 21</span>
+  <header>
+    <span class="eyebrow">Ato IV · Sociedade civil organizada</span>
+    <h2>O Mucuripe tem <em>4,4× mais OSCs por habitante</em> que o GBJ — duas gramáticas, duas táticas.</h2>
+    <p class="lede">Densidade de Organizações da Sociedade Civil por 10 mil habitantes. No GBJ, a estratégia é densificar a rede; no GM, articular o que já existe.</p>
+  </header>
+  <div class="chart-wrap"><canvas id="ch-osc"></canvas></div>
+  <div class="slide-src">
+    <span>Fonte · IPEA · Mapa das OSCs, 2024</span>
+    <a href="fortaleza.html#section-osc">Ver mapa de OSCs →</a>
+  </div>
+</section>
 
-  <!-- 16 · TECIDO ECONÔMICO III — Alimentício -->
-  <section class="slide" data-title="Tecido econômico III — Setor alimentício">
-    <div class="slide-eyebrow">16 · Tecido econômico III — Setor alimentício</div>
-    <h1 class="slide-headline">Estabelecimentos do <em>setor alimentício</em></h1>
-    <p class="slide-subhead">Mais de 1.343 estabelecimentos nos 13 bairros acompanhados — base concreta para programas de compras públicas e cadeias locais.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat"><span class="label">Total nos 13 bairros</span><span class="num">1.343</span><span class="sub">Receita Federal · dez/2024</span></div>
-        <div class="hero-stat"><span class="label">Restaurantes & Lanchonetes</span><span class="num">~78%</span><span class="sub">Distribuição capilarizada</span></div>
-        <div class="hero-stat"><span class="label">Hortifruti</span><span class="num">~7%</span><span class="sub">Comércio varejista local</span></div>
-        <div class="hero-stat"><span class="label">Hiper/Supermercados</span><span class="num">~3%</span><span class="sub">Âncoras de compras públicas</span></div>
+<!-- ═══════════════════════════════════════════════════════════
+     16 · ACTION TITLE + 2 COLUMNS (setor alimentício)
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-split s-cream" data-title="Base operacional alimentícia" data-ato="IV">
+  <span class="slide-num serif">16 · 21</span>
+  <header>
+    <span class="eyebrow">Ato IV · Setor alimentício</span>
+    <h2>O setor alimentício é a <em>base operacional</em> imediata para compras públicas e cadeias locais.</h2>
+  </header>
+  <div class="split-body">
+    <div class="col-text">
+      <p><strong>1.343 estabelecimentos alimentícios ativos</strong> nos 13 bairros acompanhados — 617 no GBJ e 726 no GM. É a infraestrutura concreta para articular programas como CEASA Mais Nutrição, alimentação escolar e Pacto Contra a Fome.</p>
+      <div class="pullnum">
+        <b>78%</b>
+        <span>são restaurantes e lanchonetes — alta capilaridade, baixa escala. Espaço para qualificação e formalização.</span>
       </div>
-      <div class="insight-box">
-        <strong>O dashboard apresenta o mapa completo do setor alimentício de Fortaleza</strong> com camadas destacadas para os dois territórios. É a base operacional para programas como o de compras institucionais da CEASA e da alimentação escolar.
+      <div class="pullnum">
+        <b>3%</b>
+        <span>são hiper/supermercados — poucos, mas potenciais âncoras para programas de compras institucionais</span>
       </div>
+      <p>O painel interativo apresenta o mapa completo dos 13.967 estabelecimentos de Fortaleza, com camadas destacadas para os dois territórios.</p>
     </div>
-    <div class="slide-footer"><span>Fonte: CNAE alimentício · Receita Federal 2024</span><a href="fortaleza.html#section-econ" target="_blank">Ver mapa alimentício →</a></div>
-  </section>
+    <div style="display:flex;align-items:center;justify-content:center">
+      <svg width="380" height="320" viewBox="0 0 380 320" fill="none">
+        <!-- Donut chart of categories -->
+        <g transform="translate(190 160)">
+          <!-- Restaurantes 78% (red/coral) -->
+          <circle r="100" fill="none" stroke="#DC2626" stroke-width="48" stroke-dasharray="490 628" stroke-dashoffset="0" transform="rotate(-90)"/>
+          <!-- Hortifruti 16% (green) -->
+          <circle r="100" fill="none" stroke="#059669" stroke-width="48" stroke-dasharray="100 628" stroke-dashoffset="-490" transform="rotate(-90)"/>
+          <!-- Atacado 3% (navy) -->
+          <circle r="100" fill="none" stroke="#0B2B44" stroke-width="48" stroke-dasharray="19 628" stroke-dashoffset="-590" transform="rotate(-90)"/>
+          <!-- Supermercados 3% (blue) -->
+          <circle r="100" fill="none" stroke="#0B4FA8" stroke-width="48" stroke-dasharray="19 628" stroke-dashoffset="-609" transform="rotate(-90)"/>
+          <!-- Center number -->
+          <text y="-4" text-anchor="middle" fill="#0B2B44" font-family="Inter" font-size="36" font-weight="900" letter-spacing="-1">1.343</text>
+          <text y="18" text-anchor="middle" fill="#7E8A9A" font-family="Inter" font-size="10" font-weight="700" letter-spacing="1.5">ESTABELECIMENTOS</text>
+        </g>
+        <g font-family="Inter" font-size="10" font-weight="600" fill="#0B2B44">
+          <circle cx="20" cy="290" r="5" fill="#DC2626"/><text x="32" y="294">Restaurantes 78%</text>
+          <circle cx="155" cy="290" r="5" fill="#059669"/><text x="167" y="294">Hortifruti 16%</text>
+          <circle cx="265" cy="290" r="5" fill="#0B2B44"/><text x="277" y="294">Atacado 3%</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="slide-src">
+    <span>Fonte · CNAE alimentício · Receita Federal, dez/2024</span>
+    <a href="fortaleza.html#section-econ">Ver mapa alimentício →</a>
+  </div>
+</section>
 
-  <!-- 17 · SOCIEDADE CIVIL — OSCs -->
-  <section class="slide" data-title="Sociedade civil — OSCs">
-    <div class="slide-eyebrow">17 · Sociedade civil organizada</div>
-    <h1 class="slide-headline">Organizações da Sociedade Civil</h1>
-    <p class="slide-subhead">O GM tem <strong>4,4× mais OSCs por habitante</strong> que o GBJ — a base de articulação local pré-existente é radicalmente diferente.</p>
-    <div class="slide-body">
-      <div class="hero-row" style="--cols:4">
-        <div class="hero-stat gbj"><span class="label">GBJ · OSCs ativas</span><span class="num">315</span><span class="sub">14,6 por 10 mil habitantes</span></div>
-        <div class="hero-stat gm"><span class="label">GM · OSCs ativas</span><span class="num">827</span><span class="sub">64,0 por 10 mil habitantes</span></div>
-        <div class="hero-stat"><span class="label">Diferencial GM/GBJ</span><span class="num">4,4×</span><span class="sub">Por densidade populacional</span></div>
-        <div class="hero-stat"><span class="label">Total nos 13 bairros</span><span class="num">1.142</span><span class="sub">IPEA · Mapa das OSCs 2024</span></div>
-      </div>
-      <div class="insight-box">
-        <strong>Duas estratégias distintas para a sociedade civil:</strong> no GBJ, fortalecer e densificar a rede existente (parcerias com Pacto Contra a Fome, Movimento BemMaior etc.); no GM, articular os 827 atores já operando para reduzir fragmentação e dar coerência sistêmica.
-      </div>
-    </div>
-    <div class="slide-footer"><span>Fonte: IPEA · Mapa das OSCs 2024</span><a href="fortaleza.html#section-osc" target="_blank">Ver mapa de OSCs →</a></div>
-  </section>
+<!-- ═══════════════════════════════════════════════════════════
+     17 · SECTION OPENER · ATO V
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-opener s-navy" data-title="Ato V · Onde a Redes Ceará faz diferença" data-ato="V">
+  <span class="slide-num serif">17 · 21</span>
+  <div class="deco-svg">
+    <svg width="280" height="280" viewBox="0 0 280 280" fill="none">
+      <!-- Two arrows / paths converging -->
+      <g stroke="#10B981" stroke-width="2.5" fill="none">
+        <path d="M 30 50 Q 100 60 130 140" stroke-linecap="round"/>
+        <path d="M 250 50 Q 180 60 150 140" stroke-linecap="round"/>
+        <path d="M 130 140 L 140 220" stroke-linecap="round"/>
+        <path d="M 150 140 L 140 220" stroke-linecap="round"/>
+      </g>
+      <g fill="#10B981">
+        <circle cx="30" cy="50" r="10"/>
+        <circle cx="250" cy="50" r="10"/>
+        <circle cx="140" cy="220" r="14"/>
+      </g>
+      <g font-family="Inter" font-size="10" font-weight="800" fill="rgba(250,246,239,.85)" letter-spacing="1">
+        <text x="22" y="32">GBJ</text>
+        <text x="240" y="32">GM</text>
+        <text x="115" y="255">REDES CEARÁ</text>
+      </g>
+    </svg>
+  </div>
+  <span class="eyebrow">Resumo Executivo · Fortaleza</span>
+  <span class="ato-label serif">Ato V</span>
+  <span class="ato-num">05</span>
+  <h1>Onde a Redes Ceará<br><em>faz diferença</em>.</h1>
+  <p class="turn">Duas gramáticas operacionais distintas e três caminhos estratégicos — onde a adicionalidade da articulação coletiva é mais alta.</p>
+  <div class="ato-footer">
+    <span>Redes Ceará · Fortaleza</span>
+    <span>I Cenário · II Quem mora aqui · III Vulnerabilidade · IV Tecido · <strong>V Caminhos</strong></span>
+  </div>
+</section>
 
-  <!-- 18 · SÍNTESE GBJ -->
-  <section class="slide" data-title="Síntese — Grande Bom Jardim">
-    <div class="slide-eyebrow">18 · Síntese territorial</div>
-    <h1 class="slide-headline">Perfil do <em>Grande Bom Jardim</em></h1>
-    <p class="slide-subhead">Pobreza ampla, contínua e em escala — território onde articulação sistêmica gera alto ganho marginal.</p>
-    <div class="slide-body">
-      <div class="slide-cols">
-        <div class="terr-card gbj">
-          <span class="terr-name">Grande Bom Jardim</span>
-          <h3 class="terr-title">Adicionalidade por <strong>escala</strong></h3>
-          <p class="terr-desc">A pobreza é ampla e relativamente homogênea entre os 5 bairros que compõem o território. A rede institucional (OSCs, CRAS, equipamentos) é magra frente ao volume populacional. Em territórios assim, <strong>qualquer articulação sistêmica gera ganho de escala</strong>.</p>
-          <div class="terr-stats">
-            <div class="terr-stat"><strong>216k</strong><span>habitantes</span></div>
-            <div class="terr-stat"><strong>53%</strong><span>CadÚnico</span></div>
-            <div class="terr-stat"><strong>42%</strong><span>Extrema pobreza</span></div>
-            <div class="terr-stat"><strong>R$ 1,4k</strong><span>renda média</span></div>
-            <div class="terr-stat"><strong>315</strong><span>OSCs ativas</span></div>
-            <div class="terr-stat"><strong>43%</strong><span>cobertura esgoto</span></div>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="insight-box">
-            <strong>Vulnerabilidade contínua.</strong> Os 5 bairros (Bom Jardim, Canindezinho, Granja Lisboa, Granja Portugal, Siqueira) compartilham faixa de indicadores muito similar — não há ilha de prosperidade dentro do território.
-          </div>
-          <div class="insight-box">
-            <strong>Rede institucional magra.</strong> 315 OSCs para 216 mil habitantes (14,6/10k) — densidade abaixo da média de Fortaleza. Espaço para fortalecimento de atores e ancoragem de novos programas.
-          </div>
-          <div class="insight-box">
-            <strong>Estratégia recomendada:</strong> programas de inclusão produtiva com forte componente assistencial e foco em <strong>microempreendedorismo coletivo + qualificação profissional + compras públicas</strong>.
-          </div>
-        </div>
-      </div>
+<!-- ═══════════════════════════════════════════════════════════
+     18 · TERRITORY CARD — GBJ
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-terr s-cream" data-title="GBJ · Adicionalidade por escala" data-ato="V">
+  <span class="slide-num serif">18 · 21</span>
+  <header>
+    <span class="eyebrow">Ato V · Síntese territorial — Grande Bom Jardim</span>
+    <h2>GBJ · adicionalidade por <em>escala</em>.</h2>
+  </header>
+  <div class="terr-card gbj">
+    <div>
+      <div class="tlabel">Grande Bom Jardim · 5 bairros</div>
+      <h3>Articulação <em>sistêmica em escala</em>.</h3>
+      <p class="desc">A pobreza é <strong>ampla e relativamente homogênea</strong> entre os 5 bairros. A rede institucional é magra frente ao volume populacional. Em territórios assim, <strong>qualquer articulação sistêmica gera ganho de escala</strong> — proteção social, OSCs locais, Sistema S e compras públicas se somam de forma quase aditiva.</p>
     </div>
-    <div class="slide-footer"><span>Painel Fortaleza · aba Síntese</span><a href="fortaleza.html#section-sintese" target="_blank">Ver detalhes →</a></div>
-  </section>
+    <div class="stats-grid">
+      <div class="st"><b>216 mil</b><span>Habitantes</span></div>
+      <div class="st"><b class="green">42,4%</b><span>Extrema pobreza</span></div>
+      <div class="st"><b>53,3%</b><span>CadÚnico</span></div>
+      <div class="st"><b>R$ 1,4k</b><span>Renda média</span></div>
+      <div class="st"><b>315</b><span>OSCs ativas</span></div>
+      <div class="st"><b class="green">43,4%</b><span>Cobertura de esgoto</span></div>
+    </div>
+  </div>
+  <div class="slide-src">
+    <span>Fontes integradas · Painel Redes Ceará · aba Síntese</span>
+    <a href="fortaleza.html#section-sintese">Ver síntese completa →</a>
+  </div>
+</section>
 
-  <!-- 19 · SÍNTESE GM -->
-  <section class="slide" data-title="Síntese — Grande Mucuripe">
-    <div class="slide-eyebrow">19 · Síntese territorial</div>
-    <h1 class="slide-headline">Perfil do <em>Grande Mucuripe</em></h1>
-    <p class="slide-subhead">Heterogêneo, com 827 OSCs já operando — adicionalidade vem de <strong>articular o que existe</strong>, não de chegar mais.</p>
-    <div class="slide-body">
-      <div class="slide-cols">
-        <div class="terr-card gm">
-          <span class="terr-name">Grande Mucuripe</span>
-          <h3 class="terr-title">Adicionalidade por <strong>articulação</strong></h3>
-          <p class="terr-desc">Os 8 bairros do território têm contrastes internos altos — Praia do Futuro II e Cais do Porto têm indicadores próximos aos do GBJ, enquanto Meireles e De Lourdes têm IDH alto. A rede institucional é densa (827 OSCs). <strong>O ganho está em dar coerência sistêmica à rede</strong>, não em adicionar atores.</p>
-          <div class="terr-stats">
-            <div class="terr-stat"><strong>129k</strong><span>habitantes</span></div>
-            <div class="terr-stat"><strong>39%</strong><span>CadÚnico</span></div>
-            <div class="terr-stat"><strong>24%</strong><span>Extrema pobreza</span></div>
-            <div class="terr-stat"><strong>R$ 3,9k</strong><span>renda média</span></div>
-            <div class="terr-stat"><strong>827</strong><span>OSCs ativas</span></div>
-            <div class="terr-stat"><strong>78%</strong><span>cobertura esgoto</span></div>
-          </div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div class="insight-box">
-            <strong>Heterogeneidade extrema entre bairros.</strong> A média mascara realidades muito distintas — atuação precisa ser <em>bairro-a-bairro</em>, não territorial uniforme.
-          </div>
-          <div class="insight-box">
-            <strong>Rede institucional densa, mas fragmentada.</strong> 827 OSCs em 8 bairros — possibilidade clara de articulação para reduzir sobreposição e identificar lacunas temáticas.
-          </div>
-          <div class="insight-box">
-            <strong>Estratégia recomendada:</strong> articulação de plataformas existentes, intermediação com setor privado (M/G empresas), e foco em programas de <strong>encadeamento produtivo + governança territorial</strong>.
-          </div>
-        </div>
-      </div>
+<!-- ═══════════════════════════════════════════════════════════
+     19 · TERRITORY CARD — GM
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-terr s-cream" data-title="GM · Adicionalidade por articulação" data-ato="V">
+  <span class="slide-num serif">19 · 21</span>
+  <header>
+    <span class="eyebrow">Ato V · Síntese territorial — Grande Mucuripe</span>
+    <h2>GM · adicionalidade por <em>articulação</em>.</h2>
+  </header>
+  <div class="terr-card gm">
+    <div>
+      <div class="tlabel">Grande Mucuripe · 8 bairros</div>
+      <h3>Coerência <em>sistêmica</em> em rede densa.</h3>
+      <p class="desc">Os 8 bairros têm <strong>contrastes internos altos</strong> — Praia do Futuro II e Cais do Porto se aproximam do perfil GBJ, enquanto Meireles e De Lourdes têm IDH alto. A rede é densa: <strong>827 OSCs e 2.119 médias e grandes empresas</strong>. O ganho está em dar coerência sistêmica, não em adicionar atores.</p>
     </div>
-    <div class="slide-footer"><span>Painel Fortaleza · aba Síntese</span><a href="fortaleza.html#section-sintese" target="_blank">Ver detalhes →</a></div>
-  </section>
+    <div class="stats-grid">
+      <div class="st"><b>129 mil</b><span>Habitantes</span></div>
+      <div class="st"><b class="green">23,7%</b><span>Extrema pobreza</span></div>
+      <div class="st"><b>39,2%</b><span>CadÚnico</span></div>
+      <div class="st"><b>R$ 3,9k</b><span>Renda média</span></div>
+      <div class="st"><b>827</b><span>OSCs ativas</span></div>
+      <div class="st"><b class="green">77,8%</b><span>Cobertura de esgoto</span></div>
+    </div>
+  </div>
+  <div class="slide-src">
+    <span>Fontes integradas · Painel Redes Ceará · aba Síntese</span>
+    <a href="fortaleza.html#section-sintese">Ver síntese completa →</a>
+  </div>
+</section>
 
-  <!-- 20 · ADICIONALIDADE & RECOMENDAÇÕES -->
-  <section class="slide" data-title="Adicionalidade & Recomendações">
-    <div class="slide-eyebrow">20 · Síntese — Adicionalidade da Redes Ceará</div>
-    <h1 class="slide-headline">Onde a Redes Ceará faz <em>diferença</em></h1>
-    <p class="slide-subhead">A matriz comparativa indica adicionalidade <strong>alta no GBJ</strong> e <strong>média no GM</strong> — mas com gramáticas operacionais distintas.</p>
-    <div class="slide-body">
-      <div class="recs">
-        <div class="rec" style="border-left:3px solid var(--terr-gbj)">
-          <span class="rec-num">01 · Grande Bom Jardim</span>
-          <h4 class="rec-title">Articulação sistêmica em escala</h4>
-          <p class="rec-desc">Atuar como ancoragem de coordenação entre proteção social, OSCs locais e Sistema S. Foco em compras públicas, capacitação técnica e empreendedorismo coletivo. Alta adicionalidade pelo vácuo de articulação.</p>
-        </div>
-        <div class="rec" style="border-left:3px solid var(--terr-gm)">
-          <span class="rec-num">02 · Grande Mucuripe</span>
-          <h4 class="rec-title">Coerência sistêmica + setor privado</h4>
-          <p class="rec-desc">Articular as 827 OSCs já operando, conectando-as com as 2.119 M/G empresas no território. Adicionalidade média — viabilidade alta, mas com sobreposição preexistente. Foco em intermediação.</p>
-        </div>
-        <div class="rec" style="border-left:3px solid var(--accent)">
-          <span class="rec-num">03 · Comum aos dois</span>
-          <h4 class="rec-title">Compras públicas + cadeias alimentícias</h4>
-          <p class="rec-desc">Os 1.343 estabelecimentos alimentícios são uma base operacional concreta para articular CEASA Mais Nutrição, alimentação escolar e Pacto Contra a Fome — em ambos os territórios simultaneamente.</p>
-        </div>
-      </div>
-      <div class="insight-box" style="margin-top:8px">
-        <strong>A Redes Ceará é o instrumento de coordenação.</strong> Reduzir assimetrias de informação, alinhar incentivos entre setor público, empresas e OSCs, e atuar como mediadora entre oferta e demanda nos dois territórios.
-      </div>
+<!-- ═══════════════════════════════════════════════════════════
+     20 · RECOMMENDATIONS
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-rec s-cream" data-title="Três caminhos estratégicos" data-ato="V">
+  <span class="slide-num serif">20 · 21</span>
+  <header>
+    <span class="eyebrow">Ato V · Adicionalidade da Redes Ceará</span>
+    <h2>Três <em>caminhos estratégicos</em> — onde a articulação coletiva gera o maior ganho marginal.</h2>
+  </header>
+  <div class="recs">
+    <div class="rec">
+      <span class="num">01</span>
+      <h3>GBJ · articulação em escala</h3>
+      <p>Ancorar a coordenação entre proteção social, OSCs locais e Sistema S. Foco em compras públicas, qualificação técnica e empreendedorismo coletivo. Alta adicionalidade pelo vácuo de articulação e pelo volume populacional vulnerável.</p>
+      <span class="badge">Produto 3 do TR</span>
     </div>
-    <div class="slide-footer"><span>Painel Fortaleza · aba Adicionalidade</span><a href="fortaleza.html#section-adic" target="_blank">Ver matriz completa →</a></div>
-  </section>
+    <div class="rec">
+      <span class="num">02</span>
+      <h3>GM · coerência sistêmica</h3>
+      <p>Articular as 827 OSCs já operando com as 2.119 médias e grandes empresas. Adicionalidade média — viabilidade alta, foco em intermediação, governança e redução de sobreposição entre atores.</p>
+      <span class="badge">Produto 3 do TR</span>
+    </div>
+    <div class="rec">
+      <span class="num">03</span>
+      <h3>Comum aos dois · cadeias alimentícias</h3>
+      <p>Os 1.343 estabelecimentos alimentícios são base operacional concreta para articular CEASA Mais Nutrição, alimentação escolar e Pacto Contra a Fome — em paralelo nos dois territórios.</p>
+      <span class="badge">Atende Produtos 2 e 3</span>
+    </div>
+  </div>
+  <div class="slide-src">
+    <span>Síntese · Painel Redes Ceará + Policy Brief</span>
+    <a href="fortaleza.html#section-adic">Ver matriz de adicionalidade →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     21 · ENCERRAMENTO
+     ═══════════════════════════════════════════════════════════ -->
+<section class="slide s-quote s-navy" data-title="Próximos passos" data-ato="V">
+  <span class="slide-num serif" style="color:rgba(250,246,239,.4)">21 · 21</span>
+  <span class="q-eyebrow">Próximos passos</span>
+  <blockquote style="font-size:30px;line-height:1.4">
+    A Redes Ceará é o <strong>instrumento de coordenação</strong>. Reduzir assimetrias de informação, alinhar incentivos entre setor público, empresas e OSCs, e atuar como mediadora entre oferta e demanda nos dois territórios.
+  </blockquote>
+  <cite style="margin-top:48px">
+    Lucas Fernandes · Diagnóstico Territorial Redes Ceará · 2025
+    <span>Painel interativo · Policy Brief · Resumo Executivo de Maracanaú &amp; Comparativo · em breve</span>
+  </cite>
+</section>
 
 </div>
 
-<!-- CONTROLS -->
+<!-- ═══ CONTROLS ═══════════════════════════════════════════════ -->
 <div class="controls" id="controls">
-  <button class="icon" id="btn-menu" title="Menu de slides (Esc)">≡</button>
+  <button id="btn-menu" title="Menu de slides (Esc)">≡</button>
   <span class="sep"></span>
-  <button id="btn-prev" title="Slide anterior (←)">← Anterior</button>
-  <span class="counter" id="counter">1 / 20</span>
-  <button id="btn-next" title="Próximo slide (→)">Próximo →</button>
+  <button id="btn-prev" title="← Anterior">←</button>
+  <span class="counter" id="counter">1 / 21</span>
+  <button id="btn-next" title="Próximo →">→</button>
   <span class="sep"></span>
-  <button class="icon" id="btn-fullscreen" title="Tela cheia (F)">⛶</button>
-  <button id="btn-pdf" title="Exportar PDF (P)">📄 Exportar PDF</button>
-  <a href="index.html" style="text-decoration:none"><button title="Voltar à home">← Home</button></a>
+  <button id="btn-fullscreen" title="Tela cheia (F)">⛶</button>
+  <button id="btn-pdf" title="Exportar PDF (P)">📄 PDF</button>
+  <a href="resumo_executivo.html"><button title="Voltar ao hub">← Hub</button></a>
 </div>
 
-<!-- MENU OVERLAY -->
+<!-- ═══ MENU ═══════════════════════════════════════════════════ -->
 <div class="menu" id="menu">
   <div class="menu-content">
     <div class="menu-head">
-      <h2>Navegar pelos slides — Fortaleza</h2>
+      <h2>Resumo Executivo · Fortaleza</h2>
       <button class="menu-close" id="menu-close" title="Fechar (Esc)">✕</button>
     </div>
     <div class="menu-list" id="menu-list"></div>
@@ -779,18 +1103,13 @@ body{
 </div>
 
 <script>
-// ─────────────────────────────────────────────────────────────────────
-// SLIDE DECK FRAMEWORK
-// ─────────────────────────────────────────────────────────────────────
 const slides = Array.from(document.querySelectorAll('.slide'));
 const total  = slides.length;
 let idx = 0;
-
 const counterEl = document.getElementById('counter');
 const progEl    = document.getElementById('progress-bar');
 const menuEl    = document.getElementById('menu');
 const menuListEl= document.getElementById('menu-list');
-const tocEl     = document.getElementById('toc-list');
 
 function go(i){
   idx = Math.max(0, Math.min(total-1, i));
@@ -798,10 +1117,12 @@ function go(i){
   counterEl.textContent = `${idx+1} / ${total}`;
   progEl.style.width = `${((idx+1)/total)*100}%`;
   if(location.hash !== `#${idx+1}`) history.replaceState(null,'',`#${idx+1}`);
-  updateMenuCurrent();
+  menuListEl.querySelectorAll('a').forEach((a,j)=>a.classList.toggle('current', j===idx));
 }
 function next(){ go(idx+1); }
 function prev(){ go(idx-1); }
+function toggleFullscreen(){ if(!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
+function exportPDF(){ window.print(); }
 
 document.addEventListener('keydown', e=>{
   if(menuEl.classList.contains('open')){
@@ -824,48 +1145,33 @@ document.getElementById('btn-menu').addEventListener('click', ()=>menuEl.classLi
 document.getElementById('menu-close').addEventListener('click', ()=>menuEl.classList.remove('open'));
 menuEl.addEventListener('click', e=>{ if(e.target===menuEl) menuEl.classList.remove('open'); });
 
-function toggleFullscreen(){
-  if(!document.fullscreenElement){ document.documentElement.requestFullscreen?.(); }
-  else { document.exitFullscreen?.(); }
-}
-function exportPDF(){
-  // Print preview lets user save as PDF (16:9 landscape A4)
-  window.print();
-}
+document.addEventListener('click', e=>{
+  const blocked = ['BUTTON','A','INPUT','SELECT','TEXTAREA','LABEL'];
+  if(blocked.includes(e.target.tagName)) return;
+  if(e.target.closest('.menu') || e.target.closest('.controls')) return;
+  if(e.clientX > window.innerWidth/2) next(); else prev();
+});
 
-// Build menu and TOC
+// Build menu
 slides.forEach((s,j)=>{
   const t = s.dataset.title || `Slide ${j+1}`;
+  const ato = s.dataset.ato || '';
   const a = document.createElement('a');
   a.href = `#${j+1}`;
-  a.dataset.idx = j;
-  a.innerHTML = `<span class="num">${String(j+1).padStart(2,'0')}</span><span class="name">${t}</span>`;
+  a.innerHTML = `<span class="num serif">${String(j+1).padStart(2,'0')}</span><span class="name">${t}</span><span class="ato-tag">Ato ${ato}</span>`;
   a.addEventListener('click', e=>{ e.preventDefault(); go(j); menuEl.classList.remove('open'); });
   menuListEl.appendChild(a);
-  if(tocEl){
-    const li = document.createElement('li');
-    li.className = 'toc-item';
-    li.innerHTML = `<span class="num">${String(j+1).padStart(2,'0')}</span><span class="name">${t}</span>`;
-    li.style.cursor='pointer';
-    li.addEventListener('click', ()=>go(j));
-    tocEl.appendChild(li);
-  }
 });
-function updateMenuCurrent(){
-  menuListEl.querySelectorAll('a').forEach((a,j)=>a.classList.toggle('current', j===idx));
-}
 
-// Open at hash slide
+// Hash deep link
 const hashIdx = parseInt((location.hash||'').replace('#',''),10);
 if(!isNaN(hashIdx) && hashIdx>=1 && hashIdx<=total) go(hashIdx-1);
 else go(0);
 
-// ─────────────────────────────────────────────────────────────────────
-// CHARTS (Chart.js) — só desenha quando o slide entra em view (lazy)
-// ─────────────────────────────────────────────────────────────────────
-const TERR_C = {gbj:'#1E40AF', gm:'#0B4FA8'};
-Chart.defaults.font.family = "'Inter',system-ui,sans-serif";
-Chart.defaults.font.size = 11;
+// ═══ CHARTS ═══════════════════════════════════════════════════
+const PALETTE = {navy:'#0B2B44', blue:'#0B4FA8', blue2:'#1E40AF', blueLight:'#93C5FD', green:'#059669', greenLight:'#10B981', cream:'#F4F1EA'};
+Chart.defaults.font.family = "'Inter',sans-serif";
+Chart.defaults.font.size = 12;
 Chart.defaults.color = '#3B4C5C';
 
 function drawChart(id, cfg){
@@ -875,71 +1181,76 @@ function drawChart(id, cfg){
   new Chart(el, cfg);
 }
 
-// Aguarda interação para renderizar (mais leve no load)
 function lazyCharts(){
-  drawChart('ch-gender', {
+  // 06 · Demografia
+  drawChart('ch-demo', {
     type:'bar',
     data:{
-      labels:['Grande Bom Jardim','Grande Mucuripe'],
+      labels:['Mulheres na pop.','Chefia feminina','Pop. não-branca 15+'],
       datasets:[
-        {label:'% Mulheres na população',data:[52.4,52.8],backgroundColor:TERR_C.gbj,borderRadius:6},
-        {label:'% Chefia feminina',data:[44.6,41.8],backgroundColor:'#93C5FD',borderRadius:6}
-      ]
-    },
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      scales:{x:{beginAtZero:true,max:60,grid:{color:'#F1F5F9'},ticks:{callback:v=>v+'%'}}},
-      plugins:{legend:{position:'bottom'}}}
-  });
-  drawChart('ch-race', {
-    type:'bar',
-    data:{
-      labels:['GBJ','GM'],
-      datasets:[
-        {label:'% pop. não-branca 15+',data:[77,66],backgroundColor:[TERR_C.gbj,TERR_C.gm],borderRadius:6}
+        {label:'Grande Bom Jardim',data:[52.4,44.6,77],backgroundColor:PALETTE.blue2,borderRadius:3,barThickness:30},
+        {label:'Grande Mucuripe',data:[52.8,41.8,66],backgroundColor:PALETTE.blue,borderRadius:3,barThickness:30},
       ]
     },
     options:{responsive:true,maintainAspectRatio:false,
-      scales:{y:{beginAtZero:true,max:100,grid:{color:'#F1F5F9'},ticks:{callback:v=>v+'%'}}},
-      plugins:{legend:{display:false}}}
+      scales:{y:{beginAtZero:true,max:100,grid:{color:'rgba(11,43,68,.06)'},ticks:{callback:v=>v+'%',font:{size:11}}},x:{grid:{display:false},ticks:{font:{size:12,weight:600}}}},
+      plugins:{legend:{position:'bottom',labels:{font:{size:11,weight:600}}}}}
   });
+  // 09 · Renda
   drawChart('ch-renda', {
     type:'bar',
     data:{
       labels:['Grande Bom Jardim','Grande Mucuripe'],
-      datasets:[{label:'R$ por responsável',data:[1428.94,3886.97],backgroundColor:[TERR_C.gbj,TERR_C.gm],borderRadius:6}]
+      datasets:[{label:'R$',data:[1428.94,3886.97],backgroundColor:[PALETTE.blue2,PALETTE.green],borderRadius:3,barThickness:50}]
     },
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      scales:{x:{beginAtZero:true,grid:{color:'#F1F5F9'},ticks:{callback:v=>'R$ '+v.toLocaleString('pt-BR')}}},
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'R$ '+c.parsed.x.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}}}}
+      layout:{padding:{right:24,top:8,bottom:8}},
+      scales:{x:{beginAtZero:true,grid:{color:'rgba(11,43,68,.06)'},ticks:{callback:v=>'R$ '+v.toLocaleString('pt-BR'),font:{size:12,weight:600}}},y:{grid:{display:false},ticks:{font:{size:14,weight:700}}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'R$ '+c.parsed.x.toLocaleString('pt-BR',{minimumFractionDigits:2})}}}}
   });
+  // 11 · Saneamento
   drawChart('ch-sanit', {
     type:'bar',
     data:{
       labels:['Esgoto','Água','Lixo'],
       datasets:[
-        {label:'GBJ',data:[43.4,97.4,97.2],backgroundColor:TERR_C.gbj,borderRadius:6},
-        {label:'GM',data:[77.8,89.4,90.0],backgroundColor:'#93C5FD',borderRadius:6}
+        {label:'Grande Bom Jardim',data:[43.4,97.4,97.2],backgroundColor:PALETTE.blue2,borderRadius:3,barThickness:36},
+        {label:'Grande Mucuripe',data:[77.8,89.4,90.0],backgroundColor:PALETTE.green,borderRadius:3,barThickness:36}
       ]
     },
     options:{responsive:true,maintainAspectRatio:false,
-      scales:{y:{beginAtZero:true,max:100,grid:{color:'#F1F5F9'},ticks:{callback:v=>v+'%'}}},
-      plugins:{legend:{position:'bottom'}}}
+      scales:{y:{beginAtZero:true,max:100,grid:{color:'rgba(11,43,68,.06)'},ticks:{callback:v=>v+'%',font:{size:11}}},x:{grid:{display:false},ticks:{font:{size:13,weight:700}}}},
+      plugins:{legend:{position:'bottom',labels:{font:{size:11,weight:600}}}}}
+  });
+  // 14 · MEI%
+  drawChart('ch-mei', {
+    type:'bar',
+    data:{
+      labels:['Grande Bom Jardim','Grande Mucuripe'],
+      datasets:[{label:'% MEI nas empresas formais',data:[63.3,42.2],backgroundColor:[PALETTE.blue2,PALETTE.green],borderRadius:3,barThickness:50}]
+    },
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      layout:{padding:{right:24,top:8,bottom:8}},
+      scales:{x:{beginAtZero:true,max:80,grid:{color:'rgba(11,43,68,.06)'},ticks:{callback:v=>v+'%',font:{size:12,weight:600}}},y:{grid:{display:false},ticks:{font:{size:14,weight:700}}}},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.x.toFixed(1)+'% das empresas são MEI'}}}}
+  });
+  // 15 · OSCs
+  drawChart('ch-osc', {
+    type:'bar',
+    data:{
+      labels:['Grande Bom Jardim','Grande Mucuripe'],
+      datasets:[
+        {label:'OSCs totais (eixo direito)',data:[315,827],backgroundColor:'rgba(11,79,168,.18)',borderRadius:3,barThickness:50,yAxisID:'y2'},
+        {label:'OSCs por 10 mil hab.',data:[14.6,64.0],backgroundColor:[PALETTE.blue2,PALETTE.green],borderRadius:3,barThickness:50,yAxisID:'y1'}
+      ]
+    },
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      scales:{x:{display:false},y1:{position:'left',grid:{display:false},ticks:{font:{size:14,weight:700}}}},
+      plugins:{legend:{position:'bottom',labels:{font:{size:11,weight:600}}},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.x.toLocaleString('pt-BR')}}}}
   });
 }
-// Renderiza todos no primeiro frame ocioso (Chart.js é leve)
 if('requestIdleCallback' in window) requestIdleCallback(lazyCharts);
 else setTimeout(lazyCharts, 300);
-
-// Click-anywhere advance for presentation mode
-document.addEventListener('click', e=>{
-  // Don't advance if clicking interactive elements
-  const blocked = ['BUTTON','A','INPUT','SELECT','TEXTAREA','LABEL'];
-  if(blocked.includes(e.target.tagName)) return;
-  if(e.target.closest('.menu') || e.target.closest('.controls')) return;
-  // Only advance if click is in the right half of the screen
-  if(e.clientX > window.innerWidth/2) next();
-  else prev();
-});
 </script>
 </body>
 </html>
