@@ -1376,7 +1376,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <span class="cap-legend-label">Categorias:</span>
         <span class="cap-legend-item"><span class="aliment-cat-icon" style="background:#DC2626">🍴</span>Restaurantes &amp; Lanchonetes (670)</span>
         <span class="cap-legend-item"><span class="aliment-cat-icon" style="background:#16A34A">🥬</span>Hortifruti (293)</span>
-        <span class="cap-legend-item"><span class="aliment-cat-icon" style="background:#D97706">📦</span>Atacado especializado (170)</span>
+        <span class="cap-legend-item"><span class="aliment-cat-icon" style="background:#0D9488">📦</span>Atacado especializado (170)</span>
         <span class="cap-legend-item"><span class="aliment-cat-icon" style="background:#7C3AED">🛒</span>Hiper &amp; Supermercados (42)</span>
       </div>
       <div class="aliment-notice">
@@ -2828,7 +2828,7 @@ function initEcon(){
 const ALIMENT_CAT = {
   R: {label:'Restaurantes & Lanchonetes', color:'#DC2626', icon:'🍴'},
   H: {label:'Hortifruti',                  color:'#16A34A', icon:'🥬'},
-  A: {label:'Atacado especializado',       color:'#D97706', icon:'📦'},
+  A: {label:'Atacado especializado',       color:'#0D9488', icon:'📦'},
   S: {label:'Hiper & Supermercados',       color:'#7C3AED', icon:'🛒'}
 };
 
@@ -2851,9 +2851,9 @@ function initAlimentMap(){
   const maxBairroAliment = Math.max(...Object.values(totalByBairro), 1);
 
   function alimentChoropleth(n){
-    if(!n) return '#FFF7ED';
+    if(!n) return '#F5F3FF';
     const t = Math.log10(n+1) / Math.log10(maxBairroAliment+1);
-    const stops = ['#FFF7ED','#FFEDD5','#FED7AA','#FDBA74','#FB923C','#F97316','#EA580C','#C2410C'];
+    const stops = ['#F5F3FF','#EDE9FE','#DDD6FE','#C4B5FD','#A78BFA','#8B5CF6','#7C3AED','#6D28D9'];
     return stops[Math.min(Math.floor(t*stops.length), stops.length-1)];
   }
 
@@ -2885,7 +2885,7 @@ function initAlimentMap(){
     MAPS['map-aliment'].geo = L.geoJSON(GEO, {
       style: f => ({
         fillColor: alimentChoropleth(totalByBairro[f.properties.nome]||0),
-        fillOpacity: 0.55, color:'#D97706', weight:1, opacity:0.35
+        fillOpacity: 0.55, color:'#7C3AED', weight:1, opacity:0.4
       }),
       onEachFeature: (f, layer) => {
         const n = totalByBairro[f.properties.nome] || 0;
@@ -2904,7 +2904,7 @@ function initAlimentMap(){
         let cls = 'mge-cluster-sm';
         if(count >= 80) cls = 'mge-cluster-lg';
         else if(count >= 25) cls = 'mge-cluster-md';
-        return L.divIcon({html:'<div class="mge-cluster '+cls+'" style="background:#F97316">'+count+'</div>', className:'', iconSize:[52,52], iconAnchor:[26,26]});
+        return L.divIcon({html:'<div class="mge-cluster '+cls+'">'+count+'</div>', className:'', iconSize:[52,52], iconAnchor:[26,26]});
       }
     }).addTo(m);
 
