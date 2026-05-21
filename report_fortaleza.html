@@ -10,27 +10,28 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root{
-  --navy:#0B2B44;
-  --navy-soft:#1A3A55;
-  --navy-deep:#072135;
+  --bg:#FFFFFF;
+  --bg-2:#FAFAF7;
+  --navy:#0A2540;
+  --navy-soft:#1C3A56;
+  --navy-deep:#061827;
   --blue:#0B4FA8;
   --blue-2:#1E40AF;
-  --green:#059669;
-  --green-deep:#047857;
-  --cream:#F4F1EA;
-  --cream-soft:#FAF8F4;
-  --cream-2:#EDE6D8;
-  --ink:#0B2B44;
-  --ink-2:#3B4C5C;
-  --muted:#7E8A9A;
-  --muted-2:#9CA8B6;
-  --line:rgba(11,43,68,.10);
-  --line-strong:rgba(11,43,68,.22);
+  --green:#0E8C5D;
+  --green-deep:#076E47;
+  --green-light:#10B981;
+  --ink:#0A2540;
+  --ink-2:#3B4E63;
+  --muted:#6B7A8A;
+  --muted-2:#A0AAB6;
+  --line:rgba(10,37,64,.10);
+  --line-soft:rgba(10,37,64,.06);
+  --line-strong:rgba(10,37,64,.22);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  background:#050a10;color:var(--ink);
+  background:#0A1320;color:var(--ink);
   font-family:'Inter',system-ui,-apple-system,sans-serif;
   -webkit-font-smoothing:antialiased;font-feature-settings:"ss01","kern","liga","case";
   line-height:1.5;overflow:hidden;min-height:100vh;
@@ -41,28 +42,28 @@ body{
 .slide{
   width:100%;max-width:1280px;
   aspect-ratio:16/9;max-height:calc(100vh - 100px);
-  border-radius:2px;
-  box-shadow:0 30px 80px -20px rgba(0,0,0,.65);
+  background:var(--bg);
+  border-radius:0;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
   flex-direction:column;position:relative;overflow:hidden;
 }
 .slide:not(.active){display:none}
-.slide.active{animation:fade .4s cubic-bezier(.2,.6,.2,1)}
+.slide.active{animation:fade .35s cubic-bezier(.2,.6,.2,1)}
 @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
-/* ─── ATTRS COMUNS ─── */
-.eyebrow{
-  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
-  color:var(--muted);display:inline-flex;align-items:center;gap:14px;
+/* ─── COMUNS ─── */
+.tag-line{
+  display:flex;align-items:center;gap:16px;
+  font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);
 }
-.eyebrow .e-num{color:var(--navy);font-weight:800}
-.eyebrow .e-sep{color:var(--line-strong)}
-.eyebrow .e-tag{color:var(--green-deep);font-weight:700}
-.rule{height:1px;background:var(--line-strong);width:48px;display:block;margin:0;border:0}
-.rule-light{height:1px;background:var(--line);width:100%;display:block;border:0}
+.tag-line .t-num{color:var(--navy);font-weight:800}
+.tag-line .t-sep{color:var(--line-strong)}
+.tag-line .t-ato{color:var(--green-deep);font-weight:700}
 
 .slide-num{
-  position:absolute;top:34px;right:64px;z-index:5;
-  font-size:11px;color:var(--muted);letter-spacing:.16em;font-weight:600;
+  position:absolute;top:36px;right:64px;z-index:5;
+  font-size:11px;color:var(--muted-2);letter-spacing:.16em;font-weight:600;
   font-variant-numeric:tabular-nums;
 }
 .slide-src{
@@ -75,161 +76,121 @@ body{
 .slide-src .src-link{font-weight:600;color:var(--green-deep);text-decoration:none;letter-spacing:.04em;white-space:nowrap}
 .slide-src .src-link:hover{text-decoration:underline}
 
-/* ─── TEMAS ─── */
-.s-navy{background:var(--navy);color:var(--cream)}
-.s-navy .eyebrow{color:var(--muted-2)}
-.s-navy .eyebrow .e-num{color:#fff}
-.s-navy .eyebrow .e-tag{color:#10B981}
-.s-navy .eyebrow .e-sep{color:rgba(250,246,239,.25)}
-.s-navy .rule{background:rgba(250,246,239,.25)}
-.s-navy .rule-light{background:rgba(250,246,239,.12)}
-.s-navy .slide-num{color:rgba(250,246,239,.4)}
-.s-navy .slide-src{color:rgba(250,246,239,.5);border-top-color:rgba(250,246,239,.18)}
-.s-navy .slide-src .src-link{color:#10B981}
-.s-cream{background:var(--cream);color:var(--ink)}
+.title-rule{height:1px;background:var(--line-strong);width:100%;display:block;margin:18px 0 0;border:0}
 
 /* ═══════════════════════════════════
    01 · COVER
    ═══════════════════════════════════ */
-.s-cover{
-  background:var(--navy);color:var(--cream);
-  padding:72px 80px;display:grid;grid-template-columns:1.5fr 1fr;gap:48px;align-items:end;
-}
-.s-cover .cover-meta-top{
-  position:absolute;top:48px;left:80px;right:80px;
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,246,239,.55);
-}
-.s-cover .cover-meta-top .brand{color:#10B981}
-.s-cover .cover-body h1{
-  font-weight:900;font-size:84px;line-height:.95;letter-spacing:-.035em;color:#fff;margin-bottom:18px;
-}
-.s-cover .cover-body h1 .city{color:#fff;display:block;font-weight:800}
-.s-cover .cover-body .lead{
-  font-size:16px;line-height:1.55;color:rgba(250,246,239,.78);max-width:560px;font-weight:400;
-}
-.s-cover .cover-body .lead strong{color:#fff;font-weight:600}
-.s-cover .cover-side{display:flex;flex-direction:column;gap:18px;align-items:flex-end;justify-content:flex-end}
-.s-cover .cover-side .num-grid{
-  width:100%;border-top:1px solid rgba(250,246,239,.2);padding-top:18px;
-  display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;
-}
-.s-cover .cover-side .num-grid .item{display:flex;flex-direction:column;gap:4px}
-.s-cover .cover-side .num-grid .item .v{font-size:36px;font-weight:900;color:#fff;letter-spacing:-.025em;line-height:1}
-.s-cover .cover-side .num-grid .item .v small{font-size:14px;font-weight:600;color:rgba(250,246,239,.6);margin-left:4px}
-.s-cover .cover-side .num-grid .item .l{font-size:10px;color:rgba(250,246,239,.5);letter-spacing:.14em;text-transform:uppercase;font-weight:600}
-.s-cover .cover-meta-bottom{
-  position:absolute;bottom:32px;left:80px;right:80px;
-  display:flex;justify-content:space-between;align-items:flex-end;gap:32px;
-  font-size:10px;color:rgba(250,246,239,.5);letter-spacing:.14em;text-transform:uppercase;
-  border-top:1px solid rgba(250,246,239,.15);padding-top:14px;
-}
-.s-cover .cover-meta-bottom span strong{display:block;color:#fff;font-weight:700;margin-bottom:3px;font-size:9px;letter-spacing:.18em}
+.s-cover{padding:64px 64px 56px;display:grid;grid-template-rows:auto 1fr auto;gap:32px;background:var(--bg)}
+.s-cover .c-top{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.s-cover .c-top .brand{color:var(--green-deep)}
+.s-cover .c-mid{display:grid;grid-template-columns:1.6fr 1fr;gap:48px;align-items:end}
+.s-cover .c-mid .c-head h1{font-weight:900;font-size:80px;line-height:.96;letter-spacing:-.035em;color:var(--navy);margin-bottom:24px}
+.s-cover .c-mid .c-head h1 .ln{display:block}
+.s-cover .c-mid .c-head h1 .city{color:var(--navy)}
+.s-cover .c-mid .c-head h1 .accent{color:var(--green-deep);font-weight:800}
+.s-cover .c-mid .c-head .lead{font-size:15.5px;line-height:1.6;color:var(--ink-2);max-width:560px;font-weight:400}
+.s-cover .c-mid .c-head .lead strong{color:var(--navy);font-weight:600}
+.s-cover .c-mid .c-side{border-top:1px solid var(--line);padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:20px 28px}
+.s-cover .c-mid .c-side .it .v{font-size:38px;font-weight:900;color:var(--navy);letter-spacing:-.025em;line-height:1;font-variant-numeric:tabular-nums}
+.s-cover .c-mid .c-side .it .v small{font-size:14px;font-weight:600;color:var(--muted);margin-left:4px}
+.s-cover .c-mid .c-side .it .l{font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-top:6px}
+.s-cover .c-bot{display:flex;justify-content:space-between;gap:32px;padding-top:18px;border-top:1px solid var(--line);font-size:10px;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
+.s-cover .c-bot span strong{display:block;color:var(--navy);font-weight:700;margin-bottom:3px;font-size:9.5px;letter-spacing:.18em}
 
 /* ═══════════════════════════════════
-   02 · PERGUNTA
+   02 · QUESTION
    ═══════════════════════════════════ */
-.s-question{padding:72px 96px 100px;display:flex;flex-direction:column;justify-content:center;background:var(--cream)}
-.s-question .lab{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:36px;display:flex;align-items:center;gap:14px}
+.s-question{padding:80px 96px 96px;display:flex;flex-direction:column;justify-content:center;background:var(--bg)}
+.s-question .lab{display:flex;align-items:center;gap:14px;font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:36px}
 .s-question .lab::before{content:"";display:inline-block;width:32px;height:1px;background:var(--green)}
-.s-question h2{
-  font-weight:900;font-size:56px;line-height:1.06;letter-spacing:-.03em;color:var(--navy);max-width:1020px;margin-bottom:24px;
-}
+.s-question h2{font-weight:900;font-size:56px;line-height:1.05;letter-spacing:-.025em;color:var(--navy);max-width:1040px;margin-bottom:28px}
 .s-question h2 .green{color:var(--green-deep)}
-.s-question .qlead{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:720px;font-weight:400;margin-bottom:40px}
+.s-question .qlead{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:760px;font-weight:400;margin-bottom:44px}
 .s-question .qlead strong{color:var(--navy);font-weight:600}
-.s-question .acts{display:flex;gap:14px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line)}
-.s-question .acts .chip{display:flex;align-items:baseline;gap:10px;font-size:11.5px;color:var(--ink-2);font-weight:500;padding:0}
+.s-question .acts{display:flex;gap:0;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--line)}
+.s-question .acts .chip{display:flex;align-items:baseline;gap:10px;font-size:11.5px;color:var(--ink-2);font-weight:500;padding:0 22px 0 0}
 .s-question .acts .chip b{font-size:10px;color:var(--green-deep);font-weight:800;letter-spacing:.16em}
-.s-question .acts .chip+.chip{padding-left:18px;border-left:1px solid var(--line)}
+.s-question .acts .chip+.chip{padding-left:22px;border-left:1px solid var(--line)}
 
 /* ═══════════════════════════════════
-   03 · CONTEXTO
+   03 · CONTEXT
    ═══════════════════════════════════ */
-.s-context{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:36px;background:var(--cream)}
-.s-context header h2{font-weight:900;font-size:44px;line-height:1.08;letter-spacing:-.025em;color:var(--navy);margin-top:14px;max-width:1080px}
+.s-context{padding:56px 80px 96px;display:grid;grid-template-rows:auto 1fr;gap:32px;background:var(--bg)}
+.s-context header h2{font-weight:900;font-size:46px;line-height:1.08;letter-spacing:-.025em;color:var(--navy);max-width:1080px}
 .s-context header h2 .green{color:var(--green-deep)}
-.s-context .ctx-body{display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:start;padding-top:8px}
+.s-context .ctx-body{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:start;padding-top:8px}
 .s-context .ctx-list{display:flex;flex-direction:column}
-.s-context .ctx-item{padding:24px 0;border-top:1px solid var(--line)}
+.s-context .ctx-item{padding:22px 0;border-top:1px solid var(--line)}
 .s-context .ctx-item:first-child{border-top:0;padding-top:0}
 .s-context .ctx-item:last-child{padding-bottom:0}
-.s-context .ctx-item .v{font-size:54px;font-weight:900;color:var(--navy);letter-spacing:-.03em;line-height:.95;display:flex;align-items:baseline;gap:10px}
+.s-context .ctx-item .v{font-size:54px;font-weight:900;color:var(--navy);letter-spacing:-.03em;line-height:.95;display:flex;align-items:baseline;gap:10px;font-variant-numeric:tabular-nums}
 .s-context .ctx-item .v small{font-size:18px;font-weight:600;color:var(--green-deep)}
-.s-context .ctx-item .l{font-size:14px;color:var(--ink-2);margin-top:8px;font-weight:400;line-height:1.5;max-width:380px}
+.s-context .ctx-item .l{font-size:13.5px;color:var(--ink-2);margin-top:8px;font-weight:400;line-height:1.55;max-width:380px}
 .s-context .ctx-item .l strong{color:var(--navy);font-weight:600}
 .s-context .map-area{align-self:center;justify-self:center}
 
 /* ═══════════════════════════════════
-   SECTION OPENER (Ato II, III, IV, V)
+   SECTION OPENER (Atos)
    ═══════════════════════════════════ */
-.s-opener{background:var(--navy);color:var(--cream);padding:72px 96px;display:flex;flex-direction:column;justify-content:center}
-.s-opener .o-eye{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-2);display:flex;align-items:center;gap:14px;margin-bottom:48px}
-.s-opener .o-eye::before{content:"";display:inline-block;width:32px;height:1px;background:#10B981}
-.s-opener .ato-line{display:flex;align-items:baseline;gap:24px;margin-bottom:48px}
-.s-opener .ato-line .ato-word{
-  font-size:14px;font-weight:800;letter-spacing:.32em;text-transform:uppercase;color:#10B981;
+.s-opener{background:var(--bg);padding:0;display:flex;flex-direction:column;justify-content:center;align-items:stretch}
+.s-opener .o-strap{
+  background:var(--navy);color:#fff;
+  padding:36px 80px;display:flex;align-items:center;gap:40px;
 }
-.s-opener .ato-num{font-weight:900;font-size:200px;line-height:.85;letter-spacing:-.04em;color:#fff;display:block;font-variant-numeric:tabular-nums}
-.s-opener h1{font-weight:900;font-size:80px;line-height:.96;letter-spacing:-.035em;color:#fff;max-width:920px;margin-bottom:28px}
-.s-opener h1 .green{color:#10B981}
-.s-opener .turn{font-size:18px;line-height:1.55;color:rgba(250,246,239,.78);max-width:720px;font-weight:400}
-.s-opener .turn strong{color:#fff;font-weight:600}
+.s-opener .o-strap .o-num{font-weight:900;font-size:72px;line-height:.9;letter-spacing:-.04em;color:#fff;font-variant-numeric:tabular-nums}
+.s-opener .o-strap .o-stack{flex:1;display:flex;flex-direction:column;gap:8px}
+.s-opener .o-strap .o-ato{font-size:11px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--green-light)}
+.s-opener .o-strap .o-title{font-weight:800;font-size:36px;line-height:1.05;letter-spacing:-.02em;color:#fff}
+.s-opener .o-after{padding:48px 80px 0;max-width:920px}
+.s-opener .o-after .turn{font-size:18px;line-height:1.6;color:var(--ink-2);font-weight:400}
+.s-opener .o-after .turn strong{color:var(--navy);font-weight:600}
 .s-opener .ato-footer{
-  position:absolute;bottom:36px;left:96px;right:96px;
+  position:absolute;bottom:36px;left:80px;right:80px;
   display:flex;justify-content:space-between;align-items:center;
   font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(250,246,239,.45);padding-top:14px;border-top:1px solid rgba(250,246,239,.15);
+  color:var(--muted);padding-top:14px;border-top:1px solid var(--line);
 }
 .s-opener .ato-footer .crumbs{display:flex;gap:18px;align-items:baseline}
-.s-opener .ato-footer .crumbs span.current{color:#10B981;font-weight:700}
+.s-opener .ato-footer .crumbs span.current{color:var(--green-deep);font-weight:700}
 
 /* ═══════════════════════════════════
    HERO NUMBER
    ═══════════════════════════════════ */
-.s-hero{padding:56px 80px 100px;display:grid;grid-template-rows:auto 1fr auto;gap:14px}
-.s-hero .hero-body{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding-top:36px}
-.s-hero .big-num{font-weight:900;font-size:220px;line-height:.85;letter-spacing:-.05em;color:var(--navy);position:relative}
-.s-hero .big-num .unit{display:block;font-size:18px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-top:14px;text-transform:uppercase}
-.s-hero .read{font-size:18px;line-height:1.55;color:var(--ink-2);font-weight:400;max-width:480px;padding-top:24px;border-top:1px solid var(--line)}
+.s-hero{padding:56px 80px 96px;display:grid;grid-template-rows:auto 1fr auto;gap:14px;background:var(--bg)}
+.s-hero header h2{display:none}
+.s-hero .hero-body{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:end;padding-top:24px}
+.s-hero .big-num{font-weight:900;font-size:200px;line-height:.84;letter-spacing:-.05em;color:var(--navy);font-variant-numeric:tabular-nums;position:relative}
+.s-hero .big-num .unit{display:block;font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-top:18px;text-transform:uppercase}
+.s-hero .read{font-size:17px;line-height:1.55;color:var(--ink-2);font-weight:400;max-width:480px;padding-top:24px;border-top:1px solid var(--line)}
 .s-hero .read strong{font-weight:600;color:var(--navy)}
 .s-hero .read .em{color:var(--green-deep);font-weight:700}
-.s-hero .micro{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+.s-hero .micro{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);padding-top:18px;margin-top:24px}
 .s-hero .micro .item{padding-right:24px;border-right:1px solid var(--line)}
 .s-hero .micro .item:last-child{border-right:0;padding-right:0}
-.s-hero .micro .item .v{font-size:24px;font-weight:900;color:var(--navy);letter-spacing:-.025em;line-height:1}
-.s-hero .micro .item .l{font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-top:4px}
-/* Hero NAVY variant */
-.s-hero.s-navy .big-num{color:#fff}
-.s-hero.s-navy .big-num .unit{color:rgba(250,246,239,.6)}
-.s-hero.s-navy .read{color:rgba(250,246,239,.78);border-top-color:rgba(250,246,239,.18)}
-.s-hero.s-navy .read strong{color:#fff}
-.s-hero.s-navy .read .em{color:#10B981}
-.s-hero.s-navy .micro{border-top-color:rgba(250,246,239,.18)}
-.s-hero.s-navy .micro .item{border-right-color:rgba(250,246,239,.18)}
-.s-hero.s-navy .micro .item .v{color:#fff}
-.s-hero.s-navy .micro .item .l{color:rgba(250,246,239,.5)}
+.s-hero .micro .item .v{font-size:24px;font-weight:900;color:var(--navy);letter-spacing:-.025em;line-height:1;font-variant-numeric:tabular-nums}
+.s-hero .micro .item .l{font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-top:6px}
 
 /* ═══════════════════════════════════
-   ACTION TITLE + CHART
+   ACTION + CHART
    ═══════════════════════════════════ */
-.s-action{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:24px;background:var(--cream)}
-.s-action header h2{font-weight:900;font-size:42px;line-height:1.1;letter-spacing:-.025em;color:var(--navy);margin-top:14px;max-width:1080px}
+.s-action{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:24px;background:var(--bg)}
+.s-action header h2{font-weight:900;font-size:38px;line-height:1.1;letter-spacing:-.022em;color:var(--navy);margin-top:14px;max-width:1080px}
 .s-action header h2 .green{color:var(--green-deep)}
 .s-action header h2 .blue{color:var(--blue-2)}
-.s-action header .lead{font-size:15px;line-height:1.55;color:var(--ink-2);margin-top:14px;max-width:920px;font-weight:400}
+.s-action header .lead{font-size:14.5px;line-height:1.6;color:var(--ink-2);margin-top:14px;max-width:940px;font-weight:400}
 .s-action header .lead strong{font-weight:600;color:var(--navy)}
-.s-action .chart-wrap{position:relative;background:var(--cream-soft);border:1px solid var(--line);border-radius:2px;padding:24px 28px}
+.s-action .chart-wrap{position:relative;background:var(--bg);border:1px solid var(--line);padding:24px 28px;min-height:0}
 .s-action .chart-wrap canvas{max-height:100%}
 
 /* ═══════════════════════════════════
    SPLIT (texto + visual)
    ═══════════════════════════════════ */
-.s-split{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:24px;background:var(--cream)}
-.s-split header h2{font-weight:900;font-size:42px;line-height:1.1;letter-spacing:-.025em;color:var(--navy);margin-top:14px;max-width:1080px}
+.s-split{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:24px;background:var(--bg)}
+.s-split header h2{font-weight:900;font-size:38px;line-height:1.1;letter-spacing:-.022em;color:var(--navy);margin-top:14px;max-width:1080px}
 .s-split header h2 .green{color:var(--green-deep)}
-.s-split .split-body{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:start;padding-top:8px}
-.s-split .col-text p{font-size:14.5px;line-height:1.65;color:var(--ink-2);margin-bottom:14px}
+.s-split .split-body{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start;padding-top:8px}
+.s-split .col-text p{font-size:14px;line-height:1.65;color:var(--ink-2);margin-bottom:14px}
 .s-split .col-text p strong{color:var(--navy);font-weight:600}
 .s-split .col-text .pullnum{
   display:flex;align-items:baseline;gap:18px;margin:20px 0;padding:16px 0;
@@ -239,74 +200,76 @@ body{
 .s-split .col-text .pullnum span{font-size:13px;color:var(--ink-2);font-weight:400;flex:1;line-height:1.5}
 
 /* ═══════════════════════════════════
-   QUOTE (sem aspas decorativas, sem itálico)
+   QUOTE
    ═══════════════════════════════════ */
-.s-quote{padding:80px 100px 100px;display:flex;flex-direction:column;justify-content:center}
-.s-quote .q-eye{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#10B981;margin-bottom:32px;display:flex;align-items:center;gap:14px}
-.s-quote .q-eye::before{content:"";display:inline-block;width:32px;height:1px;background:#10B981}
-.s-quote blockquote{font-size:38px;line-height:1.32;letter-spacing:-.018em;color:#fff;max-width:1020px;font-weight:500}
-.s-quote blockquote strong{color:#10B981;font-weight:700}
+.s-quote{padding:96px 100px;display:flex;flex-direction:column;justify-content:center;background:var(--bg)}
+.s-quote .q-eye{display:flex;align-items:center;gap:14px;font-size:10.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--green-deep);margin-bottom:36px}
+.s-quote .q-eye::before{content:"";display:inline-block;width:32px;height:1px;background:var(--green)}
+.s-quote blockquote{font-size:34px;line-height:1.32;letter-spacing:-.012em;color:var(--navy);max-width:1020px;font-weight:500}
+.s-quote blockquote strong{color:var(--green-deep);font-weight:700}
 .s-quote cite{
-  display:flex;align-items:flex-end;gap:14px;margin-top:48px;font-style:normal;font-size:10px;letter-spacing:.18em;
-  text-transform:uppercase;color:rgba(250,246,239,.55);font-weight:600;padding-top:18px;border-top:1px solid rgba(250,246,239,.18);
+  display:flex;align-items:flex-end;gap:14px;margin-top:48px;font-style:normal;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);font-weight:600;padding-top:18px;border-top:1px solid var(--line);
 }
-.s-quote cite::before{content:"";display:inline-block;width:24px;height:1px;background:rgba(250,246,239,.45);margin-bottom:5px}
-.s-quote cite .cite-text{flex:1}
-.s-quote cite .cite-source{display:block;font-size:9px;color:rgba(250,246,239,.4);letter-spacing:.12em;margin-top:3px;font-weight:400}
+.s-quote cite::before{content:"";display:inline-block;width:24px;height:1px;background:var(--line-strong);margin-bottom:5px}
+.s-quote cite .cite-source{display:block;font-size:9.5px;color:var(--muted-2);letter-spacing:.14em;margin-top:4px;font-weight:400}
 
 /* ═══════════════════════════════════
-   TERRITORY CARD
+   TERRITORY FRAME
    ═══════════════════════════════════ */
-.s-terr{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:24px;background:var(--cream)}
-.s-terr header h2{font-weight:900;font-size:42px;line-height:1.1;letter-spacing:-.025em;color:var(--navy);margin-top:14px;max-width:1080px}
+.s-terr{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:24px;background:var(--bg)}
+.s-terr header h2{font-weight:900;font-size:38px;line-height:1.1;letter-spacing:-.022em;color:var(--navy);margin-top:14px;max-width:1080px}
 .s-terr header h2 .green{color:var(--green-deep)}
 .s-terr .terr-frame{
-  background:var(--cream-soft);border:1px solid var(--line);border-left:3px solid var(--blue-2);
-  border-radius:0;padding:32px 36px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start;
+  border-top:2px solid var(--blue-2);border-bottom:1px solid var(--line);
+  padding:28px 0;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start;
 }
-.s-terr .terr-frame.mucuripe{border-left-color:var(--blue)}
-.s-terr .terr-frame .terr-name{font-size:10px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-2);margin-bottom:14px}
+.s-terr .terr-frame.mucuripe{border-top-color:var(--blue)}
+.s-terr .terr-frame .terr-name{font-size:10.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-2);margin-bottom:14px}
 .s-terr .terr-frame.mucuripe .terr-name{color:var(--blue)}
-.s-terr .terr-frame h3{font-weight:900;font-size:30px;letter-spacing:-.02em;color:var(--navy);line-height:1.1;margin-bottom:20px;max-width:480px}
-.s-terr .terr-frame .desc{font-size:14.5px;line-height:1.65;color:var(--ink-2);max-width:480px}
+.s-terr .terr-frame h3{font-weight:900;font-size:28px;letter-spacing:-.02em;color:var(--navy);line-height:1.15;margin-bottom:18px;max-width:480px}
+.s-terr .terr-frame .desc{font-size:14px;line-height:1.65;color:var(--ink-2);max-width:480px}
 .s-terr .terr-frame .desc strong{font-weight:600;color:var(--navy)}
-.s-terr .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;align-content:start;border-top:1px solid var(--line)}
-.s-terr .stats-grid .st{padding:16px 24px 16px 0;border-bottom:1px solid var(--line)}
+.s-terr .stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;align-content:start}
+.s-terr .stats-grid .st{padding:14px 24px 14px 0;border-bottom:1px solid var(--line)}
+.s-terr .stats-grid .st:first-child,.s-terr .stats-grid .st:nth-child(2){border-top:1px solid var(--line)}
 .s-terr .stats-grid .st:nth-child(odd){border-right:1px solid var(--line);padding-left:0}
 .s-terr .stats-grid .st:nth-child(even){padding-left:24px}
-.s-terr .stats-grid .st:nth-last-child(-n+2){border-bottom:0}
-.s-terr .stats-grid .st b{font-size:28px;font-weight:900;color:var(--navy);letter-spacing:-.025em;line-height:1;display:block;font-variant-numeric:tabular-nums}
+.s-terr .stats-grid .st b{font-size:26px;font-weight:900;color:var(--navy);letter-spacing:-.025em;line-height:1;display:block;font-variant-numeric:tabular-nums}
 .s-terr .stats-grid .st b.green{color:var(--green-deep)}
 .s-terr .stats-grid .st span{font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-top:6px;display:block}
 
 /* ═══════════════════════════════════
    RECOMMENDATION
    ═══════════════════════════════════ */
-.s-rec{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:32px;background:var(--cream)}
-.s-rec header h2{font-weight:900;font-size:42px;line-height:1.08;letter-spacing:-.025em;color:var(--navy);margin-top:14px;max-width:1000px}
+.s-rec{padding:48px 80px 100px;display:grid;grid-template-rows:auto 1fr;gap:32px;background:var(--bg)}
+.s-rec header h2{font-weight:900;font-size:38px;line-height:1.08;letter-spacing:-.022em;color:var(--navy);margin-top:14px;max-width:1000px}
 .s-rec header h2 .green{color:var(--green-deep)}
 .recs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-content:start;border-top:1px solid var(--line)}
-.rec{padding:32px 24px 24px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:14px;position:relative}
-.rec+.rec{padding-left:24px;border-left:1px solid var(--line)}
+.rec{padding:28px 28px 24px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.rec+.rec{padding-left:28px;border-left:1px solid var(--line)}
 .rec .num{font-size:42px;font-weight:900;color:var(--green-deep);letter-spacing:-.025em;line-height:1;font-variant-numeric:tabular-nums}
-.rec h3{font-weight:800;font-size:18px;letter-spacing:-.01em;color:var(--navy);line-height:1.25}
-.rec p{font-size:13px;line-height:1.6;color:var(--ink-2)}
+.rec h3{font-weight:800;font-size:17px;letter-spacing:-.01em;color:var(--navy);line-height:1.25}
+.rec p{font-size:12.5px;line-height:1.62;color:var(--ink-2)}
 .rec p strong{font-weight:600;color:var(--navy)}
-.rec .badge{display:inline-block;margin-top:auto;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-top:14px;border-top:1px solid var(--line)}
 
 /* ═══════════════════════════════════
-   CLOSE / ENCERRAMENTO
+   CLOSE
    ═══════════════════════════════════ */
-.s-close{padding:80px 100px 100px;background:var(--navy);color:var(--cream);display:flex;flex-direction:column;justify-content:center}
-.s-close .c-eye{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#10B981;margin-bottom:32px;display:flex;align-items:center;gap:14px}
-.s-close .c-eye::before{content:"";display:inline-block;width:32px;height:1px;background:#10B981}
-.s-close p{font-size:34px;line-height:1.32;letter-spacing:-.015em;color:#fff;max-width:1020px;font-weight:500;margin-bottom:40px}
-.s-close p strong{color:#10B981;font-weight:700}
-.s-close .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding-top:32px;border-top:1px solid rgba(250,246,239,.18)}
+.s-close{padding:0;display:flex;flex-direction:column;background:var(--bg)}
+.s-close .c-strap{background:var(--navy);color:#fff;padding:32px 80px;display:flex;align-items:center;gap:24px}
+.s-close .c-strap .c-num{font-size:36px;font-weight:900;color:#fff;letter-spacing:-.025em;line-height:1;font-variant-numeric:tabular-nums}
+.s-close .c-strap .c-title{flex:1;display:flex;flex-direction:column;gap:6px}
+.s-close .c-strap .c-title .c-lab{font-size:10.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--green-light)}
+.s-close .c-strap .c-title .c-tit{font-weight:800;font-size:22px;letter-spacing:-.01em;color:#fff}
+.s-close .c-body{flex:1;padding:48px 80px 0;display:flex;flex-direction:column;justify-content:center}
+.s-close .c-body p{font-size:28px;line-height:1.32;letter-spacing:-.012em;color:var(--navy);max-width:1020px;font-weight:500;margin-bottom:40px}
+.s-close .c-body p strong{color:var(--green-deep);font-weight:700}
+.s-close .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;padding:28px 0 0;border-top:1px solid var(--line);margin-bottom:64px}
 .s-close .next-grid .next-item{display:flex;flex-direction:column;gap:6px}
-.s-close .next-grid .next-item .lab{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,246,239,.5)}
-.s-close .next-grid .next-item .val{font-size:15px;color:#fff;font-weight:500;line-height:1.5}
-.s-close .next-grid .next-item .val a{color:#10B981;text-decoration:none;font-weight:600}
+.s-close .next-grid .next-item .lab{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.s-close .next-grid .next-item .val{font-size:14.5px;color:var(--navy);font-weight:500;line-height:1.5}
+.s-close .next-grid .next-item .val a{color:var(--green-deep);text-decoration:none;font-weight:600}
 .s-close .next-grid .next-item .val a:hover{text-decoration:underline}
 
 /* ═══════════════════════════════════
@@ -314,67 +277,70 @@ body{
    ═══════════════════════════════════ */
 .controls{
   position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
-  background:rgba(11,43,68,.96);backdrop-filter:blur(8px);color:var(--cream);
+  background:rgba(10,37,64,.96);backdrop-filter:blur(8px);color:#fff;
   border-radius:2px;padding:6px 8px;display:flex;align-items:center;gap:4px;
   box-shadow:0 12px 30px -10px rgba(0,0,0,.6);z-index:100;font-size:12px;
   font-feature-settings:"tnum";
 }
-.controls button{background:transparent;border:0;padding:8px 12px;cursor:pointer;font-size:12px;font-weight:600;color:var(--cream);border-radius:2px;letter-spacing:.04em}
-.controls button:hover{background:rgba(250,246,239,.12)}
-.controls .counter{padding:0 12px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.06em;color:#10B981}
-.controls .sep{width:1px;height:18px;background:rgba(250,246,239,.2)}
+.controls button{background:transparent;border:0;padding:8px 12px;cursor:pointer;font-size:12px;font-weight:600;color:#fff;border-radius:2px;letter-spacing:.04em}
+.controls button:hover{background:rgba(255,255,255,.10)}
+.controls .counter{padding:0 12px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.06em;color:var(--green-light)}
+.controls .sep{width:1px;height:18px;background:rgba(255,255,255,.18)}
 .controls a{text-decoration:none}
-.progress{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(255,255,255,.05);z-index:99}
-.progress .bar{height:100%;background:#10B981;transition:width .4s cubic-bezier(.2,.6,.2,1);width:0%}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(0,0,0,.05);z-index:99}
+.progress .bar{height:100%;background:var(--green);transition:width .4s cubic-bezier(.2,.6,.2,1);width:0%}
 
 /* MENU */
-.menu{position:fixed;inset:0;background:rgba(5,10,16,.86);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200;padding:32px}
+.menu{position:fixed;inset:0;background:rgba(5,10,16,.85);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200;padding:32px}
 .menu.open{display:flex}
-.menu-content{background:var(--cream);border-radius:2px;max-width:780px;width:100%;max-height:80vh;display:flex;flex-direction:column;overflow:hidden}
+.menu-content{background:#fff;border-radius:2px;max-width:780px;width:100%;max-height:80vh;display:flex;flex-direction:column;overflow:hidden}
 .menu-head{padding:20px 28px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.menu-head h2{font-size:14px;font-weight:800;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+.menu-head h2{font-size:13px;font-weight:800;color:var(--navy);letter-spacing:.06em;text-transform:uppercase}
 .menu-close{background:transparent;border:0;font-size:18px;color:var(--muted);cursor:pointer;padding:4px 10px;border-radius:2px}
-.menu-close:hover{background:rgba(11,43,68,.06)}
+.menu-close:hover{background:rgba(10,37,64,.06)}
 .menu-list{flex:1;overflow-y:auto;padding:6px 0}
 .menu-list a{display:flex;align-items:baseline;gap:18px;padding:12px 28px;color:var(--ink);text-decoration:none;font-size:13.5px;border-left:2px solid transparent}
-.menu-list a:hover{background:rgba(11,43,68,.04)}
+.menu-list a:hover{background:rgba(10,37,64,.04)}
 .menu-list a .num{font-size:11px;color:var(--muted);min-width:30px;letter-spacing:.08em;font-weight:700;font-variant-numeric:tabular-nums}
 .menu-list a .name{flex:1;font-weight:500}
 .menu-list a .ato-tag{font-size:9px;font-weight:700;color:var(--muted);letter-spacing:.16em;text-transform:uppercase}
-.menu-list a.current{background:rgba(5,150,105,.08);color:var(--green-deep);border-left-color:var(--green)}
+.menu-list a.current{background:rgba(14,140,93,.08);color:var(--green-deep);border-left-color:var(--green)}
 .menu-list a.current .num,.menu-list a.current .ato-tag{color:var(--green-deep)}
 
 /* RESPONSIVE */
 @media (max-width:900px),(max-aspect-ratio:4/3){
   body{overflow:auto}
   .deck{position:static;padding:14px;flex-direction:column;gap:16px}
-  .slide{aspect-ratio:auto;max-height:none;padding:32px 24px 64px;animation:none}
+  .slide{aspect-ratio:auto;max-height:none;padding:0;animation:none}
   .slide:not(.active){display:flex !important;flex-direction:column}
   .slide.active{display:flex !important;flex-direction:column}
-  .s-cover,.s-context,.s-question,.s-opener,.s-quote,.s-close,.s-hero,.s-action,.s-split,.s-terr,.s-rec{padding:32px 24px 64px}
-  .s-cover{grid-template-columns:1fr;gap:24px;align-items:start}
-  .s-cover .cover-side{align-items:stretch}
-  .s-cover .cover-meta-top,.s-cover .cover-meta-bottom{position:static;margin:16px 0 0}
-  .s-cover .cover-body h1{font-size:42px}
-  .s-question h2,.s-opener h1{font-size:36px}
-  .s-opener .ato-num{font-size:110px}
-  .s-quote blockquote,.s-close p{font-size:24px}
+  .s-cover,.s-context,.s-question,.s-quote,.s-hero,.s-action,.s-split,.s-terr,.s-rec{padding:28px 20px 64px}
+  .s-opener .o-strap{padding:24px 20px}
+  .s-opener .o-after{padding:28px 20px 0}
+  .s-close .c-strap{padding:20px 20px}
+  .s-close .c-body{padding:28px 20px 0}
+  .s-cover .c-mid{grid-template-columns:1fr;gap:24px}
+  .s-cover .c-mid .c-head h1{font-size:42px}
+  .s-question h2{font-size:34px}
+  .s-opener .o-strap .o-num{font-size:42px}
+  .s-opener .o-strap .o-title{font-size:22px}
+  .s-quote blockquote{font-size:22px}
+  .s-close .c-body p{font-size:22px}
   .s-hero .big-num{font-size:110px}
   .s-hero .hero-body{grid-template-columns:1fr;gap:24px;align-items:start}
-  .s-action header h2,.s-split header h2,.s-rec header h2,.s-context header h2,.s-terr header h2{font-size:26px}
+  .s-action header h2,.s-split header h2,.s-rec header h2,.s-context header h2,.s-terr header h2{font-size:24px}
   .recs{grid-template-columns:1fr;border-top:0}
   .rec+.rec{padding-left:0;border-left:0;border-top:1px solid var(--line)}
-  .s-context .ctx-body,.s-split .split-body{grid-template-columns:1fr}
-  .s-terr .terr-frame{grid-template-columns:1fr;padding:24px}
+  .s-context .ctx-body,.s-split .split-body{grid-template-columns:1fr;gap:24px}
+  .s-terr .terr-frame{grid-template-columns:1fr;padding:20px 0}
   .s-terr .stats-grid{grid-template-columns:1fr 1fr}
   .s-close .next-grid{grid-template-columns:1fr}
   .controls{position:sticky;top:10px;bottom:auto;transform:none;left:auto;margin:0 auto}
   .progress{position:sticky;top:0}
-  .slide-num{top:18px;right:24px}
+  .slide-num{top:16px;right:20px}
   .slide-src{position:static;margin-top:18px;border-top:1px solid var(--line)}
 }
 
-/* PRINT */
 @media print{
   @page{size:A4 landscape;margin:0}
   html,body{background:#fff !important;overflow:visible !important;height:auto}
@@ -398,81 +364,76 @@ body{
 
 <div class="deck" id="deck">
 
-<!-- ════════════════════════════════════
-     01 · CAPA
-     ════════════════════════════════════ -->
+<!-- 01 · CAPA -->
 <section class="slide s-cover active" data-title="Capa" data-ato="I">
-  <div class="cover-meta-top">
+  <div class="c-top">
     <span class="brand">Redes Ceará</span>
-    <span>Resumo Executivo · 21 slides</span>
+    <span>Resumo Executivo · 20 slides</span>
   </div>
-  <div class="cover-body">
-    <h1>Diagnóstico territorial em<br><span class="city">Fortaleza.</span></h1>
-    <p class="lead">A análise cobre <strong>dois territórios, treze bairros e cerca de 345 mil habitantes</strong>. O recorte permite identificar onde a articulação da Redes Ceará tem maior potencial de adicionalidade junto à população em situação de vulnerabilidade.</p>
-  </div>
-  <div class="cover-side">
-    <div class="num-grid">
-      <div class="item"><span class="v">2</span><span class="l">Territórios</span></div>
-      <div class="item"><span class="v">13</span><span class="l">Bairros</span></div>
-      <div class="item"><span class="v">345<small>mil</small></span><span class="l">Habitantes</span></div>
-      <div class="item"><span class="v">5</span><span class="l">Atos da apresentação</span></div>
+  <div class="c-mid">
+    <div class="c-head">
+      <h1><span class="ln">Diagnóstico</span><span class="ln">territorial em</span><span class="ln city">Fortaleza<span class="accent">.</span></span></h1>
+      <p class="lead">A análise cobre <strong>dois territórios, treze bairros e cerca de 345 mil habitantes</strong>. O recorte permite identificar onde a articulação da Redes Ceará apresenta maior potencial de adicionalidade junto à população em situação de vulnerabilidade.</p>
+    </div>
+    <div class="c-side">
+      <div class="it"><div class="v">2</div><div class="l">Territórios</div></div>
+      <div class="it"><div class="v">13</div><div class="l">Bairros</div></div>
+      <div class="it"><div class="v">345<small>mil</small></div><div class="l">Habitantes</div></div>
+      <div class="it"><div class="v">5</div><div class="l">Atos da apresentação</div></div>
     </div>
   </div>
-  <div class="cover-meta-bottom">
-    <span><strong>Período</strong>2024 – 2025</span>
+  <div class="c-bot">
+    <span><strong>Período</strong>2024 / 2025</span>
     <span><strong>Fontes</strong>IBGE · MDS · IPEA · Receita Federal</span>
     <span><strong>Elaboração</strong>Lucas Fernandes</span>
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     02 · A PERGUNTA ORIENTADORA
-     ════════════════════════════════════ -->
+<!-- 02 · PERGUNTA -->
 <section class="slide s-question" data-title="A pergunta orientadora" data-ato="I">
-  <span class="slide-num">02 / 21</span>
+  <span class="slide-num">02 / 20</span>
   <span class="lab">Pergunta orientadora</span>
   <h2>Onde a Redes Ceará pode <span class="green">adicionar valor</span> nos territórios em que atua?</h2>
-  <p class="qlead">A resposta exige cruzar pobreza, segurança alimentar, infraestrutura e a base institucional já presente nos territórios. <strong>Cinco atos</strong> compõem este diagnóstico — do contexto demográfico à síntese de adicionalidade potencial.</p>
+  <p class="qlead">A resposta exige cruzar pobreza, segurança alimentar, infraestrutura e a base institucional já presente nos territórios. <strong>Cinco atos</strong> compõem este diagnóstico, do contexto demográfico à síntese de adicionalidade potencial.</p>
   <div class="acts">
     <span class="chip"><b>I</b> O cenário</span>
     <span class="chip"><b>II</b> Quem mora aqui</span>
     <span class="chip"><b>III</b> A forma da vulnerabilidade</span>
     <span class="chip"><b>IV</b> O tecido que existe</span>
-    <span class="chip"><b>V</b> Onde a Redes Ceará pode adicionar valor</span>
+    <span class="chip"><b>V</b> Onde adicionar valor</span>
   </div>
   <div class="slide-src">
-    <span class="src-fonte">Recorte do diagnóstico · Termo de Referência da Redes Ceará</span>
+    <span class="src-fonte">Recorte do diagnóstico definido no Termo de Referência</span>
     <a class="src-link" href="fortaleza.html">Painel de Fortaleza →</a>
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     03 · CONTEXTO TERRITORIAL
-     ════════════════════════════════════ -->
+<!-- 03 · CONTEXTO -->
 <section class="slide s-context" data-title="Contexto territorial" data-ato="I">
-  <span class="slide-num">03 / 21</span>
+  <span class="slide-num">03 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">01</span><span class="e-sep">·</span><span class="e-tag">Ato I</span><span class="e-sep">·</span>Onde estamos olhando</span>
-    <h2>Dois territórios, treze bairros, <span class="green">345 mil habitantes</span>.</h2>
+    <span class="tag-line"><span class="t-num">01</span><span class="t-sep">·</span><span class="t-ato">Ato I</span><span class="t-sep">·</span>Onde estamos olhando</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:24px">Dois territórios, treze bairros, <span class="green">345 mil habitantes</span>.</h2>
   </header>
   <div class="ctx-body">
     <div class="ctx-list">
       <div class="ctx-item">
         <div class="v">216<small>mil</small></div>
-        <p class="l">habitantes no <strong>Grande Bom Jardim</strong> — cinco bairros no oeste de Fortaleza</p>
+        <p class="l">habitantes no <strong>Grande Bom Jardim</strong>, distribuídos em cinco bairros no oeste de Fortaleza.</p>
       </div>
       <div class="ctx-item">
         <div class="v">129<small>mil</small></div>
-        <p class="l">habitantes no <strong>Grande Mucuripe</strong> — oito bairros entre o centro e a costa leste</p>
+        <p class="l">habitantes no <strong>Grande Mucuripe</strong>, distribuídos em oito bairros entre o centro e a costa leste.</p>
       </div>
       <div class="ctx-item">
         <div class="v">108</div>
-        <p class="l">demais bairros de Fortaleza, disponíveis para comparação no painel interativo</p>
+        <p class="l">demais bairros de Fortaleza, disponíveis para comparação no painel interativo.</p>
       </div>
     </div>
     <div class="map-area">
       <svg width="460" height="340" viewBox="0 0 460 340" fill="none">
-        <ellipse cx="230" cy="180" rx="218" ry="142" fill="rgba(11,43,68,.03)" stroke="rgba(11,43,68,.08)" stroke-width="1"/>
+        <ellipse cx="230" cy="180" rx="218" ry="142" fill="rgba(10,37,64,.03)" stroke="rgba(10,37,64,.08)" stroke-width="1"/>
         <path d="M 50 140 Q 85 118 130 122 Q 175 130 188 158 Q 192 192 162 212 Q 125 230 92 215 Q 50 192 50 140 Z" fill="rgba(30,64,175,.10)" stroke="#1E40AF" stroke-width="1.4"/>
         <path d="M 270 108 Q 335 112 376 138 Q 410 165 400 210 Q 380 252 322 248 Q 258 244 248 208 Q 244 156 270 108 Z" fill="rgba(11,79,168,.10)" stroke="#0B4FA8" stroke-width="1.4"/>
         <g fill="#1E40AF"><circle cx="100" cy="160" r="4"/><circle cx="125" cy="148" r="4"/><circle cx="143" cy="175" r="4"/><circle cx="110" cy="192" r="4"/><circle cx="155" cy="192" r="4"/></g>
@@ -492,16 +453,19 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     04 · ATO II · QUEM MORA AQUI
-     ════════════════════════════════════ -->
-<section class="slide s-opener s-navy" data-title="Ato II — Quem mora aqui" data-ato="II">
-  <span class="slide-num">04 / 21</span>
-  <span class="o-eye">Resumo Executivo · Fortaleza</span>
-  <div class="ato-line"><span class="ato-word">Ato Segundo</span><hr class="rule" style="margin:0 0 0 4px"></div>
-  <span class="ato-num">02</span>
-  <h1>Quem mora aqui.</h1>
-  <p class="turn">Escala humana, perfil etário e composição racial — os contornos demográficos dos dois territórios.</p>
+<!-- 04 · ATO II · QUEM MORA AQUI -->
+<section class="slide s-opener" data-title="Ato II · Quem mora aqui" data-ato="II">
+  <span class="slide-num" style="color:#9CA8B6">04 / 20</span>
+  <div class="o-strap">
+    <div class="o-num">02</div>
+    <div class="o-stack">
+      <span class="o-ato">Ato Segundo</span>
+      <span class="o-title">Quem mora aqui.</span>
+    </div>
+  </div>
+  <div class="o-after">
+    <p class="turn">Escala humana, perfil etário e composição racial. Os contornos demográficos dos dois territórios.</p>
+  </div>
   <div class="ato-footer">
     <span>Resumo Executivo · Fortaleza</span>
     <div class="crumbs">
@@ -510,42 +474,14 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     05 · HERO 345 MIL
-     ════════════════════════════════════ -->
-<section class="slide s-hero s-cream" data-title="345 mil habitantes" data-ato="II">
-  <span class="slide-num">05 / 21</span>
+<!-- 05 · DEMOGRAFIA (action + chart) -->
+<section class="slide s-action" data-title="Maioria mulher e jovem nos dois territórios" data-ato="II">
+  <span class="slide-num">05 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">02</span><span class="e-sep">·</span><span class="e-tag">Ato II</span><span class="e-sep">·</span>Escala humana</span>
-  </header>
-  <div class="hero-body">
-    <div>
-      <span class="big-num">345<span class="unit">mil habitantes</span></span>
-    </div>
-    <div>
-      <p class="read">A população dos treze bairros acompanhados pela Redes Ceará é <strong>equivalente à de uma cidade média brasileira</strong>. Cerca de <span class="em">62%</span> dessa população vive no Grande Bom Jardim.</p>
-      <div class="micro">
-        <div class="item"><div class="v">216 mil</div><div class="l">Grande Bom Jardim</div></div>
-        <div class="item"><div class="v">129 mil</div><div class="l">Grande Mucuripe</div></div>
-        <div class="item"><div class="v">13</div><div class="l">Bairros</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="slide-src">
-    <span class="src-fonte">IBGE · Censo Demográfico, 2022</span>
-    <a class="src-link" href="fortaleza.html#section-demo">Ver perfil populacional →</a>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════
-     06 · ACTION TITLE + CHART · Demografia
-     ════════════════════════════════════ -->
-<section class="slide s-action s-cream" data-title="Maioria mulher, jovem e não-branca" data-ato="II">
-  <span class="slide-num">06 / 21</span>
-  <header>
-    <span class="eyebrow"><span class="e-num">03</span><span class="e-sep">·</span><span class="e-tag">Ato II</span><span class="e-sep">·</span>Perfil demográfico</span>
-    <h2>Maioria mulher e jovem nos dois territórios — a diferença mais visível está na composição racial.</h2>
-    <p class="lead">A proporção de mulheres na população total é semelhante nos dois territórios (cerca de 52%). A chefia familiar feminina, levemente mais alta no Grande Bom Jardim, indica peso desse grupo nos arranjos domiciliares. A população não-branca pesa significativamente mais no Grande Bom Jardim.</p>
+    <span class="tag-line"><span class="t-num">02</span><span class="t-sep">·</span><span class="t-ato">Ato II</span><span class="t-sep">·</span>Perfil demográfico</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">Maioria mulher e jovem nos dois territórios. A diferença mais visível está na <span class="green">composição racial</span>.</h2>
+    <p class="lead">A proporção de mulheres na população total é semelhante nos dois territórios (cerca de 52%). A chefia familiar feminina, ligeiramente mais alta no Grande Bom Jardim, indica peso desse grupo nos arranjos domiciliares. A população não-branca pesa significativamente mais no Grande Bom Jardim.</p>
   </header>
   <div class="chart-wrap"><canvas id="ch-demo"></canvas></div>
   <div class="slide-src">
@@ -554,28 +490,29 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     07 · QUOTE
-     ════════════════════════════════════ -->
-<section class="slide s-quote s-navy" data-title="Voz do Policy Brief" data-ato="II">
-  <span class="slide-num">07 / 21</span>
+<!-- 06 · QUOTE -->
+<section class="slide s-quote" data-title="Voz do Policy Brief" data-ato="II">
+  <span class="slide-num">06 / 20</span>
   <span class="q-eye">Voz do Policy Brief</span>
-  <blockquote>"Inclusão produtiva sustentável depende, sobretudo, de <strong>acesso estável à demanda</strong>. Não basta apoiar alguém para produzir — é preciso que exista quem compre, de forma estável e previsível."</blockquote>
+  <blockquote>"Inclusão produtiva sustentável depende, sobretudo, de <strong>acesso estável à demanda</strong>. Não basta apoiar alguém para produzir, é preciso que exista quem compre, de forma estável e previsível."</blockquote>
   <cite>
-    <span class="cite-text">Policy Brief · Redes Ceará<span class="cite-source">A partir de Card, Kluve &amp; Weber (2018) e Kline &amp; Moretti (2014)</span></span>
+    <span>Policy Brief · Redes Ceará<span class="cite-source">A partir de Card, Kluve &amp; Weber (2018) e Kline &amp; Moretti (2014)</span></span>
   </cite>
 </section>
 
-<!-- ════════════════════════════════════
-     08 · ATO III · A FORMA DA VULNERABILIDADE
-     ════════════════════════════════════ -->
-<section class="slide s-opener s-navy" data-title="Ato III — A forma da vulnerabilidade" data-ato="III">
-  <span class="slide-num">08 / 21</span>
-  <span class="o-eye">Resumo Executivo · Fortaleza</span>
-  <div class="ato-line"><span class="ato-word">Ato Terceiro</span><hr class="rule" style="margin:0 0 0 4px"></div>
-  <span class="ato-num">03</span>
-  <h1>A forma da vulnerabilidade.</h1>
-  <p class="turn">Pobreza, segurança alimentar, infraestrutura e violência. Onde os indicadores se entrelaçam, e em que intensidade.</p>
+<!-- 07 · ATO III · A FORMA DA VULNERABILIDADE -->
+<section class="slide s-opener" data-title="Ato III · A forma da vulnerabilidade" data-ato="III">
+  <span class="slide-num" style="color:#9CA8B6">07 / 20</span>
+  <div class="o-strap">
+    <div class="o-num">03</div>
+    <div class="o-stack">
+      <span class="o-ato">Ato Terceiro</span>
+      <span class="o-title">A forma da vulnerabilidade.</span>
+    </div>
+  </div>
+  <div class="o-after">
+    <p class="turn">Pobreza, segurança alimentar, infraestrutura e violência. Onde os indicadores se entrelaçam, e em que intensidade.</p>
+  </div>
   <div class="ato-footer">
     <span>Resumo Executivo · Fortaleza</span>
     <div class="crumbs">
@@ -584,15 +521,14 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     09 · ACTION + CHART · Renda
-     ════════════════════════════════════ -->
-<section class="slide s-action s-cream" data-title="Renda no Grande Bom Jardim é um terço da renda no Mucuripe" data-ato="III">
-  <span class="slide-num">09 / 21</span>
+<!-- 08 · RENDA (action + chart) -->
+<section class="slide s-action" data-title="Renda no Grande Bom Jardim é um terço da renda no Grande Mucuripe" data-ato="III">
+  <span class="slide-num">08 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">04</span><span class="e-sep">·</span><span class="e-tag">Ato III</span><span class="e-sep">·</span>Renda do trabalho</span>
-    <h2>A renda média no <span class="blue">Grande Bom Jardim</span> corresponde a <span class="green">um terço</span> da renda média no <span class="blue">Grande Mucuripe</span>.</h2>
-    <p class="lead">Renda média do responsável pelo domicílio, em R$ por mês. A diferença é estrutural — não se explica apenas pelo desemprego, mas pela composição setorial e pela escala dos vínculos de trabalho disponíveis em cada território.</p>
+    <span class="tag-line"><span class="t-num">03</span><span class="t-sep">·</span><span class="t-ato">Ato III</span><span class="t-sep">·</span>Renda do trabalho</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">A renda média no Grande Bom Jardim corresponde a <span class="green">um terço</span> da renda média no Grande Mucuripe.</h2>
+    <p class="lead">Renda média do responsável pelo domicílio, em R$ por mês. A diferença é estrutural. Não se explica apenas pelo desemprego, mas pela composição setorial e pela escala dos vínculos de trabalho disponíveis em cada território.</p>
   </header>
   <div class="chart-wrap"><canvas id="ch-renda"></canvas></div>
   <div class="slide-src">
@@ -601,19 +537,18 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     10 · SPLIT · Segurança alimentar
-     ════════════════════════════════════ -->
-<section class="slide s-split s-cream" data-title="Segurança alimentar" data-ato="III">
-  <span class="slide-num">10 / 21</span>
+<!-- 09 · SEGURANÇA ALIMENTAR (split) -->
+<section class="slide s-split" data-title="Segurança alimentar" data-ato="III">
+  <span class="slide-num">09 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">05</span><span class="e-sep">·</span><span class="e-tag">Ato III</span><span class="e-sep">·</span>Segurança alimentar</span>
-    <h2>1.343 estabelecimentos alimentícios — distribuídos de forma desigual entre os bairros.</h2>
+    <span class="tag-line"><span class="t-num">04</span><span class="t-sep">·</span><span class="t-ato">Ato III</span><span class="t-sep">·</span>Segurança alimentar</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">1.343 estabelecimentos alimentícios, distribuídos de forma <span class="green">desigual</span> entre os bairros.</h2>
   </header>
   <div class="split-body">
     <div class="col-text">
       <p>Não há indicador direto de insegurança alimentar por bairro. O cruzamento entre <strong>inscrição no CadÚnico, extrema pobreza e densidade de estabelecimentos formais</strong> sinaliza onde o problema tende a ser mais agudo.</p>
-      <p>No <strong>Grande Bom Jardim</strong>, todos os cinco bairros apresentam combinação de alta vulnerabilidade e baixa densidade alimentícia formal. No <strong>Grande Mucuripe</strong>, três dos oito bairros — Cais do Porto, Vicente Pinzón e Praia do Futuro II — replicam o padrão.</p>
+      <p>No <strong>Grande Bom Jardim</strong>, todos os cinco bairros apresentam combinação de alta vulnerabilidade e baixa densidade alimentícia formal. No <strong>Grande Mucuripe</strong>, três dos oito bairros (Cais do Porto, Vicente Pinzón e Praia do Futuro II) replicam o padrão.</p>
       <div class="pullnum">
         <b>1.343</b>
         <span>estabelecimentos alimentícios nos treze bairros acompanhados (617 no Grande Bom Jardim e 726 no Grande Mucuripe), segundo a Receita Federal.</span>
@@ -626,33 +561,33 @@ body{
           <rect x="20" y="20" width="50" height="50" fill="#DC2626" rx="2" opacity=".85"/>
           <rect x="80" y="20" width="50" height="50" fill="#DC2626" rx="2" opacity=".65"/>
           <rect x="140" y="20" width="50" height="50" fill="#F59E0B" rx="2" opacity=".7"/>
-          <rect x="200" y="20" width="50" height="50" fill="#059669" rx="2" opacity=".45"/>
-          <rect x="260" y="20" width="50" height="50" fill="#059669" rx="2" opacity=".55"/>
+          <rect x="200" y="20" width="50" height="50" fill="#0E8C5D" rx="2" opacity=".45"/>
+          <rect x="260" y="20" width="50" height="50" fill="#0E8C5D" rx="2" opacity=".55"/>
           <rect x="20" y="80" width="50" height="50" fill="#DC2626" rx="2" opacity=".95"/>
           <rect x="80" y="80" width="50" height="50" fill="#DC2626" rx="2" opacity=".55"/>
           <rect x="140" y="80" width="50" height="50" fill="#F59E0B" rx="2" opacity=".6"/>
-          <rect x="200" y="80" width="50" height="50" fill="#059669" rx="2" opacity=".6"/>
+          <rect x="200" y="80" width="50" height="50" fill="#0E8C5D" rx="2" opacity=".6"/>
           <rect x="260" y="80" width="50" height="50" fill="#10B981" rx="2" opacity=".65"/>
           <rect x="20" y="140" width="50" height="50" fill="#F59E0B" rx="2" opacity=".55"/>
           <rect x="80" y="140" width="50" height="50" fill="#F59E0B" rx="2" opacity=".45"/>
-          <rect x="140" y="140" width="50" height="50" fill="#059669" rx="2" opacity=".55"/>
+          <rect x="140" y="140" width="50" height="50" fill="#0E8C5D" rx="2" opacity=".55"/>
           <rect x="200" y="140" width="50" height="50" fill="#10B981" rx="2" opacity=".55"/>
           <rect x="260" y="140" width="50" height="50" fill="#10B981" rx="2" opacity=".80"/>
         </g>
-        <g font-family="Inter" font-size="10" font-weight="700" fill="#0B2B44" letter-spacing="1.5">
-          <text x="20" y="216">GRANDE BOM JARDIM</text>
-          <text x="200" y="216">GRANDE MUCURIPE</text>
+        <g font-family="Inter" font-size="9.5" font-weight="700" fill="#0A2540" letter-spacing="1.5">
+          <text x="20" y="214">GRANDE BOM JARDIM</text>
+          <text x="200" y="214">GRANDE MUCURIPE</text>
         </g>
         <g font-family="Inter" font-size="10" font-weight="700">
           <rect x="20" y="240" width="10" height="10" fill="#DC2626" opacity=".8"/>
-          <text x="36" y="249" fill="#0B2B44">Alto risco</text>
+          <text x="36" y="249" fill="#0A2540">Alto risco</text>
           <rect x="120" y="240" width="10" height="10" fill="#F59E0B" opacity=".6"/>
-          <text x="136" y="249" fill="#0B2B44">Médio</text>
+          <text x="136" y="249" fill="#0A2540">Médio</text>
           <rect x="200" y="240" width="10" height="10" fill="#10B981" opacity=".6"/>
-          <text x="216" y="249" fill="#0B2B44">Favorável</text>
+          <text x="216" y="249" fill="#0A2540">Favorável</text>
         </g>
-        <text x="20" y="282" font-family="Inter" font-size="10.5" fill="#7E8A9A" font-weight="500">Cruzamento CadÚnico × extrema pobreza ×</text>
-        <text x="20" y="298" font-family="Inter" font-size="10.5" fill="#7E8A9A" font-weight="500">densidade alimentícia formal por bairro</text>
+        <text x="20" y="282" font-family="Inter" font-size="10.5" fill="#6B7A8A" font-weight="500">Cruzamento CadÚnico × extrema pobreza ×</text>
+        <text x="20" y="298" font-family="Inter" font-size="10.5" fill="#6B7A8A" font-weight="500">densidade alimentícia formal por bairro</text>
       </svg>
     </div>
   </div>
@@ -662,15 +597,14 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     11 · ACTION + CHART · Saneamento
-     ════════════════════════════════════ -->
-<section class="slide s-action s-cream" data-title="Apenas 43% dos domicílios do Grande Bom Jardim têm esgoto" data-ato="III">
-  <span class="slide-num">11 / 21</span>
+<!-- 10 · SANEAMENTO (action + chart) -->
+<section class="slide s-action" data-title="Apenas 43% dos domicílios do Grande Bom Jardim têm esgoto" data-ato="III">
+  <span class="slide-num">10 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">06</span><span class="e-sep">·</span><span class="e-tag">Ato III</span><span class="e-sep">·</span>Saneamento básico</span>
-    <h2>Apenas <span class="green">43% dos domicílios</span> do Grande Bom Jardim contam com coleta de esgoto.</h2>
-    <p class="lead">Cobertura dos serviços básicos de saneamento, em % dos domicílios. Abastecimento de água e coleta de lixo já chegam à maioria. O esgoto é o gargalo persistente — afeta diretamente saúde, mortalidade infantil e a viabilidade de pequenos negócios alimentícios.</p>
+    <span class="tag-line"><span class="t-num">05</span><span class="t-sep">·</span><span class="t-ato">Ato III</span><span class="t-sep">·</span>Saneamento básico</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">Apenas <span class="green">43% dos domicílios</span> do Grande Bom Jardim contam com coleta de esgoto.</h2>
+    <p class="lead">Cobertura dos serviços básicos de saneamento, em % dos domicílios. Abastecimento de água e coleta de lixo já chegam à maioria. O esgoto é o gargalo persistente, afetando diretamente saúde, mortalidade infantil e a viabilidade de pequenos negócios alimentícios.</p>
   </header>
   <div class="chart-wrap"><canvas id="ch-sanit"></canvas></div>
   <div class="slide-src">
@@ -679,17 +613,16 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     12 · HERO · Violência
-     ════════════════════════════════════ -->
-<section class="slide s-hero s-navy" data-title="69,7 homicídios por 100 mil" data-ato="III">
-  <span class="slide-num">12 / 21</span>
-  <header>
-    <span class="eyebrow"><span class="e-num">07</span><span class="e-sep">·</span><span class="e-tag">Ato III</span><span class="e-sep">·</span>Violência letal</span>
+<!-- 11 · VIOLÊNCIA (hero) -->
+<section class="slide s-hero" data-title="69,7 homicídios por 100 mil habitantes" data-ato="III">
+  <span class="slide-num">11 / 20</span>
+  <header style="display:block;margin-bottom:0">
+    <span class="tag-line"><span class="t-num">06</span><span class="t-sep">·</span><span class="t-ato">Ato III</span><span class="t-sep">·</span>Violência letal</span>
+    <hr class="title-rule">
   </header>
   <div class="hero-body">
     <div>
-      <span class="big-num">69,7<span class="unit">homicídios por 100 mil hab.</span></span>
+      <span class="big-num">69,7<span class="unit">homicídios por 100 mil habitantes</span></span>
     </div>
     <div>
       <p class="read">A taxa de homicídios no Grande Bom Jardim corresponde a <span class="em">cerca de cinco vezes</span> o patamar recomendado pela Organização Mundial da Saúde. A violência letal é <strong>significativamente mais alta</strong> que no Grande Mucuripe.</p>
@@ -706,16 +639,19 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     13 · ATO IV · O TECIDO QUE EXISTE
-     ════════════════════════════════════ -->
-<section class="slide s-opener s-navy" data-title="Ato IV — O tecido que existe" data-ato="IV">
-  <span class="slide-num">13 / 21</span>
-  <span class="o-eye">Resumo Executivo · Fortaleza</span>
-  <div class="ato-line"><span class="ato-word">Ato Quarto</span><hr class="rule" style="margin:0 0 0 4px"></div>
-  <span class="ato-num">04</span>
-  <h1>O tecido que existe.</h1>
-  <p class="turn">Empresas, organizações da sociedade civil e equipamentos públicos. O que está instalado nos dois territórios.</p>
+<!-- 12 · ATO IV · O TECIDO QUE EXISTE -->
+<section class="slide s-opener" data-title="Ato IV · O tecido que existe" data-ato="IV">
+  <span class="slide-num" style="color:#9CA8B6">12 / 20</span>
+  <div class="o-strap">
+    <div class="o-num">04</div>
+    <div class="o-stack">
+      <span class="o-ato">Ato Quarto</span>
+      <span class="o-title">O tecido que existe.</span>
+    </div>
+  </div>
+  <div class="o-after">
+    <p class="turn">Empresas, organizações da sociedade civil e equipamentos públicos. O que está instalado nos dois territórios.</p>
+  </div>
   <div class="ato-footer">
     <span>Resumo Executivo · Fortaleza</span>
     <div class="crumbs">
@@ -724,15 +660,14 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     14 · ACTION + CHART · MEI
-     ════════════════════════════════════ -->
-<section class="slide s-action s-cream" data-title="63% das empresas do Grande Bom Jardim são microempreendedores" data-ato="IV">
-  <span class="slide-num">14 / 21</span>
+<!-- 13 · MEI (action + chart) -->
+<section class="slide s-action" data-title="63% das empresas do Grande Bom Jardim são microempreendedores" data-ato="IV">
+  <span class="slide-num">13 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">08</span><span class="e-sep">·</span><span class="e-tag">Ato IV</span><span class="e-sep">·</span>Tecido econômico</span>
-    <h2>No Grande Bom Jardim, <span class="green">63% das empresas formais</span> são microempreendedores individuais.</h2>
-    <p class="lead">Participação dos microempreendedores individuais no total de empresas formais ativas. A concentração elevada no Grande Bom Jardim indica predominância de atividades de baixa escala, com renda instável — em contraste com a composição mais diversificada do Grande Mucuripe.</p>
+    <span class="tag-line"><span class="t-num">07</span><span class="t-sep">·</span><span class="t-ato">Ato IV</span><span class="t-sep">·</span>Tecido econômico</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">No Grande Bom Jardim, <span class="green">63% das empresas formais</span> são microempreendedores individuais.</h2>
+    <p class="lead">Participação dos microempreendedores individuais no total de empresas formais ativas. A concentração elevada no Grande Bom Jardim indica predominância de atividades de baixa escala, com renda instável, em contraste com a composição mais diversificada do Grande Mucuripe.</p>
   </header>
   <div class="chart-wrap"><canvas id="ch-mei"></canvas></div>
   <div class="slide-src">
@@ -741,14 +676,13 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     15 · ACTION + CHART · OSCs
-     ════════════════════════════════════ -->
-<section class="slide s-action s-cream" data-title="Grande Mucuripe tem 4,4 vezes mais OSCs por habitante" data-ato="IV">
-  <span class="slide-num">15 / 21</span>
+<!-- 14 · OSCs (action + chart) -->
+<section class="slide s-action" data-title="Grande Mucuripe tem 4,4 vezes mais OSCs por habitante" data-ato="IV">
+  <span class="slide-num">14 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">09</span><span class="e-sep">·</span><span class="e-tag">Ato IV</span><span class="e-sep">·</span>Sociedade civil organizada</span>
-    <h2>O Grande Mucuripe concentra <span class="green">4,4 vezes mais</span> organizações da sociedade civil por habitante.</h2>
+    <span class="tag-line"><span class="t-num">08</span><span class="t-sep">·</span><span class="t-ato">Ato IV</span><span class="t-sep">·</span>Sociedade civil organizada</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">O Grande Mucuripe concentra <span class="green">4,4 vezes mais</span> organizações da sociedade civil por habitante.</h2>
     <p class="lead">Densidade de organizações da sociedade civil ativas, por 10 mil habitantes. A diferença na densidade institucional aponta para configurações distintas de articulação local nos dois territórios.</p>
   </header>
   <div class="chart-wrap"><canvas id="ch-osc"></canvas></div>
@@ -758,21 +692,20 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     16 · SPLIT · Setor alimentício
-     ════════════════════════════════════ -->
-<section class="slide s-split s-cream" data-title="Composição do setor alimentício" data-ato="IV">
-  <span class="slide-num">16 / 21</span>
+<!-- 15 · SETOR ALIMENTÍCIO (split) -->
+<section class="slide s-split" data-title="Composição do setor alimentício" data-ato="IV">
+  <span class="slide-num">15 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">10</span><span class="e-sep">·</span><span class="e-tag">Ato IV</span><span class="e-sep">·</span>Setor alimentício</span>
-    <h2>Restaurantes e lanchonetes representam <span class="green">78%</span> do setor alimentício formal nos treze bairros.</h2>
+    <span class="tag-line"><span class="t-num">09</span><span class="t-sep">·</span><span class="t-ato">Ato IV</span><span class="t-sep">·</span>Setor alimentício</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">Restaurantes e lanchonetes representam <span class="green">78%</span> do setor alimentício formal nos treze bairros.</h2>
   </header>
   <div class="split-body">
     <div class="col-text">
       <p>O setor alimentício nos territórios acompanhados conta com <strong>1.343 estabelecimentos ativos</strong>, segundo o cadastro da Receita Federal. A distribuição revela alta capilaridade da pequena restauração e baixa presença de âncoras de varejo.</p>
       <div class="pullnum">
         <b>78%</b>
-        <span>são restaurantes e lanchonetes — capilaridade alta, escala baixa. Esses estabelecimentos são potenciais nós de uma cadeia local de alimentação.</span>
+        <span>são restaurantes e lanchonetes. Capilaridade alta, escala baixa. Esses estabelecimentos são potenciais nós de uma cadeia local de alimentação.</span>
       </div>
       <div class="pullnum">
         <b>3%</b>
@@ -783,16 +716,16 @@ body{
     <div style="display:flex;align-items:center;justify-content:center">
       <svg width="380" height="320" viewBox="0 0 380 320" fill="none">
         <g transform="translate(190 160)">
-          <circle r="100" fill="none" stroke="#0B2B44" stroke-width="40" stroke-dasharray="490 628" stroke-dashoffset="0" transform="rotate(-90)"/>
-          <circle r="100" fill="none" stroke="#059669" stroke-width="40" stroke-dasharray="100 628" stroke-dashoffset="-490" transform="rotate(-90)"/>
+          <circle r="100" fill="none" stroke="#0A2540" stroke-width="40" stroke-dasharray="490 628" stroke-dashoffset="0" transform="rotate(-90)"/>
+          <circle r="100" fill="none" stroke="#0E8C5D" stroke-width="40" stroke-dasharray="100 628" stroke-dashoffset="-490" transform="rotate(-90)"/>
           <circle r="100" fill="none" stroke="#1E40AF" stroke-width="40" stroke-dasharray="19 628" stroke-dashoffset="-590" transform="rotate(-90)"/>
           <circle r="100" fill="none" stroke="#0B4FA8" stroke-width="40" stroke-dasharray="19 628" stroke-dashoffset="-609" transform="rotate(-90)"/>
-          <text y="0" text-anchor="middle" fill="#0B2B44" font-family="Inter" font-size="34" font-weight="900" letter-spacing="-1">1.343</text>
-          <text y="22" text-anchor="middle" fill="#7E8A9A" font-family="Inter" font-size="9" font-weight="700" letter-spacing="2">ESTABELECIMENTOS</text>
+          <text y="0" text-anchor="middle" fill="#0A2540" font-family="Inter" font-size="34" font-weight="900" letter-spacing="-1">1.343</text>
+          <text y="22" text-anchor="middle" fill="#6B7A8A" font-family="Inter" font-size="9" font-weight="700" letter-spacing="2">ESTABELECIMENTOS</text>
         </g>
-        <g font-family="Inter" font-size="10" font-weight="600" fill="#0B2B44">
-          <rect x="20" y="288" width="10" height="10" fill="#0B2B44"/><text x="36" y="297">Restaurantes 78%</text>
-          <rect x="160" y="288" width="10" height="10" fill="#059669"/><text x="176" y="297">Hortifruti 16%</text>
+        <g font-family="Inter" font-size="10" font-weight="600" fill="#0A2540">
+          <rect x="20" y="288" width="10" height="10" fill="#0A2540"/><text x="36" y="297">Restaurantes 78%</text>
+          <rect x="160" y="288" width="10" height="10" fill="#0E8C5D"/><text x="176" y="297">Hortifruti 16%</text>
           <rect x="270" y="288" width="10" height="10" fill="#1E40AF"/><text x="286" y="297">Outros 6%</text>
         </g>
       </svg>
@@ -804,16 +737,19 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     17 · ATO V · ONDE A REDES CEARÁ
-     ════════════════════════════════════ -->
-<section class="slide s-opener s-navy" data-title="Ato V — Onde a Redes Ceará pode adicionar valor" data-ato="V">
-  <span class="slide-num">17 / 21</span>
-  <span class="o-eye">Resumo Executivo · Fortaleza</span>
-  <div class="ato-line"><span class="ato-word">Ato Quinto</span><hr class="rule" style="margin:0 0 0 4px"></div>
-  <span class="ato-num">05</span>
-  <h1>Onde a Redes Ceará pode adicionar valor.</h1>
-  <p class="turn">A configuração distinta dos dois territórios sugere caminhos diferentes para a adicionalidade da articulação coletiva.</p>
+<!-- 16 · ATO V · ONDE A REDES CEARÁ -->
+<section class="slide s-opener" data-title="Ato V · Onde a Redes Ceará pode adicionar valor" data-ato="V">
+  <span class="slide-num" style="color:#9CA8B6">16 / 20</span>
+  <div class="o-strap">
+    <div class="o-num">05</div>
+    <div class="o-stack">
+      <span class="o-ato">Ato Quinto</span>
+      <span class="o-title">Onde a Redes Ceará pode adicionar valor.</span>
+    </div>
+  </div>
+  <div class="o-after">
+    <p class="turn">A configuração distinta dos dois territórios sugere caminhos diferentes para a adicionalidade da articulação coletiva.</p>
+  </div>
   <div class="ato-footer">
     <span>Resumo Executivo · Fortaleza</span>
     <div class="crumbs">
@@ -822,20 +758,19 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     18 · TERRITORY CARD · GBJ
-     ════════════════════════════════════ -->
-<section class="slide s-terr s-cream" data-title="Grande Bom Jardim — síntese" data-ato="V">
-  <span class="slide-num">18 / 21</span>
+<!-- 17 · Grande Bom Jardim -->
+<section class="slide s-terr" data-title="Grande Bom Jardim · síntese" data-ato="V">
+  <span class="slide-num">17 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">11</span><span class="e-sep">·</span><span class="e-tag">Ato V</span><span class="e-sep">·</span>Síntese territorial</span>
-    <h2>Grande Bom Jardim — alta vulnerabilidade, baixa densidade institucional.</h2>
+    <span class="tag-line"><span class="t-num">10</span><span class="t-sep">·</span><span class="t-ato">Ato V</span><span class="t-sep">·</span>Síntese territorial</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">Grande Bom Jardim. Alta vulnerabilidade e baixa <span class="green">densidade institucional</span>.</h2>
   </header>
   <div class="terr-frame">
     <div>
       <div class="terr-name">Grande Bom Jardim · 5 bairros</div>
       <h3>Vulnerabilidade contínua, em escala.</h3>
-      <p class="desc">A pobreza no Grande Bom Jardim é <strong>ampla e relativamente homogênea</strong> entre os cinco bairros que compõem o território. A rede institucional — organizações da sociedade civil, equipamentos públicos, presença empresarial — é menos densa que no Grande Mucuripe. A configuração sugere potencial para programas que articulem proteção social, organizações locais e sistemas de qualificação em escala territorial.</p>
+      <p class="desc">A pobreza no Grande Bom Jardim é <strong>ampla e relativamente homogênea</strong> entre os cinco bairros que compõem o território. A rede institucional (organizações da sociedade civil, equipamentos públicos, presença empresarial) é menos densa do que no Grande Mucuripe. A configuração sugere potencial para programas que articulem proteção social, organizações locais e sistemas de qualificação em escala territorial.</p>
     </div>
     <div class="stats-grid">
       <div class="st"><b>216 mil</b><span>Habitantes</span></div>
@@ -852,14 +787,13 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     19 · TERRITORY CARD · GM
-     ════════════════════════════════════ -->
-<section class="slide s-terr s-cream" data-title="Grande Mucuripe — síntese" data-ato="V">
-  <span class="slide-num">19 / 21</span>
+<!-- 18 · Grande Mucuripe -->
+<section class="slide s-terr" data-title="Grande Mucuripe · síntese" data-ato="V">
+  <span class="slide-num">18 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">12</span><span class="e-sep">·</span><span class="e-tag">Ato V</span><span class="e-sep">·</span>Síntese territorial</span>
-    <h2>Grande Mucuripe — heterogêneo, com rede institucional densa.</h2>
+    <span class="tag-line"><span class="t-num">11</span><span class="t-sep">·</span><span class="t-ato">Ato V</span><span class="t-sep">·</span>Síntese territorial</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">Grande Mucuripe. Heterogêneo, com <span class="green">rede institucional densa</span>.</h2>
   </header>
   <div class="terr-frame mucuripe">
     <div>
@@ -882,33 +816,29 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     20 · RECOMMENDATION
-     ════════════════════════════════════ -->
-<section class="slide s-rec s-cream" data-title="Três caminhos que emergem do diagnóstico" data-ato="V">
-  <span class="slide-num">20 / 21</span>
+<!-- 19 · RECOMMENDATION -->
+<section class="slide s-rec" data-title="Três caminhos que emergem do diagnóstico" data-ato="V">
+  <span class="slide-num">19 / 20</span>
   <header>
-    <span class="eyebrow"><span class="e-num">13</span><span class="e-sep">·</span><span class="e-tag">Ato V</span><span class="e-sep">·</span>Adicionalidade potencial</span>
-    <h2>Três caminhos que <span class="green">emergem do diagnóstico</span>.</h2>
+    <span class="tag-line"><span class="t-num">12</span><span class="t-sep">·</span><span class="t-ato">Ato V</span><span class="t-sep">·</span>Adicionalidade potencial</span>
+    <hr class="title-rule">
+    <h2 style="margin-top:18px">Três caminhos que <span class="green">emergem do diagnóstico</span>.</h2>
   </header>
   <div class="recs">
     <div class="rec">
       <span class="num">01</span>
-      <h3>Grande Bom Jardim — articulação em escala</h3>
+      <h3>Grande Bom Jardim. Articulação em escala.</h3>
       <p>A configuração territorial favorece a coordenação entre <strong>proteção social, organizações da sociedade civil e sistemas de qualificação</strong>. Alta adicionalidade potencial pelo vácuo de articulação e pelo volume da população em situação de vulnerabilidade.</p>
-      <span class="badge">Produto 3 do TR</span>
     </div>
     <div class="rec">
       <span class="num">02</span>
-      <h3>Grande Mucuripe — coerência sistêmica</h3>
-      <p>A presença simultânea de <strong>827 OSCs</strong> e <strong>2.119 médias e grandes empresas</strong> aponta condições para intermediação e governança. Adicionalidade potencial média — viabilidade alta, com foco em reduzir sobreposição entre atores e construir articulação entre setor produtivo e sociedade civil.</p>
-      <span class="badge">Produto 3 do TR</span>
+      <h3>Grande Mucuripe. Coerência sistêmica.</h3>
+      <p>A presença simultânea de <strong>827 OSCs</strong> e <strong>2.119 médias e grandes empresas</strong> aponta condições para intermediação e governança. Adicionalidade potencial média, com viabilidade alta e foco em reduzir sobreposição entre atores.</p>
     </div>
     <div class="rec">
       <span class="num">03</span>
-      <h3>Comum aos dois — cadeias alimentícias</h3>
-      <p>Os <strong>1.343 estabelecimentos alimentícios</strong> são base operacional disponível para programas de compras públicas, articulação com a CEASA Mais Nutrição e fortalecimento do Pacto Contra a Fome — em paralelo nos dois territórios.</p>
-      <span class="badge">Atende Produtos 2 e 3</span>
+      <h3>Comum aos dois. Cadeias alimentícias.</h3>
+      <p>Os <strong>1.343 estabelecimentos alimentícios</strong> são base operacional disponível para programas de compras públicas, articulação com a CEASA Mais Nutrição e fortalecimento do Pacto Contra a Fome, em paralelo nos dois territórios.</p>
     </div>
   </div>
   <div class="slide-src">
@@ -917,25 +847,31 @@ body{
   </div>
 </section>
 
-<!-- ════════════════════════════════════
-     21 · ENCERRAMENTO
-     ════════════════════════════════════ -->
+<!-- 20 · ENCERRAMENTO -->
 <section class="slide s-close" data-title="Encerramento" data-ato="V">
-  <span class="slide-num">21 / 21</span>
-  <span class="c-eye">Encerramento</span>
-  <p>A Redes Ceará tem condições para atuar como <strong>instrumento de coordenação</strong> nos dois territórios — reduzindo assimetrias de informação e alinhando incentivos entre setor público, empresas e organizações da sociedade civil.</p>
-  <div class="next-grid">
-    <div class="next-item">
-      <span class="lab">Painel interativo</span>
-      <span class="val"><a href="fortaleza.html">fortaleza.html</a></span>
+  <span class="slide-num" style="color:#9CA8B6">20 / 20</span>
+  <div class="c-strap">
+    <div class="c-num">20</div>
+    <div class="c-title">
+      <span class="c-lab">Encerramento</span>
+      <span class="c-tit">A Redes Ceará como instrumento de coordenação.</span>
     </div>
-    <div class="next-item">
-      <span class="lab">Próximas entregas</span>
-      <span class="val">Resumo Executivo · Maracanaú &amp; Comparativo</span>
-    </div>
-    <div class="next-item">
-      <span class="lab">Elaboração</span>
-      <span class="val">Lucas Fernandes · 2025</span>
+  </div>
+  <div class="c-body">
+    <p>A Redes Ceará tem condições para atuar como <strong>instrumento de coordenação</strong> nos dois territórios, reduzindo assimetrias de informação e alinhando incentivos entre setor público, empresas e organizações da sociedade civil.</p>
+    <div class="next-grid">
+      <div class="next-item">
+        <span class="lab">Painel interativo</span>
+        <span class="val"><a href="fortaleza.html">fortaleza.html</a></span>
+      </div>
+      <div class="next-item">
+        <span class="lab">Próximas entregas</span>
+        <span class="val">Maracanaú e síntese comparativa</span>
+      </div>
+      <div class="next-item">
+        <span class="lab">Elaboração</span>
+        <span class="val">Lucas Fernandes · 2025</span>
+      </div>
     </div>
   </div>
 </section>
@@ -947,7 +883,7 @@ body{
   <button id="btn-menu" title="Menu de slides (Esc)">Menu</button>
   <span class="sep"></span>
   <button id="btn-prev" title="← Anterior">←</button>
-  <span class="counter" id="counter">1 / 21</span>
+  <span class="counter" id="counter">1 / 20</span>
   <button id="btn-next" title="Próximo →">→</button>
   <span class="sep"></span>
   <button id="btn-fullscreen" title="Tela cheia (F)">Tela cheia</button>
@@ -959,7 +895,7 @@ body{
 <div class="menu" id="menu">
   <div class="menu-content">
     <div class="menu-head">
-      <h2>Resumo Executivo · Fortaleza · 21 slides</h2>
+      <h2>Resumo Executivo · Fortaleza · 20 slides</h2>
       <button class="menu-close" id="menu-close" title="Fechar (Esc)">✕</button>
     </div>
     <div class="menu-list" id="menu-list"></div>
@@ -1015,7 +951,7 @@ document.addEventListener('click', e => {
   if(e.clientX > window.innerWidth/2) next(); else prev();
 });
 
-// Build menu
+// Menu
 slides.forEach((s,j) => {
   const t = s.dataset.title || `Slide ${j+1}`;
   const ato = s.dataset.ato || '';
@@ -1026,17 +962,48 @@ slides.forEach((s,j) => {
   menuListEl.appendChild(a);
 });
 
-// Hash deep link
 const hashIdx = parseInt((location.hash || '').replace('#',''), 10);
 if(!isNaN(hashIdx) && hashIdx >= 1 && hashIdx <= total) go(hashIdx-1);
 else go(0);
 
-// CHARTS
-const PALETTE = {navy:'#0B2B44', blue:'#0B4FA8', blue2:'#1E40AF', blueLight:'#93C5FD', green:'#059669', greenLight:'#10B981', cream:'#F4F1EA'};
+// ─── CHARTS ───
+const PALETTE = {navy:'#0A2540', blue:'#0B4FA8', blue2:'#1E40AF', blueLight:'#93C5FD', green:'#0E8C5D', greenDeep:'#076E47', greenLight:'#10B981'};
 Chart.defaults.font.family = "'Inter',sans-serif";
 Chart.defaults.font.size = 11;
-Chart.defaults.color = '#3B4C5C';
+Chart.defaults.color = '#3B4E63';
 Chart.defaults.font.weight = 500;
+
+// Plugin que desenha o rótulo de valor em cada barra
+const dataLabelsPlugin = {
+  id:'dataLabels',
+  afterDatasetsDraw(chart){
+    const {ctx, scales:{x, y}} = chart;
+    chart.data.datasets.forEach((ds, di) => {
+      const meta = chart.getDatasetMeta(di);
+      const fmt = ds._labelFormat || (v=>v.toLocaleString('pt-BR'));
+      meta.data.forEach((bar, i) => {
+        const value = ds.data[i];
+        if(value == null) return;
+        const label = fmt(value);
+        const isHorizontal = chart.options.indexAxis === 'y';
+        ctx.save();
+        ctx.font = '700 12px Inter, sans-serif';
+        ctx.fillStyle = '#0A2540';
+        if(isHorizontal){
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(label, bar.x + 8, bar.y);
+        } else {
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+          ctx.fillText(label, bar.x, bar.y - 6);
+        }
+        ctx.restore();
+      });
+    });
+  }
+};
+Chart.register(dataLabelsPlugin);
 
 function drawChart(id, cfg){
   const el = document.getElementById(id);
@@ -1046,81 +1013,86 @@ function drawChart(id, cfg){
 }
 
 function lazyCharts(){
+  // 05 · Demografia (vertical bars com %)
   drawChart('ch-demo', {
     type:'bar',
     data:{
       labels:['Mulheres na população','Chefia feminina','Pop. não-branca, 15 anos ou mais'],
       datasets:[
-        {label:'Grande Bom Jardim', data:[52.4, 44.6, 77.0], backgroundColor:PALETTE.blue2, borderRadius:2, barThickness:32},
-        {label:'Grande Mucuripe', data:[52.8, 41.8, 66.0], backgroundColor:PALETTE.blue, borderRadius:2, barThickness:32}
+        {label:'Grande Bom Jardim', data:[52.4, 44.6, 77.0], backgroundColor:PALETTE.blue2, borderRadius:2, barThickness:36, _labelFormat:v=>v.toFixed(1).replace('.',',')+'%'},
+        {label:'Grande Mucuripe', data:[52.8, 41.8, 66.0], backgroundColor:PALETTE.blue, borderRadius:2, barThickness:36, _labelFormat:v=>v.toFixed(1).replace('.',',')+'%'}
       ]
     },
     options:{responsive:true, maintainAspectRatio:false,
+      layout:{padding:{top:24,bottom:8,left:8,right:8}},
       scales:{
-        y:{beginAtZero:true, max:100, grid:{color:'rgba(11,43,68,.06)'}, ticks:{callback:v=>v+'%', font:{size:11, weight:500}}},
+        y:{beginAtZero:true, max:100, grid:{color:'rgba(10,37,64,.06)'}, ticks:{callback:v=>v+'%', font:{size:11, weight:500}}},
         x:{grid:{display:false}, ticks:{font:{size:11, weight:600}}}
       },
       plugins:{legend:{position:'bottom', labels:{font:{size:11, weight:600}, boxWidth:14, padding:14}}}}
   });
+  // 08 · Renda (horizontal, R$)
   drawChart('ch-renda', {
     type:'bar',
     data:{
       labels:['Grande Bom Jardim', 'Grande Mucuripe'],
-      datasets:[{label:'R$ por mês', data:[1428.94, 3886.97], backgroundColor:[PALETTE.blue2, PALETTE.green], borderRadius:2, barThickness:50}]
+      datasets:[{label:'R$ por mês', data:[1428.94, 3886.97], backgroundColor:[PALETTE.blue2, PALETTE.green], borderRadius:2, barThickness:48, _labelFormat:v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2, maximumFractionDigits:2})}]
     },
     options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      layout:{padding:{right:32, top:8, bottom:8}},
+      layout:{padding:{right:160, top:8, bottom:8, left:8}},
       scales:{
-        x:{beginAtZero:true, grid:{color:'rgba(11,43,68,.06)'}, ticks:{callback:v=>'R$ '+v.toLocaleString('pt-BR'), font:{size:11, weight:500}}},
+        x:{beginAtZero:true, grid:{color:'rgba(10,37,64,.06)'}, ticks:{callback:v=>'R$ '+v.toLocaleString('pt-BR'), font:{size:11, weight:500}}},
         y:{grid:{display:false}, ticks:{font:{size:13, weight:700}}}
       },
-      plugins:{legend:{display:false},
-        tooltip:{callbacks:{label:c=>'R$ '+c.parsed.x.toLocaleString('pt-BR',{minimumFractionDigits:2})}}}}
+      plugins:{legend:{display:false}}}
   });
+  // 10 · Saneamento (vertical, %)
   drawChart('ch-sanit', {
     type:'bar',
     data:{
       labels:['Coleta de esgoto', 'Abastecimento de água', 'Coleta de lixo'],
       datasets:[
-        {label:'Grande Bom Jardim', data:[43.4, 97.4, 97.2], backgroundColor:PALETTE.blue2, borderRadius:2, barThickness:38},
-        {label:'Grande Mucuripe', data:[77.8, 89.4, 90.0], backgroundColor:PALETTE.green, borderRadius:2, barThickness:38}
+        {label:'Grande Bom Jardim', data:[43.4, 97.4, 97.2], backgroundColor:PALETTE.blue2, borderRadius:2, barThickness:42, _labelFormat:v=>v.toFixed(1).replace('.',',')+'%'},
+        {label:'Grande Mucuripe', data:[77.8, 89.4, 90.0], backgroundColor:PALETTE.green, borderRadius:2, barThickness:42, _labelFormat:v=>v.toFixed(1).replace('.',',')+'%'}
       ]
     },
     options:{responsive:true, maintainAspectRatio:false,
+      layout:{padding:{top:24, bottom:8, left:8, right:8}},
       scales:{
-        y:{beginAtZero:true, max:100, grid:{color:'rgba(11,43,68,.06)'}, ticks:{callback:v=>v+'%', font:{size:11, weight:500}}},
+        y:{beginAtZero:true, max:105, grid:{color:'rgba(10,37,64,.06)'}, ticks:{callback:v=>v+'%', font:{size:11, weight:500}}},
         x:{grid:{display:false}, ticks:{font:{size:12, weight:700}}}
       },
       plugins:{legend:{position:'bottom', labels:{font:{size:11, weight:600}, boxWidth:14, padding:14}}}}
   });
+  // 13 · MEI (horizontal, %)
   drawChart('ch-mei', {
     type:'bar',
     data:{
       labels:['Grande Bom Jardim', 'Grande Mucuripe'],
-      datasets:[{label:'% de empresas formais que são MEI', data:[63.3, 42.2], backgroundColor:[PALETTE.blue2, PALETTE.green], borderRadius:2, barThickness:50}]
+      datasets:[{label:'% de empresas formais que são MEI', data:[63.3, 42.2], backgroundColor:[PALETTE.blue2, PALETTE.green], borderRadius:2, barThickness:48, _labelFormat:v=>v.toFixed(1).replace('.',',')+'%'}]
     },
     options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      layout:{padding:{right:32, top:8, bottom:8}},
+      layout:{padding:{right:80, top:8, bottom:8, left:8}},
       scales:{
-        x:{beginAtZero:true, max:80, grid:{color:'rgba(11,43,68,.06)'}, ticks:{callback:v=>v+'%', font:{size:11, weight:500}}},
+        x:{beginAtZero:true, max:80, grid:{color:'rgba(10,37,64,.06)'}, ticks:{callback:v=>v+'%', font:{size:11, weight:500}}},
         y:{grid:{display:false}, ticks:{font:{size:13, weight:700}}}
       },
-      plugins:{legend:{display:false},
-        tooltip:{callbacks:{label:c=>c.parsed.x.toFixed(1)+'% das empresas formais são microempreendedores individuais'}}}}
+      plugins:{legend:{display:false}}}
   });
+  // 14 · OSCs (horizontal, sem duplicação de label)
   drawChart('ch-osc', {
     type:'bar',
     data:{
       labels:['Grande Bom Jardim', 'Grande Mucuripe'],
-      datasets:[
-        {label:'OSCs por 10 mil habitantes', data:[14.6, 64.0], backgroundColor:[PALETTE.blue2, PALETTE.green], borderRadius:2, barThickness:50, yAxisID:'y1'},
-        {label:'OSCs ativas (total)', data:[315, 827], backgroundColor:'rgba(11,79,168,.18)', borderRadius:2, barThickness:50, yAxisID:'y2'}
-      ]
+      datasets:[{label:'OSCs por 10 mil habitantes', data:[14.6, 64.0], backgroundColor:[PALETTE.blue2, PALETTE.green], borderRadius:2, barThickness:48, _labelFormat:v=>v.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+' / 10k'}]
     },
     options:{indexAxis:'y', responsive:true, maintainAspectRatio:false,
-      scales:{x:{display:false}, y1:{position:'left', grid:{display:false}, ticks:{font:{size:13, weight:700}}}},
-      plugins:{legend:{position:'bottom', labels:{font:{size:11, weight:600}, boxWidth:14, padding:14}},
-        tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.x.toLocaleString('pt-BR')}}}}
+      layout:{padding:{right:120, top:8, bottom:8, left:8}},
+      scales:{
+        x:{beginAtZero:true, grid:{color:'rgba(10,37,64,.06)'}, ticks:{font:{size:11, weight:500}}},
+        y:{grid:{display:false}, ticks:{font:{size:13, weight:700}}}
+      },
+      plugins:{legend:{display:false}}}
   });
 }
 if('requestIdleCallback' in window) requestIdleCallback(lazyCharts);
