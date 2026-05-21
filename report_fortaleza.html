@@ -45,9 +45,10 @@ body{
   aspect-ratio:16/9;max-height:calc(100vh - 100px);
   border-radius:6px;
   box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
-  display:none;flex-direction:column;position:relative;overflow:hidden;
+  flex-direction:column;position:relative;overflow:hidden;
 }
-.slide.active{display:flex;animation:fade .35s ease}
+.slide:not(.active){display:none}
+.slide.active{animation:fade .35s ease}
 @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ═══ TIPOGRAFIA ════════════════════════════════════════════ */
@@ -116,7 +117,8 @@ body{
 
 /* ─────────────── SECTION OPENER ─────────────── */
 .s-opener{
-  background:var(--navy);color:var(--cream);padding:64px 80px;justify-content:center;
+  background:var(--navy);color:var(--cream);padding:64px 80px;
+  display:flex;justify-content:center;
 }
 .s-opener::after{
   content:"";position:absolute;bottom:-120px;right:-120px;width:380px;height:380px;
