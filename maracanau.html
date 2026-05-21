@@ -460,6 +460,28 @@ th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left
 th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
 th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .mei-high td:nth-child(4){color:#B07C20;font-weight:700}
+th.sortable[title]::after{content:''}
+.sort-hint{position:relative}
+.sort-hint::after{
+  content:'clique para ordenar';
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--navy);
+  color:#fff;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em;
+  padding:4px 10px;
+  border-radius:4px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s;
+  z-index:10;
+}
+.sort-hint:hover::after{opacity:1}
 
 /* Comparison table */
 .comp-table{border-collapse:collapse;width:100%}
@@ -959,15 +981,17 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .insight-callout p{margin:0;font-size:13.5px;line-height:1.7;color:var(--text)}
 
 /* Region cards */
-.region-card{background:#F4F6F9;border:1px solid #D8E0E8;border-radius:6px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
-.region-card:hover,.region-card.active{border-color:var(--brand);box-shadow:0 2px 8px rgba(124,58,237,.12)}
-.region-card-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.region-card-name{font-size:12px;font-weight:700;color:#062040}
-.region-card-count{font-size:11px;color:#5C6E7E;margin-left:auto}
-.region-card-desc{font-size:11px;color:#5C6E7E;line-height:1.5}
-.region-stats-row{display:flex;gap:10px;margin-top:6px}
-.region-stat{font-size:11px;color:#1B2D3E;font-weight:600}
-.region-stat span{color:#5C6E7E;font-weight:400}
+.region-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;cursor:pointer;transition:all .18s;border-left:4px solid transparent}
+.region-card:hover{border-color:var(--line);border-left-color:var(--brand);box-shadow:var(--shadow)}
+.region-card.active{border-left-color:var(--brand);background:var(--brand-5)}
+.region-card-header{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.region-card-name{font-size:13px;font-weight:700;color:var(--navy)}
+.region-card-count{font-size:11px;color:var(--muted);margin-left:auto}
+.region-card-desc{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:6px}
+.region-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.region-stat{background:#F8FAFB;border:1px solid var(--line-2);border-radius:4px;padding:8px;text-align:center}
+.region-stat .rs-val{font-size:16px;font-weight:800;color:var(--navy);display:block}
+.region-stat .rs-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;display:block;margin-top:2px}
 
 /* Dimension / reading panel */
 .dim-outer{display:flex;flex-direction:column;gap:20px}
@@ -1362,7 +1386,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               </span>
             </span>
           </h3>
-          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial) e bairro</p>
+          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial), região e bairro</p>
         </div>
       </div>
       <div class="map-analytics-layout">
@@ -1381,6 +1405,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="">Matriz e Filial</option>
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
+            </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
             </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
@@ -1628,11 +1655,15 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       </div>
     </div>
 
-    <!-- OSC por área e por bairro -->
-    <div class="grid two" style="margin-top:20px">
+    <!-- OSC por área, por região e por bairro -->
+    <div class="grid three" style="margin-top:20px">
       <div class="panel">
         <div class="panel-head"><div><h3 class="panel-title">OSCs por área de atuação (IPEA, 2024)</h3><p class="panel-sub">Distribuição das organizações por classificação temática</p></div></div>
         <div class="chart-box"><canvas id="chart-osc-area" class="chart tall"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><div><h3 class="panel-title">OSCs por região (IPEA, 2024)</h3><p class="panel-sub">Concentração de organizações por região administrativa</p></div></div>
+        <div class="chart-box"><canvas id="chart-osc-regiao" class="chart tall"></canvas></div>
       </div>
       <div class="panel">
         <div class="panel-head"><div><h3 class="panel-title">OSCs por bairro (IPEA, 2024)</h3><p class="panel-sub">Quantidade de organizações ativas por bairro</p></div></div>
@@ -2898,6 +2929,7 @@ function initAlimentMap(){
   // 2) Populate bairro filter
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
@@ -2911,6 +2943,7 @@ function initAlimentMap(){
     opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
     selBairro.appendChild(opt);
   });
+  REGION_ORDER.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;selRegiao.appendChild(o)});
 
   // 3) Build map
   if(!MAPS['map-aliment']){
@@ -2952,11 +2985,13 @@ function initAlimentMap(){
   function getFilteredAliment(){
     const cf = selCat.value;
     const tf = selTipo.value;
+    const rf = selRegiao.value;
     const bf = selBairro.value;
     const sq = (inpSearch.value||'').trim().toLowerCase();
     let out = ALIMENT_POINTS;
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
+    if(rf) out = out.filter(p=>(REGION_MAP[p.b]||'')===rf);
     if(bf) out = out.filter(p=>p.b===bf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
@@ -3026,20 +3061,21 @@ function initAlimentMap(){
     listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selRegiao.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
-    [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    [selCat,selTipo,selRegiao,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
+  selRegiao.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; selRegiao.value=''; selBairro.value=''; inpSearch.value='';
     renderAlimentMap();
   });
 
@@ -3375,6 +3411,20 @@ function initOsc(){
       cBairro.style.height=h+'px';
       cBairro.parentElement.style.height='auto';
       CHARTS['chart-osc-bairro']=new Chart(cBairro,{type:'bar',data:{labels:bairroEntries.map(e=>e[0]),datasets:[{data:bairroEntries.map(e=>e[1]),backgroundColor:bairroEntries.map(e=>{const r=REGION_MAP[e[0]]||'';return REGION_COLORS[r]||'rgba(124,58,237,.5)';}),borderRadius:3}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+' OSCs'}}},scales:{x:{grid:{display:false}},y:{grid:{display:false},ticks:{font:{size:11},autoSkip:false,maxTicksLimit:bairroEntries.length}}}}});
+    }
+  }
+  // OSCs by region
+  const oscByRegion={};
+  OSCS.forEach(o=>{const reg=REGION_MAP[o.bairro]||'Outros';oscByRegion[reg]=(oscByRegion[reg]||0)+1;});
+  const regEntries=Object.entries(oscByRegion).sort((a,b)=>b[1]-a[1]);
+  if(regEntries.length){
+    destroyChart('chart-osc-regiao');
+    const cReg=document.getElementById('chart-osc-regiao');
+    if(cReg){
+      const h=Math.max(regEntries.length*28,200);
+      cReg.style.height=h+'px';
+      cReg.parentElement.style.height='auto';
+      CHARTS['chart-osc-regiao']=new Chart(cReg,{type:'bar',data:{labels:regEntries.map(e=>e[0]),datasets:[{data:regEntries.map(e=>e[1]),backgroundColor:regEntries.map(e=>REGION_COLORS[e[0]]||'rgba(124,58,237,.5)'),borderRadius:3}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+' OSCs'}}},scales:{x:{grid:{display:false}},y:{grid:{display:false},ticks:{font:{size:11},autoSkip:false,maxTicksLimit:regEntries.length}}}}});
     }
   }
 
