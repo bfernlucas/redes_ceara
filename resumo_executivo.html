@@ -11,13 +11,13 @@
 :root{
   --bg:#FFFFFF;
   --bg-soft:#FAFAF7;
-  --navy:#0A2540;
-  --ink:#0A2540;
-  --ink-2:#3B4E63;
-  --muted:#6B7A8A;
-  --muted-2:#A0AAB6;
-  --line:rgba(10,37,64,.10);
-  --line-strong:rgba(10,37,64,.22);
+  --navy:#1F2937;
+  --ink:#1F2937;
+  --ink-2:#4B5563;
+  --muted:#6B7280;
+  --muted-2:#9CA3AF;
+  --line:rgba(31,41,55,.10);
+  --line-strong:rgba(31,41,55,.22);
   --blue:#0B4FA8;
   --blue-2:#1E40AF;
   --purple:#7C3AED;
@@ -48,11 +48,11 @@ body{
 
 /* HERO bounded */
 .hero{
-  display:grid;grid-template-columns:1.05fr 1fr;gap:0;
-  align-items:stretch;
+  display:grid;grid-template-columns:1fr 1.15fr;gap:56px;
+  align-items:center;
 }
 .hero-text{
-  padding:72px 56px 64px 0;
+  padding:72px 0 64px 0;
   display:flex;flex-direction:column;justify-content:center;
 }
 .hero-text .h-eyebrow{
@@ -70,12 +70,13 @@ body{
   font-size:15.5px;line-height:1.65;color:var(--ink-2);max-width:520px;font-weight:400;margin-top:8px;
 }
 .hero-text .lead strong{color:var(--navy);font-weight:600}
-.hero-photo{position:relative;overflow:hidden;background:#0A2540;aspect-ratio:4/5}
+.hero-photo{position:relative;overflow:hidden;background:#1F2937;aspect-ratio:4/3;align-self:center;width:100%}
 .hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-photo .credit{
   position:absolute;bottom:14px;right:18px;
   font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.85);
+  color:rgba(255,255,255,.95);
+  text-shadow:0 1px 2px rgba(0,0,0,.55);
 }
 
 /* MAIN */
@@ -97,22 +98,22 @@ body{
   border:1px solid var(--line);
   transition:all .22s ease;background:var(--bg);
 }
-.card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 16px 32px -16px rgba(10,37,64,.18)}
+.card:hover{transform:translateY(-4px);border-color:var(--line-strong);box-shadow:0 16px 32px -16px rgba(31,41,55,.18)}
 .card-photo{
-  aspect-ratio:16/10;overflow:hidden;background:#0A2540;
+  aspect-ratio:16/10;overflow:hidden;background:#1F2937;
   position:relative;
 }
 .card-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s cubic-bezier(.2,.6,.2,1)}
 .card:hover .card-photo img{transform:scale(1.04)}
 .card-photo::before{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 50%,rgba(10,37,64,.55) 100%);
+  background:linear-gradient(180deg,transparent 50%,rgba(31,41,55,.55) 100%);
   z-index:1;
 }
 .card-photo .photo-tag{
   position:absolute;top:14px;left:14px;z-index:2;
   font-size:9.5px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
-  color:#fff;padding:5px 9px;background:rgba(10,37,64,.85);
+  color:#fff;padding:5px 9px;background:rgba(31,41,55,.85);
   backdrop-filter:blur(4px);
 }
 .card[data-mun="fortaleza"] .photo-tag{background:var(--blue-2)}
@@ -134,11 +135,10 @@ body{
 
 .card-cta{display:flex;flex-direction:column;gap:0;padding-top:16px}
 .card-cta .cta-top{
-  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  display:flex;align-items:baseline;justify-content:flex-end;gap:10px;
   font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
   padding-bottom:14px;
 }
-.card-cta .src{color:var(--muted);font-weight:600;letter-spacing:.12em}
 .card-cta .go{color:var(--navy);font-weight:800}
 .card[data-mun="fortaleza"] .card-cta .go{color:var(--blue-2)}
 .card[data-mun="maracanau"] .card-cta .go{color:var(--purple)}
@@ -199,8 +199,8 @@ body{
       <p class="lead">Três apresentações de slides com a síntese executiva do diagnóstico territorial em Fortaleza e Maracanaú. Navegáveis por teclado, exportáveis em PDF, com links de retorno para os painéis interativos.</p>
     </div>
     <div class="hero-photo">
-      <img src="assets/images/ednilson-cardoso-dos-santos-dTcPE9YtuDY-unsplash.jpg" alt="Praia de Fortaleza com pier" loading="eager" style="object-position:center 40%">
-      <span class="credit">Foto · Ednilson Cardoso / Unsplash</span>
+      <img src="assets/images/guilherme-hilton-OF3Kmr0hO_A-unsplash.jpg" alt="Pôr-do-sol em Fortaleza com banhistas" loading="eager">
+      <span class="credit">Foto · Guilherme Hilton / Unsplash</span>
     </div>
   </section>
 </div>
@@ -227,7 +227,6 @@ body{
           </div>
           <div class="card-cta">
             <div class="cta-top">
-              <span class="src">7 dimensões do TR</span>
               <span class="go">Abrir <span class="arrow">→</span></span>
             </div>
             <a href="report_fortaleza.pdf" download="Resumo_Executivo_Fortaleza.pdf" class="pdf-link" onclick="event.stopPropagation()">
@@ -253,7 +252,6 @@ body{
           </div>
           <div class="card-cta">
             <div class="cta-top">
-              <span class="src">7 dimensões do TR</span>
               <span class="go">Abrir <span class="arrow">→</span></span>
             </div>
             <a href="report_maracanau.pdf" download="Resumo_Executivo_Maracanau.pdf" class="pdf-link" onclick="event.stopPropagation()">
@@ -271,7 +269,7 @@ body{
         </div>
         <div class="card-body">
           <span class="card-name">Síntese do trabalho</span>
-          <p class="card-desc">Apresentação consolidada com <strong>metodologia, bases utilizadas e resumos por município</strong>, fechando com takeaways e considerações finais.</p>
+          <p class="card-desc">Apresentação consolidada com <strong>metodologia, bases utilizadas e resumos por município</strong>, fechando com leituras-chave e considerações finais.</p>
           <div class="card-stats">
             <div class="card-stat"><strong>15</strong><span>Slides</span></div>
             <div class="card-stat"><strong>2</strong><span>Municípios</span></div>
@@ -279,7 +277,6 @@ body{
           </div>
           <div class="card-cta">
             <div class="cta-top">
-              <span class="src">Síntese · takeaways</span>
               <span class="go">Abrir <span class="arrow">→</span></span>
             </div>
             <a href="report_geral.pdf" download="Visao_Geral_Redes_Ceara.pdf" class="pdf-link" onclick="event.stopPropagation()">
