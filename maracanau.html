@@ -459,6 +459,28 @@ th.sortable:hover{color:var(--brand);background:rgba(124,58,237,.04)}
 th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left:4px}
 th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
 th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
+th.sortable[title]::after{content:''}
+.sort-hint{position:relative}
+.sort-hint::after{
+  content:'clique para ordenar';
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--navy);
+  color:#fff;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em;
+  padding:4px 10px;
+  border-radius:4px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s;
+  z-index:10;
+}
+.sort-hint:hover::after{opacity:1}
 .mei-high td:nth-child(4){color:#B07C20;font-weight:700}
 
 /* Comparison table */
@@ -1362,7 +1384,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               </span>
             </span>
           </h3>
-          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial) e bairro</p>
+          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial), região e bairro</p>
         </div>
       </div>
       <div class="map-analytics-layout">
@@ -1381,6 +1403,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="">Matriz e Filial</option>
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
+            </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
             </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
@@ -2898,6 +2923,7 @@ function initAlimentMap(){
   // 2) Populate bairro filter
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
@@ -2911,6 +2937,14 @@ function initAlimentMap(){
     opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
     selBairro.appendChild(opt);
   });
+  if(selRegiao && typeof REGION_ORDER!=='undefined'){
+    REGION_ORDER.forEach(r=>{
+      const rBairros = Object.entries(REGION_MAP).filter(([,v])=>v===r).map(([k])=>k);
+      const cnt = rBairros.reduce((s,b)=>(s+(totalByBairro[b]||0)),0);
+      const o=document.createElement('option'); o.value=r; o.textContent=`${r} (${cnt})`;
+      selRegiao.appendChild(o);
+    });
+  }
 
   // 3) Build map
   if(!MAPS['map-aliment']){
@@ -2952,11 +2986,13 @@ function initAlimentMap(){
   function getFilteredAliment(){
     const cf = selCat.value;
     const tf = selTipo.value;
+    const rgf = selRegiao ? selRegiao.value : '';
     const bf = selBairro.value;
     const sq = (inpSearch.value||'').trim().toLowerCase();
     let out = ALIMENT_POINTS;
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
+    if(rgf && typeof REGION_MAP!=='undefined') out = out.filter(p=>(REGION_MAP[p.b]||'')===rgf);
     if(bf) out = out.filter(p=>p.b===bf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
@@ -3026,20 +3062,22 @@ function initAlimentMap(){
     listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selRegiao&&selRegiao.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
     [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    if(selRegiao) selRegiao.classList.toggle('active-filter',!!selRegiao.value);
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
+  if(selRegiao) selRegiao.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; if(selRegiao) selRegiao.value=''; selBairro.value=''; inpSearch.value='';
     renderAlimentMap();
   });
 
@@ -3960,12 +3998,12 @@ function initComp(){
           <strong style="font-size:13px;color:var(--navy)">${g}</strong>
           <span style="font-size:10px;color:var(--muted);font-weight:600">${gd.bairros} bairros</span>
         </div>
-        <div style="display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--navy)">
+        <div style="display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--navy);flex-wrap:wrap">
           <div><span style="color:var(--muted);font-weight:600">Pop.</span> <strong>${fmt(gd.pop,'int')}</strong></div>
           <div><span style="color:var(--muted);font-weight:600">%&nbsp;munic.</span> <strong>${shareMuni.toFixed(1)}%</strong></div>
           <div><span style="color:var(--muted);font-weight:600">Ext. pobreza</span> <strong>${fmt(gd.values.epob,'pct')}</strong></div>
         </div>
-        ${desc?`<div style="font-size:11px;color:#5C6E7E;margin-top:6px;line-height:1.45">${desc}</div>`:''}
+        ${desc?`<div style="font-size:11px;color:#5C6E7E;margin-top:8px;line-height:1.5">${desc}</div>`:''}
       </div>`;
     }).join('');
   }
