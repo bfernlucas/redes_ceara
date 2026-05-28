@@ -381,6 +381,14 @@ button,select,input,textarea{font:inherit}
   line-height:1.6;
 }
 
+/* Panel details (collapsible) */
+.panel-details{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.panel-details .panel{border:none;box-shadow:none}
+.panel-toggle{cursor:pointer;padding:14px 20px;font-size:13px;font-weight:700;color:var(--brand);letter-spacing:.02em;list-style:none}
+.panel-toggle::-webkit-details-marker{display:none}
+.panel-toggle::before{content:'▸ ';font-size:12px}
+details[open] .panel-toggle::before{content:'▾ '}
+
 /* KPI grid */
 .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:0 24px 24px}
 .kpi-grid.four{grid-template-columns:repeat(4,1fr)}
@@ -459,6 +467,28 @@ th.sortable:hover{color:var(--brand);background:rgba(124,58,237,.04)}
 th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left:4px}
 th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
 th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
+th.sortable[title]::after{content:''}
+.sort-hint{position:relative}
+.sort-hint::after{
+  content:'clique para ordenar';
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--navy);
+  color:#fff;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em;
+  padding:4px 10px;
+  border-radius:4px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s;
+  z-index:10;
+}
+.sort-hint:hover::after{opacity:1}
 .mei-high td:nth-child(4){color:#B07C20;font-weight:700}
 
 /* Comparison table */
@@ -1293,6 +1323,24 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <!-- KPIs MGE -->
     <div class="kpi-grid six" id="kpi-mge"></div>
 
+    <div style="margin:24px 0 6px;padding:0 4px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Volume empresarial</span>
+        <span style="flex:1;height:1px;background:var(--line-2)"></span>
+      </div>
+    </div>
+
+    <div class="decision" style="margin:8px 0 14px">
+      <h3>Perfil empresarial geral</h3>
+      <p>Pajuçara e Jereissati concentram o maior volume absoluto de empresas. A alta participação de MEIs (acima de 80% em vários bairros) indica uma economia predominantemente informal, com potencial para programas de formalização e fortalecimento de pequenos negócios locais.</p>
+    </div>
+
+    <!-- CHARTS ORIGINAIS -->
+    <div class="grid two" style="margin-top:18px">
+      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Volume empresarial por bairro (dez/2024)</h3><p class="panel-sub">Todos os portes</p></div></div><div class="chart-box"><canvas id="chart-econ-emp" class="chart tall"></canvas></div></div>
+      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Participação de MEIs (dez/2024)</h3><p class="panel-sub">% das empresas que são MEIs</p></div></div><div class="chart-box"><canvas id="chart-econ-mei" class="chart tall"></canvas></div></div>
+    </div>
+
     <div style="margin:20px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Mapa de concentração</span>
@@ -1382,6 +1430,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
             </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
+            </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
             </select>
@@ -1417,25 +1468,6 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
     <div style="margin:24px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
-        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Volume empresarial</span>
-        <span style="flex:1;height:1px;background:var(--line-2)"></span>
-      </div>
-    </div>
-
-    <div class="decision" style="margin:8px 0 14px">
-      <h3>Perfil empresarial geral</h3>
-      <p>Pajuçara e Jereissati concentram o maior volume absoluto de empresas. A alta participação de MEIs (acima de 80% em vários bairros) indica uma economia predominantemente informal, com potencial para programas de formalização e fortalecimento de pequenos negócios locais.</p>
-    </div>
-
-    <!-- CHARTS ORIGINAIS -->
-    <div class="grid two" style="margin-top:18px">
-      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Volume empresarial por bairro (dez/2024)</h3><p class="panel-sub">Todos os portes</p></div></div><div class="chart-box"><canvas id="chart-econ-emp" class="chart tall"></canvas></div></div>
-      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Participação de MEIs (dez/2024)</h3><p class="panel-sub">% das empresas que são MEIs</p></div></div><div class="chart-box"><canvas id="chart-econ-mei" class="chart tall"></canvas></div></div>
-    </div>
-
-
-    <div style="margin:24px 0 6px;padding:0 4px">
-      <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Tabelas detalhadas</span>
         <span style="flex:1;height:1px;background:var(--line-2)"></span>
       </div>
@@ -1455,19 +1487,22 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <div class="table-wrap"><table id="table-econ"></table></div>
     </div>
 
-    <div class="panel" style="margin-top:18px">
-      <div class="panel-head">
-        <div><h3 class="panel-title">Lista completa de empresas M/G (dez/2024)</h3><p class="panel-sub">Todas as empresas de porte "Demais" · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p></div>
-        <span class="table-count" id="mge-table-count"></span>
+    <details open class="panel-details" style="margin-top:18px">
+      <summary class="panel-toggle">Lista completa de empresas M/G — clique para expandir/recolher</summary>
+      <div class="panel">
+        <div class="panel-head">
+          <div><h3 class="panel-title">Lista completa de empresas M/G (dez/2024)</h3><p class="panel-sub">Todas as empresas de porte "Demais" · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p></div>
+          <span class="table-count" id="mge-table-count"></span>
+        </div>
+        <div class="table-filter-bar">
+          <input type="search" id="mge-table-search" placeholder="Buscar empresa…" autocomplete="off">
+          <select id="mge-table-regiao"><option value="">Todas as regiões</option></select>
+          <select id="mge-table-setor"><option value="">Todos os setores</option></select>
+          <select id="mge-table-tipo"><option value="">Matriz e Filial</option><option value="M">Somente Matrizes</option><option value="F">Somente Filiais</option></select>
+        </div>
+        <div class="table-wrap" style="max-height:600px"><table id="table-mge-list"></table></div>
       </div>
-      <div class="table-filter-bar">
-        <input type="search" id="mge-table-search" placeholder="Buscar empresa…" autocomplete="off">
-        <select id="mge-table-regiao"><option value="">Todas as regiões</option></select>
-        <select id="mge-table-setor"><option value="">Todos os setores</option></select>
-        <select id="mge-table-tipo"><option value="">Matriz e Filial</option><option value="M">Somente Matrizes</option><option value="F">Somente Filiais</option></select>
-      </div>
-      <div class="table-wrap" style="max-height:600px"><table id="table-mge-list"></table></div>
-    </div>
+    </details>
   </section>
 
   <!-- IMPACTO SOCIAL -->
@@ -1675,7 +1710,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
     <div class="decision">
       <h3>O que esta síntese contém</h3>
-      <p>Esta aba consolida os dados de todas as dimensões anteriores (demografia, vulnerabilidade, infraestrutura, economia e sociedade civil) em um panorama integrado. O <strong>mapa de divisão regional</strong> mostra como os 44 bairros se agrupam em 6 regiões homogêneas. As <strong>tabelas consolidadas</strong> permitem comparar indicadores entre regiões e bairros lado a lado. O <strong>radar de vulnerabilidades</strong> compara 8 dimensões normalizadas (0 a 1) agrupadas em três categorias: <em>Vulnerabilidade social</em> (extrema pobreza, CadÚnico e analfabetismo), <em>Infraestrutura e renda</em> (déficit de esgoto e déficit de renda) e <em>Perfil socioeconômico</em> (informalidade/MEI, pop. não-branca e chefia feminina). A <strong>matriz de vulnerabilidades</strong> traduz o radar em cores para leitura rápida, e o <strong>Índice de Priorização Territorial (IPT)</strong> sintetiza tudo em um score único por região. Quanto maior a área do polígono no radar ou o IPT, maior o acúmulo de vulnerabilidades e a prioridade de intervenção.</p>
+      <p>Esta aba consolida os dados de todas as dimensões anteriores (demografia, vulnerabilidade, infraestrutura, economia e sociedade civil) em um panorama integrado. O <strong>mapa de divisão regional</strong> mostra como os 44 bairros se agrupam em 6 regiões homogêneas. As <strong>tabelas consolidadas</strong> permitem comparar indicadores entre regiões e bairros lado a lado. O <strong>radar de vulnerabilidades</strong> compara 10 dimensões normalizadas (0 a 1) agrupadas em quatro categorias: <em>Vulnerabilidade social</em> (extrema pobreza, CadÚnico e analfabetismo), <em>Infraestrutura e renda</em> (déficit de esgoto e déficit de renda), <em>Perfil socioeconômico</em> (informalidade/MEI, pop. não-branca e chefia feminina) e <em>Capacidade de resposta</em> (déficit institucional e déficit empresarial). A <strong>matriz de vulnerabilidades</strong> traduz o radar em cores para leitura rápida, e o <strong>Índice de Priorização Territorial (IPT)</strong> sintetiza tudo em um score único por região. Quanto maior a área do polígono no radar ou o IPT, maior o acúmulo de vulnerabilidades e a prioridade de intervenção.</p>
     </div>
 
     <!-- 1 — Divisão regional: mapa + cards -->
@@ -1721,13 +1756,13 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <!-- 4 — Radar + síntese por região -->
     <div class="decision" style="margin-top:20px">
       <h3>Como ler o radar</h3>
-      <p>Cada eixo representa um indicador normalizado de 0 a 1 e ponderado pela população dos bairros. Quanto maior a área do polígono, mais concentrado o perfil de vulnerabilidade naquela região. <strong>Extrema pobreza</strong> mede a proporção de famílias abaixo da linha de pobreza extrema (MDS, 2025). <strong>CadÚnico</strong> indica a cobertura do Cadastro Único — valores altos significam maior dependência de programas sociais. <strong>Analfabetismo</strong> revela o déficit educacional adulto. <strong>Déficit de esgoto</strong> e <strong>Déficit de renda</strong> captam, respectivamente, a precariedade sanitária e a insuficiência econômica. <strong>Informalidade (MEI)</strong> mostra a proporção de microempreendedores individuais sobre o total de empresas — valores altos indicam economia predominantemente informal, com menor geração de emprego formal. <strong>Pop. não-branca</strong> e <strong>Chefia feminina</strong> completam o perfil demográfico, revelando a interseccionalidade entre vulnerabilidade racial e de gênero nos territórios.</p>
+      <p>Cada eixo representa um indicador normalizado de 0 a 1 e ponderado pela população dos bairros. Quanto maior a área do polígono, mais concentrado o perfil de vulnerabilidade naquela região. <strong>Extrema pobreza</strong> mede a proporção de famílias abaixo da linha de pobreza extrema (MDS, 2025). <strong>CadÚnico</strong> indica a cobertura do Cadastro Único — valores altos significam maior dependência de programas sociais. <strong>Analfabetismo</strong> revela o déficit educacional adulto. <strong>Déficit de esgoto</strong> e <strong>Déficit de renda</strong> captam, respectivamente, a precariedade sanitária e a insuficiência econômica. <strong>Informalidade (MEI)</strong> mostra a proporção de microempreendedores individuais sobre o total de empresas — valores altos indicam economia predominantemente informal. <strong>Pop. não-branca</strong> e <strong>Chefia feminina</strong> completam o perfil demográfico. Os dois novos eixos medem a <em>capacidade de resposta</em> da região: <strong>Déficit institucional</strong> é a densidade inversa de OSCs por 1.000 habitantes (quanto maior, menos organizações da sociedade civil per capita), e <strong>Déficit empresarial</strong> é a densidade inversa de empresas por 1.000 habitantes (quanto maior, menor a base produtiva local). Regiões com vulnerabilidade alta E déficit institucional/empresarial alto são as que mais se beneficiam de intervenção articulada.</p>
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
         <div>
           <h3 class="panel-title">Perfil de vulnerabilidades por região</h3>
-          <p class="panel-sub">Radar com 8 indicadores ponderados por população. Ao lado, uma leitura sintética de cada região.</p>
+          <p class="panel-sub">Radar com 10 indicadores ponderados por população. Ao lado, uma leitura sintética de cada região.</p>
         </div>
       </div>
       <div class="map-analytics-layout" style="align-items:start;padding:0 24px 24px">
@@ -1747,7 +1782,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     </div>
     <div class="decision">
       <h3>Leitura integrada</h3>
-      <p>O radar revela três perfis regionais distintos em Maracanaú. <strong>Regiões periféricas</strong> (polígonos amplos) concentram múltiplas fragilidades simultâneas — extrema pobreza elevada, déficit sanitário e alta informalidade econômica — demandando intervenções multisetoriais articuladas. <strong>Regiões centrais e industriais</strong> (polígonos mais contidos) apresentam fragilidades pontuais, geralmente em um ou dois eixos, que podem ser endereçadas com ações temáticas focalizadas. <strong>O eixo Pajuçara–Distrito Industrial</strong> combina necessidade moderada com forte base institucional (OSCs + empresas), oferecendo as melhores condições para articulação em rede. A comparação cruzada dos 8 eixos é fundamental: um território com alto déficit de esgoto <em>e</em> alta informalidade demanda resposta diferente de outro com déficit apenas em renda. O radar permite essa leitura integrada, evitando priorização baseada em indicadores isolados.</p>
+      <p>O radar revela três perfis regionais distintos em Maracanaú. <strong>Regiões periféricas</strong> (polígonos amplos) concentram múltiplas fragilidades simultâneas — extrema pobreza elevada, déficit sanitário e alta informalidade econômica — demandando intervenções multisetoriais articuladas. <strong>Regiões centrais e industriais</strong> (polígonos mais contidos) apresentam fragilidades pontuais, geralmente em um ou dois eixos, que podem ser endereçadas com ações temáticas focalizadas. <strong>O eixo Pajuçara–Distrito Industrial</strong> combina necessidade moderada com forte base institucional (OSCs + empresas), oferecendo as melhores condições para articulação em rede. A comparação cruzada dos 10 eixos é fundamental: um território com alto déficit de esgoto <em>e</em> alta informalidade demanda resposta diferente de outro com déficit apenas em renda. O radar permite essa leitura integrada, evitando priorização baseada em indicadores isolados.</p>
     </div>
 
     <div style="margin:24px 0 6px;padding:0 4px">
@@ -1758,13 +1793,13 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     </div>
     <div class="decision">
       <h3>Como ler a matriz</h3>
-      <p>A matriz cruza as 6 regiões com os 8 indicadores do radar, colorindo cada célula pelo grau de vulnerabilidade relativa entre as regiões. <strong style="color:#7F1D1D">Vermelho</strong> indica maior vulnerabilidade (terço superior), <strong style="color:#854D0E">Amarelo</strong> indica vulnerabilidade intermediária (terço médio) e <strong style="color:#14532D">Verde</strong> indica menor vulnerabilidade (terço inferior). A leitura por linha mostra o perfil de cada região; por coluna, revela qual dimensão é mais crítica no município.</p>
+      <p>A matriz cruza as 6 regiões com os 10 indicadores do radar, colorindo cada célula pelo grau de vulnerabilidade relativa entre as regiões. <strong style="color:#7F1D1D">Vermelho</strong> indica maior vulnerabilidade (terço superior), <strong style="color:#854D0E">Amarelo</strong> indica vulnerabilidade intermediária (terço médio) e <strong style="color:#14532D">Verde</strong> indica menor vulnerabilidade (terço inferior). A leitura por linha mostra o perfil de cada região; por coluna, revela qual dimensão é mais crítica no município.</p>
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
         <div>
           <h3 class="panel-title">Matriz de vulnerabilidades por região</h3>
-          <p class="panel-sub">8 indicadores × 6 regiões · cores relativas ao máximo municipal.</p>
+          <p class="panel-sub">10 indicadores × 6 regiões · cores relativas ao máximo municipal.</p>
         </div>
       </div>
       <div class="matrix-wrap" style="padding:0 24px 20px">
@@ -1780,7 +1815,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     </div>
     <div class="decision">
       <h3>Metodologia do IPT</h3>
-      <p>O <strong>Índice de Priorização Territorial (IPT)</strong> combina as 8 dimensões do radar em um score único por região, calculado como a média aritmética dos valores normalizados (0 a 1). Quanto maior o IPT, maior a concentração de vulnerabilidades e, consequentemente, maior a prioridade para intervenção da Redes Ceará. A classificação segue: <strong>Crítico</strong> (≥ 0,70), <strong>Alto</strong> (≥ 0,50), <strong>Moderado</strong> (≥ 0,30) e <strong>Baixo</strong> (&lt; 0,30). O índice complementa a análise visual do radar com uma métrica direta e comparável.</p>
+      <p>O <strong>Índice de Priorização Territorial (IPT)</strong> combina as 10 dimensões do radar em um score único por região, calculado como a média aritmética dos valores normalizados (0 a 1). Além das dimensões de vulnerabilidade social, o IPT incorpora o <strong>déficit institucional</strong> (carência de OSCs per capita) e o <strong>déficit empresarial</strong> (carência de empresas per capita), capturando assim não só a gravidade das vulnerabilidades mas também a capacidade local de resposta. Quanto maior o IPT, maior a concentração de vulnerabilidades e menor a capacidade de resposta, logo maior a prioridade para intervenção. Classificação: <strong>Crítico</strong> (≥ 0,70), <strong>Alto</strong> (≥ 0,50), <strong>Moderado</strong> (≥ 0,30) e <strong>Baixo</strong> (&lt; 0,30).</p>
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
@@ -2895,21 +2930,34 @@ function initAlimentMap(){
     return stops[Math.min(Math.floor(t*stops.length), stops.length-1)];
   }
 
-  // 2) Populate bairro filter
+  // 2) Populate bairro + region filters
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
   const badge = document.getElementById('aliment-filter-count');
   const txtAnalysis = document.getElementById('aliment-analysis-text');
   const listEl = document.getElementById('aliment-top-list');
 
-  const bairros = [...new Set(ALIMENT_POINTS.map(p=>p.b))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
-  bairros.forEach(b=>{
+  const alimentAllBairros = [...new Set(ALIMENT_POINTS.map(p=>p.b))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  function populateAlimentBairros(region){
+    selBairro.innerHTML = '<option value="">Todos os bairros</option>';
+    const list = region ? alimentAllBairros.filter(b=>(REGION_MAP[b]||'')===region) : alimentAllBairros;
+    list.forEach(b=>{
+      const opt = document.createElement('option');
+      opt.value = b; opt.textContent = `${b} (${totalByBairro[b]||0})`;
+      selBairro.appendChild(opt);
+    });
+  }
+  populateAlimentBairros('');
+
+  const alimentRegioes = [...new Set(ALIMENT_POINTS.map(p=>REGION_MAP[p.b]||'').filter(Boolean))].sort();
+  alimentRegioes.forEach(r=>{
     const opt = document.createElement('option');
-    opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
-    selBairro.appendChild(opt);
+    opt.value = r; opt.textContent = r;
+    selRegiao.appendChild(opt);
   });
 
   // 3) Build map
@@ -2953,11 +3001,13 @@ function initAlimentMap(){
     const cf = selCat.value;
     const tf = selTipo.value;
     const bf = selBairro.value;
+    const rf = selRegiao.value;
     const sq = (inpSearch.value||'').trim().toLowerCase();
     let out = ALIMENT_POINTS;
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
     if(bf) out = out.filter(p=>p.b===bf);
+    if(rf) out = out.filter(p=>(REGION_MAP[p.b]||'')===rf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
   }
@@ -3026,20 +3076,26 @@ function initAlimentMap(){
     listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (selRegiao.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
-    [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    [selCat,selTipo,selBairro,selRegiao].forEach(s=>s.classList.toggle('active-filter',!!s.value));
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
+  selRegiao.addEventListener('change', ()=>{
+    populateAlimentBairros(selRegiao.value);
+    selBairro.value='';
+    renderAlimentMap();
+  });
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; selBairro.value=''; selRegiao.value=''; inpSearch.value='';
+    populateAlimentBairros('');
     renderAlimentMap();
   });
 
@@ -3892,7 +3948,9 @@ function initComp(){
     {key:'rendaPC', label:'Déficit de renda',    transform:v=>Math.max(0,1-(v||0)/3000)},
     {key:'meiShare',label:'Informalidade (MEI)', transform:v=>v||0},
     {key:'raca',    label:'Pop. não-branca',     transform:v=>v},
-    {key:'mulh',    label:'Chefia feminina',     transform:v=>v}
+    {key:'mulh',    label:'Chefia feminina',     transform:v=>v},
+    {key:'oscDens', label:'Déficit institucional',transform:v=>v, derived:true},
+    {key:'empDens', label:'Déficit empresarial',  transform:v=>v, derived:true}
   ];
 
   // ─── Agregadores ───────────────────────────────────────────────────────────
@@ -3923,6 +3981,26 @@ function initComp(){
     const raw = aggregate(DATA, ind.key, 'wmean');
     muni.values['rdr_'+ind.key] = ind.transform(raw);
   });
+
+  // Derived radar metrics: institutional and enterprise density gaps
+  const maxOscDens = Math.max(...GROUPS.map(g => {
+    const totalOsc = groupAgg[g].rows.reduce((s,r) => s + (+r.osc||0), 0);
+    return totalOsc / (groupAgg[g].pop || 1) * 1000;
+  }), 0.001);
+  const maxEmpDens = Math.max(...GROUPS.map(g => {
+    const totalEmp = groupAgg[g].rows.reduce((s,r) => s + (+r.emp||0), 0);
+    return totalEmp / (groupAgg[g].pop || 1) * 1000;
+  }), 0.001);
+  GROUPS.forEach(g => {
+    const totalOsc = groupAgg[g].rows.reduce((s,r) => s + (+r.osc||0), 0);
+    const totalEmp = groupAgg[g].rows.reduce((s,r) => s + (+r.emp||0), 0);
+    groupAgg[g].values['rdr_oscDens'] = Math.max(0, 1 - (totalOsc / (groupAgg[g].pop || 1) * 1000) / maxOscDens);
+    groupAgg[g].values['rdr_empDens'] = Math.max(0, 1 - (totalEmp / (groupAgg[g].pop || 1) * 1000) / maxEmpDens);
+  });
+  const muniTotalOsc = DATA.reduce((s,r) => s + (+r.osc||0), 0);
+  const muniTotalEmp = DATA.reduce((s,r) => s + (+r.emp||0), 0);
+  muni.values['rdr_oscDens'] = Math.max(0, 1 - (muniTotalOsc / (muni.pop||1) * 1000) / maxOscDens);
+  muni.values['rdr_empDens'] = Math.max(0, 1 - (muniTotalEmp / (muni.pop||1) * 1000) / maxEmpDens);
 
   // ─── 1) Mapa de divisão regional ───────────────────────────────────────────
   function renderDivisionMap(){
@@ -4227,7 +4305,7 @@ function initComp(){
     return { name: g, ipt: avg, cls, clsColor, clsBg, data: vals };
   }).sort((a,b) => b.ipt - a.ipt);
 
-  const iptLabels = ['Ext. Pobreza','CadÚnico','Analf.','Déf. Esgoto','Déf. Renda','Inform.','Não-branca','Chef. Fem.'];
+  const iptLabels = ['Ext. Pobreza','CadÚnico','Analf.','Déf. Esgoto','Déf. Renda','Inform.','Não-branca','Chef. Fem.','Déf. Instit.','Déf. Empres.'];
   let iptSortKey = 'ipt', iptSortDir = -1;
   function renderIptTable(){
     const sorted = [...iptData].sort((a,b) => {
