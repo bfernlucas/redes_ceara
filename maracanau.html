@@ -10,10 +10,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <style>
 :root{
   --bg:#F4F6F9;
@@ -1014,10 +1014,12 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .matrix.heatmap .cell.baixo-risco > span{background:#CFFAFE;color:#155E63}
 .matrix.heatmap .cell.medio > span{background:#FEF9C3;color:#854D0E}
 .matrix.heatmap .cell.baixo > span{background:#FEE2E2;color:#7F1D1D}
+.matrix.heatmap .cell.alto-risco > span{background:#FEE2E2;color:#7F1D1D}
 .matrix.heatmap tbody tr:hover .cell.alto > span{background:#BBF7D0}
 .matrix.heatmap tbody tr:hover .cell.baixo-risco > span{background:#A5F3FC}
 .matrix.heatmap tbody tr:hover .cell.medio > span{background:#FEF08A}
 .matrix.heatmap tbody tr:hover .cell.baixo > span{background:#FECACA}
+.matrix.heatmap tbody tr:hover .cell.alto-risco > span{background:#FECACA}
 .matrix.heatmap.vuln .cell.vuln-alto > span{background:#FEE2E2;color:#7F1D1D}
 .matrix.heatmap.vuln .cell.vuln-medio > span{background:#FEF9C3;color:#854D0E}
 .matrix.heatmap.vuln .cell.vuln-baixo > span{background:#DCFCE7;color:#14532D}
@@ -1141,7 +1143,10 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <h2 class="section-title">Perfil da população</h2>
       <p class="section-desc">Distribuição espacial, densidade e composição demográfica dos 44 bairros (IBGE, 2022).</p>
     </div>
-    <div class="decision"><h3>Análise</h3><p>A população se distribui de forma desigual: Pajuçara concentra 22 mil habitantes enquanto bairros como Parque Santa Maria e Picada têm menos de 600. As densidades mais altas estão nos conjuntos Jereissati e Conjunto Timbó. A população não-branca é amplamente majoritária, chegando a 96,6% em Olho d'Água do Pitaguari.</p></div>
+    <div class="decision">
+      <h3>Análise</h3>
+      <p>A população se distribui de forma desigual: Pajuçara concentra 22 mil habitantes enquanto bairros como Parque Santa Maria e Picada têm menos de 600. As densidades mais altas estão nos conjuntos Jereissati e Conjunto Timbó. A população não-branca é amplamente majoritária, chegando a 96,6% em Olho d'Água do Pitaguari.</p>
+    </div>
     <div class="panel">
       <div class="panel-head"><div><h3 class="panel-title">Distribuição espacial (IBGE, 2022)</h3></div>
         <div class="filters"><select id="demo-indicador"></select></div>
@@ -1150,7 +1155,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <div id="map-demo" class="map-box split"></div>
         <div class="analysis-side">
           <div class="analysis-card">
-            <span class="analysis-kicker">Leitura do mapa</span>
+            <span class="analysis-kicker">Análise do indicador selecionado</span>
             <h4 class="analysis-title" id="map-summary-title-demo">Perfil da população</h4>
             <p class="analysis-text" id="map-summary-demo">Selecione um indicador para ver a análise contextualizada.</p>
           </div>
@@ -1174,8 +1179,15 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
   <!-- VULNERABILIDADE -->
   <section id="section-vuln" class="section">
-    <div class="section-head"><span class="section-kicker">Vulnerabilidade</span><h2 class="section-title">Pobreza e privação</h2><p class="section-desc">Extrema pobreza, CadÚnico (2025), analfabetismo e rendimento por bairro.</p></div>
-    <div class="decision"><h3>Análise</h3><p>A incidência de CadÚnico ultrapassa 100% em Acaracuzinho I. A extrema pobreza ultrapassa 50% dos domicílios em Parque Santa Maria, Jari e Parque Tropical. O analfabetismo é mais alto em Olho d'Água do Pitaguari (13,6%) e Mucunã (12,2%).</p></div>
+    <div class="section-head">
+      <span class="section-kicker">Vulnerabilidade</span>
+      <h2 class="section-title">Pobreza e privação</h2>
+      <p class="section-desc">Extrema pobreza, CadÚnico (2025), analfabetismo e rendimento por bairro.</p>
+    </div>
+    <div class="decision">
+      <h3>Análise</h3>
+      <p>A incidência de CadÚnico ultrapassa 100% em Acaracuzinho I. A extrema pobreza ultrapassa 50% dos domicílios em Parque Santa Maria, Jari e Parque Tropical. O analfabetismo é mais alto em Olho d'Água do Pitaguari (13,6%) e Mucunã (12,2%).</p>
+    </div>
     <div class="panel">
       <div class="panel-head"><div><h3 class="panel-title">Vulnerabilidade por bairro (MDS, 2025)</h3></div><div class="filters"><select id="vuln-indicador"></select></div></div>
       <div class="map-analytics-layout">
@@ -1214,8 +1226,15 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
   <!-- INFRAESTRUTURA -->
   <section id="section-infra" class="section">
-    <div class="section-head"><span class="section-kicker">Infraestrutura</span><h2 class="section-title">O que a cidade oferece</h2><p class="section-desc">Cobertura de saneamento, saúde e equipamentos públicos por bairro (IBGE, 2022 · CNES, 2024).</p></div>
-    <div class="decision"><h3>Análise</h3><p>O esgotamento sanitário é o maior gargalo. Diversos bairros têm menos de 5% de cobertura de esgoto. A água e a coleta de lixo apresentam cobertura próxima da universalidade. Equipamentos concentram-se nos bairros mais populosos.</p></div>
+    <div class="section-head">
+      <span class="section-kicker">Infraestrutura</span>
+      <h2 class="section-title">O que a cidade oferece</h2>
+      <p class="section-desc">Cobertura de saneamento, saúde e equipamentos públicos por bairro (IBGE, 2022 · CNES, 2024).</p>
+    </div>
+    <div class="decision">
+      <h3>Análise</h3>
+      <p>O esgotamento sanitário é o maior gargalo. Diversos bairros têm menos de 5% de cobertura de esgoto. A água e a coleta de lixo apresentam cobertura próxima da universalidade. Equipamentos concentram-se nos bairros mais populosos.</p>
+    </div>
     <div class="panel">
       <div class="panel-head"><div><h3 class="panel-title">Cobertura de serviços (IBGE, 2022)</h3></div><div class="filters"><select id="infra-indicador"></select></div></div>
       <div class="map-analytics-layout">
@@ -1272,8 +1291,15 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
   <!-- TECIDO ECONÔMICO -->
   <section id="section-econ" class="section">
-    <div class="section-head"><span class="section-kicker">Economia local</span><h2 class="section-title">Tecido econômico</h2><p class="section-desc">Atividade empresarial, MEIs e capital social acumulado por bairro (Receita Federal, 2024).</p></div>
-    <div class="decision"><h3>Análise</h3><p>Pajuçara e Jereissati A concentram o maior volume de empresas, respondendo juntos por cerca de 25% dos estabelecimentos do município. O Distrito Industrial se destaca em médias e grandes empresas e em capital social acumulado, concentrando mais de 60% do capital total registrado. A participação de MEIs é altíssima, ultrapassando 80% em pelo menos 15 bairros — sinal de economia predominantemente informal nas áreas residenciais. Entre as 2.392 empresas de porte "Demais", o capital social total atinge R$ 1,49 trilhão (valor inflado por filiais de grandes bancos e redes nacionais com sede registrada no município). Excluídas essas distorções, a base produtiva local depende fortemente de microempreendimentos.</p></div>
+    <div class="section-head">
+      <span class="section-kicker">Economia local</span>
+      <h2 class="section-title">Tecido econômico</h2>
+      <p class="section-desc">Atividade empresarial, MEIs e capital social acumulado por bairro (Receita Federal, 2024).</p>
+    </div>
+    <div class="decision">
+      <h3>Análise</h3>
+      <p>Pajuçara e Jereissati A concentram o maior volume de empresas, respondendo juntos por cerca de 25% dos estabelecimentos do município. O Distrito Industrial se destaca em médias e grandes empresas e em capital social acumulado, concentrando mais de 60% do capital total registrado. A participação de MEIs é altíssima, ultrapassando 80% em pelo menos 15 bairros — sinal de economia predominantemente informal nas áreas residenciais. Entre as 2.392 empresas de porte "Demais", o capital social total atinge R$ 1,49 trilhão (valor inflado por filiais de grandes bancos e redes nacionais com sede registrada no município). Excluídas essas distorções, a base produtiva local depende fortemente de microempreendimentos.</p>
+    </div>
 
     <!-- KPIs resumo economia -->
     <div class="kpi-grid four" id="kpi-econ-resumo" style="margin-bottom:4px"></div>
@@ -1307,7 +1333,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       </div>
       <div class="map-analytics-layout">
         <div class="mge-map-wrap">
-          <div class="map-box split" id="map-mge" style="min-height:520px"></div>
+          <div class="map-box split" id="map-mge" style="min-height:540px"></div>
           <div class="map-filter-overlay" id="mge-filter-overlay">
             <input type="search" id="mge-map-search" placeholder="Buscar empresa…" autocomplete="off" style="flex:2;min-width:160px">
             <select id="mge-tipo-filter" title="Filtrar por tipo">
@@ -1329,7 +1355,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
           </div>
         </div>
         <div class="analysis-side">
-          <div class="analysis-card" style="flex:1;display:flex;flex-direction:column;max-height:520px">
+          <div class="analysis-card" style="flex:1;display:flex;flex-direction:column;max-height:540px">
             <div class="analysis-kicker">Empresas no filtro</div>
             <p class="analysis-text" id="mge-analysis-text" style="margin:6px 0 8px;font-size:12px"></p>
             <div id="mge-top-list" style="flex:1;overflow-y:auto;min-height:0"></div>
@@ -1346,6 +1372,11 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <span class="cap-legend-item"><span class="cap-legend-dot" style="background:#5B21B6"></span>Máximo</span>
         <span style="margin-left:12px;color:var(--muted);font-size:11px">· Pontos agrupados por proximidade (clique para expandir)</span>
       </div>
+    </div>
+
+    <div class="decision" style="margin:16px 0">
+      <h3>Setor alimentício</h3>
+      <p>O mapa abaixo revela a distribuição dos 1.175 estabelecimentos alimentícios ativos em Maracanaú. Restaurantes e lanchonetes dominam (57% do total), concentrados em Pajuçara e Jereissati. Hortifruti e atacado especializado estão mais dispersos, enquanto hiper e supermercados (apenas 42 unidades) se limitam aos eixos viários principais — indicando possíveis desertos alimentares nos bairros periféricos.</p>
     </div>
 
     <!-- MAPA SETOR ALIMENTÍCIO -->
@@ -1367,7 +1398,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       </div>
       <div class="map-analytics-layout">
         <div class="mge-map-wrap">
-          <div class="map-box split" id="map-aliment" style="min-height:520px"></div>
+          <div class="map-box split" id="map-aliment" style="min-height:540px"></div>
           <div class="map-filter-overlay" id="aliment-filter-overlay">
             <input type="search" id="aliment-map-search" placeholder="Buscar estabelecimento…" autocomplete="off" style="flex:2;min-width:160px">
             <select id="aliment-cat-filter" title="Filtrar por categoria">
@@ -1382,6 +1413,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
             </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
+            </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
             </select>
@@ -1390,7 +1424,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
           </div>
         </div>
         <div class="analysis-side">
-          <div class="analysis-card" style="flex:1;display:flex;flex-direction:column;max-height:520px">
+          <div class="analysis-card" style="flex:1;display:flex;flex-direction:column;max-height:540px">
             <div class="analysis-kicker">Estabelecimentos no filtro</div>
             <p class="analysis-text" id="aliment-analysis-text" style="margin:6px 0 8px;font-size:12px"></p>
             <div id="aliment-top-list" style="flex:1;overflow-y:auto;min-height:0"></div>
@@ -1723,6 +1757,36 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <h3>Como ler o radar</h3>
       <p>Cada eixo representa um indicador normalizado de 0 a 1 e ponderado pela população dos bairros. Quanto maior a área do polígono, mais concentrado o perfil de vulnerabilidade naquela região. <strong>Extrema pobreza</strong> mede a proporção de famílias abaixo da linha de pobreza extrema (MDS, 2025). <strong>CadÚnico</strong> indica a cobertura do Cadastro Único — valores altos significam maior dependência de programas sociais. <strong>Analfabetismo</strong> revela o déficit educacional adulto. <strong>Déficit de esgoto</strong> e <strong>Déficit de renda</strong> captam, respectivamente, a precariedade sanitária e a insuficiência econômica. <strong>Informalidade (MEI)</strong> mostra a proporção de microempreendedores individuais sobre o total de empresas — valores altos indicam economia predominantemente informal, com menor geração de emprego formal. <strong>Pop. não-branca</strong> e <strong>Chefia feminina</strong> completam o perfil demográfico, revelando a interseccionalidade entre vulnerabilidade racial e de gênero nos territórios.</p>
     </div>
+    <div class="panel" style="margin-top:12px;margin-bottom:16px">
+      <div class="panel-head">
+        <div>
+          <h3 class="panel-title">Definição dos indicadores do radar</h3>
+          <p class="panel-sub">8 dimensões normalizadas (0 a 1) agrupadas em três categorias · quanto maior o valor, maior a vulnerabilidade</p>
+        </div>
+      </div>
+      <div class="table-wrap" style="padding:0 20px 16px">
+        <table>
+          <thead>
+            <tr>
+              <th class="no-sort">Categoria</th>
+              <th class="no-sort">Indicador</th>
+              <th class="no-sort">Definição</th>
+              <th class="no-sort">Fonte</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="3" style="font-weight:700;color:var(--brand);vertical-align:top">Vulnerabilidade social</td><td>Extrema pobreza</td><td>Proporção de famílias abaixo da linha de pobreza extrema</td><td>MDS, 2025</td></tr>
+            <tr><td>Cobertura CadÚnico</td><td>Proporção de famílias inscritas no Cadastro Único</td><td>MDS, 2025</td></tr>
+            <tr><td>Analfabetismo adulto</td><td>Taxa de analfabetismo na população de 15+ anos</td><td>IBGE, 2022</td></tr>
+            <tr><td rowspan="2" style="font-weight:700;color:var(--brand);vertical-align:top">Infraestrutura e renda</td><td>Déficit de esgoto</td><td>% de domicílios sem rede coletora de esgoto</td><td>IBGE, 2022</td></tr>
+            <tr><td>Déficit de renda</td><td>% de domicílios com renda per capita abaixo de ½ salário mínimo</td><td>IBGE, 2022</td></tr>
+            <tr><td rowspan="3" style="font-weight:700;color:var(--brand);vertical-align:top">Perfil socioeconômico</td><td>Informalidade (MEI)</td><td>Proporção de MEIs sobre o total de empresas ativas</td><td>Receita Federal, 2024</td></tr>
+            <tr><td>Pop. não-branca</td><td>% da população que se autodeclara preta, parda ou indígena</td><td>IBGE, 2022</td></tr>
+            <tr><td>Chefia feminina</td><td>% de domicílios chefiados por mulheres</td><td>IBGE, 2022</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
         <div>
@@ -1758,7 +1822,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     </div>
     <div class="decision">
       <h3>Como ler a matriz</h3>
-      <p>A matriz cruza as 6 regiões com os 8 indicadores do radar, colorindo cada célula pelo grau de vulnerabilidade relativa entre as regiões. <strong style="color:#7F1D1D">Vermelho</strong> indica maior vulnerabilidade (terço superior), <strong style="color:#854D0E">Amarelo</strong> indica vulnerabilidade intermediária (terço médio) e <strong style="color:#14532D">Verde</strong> indica menor vulnerabilidade (terço inferior). A leitura por linha mostra o perfil de cada região; por coluna, revela qual dimensão é mais crítica no município.</p>
+      <p>A matriz cruza as 6 regiões com os 8 indicadores do radar, colorindo cada célula pelo grau de vulnerabilidade relativa entre as regiões. <strong style="color:#14532D">Verde</strong> indica menor vulnerabilidade (terço inferior), <strong style="color:#854D0E">Amarelo</strong> indica vulnerabilidade intermediária (terço médio) e <strong style="color:#7F1D1D">Vermelho</strong> indica maior vulnerabilidade (terço superior). A leitura por linha mostra o perfil de cada região; por coluna, revela qual dimensão é mais crítica no município.</p>
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
@@ -1781,6 +1845,12 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="decision">
       <h3>Metodologia do IPT</h3>
       <p>O <strong>Índice de Priorização Territorial (IPT)</strong> combina as 8 dimensões do radar em um score único por região, calculado como a média aritmética dos valores normalizados (0 a 1). Quanto maior o IPT, maior a concentração de vulnerabilidades e, consequentemente, maior a prioridade para intervenção da Redes Ceará. A classificação segue: <strong>Crítico</strong> (≥ 0,70), <strong>Alto</strong> (≥ 0,50), <strong>Moderado</strong> (≥ 0,30) e <strong>Baixo</strong> (&lt; 0,30). O índice complementa a análise visual do radar com uma métrica direta e comparável.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin:8px 0 16px;padding:0 4px">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:#FEE2E2;border:1px solid #FECACA;font-size:11px;font-weight:600;color:#991B1B">Crítico ≥ 0,70</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:#FEF3C7;border:1px solid #FDE68A;font-size:11px;font-weight:600;color:#92400E">Alto ≥ 0,50</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:#FEF9C3;border:1px solid #FEF08A;font-size:11px;font-weight:600;color:#854D0E">Moderado ≥ 0,30</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:#DCFCE7;border:1px solid #BBF7D0;font-size:11px;font-weight:600;color:#166534">Baixo &lt; 0,30</span>
     </div>
     <div class="panel" style="margin-top:12px">
       <div class="panel-head">
@@ -1924,7 +1994,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <td><span class="region-label"><span class="region-dot" style="background:#DC2626"></span>Zona Sul</span></td>
               <td class="cell medio"><span>Médio</span></td>
               <td class="cell baixo"><span>Baixo</span></td>
-              <td class="cell baixo"><span>Alto</span></td>
+              <td class="cell alto-risco"><span>Alto</span></td>
               <td class="cell baixo"><span>Baixo</span></td>
               <td class="cell medio"><span>Médio</span></td>
             </tr>
@@ -2122,13 +2192,13 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <table class="partners-table">
           <thead>
             <tr>
-              <th>Parceiro</th>
-              <th>Extremo<br>Norte</th>
-              <th>Zona<br>Norte</th>
-              <th>Centro e<br>Jereissati</th>
-              <th>Zona<br>Leste</th>
-              <th>Zona<br>Oeste</th>
-              <th>Zona<br>Sul</th>
+              <th class="no-sort">Parceiro</th>
+              <th class="no-sort">Extremo<br>Norte</th>
+              <th class="no-sort">Zona<br>Norte</th>
+              <th class="no-sort">Centro e<br>Jereissati</th>
+              <th class="no-sort">Zona<br>Leste</th>
+              <th class="no-sort">Zona<br>Oeste</th>
+              <th class="no-sort">Zona<br>Sul</th>
             </tr>
           </thead>
           <tbody>
@@ -2898,6 +2968,7 @@ function initAlimentMap(){
   // 2) Populate bairro filter
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
@@ -2911,6 +2982,8 @@ function initAlimentMap(){
     opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
     selBairro.appendChild(opt);
   });
+  const regioesAliment = [...new Set(ALIMENT_POINTS.map(p=>REGION_MAP[p.b]||'').filter(Boolean))].sort();
+  regioesAliment.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;selRegiao.appendChild(o)});
 
   // 3) Build map
   if(!MAPS['map-aliment']){
@@ -2952,11 +3025,13 @@ function initAlimentMap(){
   function getFilteredAliment(){
     const cf = selCat.value;
     const tf = selTipo.value;
+    const rf = selRegiao.value;
     const bf = selBairro.value;
     const sq = (inpSearch.value||'').trim().toLowerCase();
     let out = ALIMENT_POINTS;
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
+    if(rf) out = out.filter(p=>(REGION_MAP[p.b]||'')===rf);
     if(bf) out = out.filter(p=>p.b===bf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
@@ -3026,20 +3101,21 @@ function initAlimentMap(){
     listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selRegiao.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
-    [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    [selCat,selTipo,selRegiao,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
+  selRegiao.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; selRegiao.value=''; selBairro.value=''; inpSearch.value='';
     renderAlimentMap();
   });
 
