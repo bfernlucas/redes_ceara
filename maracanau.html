@@ -1265,8 +1265,8 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       </div>
     </div>
     <div class="grid two" style="margin-top:22px">
-      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Saúde pública por bairro (CNES, 2024)</h3><p class="panel-sub">Estabelecimentos de saúde, nº de unidades por bairro</p></div></div><div class="chart-box"><canvas id="chart-infra-saude" class="chart"></canvas></div></div>
-      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Rede escolar pública (Censo Escolar, 2023)</h3><p class="panel-sub">Escolas públicas, nº de unidades por bairro</p></div></div><div class="chart-box"><canvas id="chart-infra-esc" class="chart"></canvas></div></div>
+      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Saúde pública por bairro (CNES, 2024)</h3><p class="panel-sub">Estabelecimentos de saúde, nº de unidades por bairro</p></div></div><div class="chart-box"><canvas id="chart-infra-saude" class="chart tall"></canvas></div></div>
+      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Rede escolar pública (Censo Escolar, 2023)</h3><p class="panel-sub">Escolas públicas, nº de unidades por bairro</p></div></div><div class="chart-box"><canvas id="chart-infra-esc" class="chart tall"></canvas></div></div>
     </div>
   </section>
 
@@ -1357,12 +1357,12 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
             <span class="info-icon" tabindex="0" aria-label="Como o mapa foi construído">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <span class="info-tip">
-                <strong>Como ler este mapa.</strong> 1.175 estabelecimentos alimentícios ativos em Maracanaú a partir do CNAE principal da Receita Federal (dez/2024), agrupados em quatro categorias: Restaurantes &amp; Lanchonetes, Hortifruti, Atacado especializado e Hiper/Supermercados. Use os filtros para refinar por categoria, tipo (matriz/filial) ou bairro.<br><br>
+                <strong>Como ler este mapa.</strong> 1.175 estabelecimentos alimentícios ativos em Maracanaú a partir do CNAE principal da Receita Federal (dez/2024), agrupados em quatro categorias: Restaurantes &amp; Lanchonetes, Hortifruti, Atacado especializado e Hiper/Supermercados. Use os filtros para refinar por categoria, tipo (matriz/filial), região administrativa ou bairro.<br><br>
                 <strong>Importante:</strong> as posições no mapa são <em>aproximações</em> — cada ponto é plotado dentro do polígono do bairro registrado no CNPJ, com pequeno deslocamento determinístico por estabelecimento. Não representam o endereço exato. Para o endereço real, consulte a lista lateral.
               </span>
             </span>
           </h3>
-          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial) e bairro</p>
+          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial), região e bairro</p>
         </div>
       </div>
       <div class="map-analytics-layout">
@@ -1381,6 +1381,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="">Matriz e Filial</option>
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
+            </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
             </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
@@ -1403,6 +1406,15 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <span class="cap-legend-item"><span class="aliment-cat-icon" style="background:#16A34A">🥬</span>Hortifruti (293)</span>
         <span class="cap-legend-item"><span class="aliment-cat-icon" style="background:#0D9488">📦</span>Atacado especializado (170)</span>
         <span class="cap-legend-item"><span class="aliment-cat-icon" style="background:#7C3AED">🛒</span>Hiper &amp; Supermercados (42)</span>
+      </div>
+      <div class="cap-legend" style="border-top:none;padding-top:0">
+        <span class="cap-legend-label">Regiões:</span>
+        <span class="cap-legend-item"><span class="cap-legend-dot" style="background:#7C3AED"></span>Extremo Norte</span>
+        <span class="cap-legend-item"><span class="cap-legend-dot" style="background:#2563EB"></span>Zona Norte</span>
+        <span class="cap-legend-item"><span class="cap-legend-dot" style="background:#0891B2"></span>Centro e Jereissati</span>
+        <span class="cap-legend-item"><span class="cap-legend-dot" style="background:#059669"></span>Zona Leste</span>
+        <span class="cap-legend-item"><span class="cap-legend-dot" style="background:#D97706"></span>Zona Oeste</span>
+        <span class="cap-legend-item"><span class="cap-legend-dot" style="background:#DC2626"></span>Zona Sul</span>
       </div>
       <div class="aliment-notice">
         <strong>Aviso de aproximação.</strong> As posições dos pontos no mapa são aproximações por centroide do bairro com pequeno deslocamento determinístico por CNPJ — <em>não</em> representam o endereço exato. Para o endereço completo de cada estabelecimento, use o painel lateral ou clique no marcador.
@@ -2898,6 +2910,7 @@ function initAlimentMap(){
   // 2) Populate bairro filter
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
@@ -2911,6 +2924,15 @@ function initAlimentMap(){
     opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
     selBairro.appendChild(opt);
   });
+  if(selRegiao && selRegiao.options.length <= 1){
+    const regCounts={};
+    ALIMENT_POINTS.forEach(p=>{const r=REGION_MAP[p.b]||''; if(r) regCounts[r]=(regCounts[r]||0)+1;});
+    REGION_ORDER.forEach(r=>{
+      if(regCounts[r]){
+        const o=document.createElement('option'); o.value=r; o.textContent=`${r} (${regCounts[r]})`; selRegiao.appendChild(o);
+      }
+    });
+  }
 
   // 3) Build map
   if(!MAPS['map-aliment']){
@@ -2952,11 +2974,13 @@ function initAlimentMap(){
   function getFilteredAliment(){
     const cf = selCat.value;
     const tf = selTipo.value;
+    const rf = selRegiao ? selRegiao.value : '';
     const bf = selBairro.value;
     const sq = (inpSearch.value||'').trim().toLowerCase();
     let out = ALIMENT_POINTS;
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
+    if(rf) out = out.filter(p=>(REGION_MAP[p.b]||'')===rf);
     if(bf) out = out.filter(p=>p.b===bf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
@@ -2983,6 +3007,7 @@ function initAlimentMap(){
         <div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap">
           <span class="tipo-badge ${p.tipo==='M'?'tipo-m':'tipo-f'}">${p.tipo==='M'?'Matriz':'Filial'}</span>
           <span class="sector-tag">${p.b}</span>
+          ${REGION_MAP[p.b]?`<span class="sector-tag" style="background:${REGION_COLORS[REGION_MAP[p.b]]||'#888'};color:#fff">${REGION_MAP[p.b]}</span>`:''}
         </div>
         <div class="mge-detail">
           <div class="row"><b>CNPJ</b>${fmtCnpj(p.id)}</div>
@@ -3012,6 +3037,17 @@ function initAlimentMap(){
       </div>`;
     }).join('');
 
+    const byRegiao={};
+    filtered.forEach(p=>{const rg=REGION_MAP[p.b]||''; if(rg) byRegiao[rg]=(byRegiao[rg]||0)+1;});
+    const regRows = REGION_ORDER.filter(r=>byRegiao[r]>0).map(r=>{
+      const col=REGION_COLORS[r]||'#888';
+      return `<div class="aliment-row" style="background:#FAFBFD">
+        <span style="width:8px;height:8px;border-radius:50%;background:${col};flex-shrink:0"></span>
+        <span class="nm">${r}</span>
+        <span class="meta"><strong>${byRegiao[r]}</strong></span>
+      </div>`;
+    }).join('');
+
     const listVisible = 60;
     const sliced = filtered.slice(0, listVisible);
     const rows = sliced.map(p=>{
@@ -3023,23 +3059,25 @@ function initAlimentMap(){
       </div>`;
     }).join('');
     const more = filtered.length > listVisible ? `<div style="padding:8px;text-align:center;font-size:11px;color:var(--muted);font-style:italic">+ ${filtered.length-listVisible} estabelecimentos não exibidos · refine o filtro</div>` : '';
-    listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
+    const regSection = regRows ? `<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Por região (${Object.keys(byRegiao).length})</div><div style="margin-bottom:4px">${regRows}</div>` : '';
+    listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div>${regSection}<div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selRegiao&&selRegiao.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
-    [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    [selCat,selTipo,selRegiao,selBairro].filter(Boolean).forEach(s=>s.classList.toggle('active-filter',!!s.value));
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
+  if(selRegiao) selRegiao.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; if(selRegiao) selRegiao.value=''; selBairro.value=''; inpSearch.value='';
     renderAlimentMap();
   });
 
