@@ -1,0 +1,40 @@
+name: Combine fortaleza.html parts
+on:
+  push:
+    branches: ['improvements/layout-sorting-standardization']
+    paths: ['.github/workflows/combine_fortaleza.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  combine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 'improvements/layout-sorting-standardization'
+          token: ${{ github.token }}
+      
+      - name: Combine parts
+        run: |
+          cat _fortaleza_part1.txt  _fortaleza_part2.txt  _fortaleza_part3.txt  _fortaleza_part4.txt  _fortaleza_part5.txt  _fortaleza_part6.txt  _fortaleza_part7.txt > fortaleza.html
+          echo "Combined file size: $(wc -c < fortaleza.html) bytes"
+          echo "Lines: $(wc -l < fortaleza.html)"
+      
+      - name: Verify
+        run: |
+          head -1 fortaleza.html
+          tail -1 fortaleza.html
+          test $(wc -c < fortaleza.html) -gt 4000000
+      
+      - name: Cleanup and commit
+        run: |
+          rm -f _fortaleza_part1.txt  _fortaleza_part2.txt  _fortaleza_part3.txt  _fortaleza_part4.txt  _fortaleza_part5.txt  _fortaleza_part6.txt  _fortaleza_part7.txt
+          rm -f .github/workflows/combine_fortaleza.yml
+          rmdir -p .github/workflows 2>/dev/null || true
+          git config user.name "bfernlucas"
+          git config user.email "limbersocial@gmail.com"
+          git add -A
+          git commit -m "Restaura fortaleza.html completo com todas as melhorias"
+          git push
