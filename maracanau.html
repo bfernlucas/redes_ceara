@@ -1033,6 +1033,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
   .comparison-grid{grid-template-columns:1fr}
   .kpi-grid.six{grid-template-columns:repeat(3,1fr)}
   .filters select{min-width:140px}
+  #visao-region-cards{grid-template-columns:repeat(2,1fr)!important}
 }
 @media(max-width:900px){
   .container{padding:26px 18px 38px}
@@ -1060,6 +1061,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 }
 @media(max-width:700px){
   .kpi-grid.six{grid-template-columns:repeat(2,1fr)}
+  #visao-region-cards{grid-template-columns:1fr!important}
 }
 </style>
 </head>
@@ -1100,7 +1102,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="panel">
       <div class="panel-head">
         <div><h3 class="panel-title">Mapa analítico</h3></div>
-        <div class="filters"><select id="visao-indicador"></select></div>
+        <div class="filters"><select id="visao-regiao"><option value="">Todas as regiões</option></select><select id="visao-indicador"></select></div>
       </div>
       <div class="map-analytics-layout">
         <div id="map-visao" class="map-box split"></div>
@@ -1122,6 +1124,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <div class="note-box" id="note-visao"></div>
       </div>
     </div>
+    <div id="visao-region-cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px"></div>
     <div class="grid two" style="margin-top:16px">
       <div class="panel">
         <div class="panel-head"><div><h3 class="panel-title" id="chart-visao-title">Extrema pobreza por bairro (MDS, 2025)</h3><p class="panel-sub" id="chart-visao-sub">% dos domicílios</p></div></div>
@@ -1144,7 +1147,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="decision"><h3>Análise</h3><p>A população se distribui de forma desigual: Pajuçara concentra 22 mil habitantes enquanto bairros como Parque Santa Maria e Picada têm menos de 600. As densidades mais altas estão nos conjuntos Jereissati e Conjunto Timbó. A população não-branca é amplamente majoritária, chegando a 96,6% em Olho d'Água do Pitaguari.</p></div>
     <div class="panel">
       <div class="panel-head"><div><h3 class="panel-title">Distribuição espacial (IBGE, 2022)</h3></div>
-        <div class="filters"><select id="demo-indicador"></select></div>
+        <div class="filters"><select id="demo-regiao"><option value="">Todas as regiões</option></select><select id="demo-indicador"></select></div>
       </div>
       <div class="map-analytics-layout">
         <div id="map-demo" class="map-box split"></div>
@@ -1177,7 +1180,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="section-head"><span class="section-kicker">Vulnerabilidade</span><h2 class="section-title">Pobreza e privação</h2><p class="section-desc">Extrema pobreza, CadÚnico (2025), analfabetismo e rendimento por bairro.</p></div>
     <div class="decision"><h3>Análise</h3><p>A incidência de CadÚnico ultrapassa 100% em Acaracuzinho I. A extrema pobreza ultrapassa 50% dos domicílios em Parque Santa Maria, Jari e Parque Tropical. O analfabetismo é mais alto em Olho d'Água do Pitaguari (13,6%) e Mucunã (12,2%).</p></div>
     <div class="panel">
-      <div class="panel-head"><div><h3 class="panel-title">Vulnerabilidade por bairro (MDS, 2025)</h3></div><div class="filters"><select id="vuln-indicador"></select></div></div>
+      <div class="panel-head"><div><h3 class="panel-title">Vulnerabilidade por bairro (MDS, 2025)</h3></div><div class="filters"><select id="vuln-regiao"><option value="">Todas as regiões</option></select><select id="vuln-indicador"></select></div></div>
       <div class="map-analytics-layout">
         <div id="map-vuln" class="map-box split"></div>
         <div class="analysis-side">
@@ -1217,7 +1220,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="section-head"><span class="section-kicker">Infraestrutura</span><h2 class="section-title">O que a cidade oferece</h2><p class="section-desc">Cobertura de saneamento, saúde e equipamentos públicos por bairro (IBGE, 2022 · CNES, 2024).</p></div>
     <div class="decision"><h3>Análise</h3><p>O esgotamento sanitário é o maior gargalo. Diversos bairros têm menos de 5% de cobertura de esgoto. A água e a coleta de lixo apresentam cobertura próxima da universalidade. Equipamentos concentram-se nos bairros mais populosos.</p></div>
     <div class="panel">
-      <div class="panel-head"><div><h3 class="panel-title">Cobertura de serviços (IBGE, 2022)</h3></div><div class="filters"><select id="infra-indicador"></select></div></div>
+      <div class="panel-head"><div><h3 class="panel-title">Cobertura de serviços (IBGE, 2022)</h3></div><div class="filters"><select id="infra-regiao"><option value="">Todas as regiões</option></select><select id="infra-indicador"></select></div></div>
       <div class="map-analytics-layout">
         <div id="map-infra" class="map-box split"></div>
         <div class="analysis-side">
@@ -1357,12 +1360,12 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
             <span class="info-icon" tabindex="0" aria-label="Como o mapa foi construído">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <span class="info-tip">
-                <strong>Como ler este mapa.</strong> 1.175 estabelecimentos alimentícios ativos em Maracanaú a partir do CNAE principal da Receita Federal (dez/2024), agrupados em quatro categorias: Restaurantes &amp; Lanchonetes, Hortifruti, Atacado especializado e Hiper/Supermercados. Use os filtros para refinar por categoria, tipo (matriz/filial) ou bairro.<br><br>
+                <strong>Como ler este mapa.</strong> 1.175 estabelecimentos alimentícios ativos em Maracanaú a partir do CNAE principal da Receita Federal (dez/2024), agrupados em quatro categorias: Restaurantes &amp; Lanchonetes, Hortifruti, Atacado especializado e Hiper/Supermercados. Use os filtros para refinar por categoria, tipo (matriz/filial), região ou bairro.<br><br>
                 <strong>Importante:</strong> as posições no mapa são <em>aproximações</em> — cada ponto é plotado dentro do polígono do bairro registrado no CNPJ, com pequeno deslocamento determinístico por estabelecimento. Não representam o endereço exato. Para o endereço real, consulte a lista lateral.
               </span>
             </span>
           </h3>
-          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial) e bairro</p>
+          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial), região e bairro</p>
         </div>
       </div>
       <div class="map-analytics-layout">
@@ -1381,6 +1384,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="">Matriz e Filial</option>
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
+            </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
             </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
@@ -2431,6 +2437,71 @@ function initOverview(){
     updateVisaoChart(k);
   });
 
+  // Populate region filters for all general maps
+  const regionNames = [...new Set(Object.values(REGION_MAP))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  ['visao','demo','vuln','infra'].forEach(sec=>{
+    const regSel = document.getElementById(sec+'-regiao');
+    if(!regSel) return;
+    regionNames.forEach(r=>{
+      const cnt = DATA.filter(d=>(REGION_MAP[d.b]||'')===r).length;
+      const opt = document.createElement('option');
+      opt.value = r; opt.textContent = r+' ('+cnt+')';
+      regSel.appendChild(opt);
+    });
+    regSel.addEventListener('change', ()=>{
+      const region = regSel.value;
+      const mapObj = MAPS[sec==='visao'?'map-visao':'map-'+sec];
+      if(!mapObj) return;
+      const m = mapObj.map;
+      if(!region){
+        try{ m.fitBounds(mapObj.layer.getBounds(), {padding:[20,20]}); }catch(e){}
+      } else {
+        const bairrosInRegion = DATA.filter(d=>(REGION_MAP[d.b]||'')===region).map(d=>d.b);
+        if(bairrosInRegion.length && mapObj.layer){
+          const bounds = [];
+          mapObj.layer.eachLayer(lyr=>{
+            const name = lyr.feature && lyr.feature.properties && lyr.feature.properties.nome;
+            if(name && bairrosInRegion.includes(name)){
+              bounds.push(lyr.getBounds());
+            }
+          });
+          if(bounds.length){
+            let combined = bounds[0];
+            bounds.forEach(b=>{ combined = combined.extend(b); });
+            m.fitBounds(combined, {padding:[30,30], maxZoom:14});
+          }
+        }
+      }
+      // Update analysis text with region context
+      const indicSel = document.getElementById(sec+'-indicador');
+      if(indicSel) renderAnalysis(sec, indicSel.value);
+    });
+  });
+
+  // Populate region cards in Visão Geral
+  const regionCardsEl = document.getElementById('visao-region-cards');
+  if(regionCardsEl){
+    regionCardsEl.innerHTML = regionNames.map(r=>{
+      const bairros = DATA.filter(d=>(REGION_MAP[d.b]||'')===r);
+      const pop = bairros.reduce((s,d)=>s+(d.pop||0),0);
+      const totalPop = DATA.reduce((s,d)=>s+(d.pop||0),0);
+      const sharePop = totalPop ? ((pop/totalPop)*100).toFixed(1) : '0';
+      const avgEpob = bairros.length ? bairros.reduce((s,d)=>s+(d.epob||0),0)/bairros.length : 0;
+      const totalEmp = bairros.reduce((s,d)=>s+(d.emp||0),0);
+      const totalOsc = bairros.reduce((s,d)=>s+(d.osc||0),0);
+      const col = REGION_COLORS[r] || '#888';
+      return `<div class="territory-card" style="margin:0;border-left-color:${col}">
+        <h4 style="color:${col}!important">${r}</h4>
+        <p>${bairros.length} bairros · ${sharePop}% da população</p>
+        <div class="mini">
+          <div><strong>${fmt(pop,'int')}</strong><span class="small">População</span></div>
+          <div><strong>${(avgEpob*100).toFixed(1)}%</strong><span class="small">Ext. pobreza</span></div>
+          <div><strong>${fmt(totalEmp,'int')}</strong><span class="small">Empresas</span></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
   const sorted=[...DATA].sort((a,b)=>(b.epob||0)-(a.epob||0));
   makeBar('chart-visao-epob',sorted.map(d=>d.b),[{data:sorted.map(d=>((d.epob||0)*100).toFixed(1)),backgroundColor:sorted.map(d=>(d.epob||0)>.4?UI.danger:(d.epob||0)>.25?UI.gold:UI.blue),borderRadius:5}],{plugins:{tooltip:{callbacks:{label:ctx=>ctx.parsed.x+'%'}}}});
   const sortedRenda=[...DATA].sort((a,b)=>(b.rendaPC||0)-(a.rendaPC||0));
@@ -2898,6 +2969,7 @@ function initAlimentMap(){
   // 2) Populate bairro filter
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
@@ -2910,6 +2982,14 @@ function initAlimentMap(){
     const opt = document.createElement('option');
     opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
     selBairro.appendChild(opt);
+  });
+
+  const regioes = [...new Set(ALIMENT_POINTS.map(p=>REGION_MAP[p.b]||'').filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  regioes.forEach(r=>{
+    const cnt = ALIMENT_POINTS.filter(p=>(REGION_MAP[p.b]||'')===r).length;
+    const opt = document.createElement('option');
+    opt.value = r; opt.textContent = `${r} (${cnt})`;
+    selRegiao.appendChild(opt);
   });
 
   // 3) Build map
@@ -2952,11 +3032,13 @@ function initAlimentMap(){
   function getFilteredAliment(){
     const cf = selCat.value;
     const tf = selTipo.value;
+    const rgf = selRegiao.value;
     const bf = selBairro.value;
     const sq = (inpSearch.value||'').trim().toLowerCase();
     let out = ALIMENT_POINTS;
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
+    if(rgf) out = out.filter(p=>(REGION_MAP[p.b]||'')===rgf);
     if(bf) out = out.filter(p=>p.b===bf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
@@ -3026,20 +3108,21 @@ function initAlimentMap(){
     listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selRegiao.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
-    [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    [selCat,selTipo,selRegiao,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
+  selRegiao.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; selRegiao.value=''; selBairro.value=''; inpSearch.value='';
     renderAlimentMap();
   });
 
