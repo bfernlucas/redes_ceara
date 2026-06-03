@@ -1,2 +1,0 @@
-Hello from MCP direct call!
-This is a test.
