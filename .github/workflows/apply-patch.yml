@@ -1,0 +1,36 @@
+name: Apply Harmonize Patch
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to apply patch to'
+        default: 'harmonize-dashboards'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  apply-patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.branch }}
+          fetch-depth: 0
+
+      - name: Apply patch
+        run: |
+          git apply .patches/harmonize-dashboards.patch
+          
+      - name: Clean up patch files
+        run: |
+          rm -rf .patches
+          
+      - name: Commit and push
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add -A
+          git commit -m "Harmoniza dashboards Fortaleza e Maracanaú: filtros, sorting e layout"
+          git push
