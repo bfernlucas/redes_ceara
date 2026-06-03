@@ -1,0 +1,33 @@
+name: Apply Harmonize Patch
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: harmonize-dashboards
+          fetch-depth: 0
+          
+      - name: Apply patch
+        run: |
+          git apply .patches/harmonize-dashboards.patch
+          rm -rf .patches .github/workflows/apply-patch.yml
+          
+      - name: Commit changes
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add -A
+          git commit -m "Harmoniza dashboards Fortaleza e Maracanaú: filtros, sorting e layout
+          
+          - Adiciona filtro de região ao mapa alimentício de Maracanaú
+          - Padroniza invalidateSize de mapas no activateTab
+          - Adiciona cursor:pointer e data-sort-value à partners-table
+          - Harmoniza label analysis-kicker na seção Demografia"
+          git push
