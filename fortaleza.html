@@ -957,7 +957,7 @@ th.sortable[title]::after{content:''}
 
 .partners-table{width:100%;border-collapse:separate;border-spacing:0;min-width:560px}
 .partners-table th,.partners-table td{padding:12px 14px;border-bottom:1px solid var(--line-2);font-size:12px;text-align:center;vertical-align:middle}
-.partners-table thead th{background:#F4F6F9;color:var(--muted);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--line);line-height:1.4;position:sticky;top:0}
+.partners-table thead th{background:#F4F6F9;color:var(--muted);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--line);line-height:1.4;position:sticky;top:0;cursor:pointer}
 .partners-table thead th:first-child{text-align:left;padding-left:16px}
 .partners-table tbody td:first-child{text-align:left;padding-left:16px;font-weight:700;color:var(--navy);font-size:13px}
 .partners-table tbody td:first-child .p-scope{display:block;font-size:10.5px;font-weight:500;color:var(--muted);margin-top:2px;text-transform:none;letter-spacing:0}
@@ -2154,28 +2154,28 @@ th.sortable[title]::after{content:''}
           <tbody>
             <tr>
               <td>Pacto Contra a Fome<span class="p-scope">Segurança alimentar · articulação nacional</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f1" title="Baixa prioridade"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa prioridade"></span></td>
             </tr>
             <tr>
               <td>Movimento BemMaior<span class="p-scope">Mobilização cidadã · engajamento comunitário</span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
             </tr>
             <tr>
               <td>Astor Capital<span class="p-scope">Capital social · investimento estruturante</span></td>
-              <td><span class="fit f1" title="Baixa viabilidade"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa viabilidade"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
             </tr>
             <tr>
               <td>Instituto Localiza<span class="p-scope">Capacitação profissional · empregabilidade</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
             </tr>
             <tr>
               <td>Somos Um<span class="p-scope">Articulação comunitária · base territorial</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
             </tr>
           </tbody>
         </table>
@@ -5230,7 +5230,7 @@ function activateTab(tab){
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
   document.querySelectorAll('.section').forEach(sec => sec.classList.toggle('active', sec.id === `section-${tab}`));
   initTab(tab);
-  if(MAPS[tab]) setTimeout(() => MAPS[tab].map.invalidateSize(), 120);
+  Object.keys(MAPS).forEach(k=>{if(MAPS[k]?.map)setTimeout(()=>MAPS[k].map.invalidateSize(),150)});
 }
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => activateTab(btn.dataset.tab));

@@ -942,7 +942,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
 .partners-table{width:100%;border-collapse:separate;border-spacing:0;min-width:560px}
 .partners-table th,.partners-table td{padding:12px 14px;border-bottom:1px solid var(--line-2);font-size:12px;text-align:center;vertical-align:middle}
-.partners-table thead th{background:#F4F6F9;color:var(--muted);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--line);line-height:1.4;position:sticky;top:0}
+.partners-table thead th{background:#F4F6F9;color:var(--muted);font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;border-bottom:2px solid var(--line);line-height:1.4;position:sticky;top:0;cursor:pointer}
 .partners-table thead th:first-child{text-align:left;padding-left:16px}
 .partners-table tbody td:first-child{text-align:left;padding-left:16px;font-weight:700;color:var(--navy);font-size:13px}
 .partners-table tbody td:first-child .p-scope{display:block;font-size:10.5px;font-weight:500;color:var(--muted);margin-top:2px;text-transform:none;letter-spacing:0}
@@ -1150,7 +1150,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <div id="map-demo" class="map-box split"></div>
         <div class="analysis-side">
           <div class="analysis-card">
-            <span class="analysis-kicker">Leitura do mapa</span>
+            <span class="analysis-kicker">Análise do indicador selecionado</span>
             <h4 class="analysis-title" id="map-summary-title-demo">Perfil da população</h4>
             <p class="analysis-text" id="map-summary-demo">Selecione um indicador para ver a análise contextualizada.</p>
           </div>
@@ -1357,12 +1357,12 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
             <span class="info-icon" tabindex="0" aria-label="Como o mapa foi construído">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
               <span class="info-tip">
-                <strong>Como ler este mapa.</strong> 1.175 estabelecimentos alimentícios ativos em Maracanaú a partir do CNAE principal da Receita Federal (dez/2024), agrupados em quatro categorias: Restaurantes &amp; Lanchonetes, Hortifruti, Atacado especializado e Hiper/Supermercados. Use os filtros para refinar por categoria, tipo (matriz/filial) ou bairro.<br><br>
+                <strong>Como ler este mapa.</strong> 1.175 estabelecimentos alimentícios ativos em Maracanaú a partir do CNAE principal da Receita Federal (dez/2024), agrupados em quatro categorias: Restaurantes &amp; Lanchonetes, Hortifruti, Atacado especializado e Hiper/Supermercados. Use os filtros para refinar por categoria, tipo (matriz/filial), região ou bairro.<br><br>
                 <strong>Importante:</strong> as posições no mapa são <em>aproximações</em> — cada ponto é plotado dentro do polígono do bairro registrado no CNPJ, com pequeno deslocamento determinístico por estabelecimento. Não representam o endereço exato. Para o endereço real, consulte a lista lateral.
               </span>
             </span>
           </h3>
-          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial) e bairro</p>
+          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial), região e bairro</p>
         </div>
       </div>
       <div class="map-analytics-layout">
@@ -1381,6 +1381,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="">Matriz e Filial</option>
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
+            </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
             </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
@@ -2134,48 +2137,48 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
           <tbody>
             <tr>
               <td>Pacto Contra a Fome<span class="p-scope">Segurança alimentar · articulação nacional</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f1" title="Baixa adicionalidade"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f1" title="Baixa prioridade"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa adicionalidade"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa prioridade"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
             </tr>
             <tr>
               <td>Movimento BemMaior<span class="p-scope">Mobilização cidadã · engajamento comunitário</span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f1" title="Baixa viabilidade"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa viabilidade"></span></td>
             </tr>
             <tr>
               <td>Astor Capital<span class="p-scope">Capital social · investimento estruturante</span></td>
-              <td><span class="fit f1" title="Baixa viabilidade"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f0" title="Sem fit"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa viabilidade"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="0"><span class="fit f0" title="Sem fit"></span></td>
             </tr>
             <tr>
               <td>Instituto Localiza<span class="p-scope">Capacitação profissional · empregabilidade</span></td>
-              <td><span class="fit f1" title="Baixa prioridade"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Saturação alta"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f1" title="Baixa viabilidade"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa prioridade"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Saturação alta"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa viabilidade"></span></td>
             </tr>
             <tr>
               <td>Somos Um<span class="p-scope">Articulação comunitária · base territorial</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f1" title="Saturação alta"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Saturação alta"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
             </tr>
           </tbody>
         </table>
@@ -2899,6 +2902,7 @@ function initAlimentMap(){
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
   const badge = document.getElementById('aliment-filter-count');
@@ -2910,6 +2914,13 @@ function initAlimentMap(){
     const opt = document.createElement('option');
     opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
     selBairro.appendChild(opt);
+  });
+  const alimentRegioes = [...new Set(ALIMENT_POINTS.map(p=>REGION_MAP[p.b]||'').filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  if(selRegiao) alimentRegioes.forEach(r=>{
+    const opt = document.createElement('option');
+    const cnt = ALIMENT_POINTS.filter(p=>(REGION_MAP[p.b]||'')===r).length;
+    opt.value = r; opt.textContent = `${r} (${cnt})`;
+    selRegiao.appendChild(opt);
   });
 
   // 3) Build map
@@ -2953,10 +2964,12 @@ function initAlimentMap(){
     const cf = selCat.value;
     const tf = selTipo.value;
     const bf = selBairro.value;
+    const rgf = selRegiao ? selRegiao.value : '';
     const sq = (inpSearch.value||'').trim().toLowerCase();
     let out = ALIMENT_POINTS;
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
+    if(rgf) out = out.filter(p=>(REGION_MAP[p.b]||'')===rgf);
     if(bf) out = out.filter(p=>p.b===bf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
@@ -3002,6 +3015,9 @@ function initAlimentMap(){
     const matrizes = filtered.filter(p=>p.tipo==='M').length;
     txtAnalysis.innerHTML = `<strong>${total.toLocaleString('pt-BR')}</strong> estabelecimento${total!==1?'s':''} no filtro · ${matrizes} matriz${matrizes!==1?'es':''} e ${total-matrizes} filia${total-matrizes!==1?'is':'l'}`;
 
+    const byRegiao = {};
+    filtered.forEach(p=>{ const r = REGION_MAP[p.b]||'Sem região'; byRegiao[r] = (byRegiao[r]||0)+1; });
+
     const catRows = ['R','H','A','S'].filter(k=>byCat[k]>0).map(k=>{
       const c = ALIMENT_CAT[k];
       const pct = total ? ((byCat[k]/total)*100).toFixed(0) : 0;
@@ -3009,6 +3025,16 @@ function initAlimentMap(){
         <span class="aliment-cat-icon" style="background:${c.color}">${c.icon}</span>
         <span class="nm">${c.label}</span>
         <span class="meta"><strong>${byCat[k]}</strong> · ${pct}%</span>
+      </div>`;
+    }).join('');
+
+    const regiaoRows = Object.entries(byRegiao).sort((a,b)=>b[1]-a[1]).map(([r,cnt])=>{
+      const rc = REGION_COLORS[r]||'#888';
+      const pct = total ? ((cnt/total)*100).toFixed(0) : 0;
+      return `<div class="aliment-row" style="background:#FAFBFD">
+        <span style="width:10px;height:10px;border-radius:50%;background:${rc};flex-shrink:0"></span>
+        <span class="nm">${r}</span>
+        <span class="meta"><strong>${cnt}</strong> · ${pct}%</span>
       </div>`;
     }).join('');
 
@@ -3023,23 +3049,24 @@ function initAlimentMap(){
       </div>`;
     }).join('');
     const more = filtered.length > listVisible ? `<div style="padding:8px;text-align:center;font-size:11px;color:var(--muted);font-style:italic">+ ${filtered.length-listVisible} estabelecimentos não exibidos · refine o filtro</div>` : '';
-    listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
+    listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Por região</div><div style="margin-bottom:8px">${regiaoRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selRegiao&&selRegiao.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
-    [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    [selCat,selTipo,selRegiao,selBairro].filter(Boolean).forEach(s=>s.classList.toggle('active-filter',!!s.value));
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
+  if(selRegiao) selRegiao.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; if(selRegiao) selRegiao.value=''; selBairro.value=''; inpSearch.value='';
     renderAlimentMap();
   });
 
