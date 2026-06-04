@@ -1,0 +1,33 @@
+name: Apply Fortaleza Patch
+on:
+  push:
+    branches: [harmonize-dashboards-complete]
+    paths: ['fortaleza-patch.diff']
+
+permissions:
+  contents: write
+
+jobs:
+  apply-patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: harmonize-dashboards-complete
+          fetch-depth: 0
+          
+      - name: Apply patch
+        run: |
+          git apply fortaleza-patch.diff
+          rm fortaleza-patch.diff
+          rm -rf .github/workflows/apply-fortaleza-patch.yml
+          
+      - name: Commit changes
+        run: |
+          git config user.name "bfernlucas"
+          git config user.email "limbersocial@gmail.com"
+          git add fortaleza.html
+          git rm fortaleza-patch.diff || true
+          git rm .github/workflows/apply-fortaleza-patch.yml || true
+          git commit -m "Harmonizar dashboard Fortaleza: melhorar economia, sociedade civil e síntese"
+          git push origin harmonize-dashboards-complete

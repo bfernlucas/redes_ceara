@@ -1,0 +1,167 @@
+diff --git a/fortaleza.html b/fortaleza.html
+index 87b6ef6..54f38f5 100644
+--- a/fortaleza.html
++++ b/fortaleza.html
+@@ -1391,6 +1391,8 @@ th.sortable[title]::after{content:''}
+     <!-- KPIs resumo economia -->
+     <div class="kpi-grid four" id="kpi-econ-resumo" style="margin-bottom:4px"></div>
+ 
++    <hr style="border:none;border-top:1px solid var(--line-2);margin:12px 0 0">
++
+     <div class="decision" style="margin:12px 0 16px">
+       <h3>Destaques econômicos</h3>
+       <p>O diagnóstico revela dois perfis complementares de tecido econômico. O <strong>Grande Mucuripe</strong> concentra a maior parcela do capital social acumulado, abriga médias e grandes empresas e setores de serviços qualificados — o que viabiliza articulação direta com o setor privado formal e programas de investimento social corporativo. Bairros como Papicu e Varjota funcionam como polos empregadores com potencial de transbordamento para o entorno. O <strong>Grande Bom Jardim</strong> é dominado por MEIs (acima de 80% em vários bairros), com economia de base voltada ao comércio local e serviços de proximidade — um perfil que demanda estratégias diferenciadas. A complementaridade entre os territórios aponta caminhos concretos: no GBJ, programas de formalização, microcrédito e circuitos de economia solidária; no GM, parcerias com empresas âncoras para transferência de tecnologia, responsabilidade social e geração de emprego qualificado.</p>
+@@ -1412,7 +1414,7 @@ th.sortable[title]::after{content:''}
+         <span style="flex:1;height:1px;background:var(--line-2)"></span>
+       </div>
+     </div>
+-    <div class="panel" style="margin-top:12px">
++    <div class="panel" style="margin-top:18px">
+       <div class="panel-head">
+         <div><h3 class="panel-title">Concentração de capital social por bairro (dez/2024)</h3><p class="panel-sub">Médias e grandes empresas (porte "Demais") · Use os 5 filtros acima do mapa (busca, tipo, bairro, território e setor CNAE) para refinar a visualização · Clique nos clusters para expandir e nos bairros sombreados para ver capital acumulado e detalhes</p></div>
+       </div>
+@@ -1770,6 +1772,17 @@ th.sortable[title]::after{content:''}
+       </div>
+     </div>
+ 
++    <div class="grid two" style="margin-top:16px">
++      <div class="panel">
++        <div class="panel-head"><div><h3 class="panel-title">OSCs por território (IPEA, 2024)</h3><p class="panel-sub">Distribuição das organizações por território da Redes Ceará</p></div></div>
++        <div class="chart-box"><canvas id="chart-osc-terr" class="chart"></canvas></div>
++      </div>
++      <div class="panel">
++        <div class="panel-head"><div><h3 class="panel-title">Densidade de OSCs por mil habitantes (IPEA, 2024)</h3><p class="panel-sub">Razão entre organizações ativas e população residente</p></div></div>
++        <div class="chart-box"><canvas id="chart-osc-dens" class="chart"></canvas></div>
++      </div>
++    </div>
++
+     <div style="margin:24px 0 6px;padding:0 4px">
+       <div style="display:flex;align-items:center;gap:12px">
+         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Tabela detalhada</span>
+@@ -1834,6 +1847,28 @@ th.sortable[title]::after{content:''}
+       </div>
+     </div>
+ 
++    <!-- 2b — Comparativo visual entre territórios -->
++    <div style="margin:24px 0 6px;padding:0 4px">
++      <div style="display:flex;align-items:center;gap:12px">
++        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Comparativo visual</span>
++        <span style="flex:1;height:1px;background:var(--line-2)"></span>
++      </div>
++    </div>
++    <div class="decision" style="margin:8px 0 14px">
++      <h3>Como ler os gráficos</h3>
++      <p>Os gráficos abaixo comparam indicadores-chave entre os dois territórios. A <strong>barra agrupada</strong> permite visualizar rapidamente onde cada território se destaca ou apresenta déficit. A <strong>renda per capita</strong> e a <strong>cobertura de esgoto</strong> indicam infraestrutura e capacidade econômica; a <strong>extrema pobreza</strong> e o <strong>CadÚnico</strong> medem a demanda por proteção social; as <strong>OSCs</strong> e <strong>empresas</strong> refletem a densidade institucional e produtiva. O contraste revela o perfil diferenciado dos territórios e orienta a estratégia da Redes Ceará.</p>
++    </div>
++    <div class="grid two" style="margin-top:12px">
++      <div class="panel">
++        <div class="panel-head"><div><h3 class="panel-title">Indicadores sociais por território</h3><p class="panel-sub">Extrema pobreza, CadÚnico, analfabetismo e informalidade (médias ponderadas)</p></div></div>
++        <div class="chart-box"><canvas id="chart-synth-social" class="chart"></canvas></div>
++      </div>
++      <div class="panel">
++        <div class="panel-head"><div><h3 class="panel-title">Indicadores econômicos e institucionais</h3><p class="panel-sub">Renda média, empresas, OSCs e cobertura de esgoto</p></div></div>
++        <div class="chart-box"><canvas id="chart-synth-econ" class="chart"></canvas></div>
++      </div>
++    </div>
++
+     <!-- 3 — Comparativo por bairro -->
+     <div class="panel" style="margin-top:20px">
+       <div class="panel-head">
+@@ -4298,6 +4333,35 @@ function initOsc(){
+     }
+   }
+ 
++  // ── OSC por território e densidade ──
++  const terrOscCount={};
++  const terrPopOsc={};
++  OSC_POINTS.forEach(o=>{const t=o.t||'Sem território';terrOscCount[t]=(terrOscCount[t]||0)+1;});
++  DATA.forEach(d=>{const t=d.t||'Sem território';terrPopOsc[t]=(terrPopOsc[t]||0)+(d.pop||0);});
++  const terrLabelsOsc=Object.keys(terrOscCount).filter(t=>t!=='Sem território').sort((a,b)=>terrOscCount[b]-terrOscCount[a]);
++  const terrValuesOsc=terrLabelsOsc.map(t=>terrOscCount[t]);
++  const TERR_C={'Grande Bom Jardim':'#1E40AF','Grande Mucuripe':'#0B4FA8'};
++  const terrColorsOsc=terrLabelsOsc.map(t=>TERR_C[t]||'#94A3B8');
++  destroyChart('chart-osc-terr');
++  const cTerrOsc=document.getElementById('chart-osc-terr');
++  if(cTerrOsc){
++    const h=Math.max(terrLabelsOsc.length*38,140);
++    cTerrOsc.style.height=h+'px';
++    cTerrOsc.parentElement.style.height='auto';
++    CHARTS['chart-osc-terr']=new Chart(cTerrOsc,{type:'bar',data:{labels:terrLabelsOsc,datasets:[{data:terrValuesOsc,backgroundColor:terrColorsOsc,borderRadius:5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+' OSCs'}}},scales:{x:{grid:{display:false}},y:{grid:{display:false},ticks:{font:{size:11}}}}}});
++  }
++  destroyChart('chart-osc-dens');
++  const cDensOsc=document.getElementById('chart-osc-dens');
++  if(cDensOsc){
++    const densLabels=terrLabelsOsc.filter(t=>terrPopOsc[t]>0);
++    const densValues=densLabels.map(t=>+((terrOscCount[t]/(terrPopOsc[t]||1))*1000).toFixed(2));
++    const densColors=densLabels.map(t=>TERR_C[t]||'#94A3B8');
++    const h=Math.max(densLabels.length*38,140);
++    cDensOsc.style.height=h+'px';
++    cDensOsc.parentElement.style.height='auto';
++    CHARTS['chart-osc-dens']=new Chart(cDensOsc,{type:'bar',data:{labels:densLabels,datasets:[{data:densValues,backgroundColor:densColors,borderRadius:5}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.x.toFixed(2)+' OSCs/mil hab'}}},scales:{x:{grid:{display:false}},y:{grid:{display:false},ticks:{font:{size:11}}}}}});
++  }
++
+   // ── Tabela completa de OSCs ──
+   let oscTableSort='nome',oscTableDir=-1;
+   function renderOscTable(){
+@@ -5156,11 +5220,61 @@ function initComp(){
+     ].map(k=>`<div class="kpi"><div class="label">${k.label}</div><div class="value">${k.value}</div><div class="sub">${k.sub}</div></div>`).join('');
+   }
+ 
++  // ─── 2b) Gráficos comparativos por território ────────────────────────────
++  function renderSynthCharts(){
++    const labels = GROUPS;
++    const colors = labels.map(g=>GROUP_COLORS[g]||'#888');
++
++    destroyChart('chart-synth-social');
++    const cSocial = document.getElementById('chart-synth-social');
++    if(cSocial){
++      cSocial.style.height = '280px';
++      cSocial.parentElement.style.height = 'auto';
++      const socialInds = [
++        {k:'epob',label:'Ext. Pobreza',f:v=>(v*100).toFixed(1)+'%'},
++        {k:'cad',label:'CadÚnico',f:v=>(v*100).toFixed(1)+'%'},
++        {k:'anal',label:'Analfabetismo',f:v=>(v*100).toFixed(1)+'%'},
++        {k:'meiShare',label:'% MEI',f:v=>(v*100).toFixed(1)+'%'}
++      ];
++      CHARTS['chart-synth-social']=new Chart(cSocial,{type:'bar',data:{
++        labels:socialInds.map(i=>i.label),
++        datasets:labels.map((g,gi)=>({
++          label:g,
++          data:socialInds.map(i=>(groupAgg[g].values[i.k]||0)*100),
++          backgroundColor:colors[gi]+'CC',
++          borderRadius:4
++        }))
++      },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.parsed.y.toFixed(1)+'%'}}},scales:{x:{grid:{display:false}},y:{grid:{color:'#F0F0F0'},ticks:{callback:v=>v+'%'}}}}});
++    }
++
++    destroyChart('chart-synth-econ');
++    const cEcon = document.getElementById('chart-synth-econ');
++    if(cEcon){
++      cEcon.style.height = '280px';
++      cEcon.parentElement.style.height = 'auto';
++      const econInds = [
++        {k:'rendaPC',label:'Renda PC (R$)',scale:1},
++        {k:'emp',label:'Empresas',scale:1},
++        {k:'osc',label:'OSCs',scale:1}
++      ];
++      CHARTS['chart-synth-econ']=new Chart(cEcon,{type:'bar',data:{
++        labels:econInds.map(i=>i.label),
++        datasets:labels.map((g,gi)=>({
++          label:g,
++          data:econInds.map(i=>{const v=groupAgg[g].values[i.k]||0;return Math.round(v*i.scale);}),
++          backgroundColor:colors[gi]+'CC',
++          borderRadius:4
++        }))
++      },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+Number(ctx.parsed.y).toLocaleString('pt-BR')}}},scales:{x:{grid:{display:false}},y:{grid:{color:'#F0F0F0'}}}}});
++    }
++  }
++
+   // ─── Execução ──────────────────────────────────────────────────────────────
+   renderDivisionMap();
+   renderGroupCards();
+   renderRegionTable();
+   renderBairroTable();
++  renderSynthCharts();
+   renderRadar();
+   renderReading();
+   renderHeatmap();
