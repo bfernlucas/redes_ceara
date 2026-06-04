@@ -1,0 +1,45 @@
+diff --git a/maracanau.html b/maracanau.html
+index f80b886..cc9e58f 100644
+--- a/maracanau.html
++++ b/maracanau.html
+@@ -459,6 +459,12 @@ th.sortable:hover{color:var(--brand);background:rgba(124,58,237,.04)}
+ th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left:4px}
+ th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
+ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
++th.sortable[title]::after{content:''}
++@media(hover:hover){
++  th.sortable:not(.sort-asc):not(.sort-desc) .sort-hint::after{
++    content:'clique para ordenar';
++  }
++}
+ .mei-high td:nth-child(4){color:#B07C20;font-weight:700}
+ 
+ /* Comparison table */
+@@ -1278,6 +1284,8 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
+     <!-- KPIs resumo economia -->
+     <div class="kpi-grid four" id="kpi-econ-resumo" style="margin-bottom:4px"></div>
+ 
++    <hr style="border:none;border-top:1px solid var(--line-2);margin:12px 0 0">
++
+     <div class="decision" style="margin:12px 0 16px">
+       <h3>Destaques econômicos</h3>
+       <p>Maracanáu apresenta forte concentração econômica no eixo Pajuçara–Jereissati e no Distrito Industrial. Enquanto o Distrito Industrial abriga empresas com capital social médio na casa dos milhões, bairros como Piratininga, Novo Oriente e Timbó registram quase exclusivamente MEIs, com participação superior a 90%. A taxa média de MEI nos bairros residenciais (>80%) contrasta com menos de 40% no Distrito Industrial — evidência de uma economia dual. Essa assimetria demanda estratégias diferenciadas: programas de formalização e crédito para pequenos negócios na periferia, e articulação com o setor formal no Distrito Industrial para geração de emprego e inclusão produtiva das populações vulneráveis do entorno.</p>
+@@ -1362,7 +1370,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
+               </span>
+             </span>
+           </h3>
+-          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial) e bairro</p>
++          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial), bairro e região</p>
+         </div>
+       </div>
+       <div class="map-analytics-layout">
+@@ -1385,6 +1393,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
+             <select id="aliment-bairro-filter" title="Filtrar por bairro">
+               <option value="">Todos os bairros</option>
+             </select>
++            <select id="aliment-regiao-filter" title="Filtrar por região">
++              <option value="">Todas as regiões</option>
++            </select>
+             <button class="mge-clear-btn" id="aliment-clear-filters" title="Limpar filtros" style="display:none">✕ Limpar</button>
+             <span class="mge-filter-badge" id="aliment-filter-count" style="display:none"></span>
+           </div>
