@@ -1,6 +1,8 @@
-name: Merge file parts
+name: Merge Maracanaú parts
 on:
-  workflow_dispatch:
+  push:
+    branches: [harmonize-dashboards-complete]
+    paths: ['_trigger_merge.txt']
 
 permissions:
   contents: write
@@ -13,18 +15,16 @@ jobs:
       with:
         ref: harmonize-dashboards-complete
         
-    - name: Concatenate file parts
+    - name: Concatenate parts
       run: |
         if [ -f "_maracanau_part2.tmp" ]; then
-          cat maracanau.html _maracanau_part2.tmp > maracanau_full.html
-          mv maracanau_full.html maracanau.html
-          rm _maracanau_part2.tmp
+          cat maracanau.html _maracanau_part2.tmp > merged.html
+          mv merged.html maracanau.html
+          rm -f _maracanau_part2.tmp _trigger_merge.txt .github/workflows/merge-parts.yml
+          wc -c maracanau.html
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add maracanau.html _maracanau_part2.tmp
+          git add -A
           git commit -m "Harmonizar dashboard Maracanaú: melhorar economia, sociedade civil e síntese"
           git push
-          echo "File merged successfully"
-        else
-          echo "No part2 file found, nothing to do"
         fi
