@@ -322,7 +322,7 @@ button,select,input,textarea{font:inherit}
   gap:8px;
   padding:6px 10px;
   border-radius:999px;
-  background:#f3ecfb;
+  background:var(--brand-5);
   color:var(--brand);
   font-size:10px;
   font-weight:800;
@@ -396,7 +396,7 @@ button,select,input,textarea{font:inherit}
 .kpi .label{
   font-size:10px;
   font-weight:700;
-  color:#5C6E7E;
+  color:var(--muted);
   text-transform:uppercase;
   letter-spacing:.06em;
   margin-bottom:6px;
@@ -409,22 +409,22 @@ button,select,input,textarea{font:inherit}
   margin:0 20px 12px;
   padding:16px;
   background:#fff!important;
-  border:1px solid #E8EDF2;
-  border-left:3px solid #7C3AED;
+  border:1px solid var(--line);
+  border-left:3px solid var(--brand);
   border-radius:0!important;
   box-shadow:none!important;
-  color:#0B2B44;
+  color:var(--navy);
 }
-.territory-card.alt{background:#fff!important;border-left-color:#A855F7}
-.territory-card h4{margin:0 0 8px;font-size:12px;font-weight:700;color:#7C3AED!important;text-transform:uppercase;letter-spacing:.06em}
-.territory-card.alt h4{color:#A855F7!important}
-.territory-card p{margin:0 0 12px;font-size:12px;line-height:1.55;color:#5C6E7E!important}
+.territory-card.alt{background:#fff!important;border-left-color:var(--brand-2)}
+.territory-card h4{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--brand)!important;text-transform:uppercase;letter-spacing:.06em}
+.territory-card.alt h4{color:var(--brand-2)!important}
+.territory-card p{margin:0 0 12px;font-size:12px;line-height:1.55;color:var(--muted)!important}
 .territory-card .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:0!important}
-.territory-card .mini div{background:#F8FAFB!important;border:1px solid #E8EDF2!important;border-radius:3px!important;padding:10px 8px}
-.territory-card .mini strong{display:block;font-size:18px;font-weight:800;color:#0B2B44!important;letter-spacing:-.02em}
-.territory-card .mini .small{font-size:10px;color:#5C6E7E!important;font-weight:500;margin-top:2px;display:block}
-.territory-card .mini span{color:#5C6E7E!important}
-.territory-card .metric-white{color:#5C6E7E!important}
+.territory-card .mini div{background:#F8FAFB!important;border:1px solid var(--line)!important;border-radius:3px!important;padding:10px 8px}
+.territory-card .mini strong{display:block;font-size:18px;font-weight:800;color:var(--navy)!important;letter-spacing:-.02em}
+.territory-card .mini .small{font-size:10px;color:var(--muted)!important;font-weight:500;margin-top:2px;display:block}
+.territory-card .mini span{color:var(--muted)!important}
+.territory-card .metric-white{color:var(--muted)!important}
 
 /* Charts */
 .chart-box{padding:12px 20px 20px}
@@ -871,10 +871,10 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .mge-cluster-md{width:42px;height:42px;background:rgba(168,85,247,.85);border:2px solid rgba(255,255,255,.8)}
 .mge-cluster-lg{width:52px;height:52px;background:rgba(124,58,237,.85);border:3px solid rgba(255,255,255,.8);font-size:13px}
 .mge-popup{padding:14px 16px}
-.mge-popup h4{margin:0 0 4px;font-size:14px;font-weight:700;color:#062040;line-height:1.25}
-.mge-popup .mge-cap{font-size:18px;font-weight:700;color:#7C3AED;margin:6px 0}
-.mge-popup .mge-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;margin-right:3px;background:#F3E8FF;color:#7C3AED}
-.mge-popup .mge-meta{font-size:11px;color:#5C6E7E;margin-top:6px}
+.mge-popup h4{margin:0 0 4px;font-size:14px;font-weight:700;color:var(--navy);line-height:1.25}
+.mge-popup .mge-cap{font-size:18px;font-weight:700;color:var(--brand);margin:6px 0}
+.mge-popup .mge-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;margin-right:3px;background:var(--brand-5);color:var(--brand)}
+.mge-popup .mge-meta{font-size:11px;color:var(--muted);margin-top:6px}
 .mge-popup .mge-detail{margin-top:10px;padding-top:8px;border-top:1px solid #e6ebf0;display:grid;grid-template-columns:1fr;gap:6px}
 .mge-popup .mge-detail .row{font-size:11px;color:#23354d;line-height:1.4}
 .mge-popup .mge-detail .row b{display:block;font-size:9px;font-weight:700;color:#7e8a9a;text-transform:uppercase;letter-spacing:.04em;margin-bottom:1px}
@@ -892,9 +892,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .aliment-notice{padding:0 24px 16px;font-size:11px;color:var(--muted);font-style:italic;line-height:1.55}
 .aliment-notice strong{color:var(--text);font-style:normal;font-weight:700}
 .tipo-badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em}
-.tipo-m{background:#e0f2e9;color:#7C3AED}
+.tipo-m{background:#e0f2e9;color:var(--brand)}
 .tipo-f{background:#fef3cd;color:#7c5c00}
-.sector-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:600;background:#F3E8FF;color:#7C3AED;white-space:nowrap}
+.sector-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--brand-5);color:var(--brand);white-space:nowrap}
 .region-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
 
 /* Adicionalidade tab */
@@ -959,26 +959,26 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .insight-callout p{margin:0;font-size:13.5px;line-height:1.7;color:var(--text)}
 
 /* Region cards */
-.region-card{background:#F4F6F9;border:1px solid #D8E0E8;border-radius:6px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.region-card{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .region-card:hover,.region-card.active{border-color:var(--brand);box-shadow:0 2px 8px rgba(124,58,237,.12)}
 .region-card-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
-.region-card-name{font-size:12px;font-weight:700;color:#062040}
-.region-card-count{font-size:11px;color:#5C6E7E;margin-left:auto}
-.region-card-desc{font-size:11px;color:#5C6E7E;line-height:1.5}
+.region-card-name{font-size:12px;font-weight:700;color:var(--navy)}
+.region-card-count{font-size:11px;color:var(--muted);margin-left:auto}
+.region-card-desc{font-size:11px;color:var(--muted);line-height:1.5}
 .region-stats-row{display:flex;gap:10px;margin-top:6px}
-.region-stat{font-size:11px;color:#1B2D3E;font-weight:600}
-.region-stat span{color:#5C6E7E;font-weight:400}
+.region-stat{font-size:11px;color:var(--navy);font-weight:600}
+.region-stat span{color:var(--muted);font-weight:400}
 
 /* Dimension / reading panel */
 .dim-outer{display:flex;flex-direction:column;gap:20px}
 .dim-bottom{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
-.dim-reading{background:#F4F6F9;border:1px solid #D8E0E8;border-radius:6px;padding:16px 18px}
-.dim-reading-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5C6E7E;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #D8E0E8}
+.dim-reading{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.dim-reading-title{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .dim-insights{margin-top:0}
-.dim-insight-row{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #EEF1F4}
+.dim-insight-row{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--line-2)}
 .dim-insight-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.dim-insight-key{font-size:11px;font-weight:700;color:#7C3AED;margin-bottom:2px}
-.dim-insight-val{font-size:11px;color:#5C6E7E;line-height:1.6}
+.dim-insight-key{font-size:11px;font-weight:700;color:var(--brand);margin-bottom:2px}
+.dim-insight-val{font-size:11px;color:var(--muted);line-height:1.6}
 
 /* Priority list */
 .priority-list{display:flex;flex-direction:column;gap:14px;padding:0 24px 24px}
@@ -999,7 +999,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .rate.alto{background:#ECFDF5;color:#065F46;border-color:#A7F3D0}
 .rate.medio{background:#FEF3C7;color:#854D0E;border-color:#FDE68A}
 .rate.baixo{background:#FEE2E2;color:#991B1B;border-color:#FECACA}
-.rate.neutro{background:#F4F6F9;color:#5C6E7E;border-color:#E2E8EF}
+.rate.neutro{background:var(--bg);color:var(--muted);border-color:var(--line)}
 
 /* Heatmap matrix */
 .matrix.heatmap{min-width:640px;border-collapse:separate;border-spacing:0}
@@ -1245,7 +1245,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
           <p class="panel-sub">Clique em uma comunidade na lista para localizar no mapa</p>
         </div>
         <div>
-          <span style="font-size:12px;color:#5C6E7E"><strong style="color:#111">14</strong> comunidades mapeadas em Maracanaú</span>
+          <span style="font-size:12px;color:var(--muted)"><strong style="color:var(--navy)">14</strong> comunidades mapeadas em Maracanaú</span>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:minmax(300px,.9fr) minmax(0,1.1fr);gap:20px;padding:0 24px 16px;align-items:stretch">
@@ -1257,11 +1257,11 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
             <div id="favelas-region-summary" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px"></div>
           </div>
           <div style="flex:1;display:flex;flex-direction:column;min-height:0">
-            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5C6E7E;padding-bottom:8px;border-bottom:1px solid #E8EDF2;margin-bottom:0">Comunidades por região</div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:0">Comunidades por região</div>
             <div id="favelas-list-maracanau" style="overflow-y:auto;flex:1;max-height:340px"></div>
           </div>
         </div>
-        <div id="map-favelas-maracanau" style="min-height:500px;border:1px solid #E8EDF2;border-radius:6px"></div>
+        <div id="map-favelas-maracanau" style="min-height:500px;border:1px solid var(--line);border-radius:6px"></div>
       </div>
     </div>
     <div class="grid two" style="margin-top:22px">
@@ -1362,7 +1362,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               </span>
             </span>
           </h3>
-          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial) e bairro</p>
+          <p class="panel-sub">1.175 estabelecimentos ativos · CNAE alimentício (Receita Federal, 2024) · Filtros: categoria, tipo (matriz/filial), região e bairro</p>
         </div>
       </div>
       <div class="map-analytics-layout">
@@ -1381,6 +1381,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="">Matriz e Filial</option>
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
+            </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
             </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
@@ -2899,6 +2902,7 @@ function initAlimentMap(){
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
   const badge = document.getElementById('aliment-filter-count');
@@ -2910,6 +2914,13 @@ function initAlimentMap(){
     const opt = document.createElement('option');
     opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
     selBairro.appendChild(opt);
+  });
+
+  const regioes = [...new Set(ALIMENT_POINTS.map(p=>REGION_MAP[p.b]||'').filter(Boolean))].sort();
+  regioes.forEach(r=>{
+    const opt = document.createElement('option');
+    opt.value = r; opt.textContent = r;
+    selRegiao.appendChild(opt);
   });
 
   // 3) Build map
@@ -2958,6 +2969,8 @@ function initAlimentMap(){
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
     if(bf) out = out.filter(p=>p.b===bf);
+    const rf = selRegiao.value;
+    if(rf) out = out.filter(p=>(REGION_MAP[p.b]||'')===rf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
   }
@@ -3026,20 +3039,21 @@ function initAlimentMap(){
     listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (selRegiao.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
-    [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    [selCat,selTipo,selRegiao,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
+  selRegiao.addEventListener('change', renderAlimentMap);
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; selRegiao.value=''; selBairro.value=''; inpSearch.value='';
     renderAlimentMap();
   });
 
