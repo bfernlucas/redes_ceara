@@ -328,3 +328,4 @@ index f80b886..e6bac11 100644
 +    selCat.value=''; selTipo.value=''; selRegiao.value=''; selBairro.value=''; inpSearch.value='';
      renderAlimentMap();
    });
+ 
