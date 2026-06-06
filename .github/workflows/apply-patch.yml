@@ -12,6 +12,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: fix/harmonize-v4
+      - name: Verify patch
+        run: git apply --check harmonize-changes.patch
       - name: Apply patch
         run: |
           git apply harmonize-changes.patch
@@ -25,5 +27,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "harmonizar dashboards: padronizar CSS com variáveis, filtro região aliment, active-filter OSC"
+          git commit -m "harmonizar dashboards: padronizar CSS com variaveis, filtro regiao aliment, active-filter OSC"
           git push
