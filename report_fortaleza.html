@@ -26,6 +26,7 @@
   --line:rgba(10,37,64,.10);
   --line-soft:rgba(10,37,64,.06);
   --line-strong:rgba(10,37,64,.22);
+  --deck-scale:1;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -39,8 +40,8 @@ body{
 /* ─── DECK ─── */
 .deck{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px}
 .slide{
-  width:100%;max-width:1280px;
-  aspect-ratio:16/9;max-height:calc(100vh - 100px);
+  width:1280px;height:720px;flex:none;
+  transform:scale(var(--deck-scale,1));transform-origin:center center;
   background:var(--bg);
   border-radius:0;
   box-shadow:0 30px 80px -20px rgba(0,0,0,.6);
@@ -48,7 +49,7 @@ body{
 }
 .slide:not(.active){display:none}
 .slide.active{animation:fade .35s cubic-bezier(.2,.6,.2,1)}
-@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 
 /* ─── COMUNS ─── */
 .tag-line{
@@ -310,7 +311,7 @@ body{
 @media (max-width:900px),(max-aspect-ratio:4/3){
   body{overflow:auto}
   .deck{position:static;padding:14px;flex-direction:column;gap:16px}
-  .slide{aspect-ratio:auto;max-height:none;padding:0;animation:none}
+  .slide{width:auto;height:auto;flex:auto;transform:none;aspect-ratio:auto;max-height:none;padding:0;animation:none}
   .slide:not(.active){display:flex !important;flex-direction:column}
   .slide.active{display:flex !important;flex-direction:column}
   .s-cover,.s-context,.s-question,.s-quote,.s-hero,.s-action,.s-split,.s-terr,.s-rec{padding:28px 20px 64px}
@@ -346,6 +347,7 @@ body{
   .deck{position:static !important;padding:0 !important;display:block !important}
   .slide{
     display:flex !important;flex-direction:column !important;animation:none !important;
+    transform:none !important;flex:none !important;
     width:100% !important;max-width:none !important;aspect-ratio:auto !important;
     height:100vh !important;max-height:none !important;
     page-break-after:always !important;break-after:page !important;
@@ -1070,6 +1072,19 @@ body{
 </div>
 
 <script>
+/* Escala o slide (design fixo de 1280×720) para caber em qualquer tela,
+   preservando o layout exato e evitando que o conteúdo invada o rodapé. */
+function fitDeck(){
+  const baseW = 1280, baseH = 720;
+  const availW = window.innerWidth - 48;
+  const availH = window.innerHeight - 100;
+  const scale = Math.min(availW/baseW, availH/baseH);
+  document.documentElement.style.setProperty('--deck-scale', scale > 0 ? scale.toFixed(4) : 1);
+}
+window.addEventListener('resize', fitDeck);
+document.addEventListener('fullscreenchange', fitDeck);
+fitDeck();
+
 const slides = Array.from(document.querySelectorAll('.slide'));
 const total = slides.length;
 let idx = 0;

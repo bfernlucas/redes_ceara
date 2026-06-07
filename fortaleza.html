@@ -830,7 +830,8 @@ th.sortable[title]::after{content:''}
 .info-icon{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;color:var(--brand);cursor:help;vertical-align:middle;margin-left:6px;position:relative;opacity:.55;transition:opacity .2s}
 .info-icon:hover,.info-icon:focus-within{opacity:1}
 .info-icon svg{display:block}
-.info-icon .info-tip{position:absolute;top:calc(100% + 10px);left:-6px;width:min(420px,74vw);padding:16px 18px;background:#0B2B44;color:#E6ECF2;border-radius:10px;font-size:12px;line-height:1.65;font-weight:400;text-transform:none;letter-spacing:0;text-align:left;opacity:0;pointer-events:none;transition:opacity .18s;z-index:60;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.info-icon .info-tip{position:absolute;top:calc(100% + 10px);left:-6px;width:min(420px,74vw);padding:16px 18px;background:#0B2B44;color:#E6ECF2;border-radius:10px;font-size:12px;line-height:1.65;font-weight:400;text-transform:none;letter-spacing:0;text-align:left;opacity:0;pointer-events:none;transition:opacity .18s;z-index:6000;box-shadow:0 14px 32px rgba(0,0,0,.22)}
+.info-icon:hover,.info-icon:focus-within{z-index:6000}
 .info-icon .info-tip::before{content:"";position:absolute;bottom:100%;left:16px;border:7px solid transparent;border-bottom-color:#0B2B44}
 .info-icon .info-tip strong{color:#fff;font-weight:700}
 .info-icon .info-tip b{color:#93C5FD;font-weight:600}
