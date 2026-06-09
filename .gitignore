@@ -33,3 +33,6 @@ venv/
 # Saída de análise / drafts
 /tmp/
 scratch/
+
+# Notas internas do apresentador — NÃO publicar no site
+notas_apresentador.html
