@@ -41,13 +41,12 @@ body{
 
 /* TOPBAR */
 .topbar{
-  border-bottom:1px solid var(--line);height:72px;flex-shrink:0;
+  border-bottom:1px solid var(--line);height:92px;flex-shrink:0;
   display:flex;align-items:center;
 }
 .topbar .container{display:flex;align-items:center;justify-content:space-between;height:100%}
-.topbar .brand{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:14px}
-.topbar .brand .brand-logo{height:44px;width:auto;display:block}
-.topbar .brand .sub{color:var(--muted);font-weight:600}
+.topbar .brand{display:flex;align-items:center;text-decoration:none}
+.topbar .brand .brand-logo{height:60px;width:auto;display:block}
 .topbar .top-meta{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 
 /* HERO — bounded by max-width */
@@ -266,19 +265,15 @@ body{
 }
 .partners-logos .p-logo{
   display:flex;align-items:center;justify-content:center;
-  height:72px;flex-shrink:0;
+  height:54px;flex-shrink:0;
 }
 .partners-logos .p-logo img{
-  max-height:72px;max-width:200px;width:auto;height:auto;
+  max-height:54px;max-width:150px;width:auto;height:auto;
   object-fit:contain;display:block;
   mix-blend-mode:multiply;
   transition:transform .25s ease;
 }
 .partners-logos .p-logo:hover img{transform:scale(1.04)}
-.partners-logos .p-logo[data-tall]{height:104px}
-.partners-logos .p-logo[data-tall] img{max-height:104px;max-width:140px}
-.partners-logos .p-logo[data-square]{height:112px}
-.partners-logos .p-logo[data-square] img{max-height:112px;max-width:140px}
 
 /* FOOTER */
 .footer{
@@ -310,8 +305,9 @@ body{
   .mun-grid,.leituras-grid,.about-grid{grid-template-columns:1fr;gap:24px}
   .leitura{padding:24px}
   .partners-band{padding:32px 0}
-  .topbar{height:60px}
-  .topbar .brand .brand-logo{height:34px}
+  .topbar{height:72px}
+  .topbar .brand .brand-logo{height:42px}
+  .topbar .top-meta{display:none}
   .partners-groups{flex-direction:column;align-items:center}
   .partners-group{padding:24px 0}
   .partners-group + .partners-group{border-left:0;border-top:1px solid var(--line)}
@@ -323,10 +319,10 @@ body{
 
 <header class="topbar">
   <div class="container">
-    <div class="brand">
-      <img class="brand-logo" src="assets/images/logo%20redes.jpeg" alt="Redes Ceará">
-      <span class="sub">Diagnóstico Territorial</span>
-    </div>
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="assets/images/logo%20redes.jpeg" alt="Redes Ceará — Inclusão Produtiva e Segurança Alimentar">
+    </a>
+    <span class="top-meta">Diagnóstico Territorial</span>
   </div>
 </header>
 
@@ -488,10 +484,10 @@ body{
         <div class="p-logo" title="Instituto Localiza">
           <img src="assets/images/Nova-marca-Instituto-Localiza.png" alt="Instituto Localiza" loading="lazy">
         </div>
-        <div class="p-logo" data-tall title="Movimento Bem Maior">
+        <div class="p-logo" title="Movimento Bem Maior">
           <img src="assets/images/MBM_Logo_Vertical_Cor_RGB.png" alt="Movimento Bem Maior" loading="lazy">
         </div>
-        <div class="p-logo" data-square title="Somos Um">
+        <div class="p-logo" title="Somos Um">
           <img src="assets/images/somos-um-lpgp-p.webp" alt="Somos Um" loading="lazy">
         </div>
       </div>
