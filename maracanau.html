@@ -135,8 +135,8 @@ button,select,input,textarea{font:inherit}
   align-items:center;
   gap:8px;
   padding:4px 10px;
-  background:#F3E8FF;
-  border:1px solid #DDD6FE;
+  background:var(--brand-5);
+  border:1px solid var(--brand-4);
   color:var(--brand);
   border-radius:4px;
   font-size:11px;
@@ -162,8 +162,8 @@ button,select,input,textarea{font:inherit}
 /* Commentary / Decision box */
 .decision{
   position:relative;
-  background:#F3E8FF;
-  border:1px solid #DDD6FE;
+  background:var(--brand-5);
+  border:1px solid var(--brand-4);
   border-left:4px solid var(--brand);
   border-radius:var(--radius);
   padding:14px 18px;
@@ -233,7 +233,7 @@ button,select,input,textarea{font:inherit}
 .filters select:focus{
   outline:none;
   border-color:var(--brand);
-  box-shadow:0 0 0 3px rgba(124,58,237,.12);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 12%,transparent);
 }
 
 /* Map boxes */
@@ -296,7 +296,7 @@ button,select,input,textarea{font:inherit}
 }
 .map-overlay-badge{
   border-radius:4px;
-  background:#F3E8FF;
+  background:var(--brand-5);
   color:var(--brand);
   padding:5px 8px;
   font-size:10px;
@@ -362,8 +362,8 @@ button,select,input,textarea{font:inherit}
   border:1px solid var(--line);
   height:12px;
 }
-.legend-scale span:nth-child(1){background:#F3E8FF}
-.legend-scale span:nth-child(2){background:#DDD6FE}
+.legend-scale span:nth-child(1){background:var(--brand-5)}
+.legend-scale span:nth-child(2){background:var(--brand-4)}
 .legend-scale span:nth-child(3){background:#C084FC}
 .legend-scale span:nth-child(4){background:#A855F7}
 .legend-scale span:nth-child(5){background:#7C3AED}
@@ -410,14 +410,14 @@ button,select,input,textarea{font:inherit}
   padding:16px;
   background:#fff!important;
   border:1px solid #E8EDF2;
-  border-left:3px solid #7C3AED;
+  border-left:3px solid var(--brand);
   border-radius:0!important;
   box-shadow:none!important;
   color:#0B2B44;
 }
-.territory-card.alt{background:#fff!important;border-left-color:#A855F7}
-.territory-card h4{margin:0 0 8px;font-size:12px;font-weight:700;color:#7C3AED!important;text-transform:uppercase;letter-spacing:.06em}
-.territory-card.alt h4{color:#A855F7!important}
+.territory-card.alt{background:#fff!important;border-left-color:var(--brand-2)}
+.territory-card h4{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--brand)!important;text-transform:uppercase;letter-spacing:.06em}
+.territory-card.alt h4{color:var(--brand-2)!important}
 .territory-card p{margin:0 0 12px;font-size:12px;line-height:1.55;color:#5C6E7E!important}
 .territory-card .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:0!important}
 .territory-card .mini div{background:#F8FAFB!important;border:1px solid #E8EDF2!important;border-radius:3px!important;padding:10px 8px}
@@ -455,17 +455,39 @@ tbody tr:nth-child(even){background:#F9FAFB}
 tbody tr:hover{background:var(--brand-5)}
 .rank{font-weight:700;color:var(--brand)}
 th.sortable{cursor:pointer;user-select:none;white-space:nowrap}
-th.sortable:hover{color:var(--brand);background:rgba(124,58,237,.04)}
+th.sortable:hover{color:var(--brand);background:color-mix(in srgb,var(--brand) 4%,transparent)}
 th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left:4px}
 th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
-th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
+th.sort-asc,th.sort-desc{background:color-mix(in srgb,var(--brand) 6%,transparent)}
+th.sortable[title]::after{content:''}
+.sort-hint{position:relative}
+.sort-hint::after{
+  content:'clique para ordenar';
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--navy);
+  color:#fff;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.02em;
+  padding:4px 10px;
+  border-radius:4px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .15s;
+  z-index:10;
+}
+.sort-hint:hover::after{opacity:1}
 .mei-high td:nth-child(4){color:#B07C20;font-weight:700}
 
 /* Comparison table */
 .comp-table{border-collapse:collapse;width:100%}
 .comp-table th,.comp-table td{padding:10px 14px;text-align:right;font-size:13px;border-bottom:1px solid var(--line)}
 .comp-table th{background:#F4F6F9;color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-bottom:2px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
-.comp-table th:hover{color:var(--brand);background:rgba(124,58,237,.04)}
+.comp-table th:hover{color:var(--brand);background:color-mix(in srgb,var(--brand) 4%,transparent)}
 .comp-table tbody tr{background:#fff}
 .comp-table tbody tr:nth-child(even){background:#F9FAFB}
 .comp-table tbody tr:hover{background:var(--brand-5)}
@@ -473,7 +495,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 /* Table filter bar */
 .table-filter-bar{padding:12px 20px;border-bottom:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap;align-items:center;background:transparent}
 .table-filter-bar input,.table-filter-bar select{padding:8px 12px;border:1px solid var(--line);border-radius:6px;font:inherit;font-size:13px;font-weight:500;background:#fff;color:var(--text);flex:1;min-width:140px}
-.table-filter-bar input:focus,.table-filter-bar select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+.table-filter-bar input:focus,.table-filter-bar select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 10%,transparent)}
 .table-count{font-size:11px;color:var(--muted);white-space:nowrap;align-self:center}
 
 /* Tags & chips */
@@ -481,21 +503,21 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
   display:inline-flex;
   border-radius:3px;
   padding:3px 8px;
-  background:#F3E8FF;
+  background:var(--brand-5);
   border:none;
   color:var(--brand);
   font-size:11px;
   font-weight:600;
 }
-.tag.gbj{background:#F3E8FF;color:var(--green)}
+.tag.gbj{background:var(--brand-5);color:var(--green)}
 .chip{
   display:inline-flex;
   align-items:center;
   gap:6px;
   border-radius:4px;
   padding:5px 10px;
-  background:#F3E8FF;
-  border:1px solid #DDD6FE;
+  background:var(--brand-5);
+  border:1px solid var(--brand-4);
   color:var(--navy);
   font-size:11px;
   font-weight:600;
@@ -772,7 +794,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
   cursor:pointer;
 }
 .filter-btn:hover{border-color:#bfd1df}
-.filter-btn:focus{outline:none;border-color:#8bb0c8;box-shadow:0 0 0 4px rgba(124,58,237,.10)}
+.filter-btn:focus{outline:none;border-color:#8bb0c8;box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 10%,transparent)}
 .filter-btn::after{
   content:'\25BE';
   position:absolute;right:10px;top:50%;transform:translateY(-50%);
@@ -845,7 +867,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
   border:1px solid var(--line);border-radius:4px;
   font:inherit;font-size:12px;color:var(--text);background-color:#fff;cursor:text;
 }
-.map-filter-overlay input[type="search"]:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+.map-filter-overlay input[type="search"]:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 10%,transparent)}
 .map-filter-overlay select{
   appearance:none;padding:6px 26px 6px 10px;
   border:1px solid var(--line);border-radius:4px;
@@ -855,14 +877,14 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
   background-repeat:no-repeat;background-position:calc(100% - 8px) 50%;
   cursor:pointer;flex:1;min-width:130px;max-width:200px;
 }
-.map-filter-overlay select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(124,58,237,.1)}
-.map-filter-overlay select.active-filter{border-color:var(--brand);background-color:#F3E8FF;color:var(--brand)}
+.map-filter-overlay select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px color-mix(in srgb,var(--brand) 10%,transparent)}
+.map-filter-overlay select.active-filter{border-color:var(--brand);background-color:var(--brand-5);color:var(--brand)}
 .mge-clear-btn{
-  padding:6px 12px;border:1px solid #DDD6FE;border-radius:4px;
-  background:#F3E8FF;color:var(--brand);font:inherit;font-size:12px;font-weight:700;
+  padding:6px 12px;border:1px solid var(--brand-4);border-radius:4px;
+  background:var(--brand-5);color:var(--brand);font:inherit;font-size:12px;font-weight:700;
   cursor:pointer;white-space:nowrap;
 }
-.mge-clear-btn:hover{background:#DDD6FE}
+.mge-clear-btn:hover{background:var(--brand-4)}
 .mge-filter-badge{
   padding:4px 10px;border-radius:4px;
   background:var(--brand);color:#fff;font-size:11px;font-weight:700;white-space:nowrap;
@@ -873,8 +895,8 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .mge-cluster-lg{width:52px;height:52px;background:rgba(124,58,237,.85);border:3px solid rgba(255,255,255,.8);font-size:13px}
 .mge-popup{padding:14px 16px}
 .mge-popup h4{margin:0 0 4px;font-size:14px;font-weight:700;color:#062040;line-height:1.25}
-.mge-popup .mge-cap{font-size:18px;font-weight:700;color:#7C3AED;margin:6px 0}
-.mge-popup .mge-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;margin-right:3px;background:#F3E8FF;color:#7C3AED}
+.mge-popup .mge-cap{font-size:18px;font-weight:700;color:var(--brand);margin:6px 0}
+.mge-popup .mge-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;margin-right:3px;background:var(--brand-5);color:var(--brand)}
 .mge-popup .mge-meta{font-size:11px;color:#5C6E7E;margin-top:6px}
 .mge-popup .mge-detail{margin-top:10px;padding-top:8px;border-top:1px solid #e6ebf0;display:grid;grid-template-columns:1fr;gap:6px}
 .mge-popup .mge-detail .row{font-size:11px;color:#23354d;line-height:1.4}
@@ -893,9 +915,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .aliment-notice{padding:0 24px 16px;font-size:11px;color:var(--muted);font-style:italic;line-height:1.55}
 .aliment-notice strong{color:var(--text);font-style:normal;font-weight:700}
 .tipo-badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em}
-.tipo-m{background:#e0f2e9;color:#7C3AED}
+.tipo-m{background:#e0f2e9;color:var(--brand)}
 .tipo-f{background:#fef3cd;color:#7c5c00}
-.sector-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:600;background:#F3E8FF;color:#7C3AED;white-space:nowrap}
+.sector-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--brand-5);color:var(--brand);white-space:nowrap}
 .region-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
 
 /* Adicionalidade tab */
@@ -913,7 +935,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .matrix thead th:first-child{text-align:left;padding-left:14px}
 .matrix tbody td{padding:12px 10px;border-bottom:1px solid var(--line-2);text-align:center;font-size:12px;vertical-align:middle}
 .matrix tbody td:first-child{text-align:left;padding-left:14px;font-weight:700;color:var(--navy);font-size:13px}
-.matrix tbody tr:hover td{background:rgba(124,58,237,.04)}
+.matrix tbody tr:hover td{background:color-mix(in srgb,var(--brand) 4%,transparent)}
 
 .adic-regions{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding:0 24px 24px}
 .adic-region-card{position:relative;border:1px solid var(--line);border-radius:14px;padding:18px 22px 18px;background:#fff;display:flex;flex-direction:column;gap:14px}
@@ -961,7 +983,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
 /* Region cards */
 .region-card{background:#F4F6F9;border:1px solid #D8E0E8;border-radius:6px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
-.region-card:hover,.region-card.active{border-color:var(--brand);box-shadow:0 2px 8px rgba(124,58,237,.12)}
+.region-card:hover,.region-card.active{border-color:var(--brand);box-shadow:0 2px 8px color-mix(in srgb,var(--brand) 12%,transparent)}
 .region-card-header{display:flex;align-items:center;gap:8px;margin-bottom:4px}
 .region-card-name{font-size:12px;font-weight:700;color:#062040}
 .region-card-count{font-size:11px;color:#5C6E7E;margin-left:auto}
@@ -978,7 +1000,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .dim-insights{margin-top:0}
 .dim-insight-row{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #EEF1F4}
 .dim-insight-row:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.dim-insight-key{font-size:11px;font-weight:700;color:#7C3AED;margin-bottom:2px}
+.dim-insight-key{font-size:11px;font-weight:700;color:var(--brand);margin-bottom:2px}
 .dim-insight-val{font-size:11px;color:#5C6E7E;line-height:1.6}
 
 /* Priority list */
@@ -1284,7 +1306,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <p>Maracanaú apresenta forte concentração econômica no eixo Pajuçara–Jereissati e no Distrito Industrial. Enquanto o Distrito Industrial abriga empresas com capital social médio na casa dos milhões, bairros como Piratininga, Novo Oriente e Timbó registram quase exclusivamente MEIs, com participação superior a 90%. A taxa média de MEI nos bairros residenciais (>80%) contrasta com menos de 40% no Distrito Industrial — evidência de uma economia dual. Essa assimetria demanda estratégias diferenciadas: programas de formalização e crédito para pequenos negócios na periferia, e articulação com o setor formal no Distrito Industrial para geração de emprego e inclusão produtiva das populações vulneráveis do entorno.</p>
     </div>
 
-    <div style="margin:0 0 12px;padding:0 4px;margin-bottom:8px">
+    <div style="margin:24px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Médias e grandes empresas</span>
         <span style="flex:1;height:1px;background:var(--line-2)"></span>
@@ -1294,15 +1316,15 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <!-- KPIs MGE -->
     <div class="kpi-grid six" id="kpi-mge"></div>
 
-    <div style="margin:20px 0 6px;padding:0 4px">
+    <div style="margin:24px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
-        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Mapa de concentração</span>
+        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Mapas interativos</span>
         <span style="flex:1;height:1px;background:var(--line-2)"></span>
       </div>
     </div>
-
+    <div style="background:var(--bg-2,#f8fafc);border-radius:12px;padding:18px 16px;margin-top:10px">
     <!-- MAPA CAPITAL SOCIAL POR BAIRRO -->
-    <div class="panel" style="margin-top:18px">
+    <div class="panel">
       <div class="panel-head">
         <div><h3 class="panel-title">Concentração de capital social por bairro (dez/2024)</h3><p class="panel-sub">Médias e grandes empresas (porte "Demais") · Filtros disponíveis: tipo (matriz/filial), bairro, região administrativa e setor CNAE · Clique nos clusters para expandir e nos bairros para detalhes</p></div>
       </div>
@@ -1350,7 +1372,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     </div>
 
     <!-- MAPA SETOR ALIMENTÍCIO -->
-    <div class="panel" style="margin-top:18px">
+    <div class="panel" style="margin-top:16px">
       <div class="panel-head">
         <div>
           <h3 class="panel-title-row">
@@ -1383,6 +1405,9 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               <option value="M">Somente Matrizes</option>
               <option value="F">Somente Filiais</option>
             </select>
+            <select id="aliment-regiao-filter" title="Filtrar por região">
+              <option value="">Todas as regiões</option>
+            </select>
             <select id="aliment-bairro-filter" title="Filtrar por bairro">
               <option value="">Todos os bairros</option>
             </select>
@@ -1409,9 +1434,17 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <strong>Aviso de aproximação.</strong> As posições dos pontos no mapa são aproximações por centroide do bairro com pequeno deslocamento determinístico por CNPJ — <em>não</em> representam o endereço exato. Para o endereço completo de cada estabelecimento, use o painel lateral ou clique no marcador.
       </div>
     </div>
+    </div><!-- /maps wrapper -->
 
-    <!-- CAPITAL POR SETOR -->
-    <div class="grid two" style="margin-top:18px">
+    <!-- GRÁFICOS DE CONCENTRAÇÃO E VOLUME -->
+    <div style="margin:24px 0 6px;padding:0 4px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Gráficos de concentração</span>
+        <span style="flex:1;height:1px;background:var(--line-2)"></span>
+      </div>
+    </div>
+    <div style="background:var(--bg-2,#f8fafc);border-radius:12px;padding:18px 16px;margin-top:10px">
+    <div class="grid two">
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Capital social por setor (dez/2024)</h3><p class="panel-sub">Top 15 setores · médias e grandes empresas</p></div></div><div class="chart-box"><canvas id="chart-mge-setor" class="chart tall"></canvas></div></div>
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Empresas médias e grandes por bairro (dez/2024)</h3><p class="panel-sub">Quantidade de estabelecimentos porte "Demais"</p></div></div><div class="chart-box"><canvas id="chart-mge-bairro" class="chart tall"></canvas></div></div>
     </div>
@@ -1422,18 +1455,22 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <span style="flex:1;height:1px;background:var(--line-2)"></span>
       </div>
     </div>
-
     <div class="decision" style="margin:8px 0 14px">
       <h3>Perfil empresarial geral</h3>
       <p>Pajuçara e Jereissati concentram o maior volume absoluto de empresas. A alta participação de MEIs (acima de 80% em vários bairros) indica uma economia predominantemente informal, com potencial para programas de formalização e fortalecimento de pequenos negócios locais.</p>
     </div>
 
-    <!-- CHARTS ORIGINAIS -->
-    <div class="grid two" style="margin-top:18px">
+    <div class="grid two">
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Volume empresarial por bairro (dez/2024)</h3><p class="panel-sub">Todos os portes</p></div></div><div class="chart-box"><canvas id="chart-econ-emp" class="chart tall"></canvas></div></div>
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Participação de MEIs (dez/2024)</h3><p class="panel-sub">% das empresas que são MEIs</p></div></div><div class="chart-box"><canvas id="chart-econ-mei" class="chart tall"></canvas></div></div>
     </div>
+    </div><!-- /charts wrapper -->
 
+
+    <div class="decision" style="margin:20px 0 14px">
+      <h3>Síntese dos dados econômicos</h3>
+      <p>Os mapas e gráficos acima evidenciam três achados centrais: <strong>(1)</strong> o capital social se concentra fortemente no Distrito Industrial, que abriga as maiores empresas e responde pela maior fatia do capital acumulado no município; <strong>(2)</strong> bairros residenciais como Piratininga, Novo Oriente e Timbó registram quase exclusivamente MEIs (participação superior a 90%), configurando uma economia de base informal; <strong>(3)</strong> Pajuçara e Jereissati concentram o maior volume absoluto de empresas, funcionando como polos comerciais do município. Esses padrões apontam para uma estratégia diferenciada: articulação com o setor formal no Distrito Industrial para emprego qualificado, e programas de formalização e microcrédito nos bairros periféricos.</p>
+    </div>
 
     <div style="margin:24px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
@@ -1753,6 +1790,32 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 
     <div style="margin:24px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Radar de capacidade institucional</span>
+        <span style="flex:1;height:1px;background:var(--line-2)"></span>
+      </div>
+    </div>
+    <div class="decision">
+      <h3>Como ler o radar de capacidade</h3>
+      <p>Este radar complementa o de vulnerabilidade, medindo os <strong>ativos e capacidades institucionais</strong> disponíveis em cada região. Seis dimensões normalizadas (0 a 1): <strong>Densidade de OSCs</strong> (organizações por 1.000 habitantes), <strong>Atividade empresarial</strong> (empresas por 1.000 hab.), <strong>Presença de M/G empresas</strong> (médias e grandes por 1.000 hab.), <strong>Cobertura de esgoto</strong> (infraestrutura sanitária), <strong>Renda per capita</strong> (base econômica) e <strong>Formalidade</strong> (proporção de empresas formais, inversa da taxa de MEI). Quanto maior a área do polígono, maior a capacidade institucional e econômica da região — ou seja, mais recursos disponíveis para ancorar intervenções da Redes Ceará. A leitura cruzada com o radar de vulnerabilidade permite identificar: <strong>alta vulnerabilidade + baixa capacidade</strong> = prioridade máxima com investimento de base; <strong>alta vulnerabilidade + alta capacidade</strong> = articulação da rede existente.</p>
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <div class="panel-head">
+        <div>
+          <h3 class="panel-title">Perfil de capacidade institucional por região</h3>
+          <p class="panel-sub">Radar com 6 indicadores normalizados. Ao lado, uma leitura sintética de cada região.</p>
+        </div>
+      </div>
+      <div class="map-analytics-layout" style="align-items:start;padding:0 24px 24px">
+        <div style="background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:16px 12px 20px">
+          <div style="position:relative;height:440px"><canvas id="chart-synth-capacity"></canvas></div>
+          <div id="synth-capacity-legend" style="display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line-2);font-size:11px"></div>
+        </div>
+        <div id="synth-capacity-reading" style="display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:560px;padding-right:4px"></div>
+      </div>
+    </div>
+
+    <div style="margin:24px 0 6px;padding:0 4px">
+      <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Matriz de vulnerabilidades</span>
         <span style="flex:1;height:1px;background:var(--line-2)"></span>
       </div>
@@ -1872,62 +1935,62 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <table class="matrix heatmap">
           <thead>
             <tr>
-              <th class="no-sort">Território</th>
-              <th class="no-sort">Potencial<br>de impacto</th>
-              <th class="no-sort">Densidade de<br>atores e parcerias</th>
-              <th class="no-sort">Riscos político-<br>institucionais</th>
-              <th class="no-sort">Alinhamento com<br>competências</th>
-              <th class="no-sort">Adicionalidade<br>da Redes Ceará</th>
+              <th>Território</th>
+              <th>Potencial<br>de impacto</th>
+              <th>Densidade de<br>atores e parcerias</th>
+              <th>Riscos político-<br>institucionais</th>
+              <th>Alinhamento com<br>competências</th>
+              <th>Adicionalidade<br>da Redes Ceará</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><span class="region-label"><span class="region-dot" style="background:#7C3AED"></span>Extremo Norte</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell baixo"><span>Baixo</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell alto"><span>Alto</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell baixo" data-sort-value="1"><span>Baixo</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
             </tr>
             <tr>
               <td><span class="region-label"><span class="region-dot" style="background:#2563EB"></span>Zona Norte</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell alto"><span>Alto</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
             </tr>
             <tr>
               <td><span class="region-label"><span class="region-dot" style="background:#0891B2"></span>Centro e Jereissati</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell baixo-risco"><span>Baixo</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell baixo"><span>Baixo</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell baixo-risco" data-sort-value="1"><span>Baixo</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell baixo" data-sort-value="1"><span>Baixo</span></td>
             </tr>
             <tr>
               <td><span class="region-label"><span class="region-dot" style="background:#059669"></span>Zona Leste</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell medio"><span>Médio</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
             </tr>
             <tr>
               <td><span class="region-label"><span class="region-dot" style="background:#D97706"></span>Zona Oeste</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell baixo"><span>Baixo</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell alto"><span>Alto</span></td>
-              <td class="cell alto"><span>Alto</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell baixo" data-sort-value="1"><span>Baixo</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell alto" data-sort-value="3"><span>Alto</span></td>
             </tr>
             <tr>
               <td><span class="region-label"><span class="region-dot" style="background:#DC2626"></span>Zona Sul</span></td>
-              <td class="cell medio"><span>Médio</span></td>
-              <td class="cell baixo"><span>Baixo</span></td>
-              <td class="cell baixo"><span>Alto</span></td>
-              <td class="cell baixo"><span>Baixo</span></td>
-              <td class="cell medio"><span>Médio</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
+              <td class="cell baixo" data-sort-value="1"><span>Baixo</span></td>
+              <td class="cell baixo" data-sort-value="3"><span>Alto</span></td>
+              <td class="cell baixo" data-sort-value="1"><span>Baixo</span></td>
+              <td class="cell medio" data-sort-value="2"><span>Médio</span></td>
             </tr>
           </tbody>
         </table>
@@ -2135,48 +2198,48 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
           <tbody>
             <tr>
               <td>Pacto Contra a Fome<span class="p-scope">Segurança alimentar · articulação nacional</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f1" title="Baixa adicionalidade"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f1" title="Baixa prioridade"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa adicionalidade"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa prioridade"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
             </tr>
             <tr>
               <td>Movimento BemMaior<span class="p-scope">Mobilização cidadã · engajamento comunitário</span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f1" title="Baixa viabilidade"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa viabilidade"></span></td>
             </tr>
             <tr>
               <td>Astor Capital<span class="p-scope">Capital social · investimento estruturante</span></td>
-              <td><span class="fit f1" title="Baixa viabilidade"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f0" title="Sem fit"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa viabilidade"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="0"><span class="fit f0" title="Sem fit"></span></td>
             </tr>
             <tr>
               <td>Instituto Localiza<span class="p-scope">Capacitação profissional · empregabilidade</span></td>
-              <td><span class="fit f1" title="Baixa prioridade"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Saturação alta"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f1" title="Baixa viabilidade"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa prioridade"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Saturação alta"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Baixa viabilidade"></span></td>
             </tr>
             <tr>
               <td>Somos Um<span class="p-scope">Articulação comunitária · base territorial</span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f1" title="Saturação alta"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f2" title="Fit médio"></span></td>
-              <td><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="1"><span class="fit f1" title="Saturação alta"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="2"><span class="fit f2" title="Fit médio"></span></td>
+              <td data-sort-value="3"><span class="fit f3" title="Fit alto"></span></td>
             </tr>
           </tbody>
         </table>
@@ -2899,6 +2962,7 @@ function initAlimentMap(){
   // 2) Populate bairro filter
   const selCat = document.getElementById('aliment-cat-filter');
   const selTipo = document.getElementById('aliment-tipo-filter');
+  const selRegiao = document.getElementById('aliment-regiao-filter');
   const selBairro = document.getElementById('aliment-bairro-filter');
   const inpSearch = document.getElementById('aliment-map-search');
   const btnClear = document.getElementById('aliment-clear-filters');
@@ -2912,6 +2976,8 @@ function initAlimentMap(){
     opt.value = b; opt.textContent = `${b} (${totalByBairro[b]})`;
     selBairro.appendChild(opt);
   });
+  const alimentRegioes = [...new Set(ALIMENT_POINTS.map(p=>REGION_MAP[p.b]||'').filter(Boolean))].sort();
+  alimentRegioes.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;selRegiao.appendChild(o)});
 
   // 3) Build map
   if(!MAPS['map-aliment']){
@@ -2953,11 +3019,13 @@ function initAlimentMap(){
   function getFilteredAliment(){
     const cf = selCat.value;
     const tf = selTipo.value;
+    const rf = selRegiao.value;
     const bf = selBairro.value;
     const sq = (inpSearch.value||'').trim().toLowerCase();
     let out = ALIMENT_POINTS;
     if(cf) out = out.filter(p=>p.cat===cf);
     if(tf) out = out.filter(p=>p.tipo===tf);
+    if(rf) out = out.filter(p=>(REGION_MAP[p.b]||'')===rf);
     if(bf) out = out.filter(p=>p.b===bf);
     if(sq) out = out.filter(p=>(p.n||'').toLowerCase().includes(sq) || (p.rf||'').toLowerCase().includes(sq) || (p.id||'').includes(sq));
     return out;
@@ -3027,20 +3095,21 @@ function initAlimentMap(){
     listEl.innerHTML = `<div style="margin-bottom:8px">${catRows}</div><div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:6px 8px 4px;border-top:1px dashed var(--line-2)">Lista (${Math.min(listVisible,filtered.length)} de ${filtered.length})</div>${rows}${more}`;
 
     // Filter badge
-    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
+    const active = (selCat.value?1:0) + (selTipo.value?1:0) + (selRegiao.value?1:0) + (selBairro.value?1:0) + (inpSearch.value?1:0);
     badge.style.display = active ? 'inline-block' : 'none';
     btnClear.style.display = active ? 'inline-flex' : 'none';
     if(active) badge.textContent = `${active} filtro${active>1?'s':''}`;
-    [selCat,selTipo,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
+    [selCat,selTipo,selRegiao,selBairro].forEach(s=>s.classList.toggle('active-filter',!!s.value));
     inpSearch.classList.toggle('active-filter', !!inpSearch.value);
   }
 
   selCat.addEventListener('change', renderAlimentMap);
   selTipo.addEventListener('change', renderAlimentMap);
+  selRegiao.addEventListener('change', renderAlimentMap);
   selBairro.addEventListener('change', renderAlimentMap);
   inpSearch.addEventListener('input', renderAlimentMap);
   btnClear.addEventListener('click', ()=>{
-    selCat.value=''; selTipo.value=''; selBairro.value=''; inpSearch.value='';
+    selCat.value=''; selTipo.value=''; selRegiao.value=''; selBairro.value=''; inpSearch.value='';
     renderAlimentMap();
   });
 
@@ -4164,6 +4233,123 @@ function initComp(){
     }).join('');
   }
 
+  // ─── Capacity Radar ─────────────────────────────────────────────────────
+  const CAPACITY_INDS = [
+    {key:'osc',     label:'Densidade de OSCs',      agg:'sum',   normKey:'pop', scale:20},
+    {key:'emp',     label:'Atividade empresarial',   agg:'sum',   normKey:'pop', scale:200},
+    {key:'mge',     label:'Presença de M/G',         agg:'sum',   normKey:'pop', scale:10},
+    {key:'esg',     label:'Cobertura de esgoto',     agg:'wmean', normKey:null,  scale:1},
+    {key:'rendaPC', label:'Renda per capita',         agg:'wmean', normKey:null,  scale:3000},
+    {key:'meiInv',  label:'Formalidade',             agg:'wmean', normKey:null,  scale:1, invert:'meiShare'}
+  ];
+
+  // Compute capacity values per group
+  GROUPS.forEach(g => {
+    const gd = groupAgg[g];
+    CAPACITY_INDS.forEach(ind => {
+      let val;
+      if(ind.invert) {
+        val = 1 - (gd.values[ind.invert] || 0);
+      } else if(ind.normKey === 'pop') {
+        const raw = gd.values[ind.key] || aggregate(gd.rows, ind.key, ind.agg);
+        val = gd.pop ? Math.min(1, (raw / gd.pop) * 1000 / ind.scale) : 0;
+      } else {
+        val = Math.min(1, (gd.values[ind.key] || 0) / ind.scale);
+      }
+      gd.values['cap_' + ind.key] = val;
+    });
+  });
+
+  function renderCapacityRadar() {
+    destroyChart('chart-synth-capacity');
+    const canvas = document.getElementById('chart-synth-capacity');
+    if(!canvas) return;
+    const labels = CAPACITY_INDS.map(i => i.label);
+    const datasets = GROUPS.map(g => {
+      const col = GROUP_COLORS[g] || '#888';
+      return {
+        label: g,
+        data: CAPACITY_INDS.map(ind => {
+          const v = groupAgg[g].values['cap_' + ind.key] || 0;
+          return v * 100;
+        }),
+        _raw: CAPACITY_INDS.map(ind => groupAgg[g].values['cap_' + ind.key] || 0),
+        borderColor: col,
+        backgroundColor: col + '22',
+        pointBackgroundColor: col,
+        pointRadius: 3,
+        pointHoverRadius: 5,
+        borderWidth: 2
+      };
+    });
+    CHARTS['chart-synth-capacity'] = new Chart(canvas, {
+      type: 'radar',
+      data: { labels, datasets },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(20,50,74,.94)',
+            titleFont: { family: 'Inter', size: 12, weight: '700' },
+            bodyFont: { family: 'Inter', size: 11 },
+            padding: 10, cornerRadius: 8,
+            callbacks: {
+              title: (items) => items[0].dataset.label,
+              label: (ctx) => {
+                const v = ctx.dataset._raw[ctx.dataIndex];
+                return labels[ctx.dataIndex] + ': ' + (v * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%';
+              }
+            }
+          }
+        },
+        scales: {
+          r: {
+            min: 0, max: 100,
+            ticks: { display: false, stepSize: 25 },
+            pointLabels: { font: { family: 'Inter', size: 10.5, weight: '600' }, color: '#1B2D3E' },
+            angleLines: { color: '#E5EAF0' },
+            grid: { color: '#EEF2F6' }
+          }
+        }
+      }
+    });
+    const leg = document.getElementById('synth-capacity-legend');
+    if(leg) {
+      leg.innerHTML = GROUPS.map((g, i) => {
+        const col = GROUP_COLORS[g] || '#888';
+        return '<span data-i="' + i + '" class="synth-cap-leg" style="cursor:pointer;user-select:none;display:inline-flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:2px;background:' + col + ';display:inline-block"></span><span style="font-weight:600;color:var(--navy)">' + g + '</span></span>';
+      }).join('');
+      leg.querySelectorAll('.synth-cap-leg').forEach(el => {
+        el.onclick = () => {
+          const idx = +el.dataset.i;
+          const chart = CHARTS['chart-synth-capacity'];
+          const meta = chart.getDatasetMeta(idx);
+          meta.hidden = meta.hidden === null ? !chart.data.datasets[idx].hidden : !meta.hidden;
+          el.style.opacity = meta.hidden ? '.35' : '1';
+          chart.update();
+        };
+      });
+    }
+  }
+
+  function renderCapacityReading() {
+    const el = document.getElementById('synth-capacity-reading');
+    if(!el) return;
+    el.innerHTML = GROUPS.map(g => {
+      const gd = groupAgg[g];
+      const col = GROUP_COLORS[g] || '#888';
+      const oscDens = gd.pop ? ((gd.values.osc || 0) / gd.pop * 1000).toFixed(1) : '0';
+      const empDens = gd.pop ? ((gd.values.emp || 0) / gd.pop * 1000).toFixed(0) : '0';
+      const formal = ((1 - (gd.values.meiShare || 0)) * 100).toFixed(1);
+      const esgPct = ((gd.values.esg || 0) * 100).toFixed(1);
+      const rendaPC = fmt(gd.values.rendaPC || 0, 'money');
+      const capAvg = CAPACITY_INDS.reduce((s, ind) => s + (gd.values['cap_' + ind.key] || 0), 0) / CAPACITY_INDS.length;
+      const capClass = capAvg >= 0.5 ? 'Alta' : capAvg >= 0.3 ? 'Moderada' : 'Baixa';
+      return '<div style="background:#fff;border:1px solid var(--line-2);border-left:4px solid ' + col + ';border-radius:8px;padding:12px 14px"><div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px">' + g + ' <span style="font-size:10px;font-weight:600;padding:2px 8px;border-radius:3px;background:' + (capAvg >= 0.5 ? '#DCFCE7' : capAvg >= 0.3 ? '#FEF9C3' : '#FEE2E2') + ';color:' + (capAvg >= 0.5 ? '#14532D' : capAvg >= 0.3 ? '#854D0E' : '#7F1D1D') + '">' + capClass + '</span></div><div style="font-size:11.5px;color:#1B2D3E;line-height:1.55">' + oscDens + ' OSCs/mil hab. · ' + empDens + ' empresas/mil hab. · ' + formal + '% de formalidade · Esgoto ' + esgPct + '% · Renda PC ' + rendaPC + '</div></div>';
+    }).join('');
+  }
+
   // ─── 6b) Matriz de vulnerabilidades (heatmap) ───────────────────────────────
   function renderHeatmap(){
     const tbl = document.getElementById('synth-heatmap');
@@ -4216,6 +4402,8 @@ function initComp(){
   renderBairroTable();
   renderRadar();
   renderReading();
+  renderCapacityRadar();
+  renderCapacityReading();
   renderHeatmap();
 
   // ─── IPT: Índice de Priorização Territorial ────────────────────
