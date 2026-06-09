@@ -41,12 +41,12 @@ body{
 
 /* TOPBAR */
 .topbar{
-  border-bottom:1px solid var(--line);height:54px;flex-shrink:0;
+  border-bottom:1px solid var(--line);height:72px;flex-shrink:0;
   display:flex;align-items:center;
 }
 .topbar .container{display:flex;align-items:center;justify-content:space-between;height:100%}
 .topbar .brand{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:14px}
-.topbar .brand .brand-logo{height:28px;width:auto;display:block}
+.topbar .brand .brand-logo{height:44px;width:auto;display:block}
 .topbar .brand .sub{color:var(--muted);font-weight:600}
 .topbar .top-meta{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 
@@ -250,13 +250,19 @@ body{
 .partners-band .container{text-align:center}
 .partners-band .p-label{
   font-size:10.5px;font-weight:700;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--muted);margin-bottom:36px;
+  text-transform:uppercase;color:var(--muted);margin-bottom:28px;
 }
-.partners-group{margin-bottom:48px}
-.partners-group:last-child{margin-bottom:0}
+.partners-groups{
+  display:flex;justify-content:center;align-items:stretch;flex-wrap:wrap;
+}
+.partners-group{
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 60px;margin-bottom:0;
+}
+.partners-group + .partners-group{border-left:1px solid var(--line)}
 .partners-logos{
   display:flex;align-items:center;justify-content:center;
-  gap:64px;flex-wrap:wrap;max-width:1120px;margin:0 auto;
+  gap:48px;flex-wrap:wrap;margin:0 auto;
 }
 .partners-logos .p-logo{
   display:flex;align-items:center;justify-content:center;
@@ -304,6 +310,11 @@ body{
   .mun-grid,.leituras-grid,.about-grid{grid-template-columns:1fr;gap:24px}
   .leitura{padding:24px}
   .partners-band{padding:32px 0}
+  .topbar{height:60px}
+  .topbar .brand .brand-logo{height:34px}
+  .partners-groups{flex-direction:column;align-items:center}
+  .partners-group{padding:24px 0}
+  .partners-group + .partners-group{border-left:0;border-top:1px solid var(--line)}
   .footer .container{flex-direction:column;gap:10px;text-align:center}
 }
 </style>
@@ -470,6 +481,7 @@ body{
 <!-- PARCEIROS -->
 <section class="partners-band">
   <div class="container">
+    <div class="partners-groups">
     <div class="partners-group">
       <div class="p-label">Realização</div>
       <div class="partners-logos">
@@ -494,6 +506,7 @@ body{
           <img src="assets/images/images.png" alt="Pacto Contra a Fome" loading="lazy">
         </div>
       </div>
+    </div>
     </div>
   </div>
 </section>
