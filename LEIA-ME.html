@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comece por aqui · Redes Ceará — Diagnóstico Territorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A2540;--ink:#1F2937;--ink-2:#3B4E63;--muted:#6B7A8A;--line:rgba(10,37,64,.12);--green:#076E47;--green-soft:#E6F4EE;--blue:#1E40AF;--amber:#B45309;--amber-soft:#FEF3C7;--bg:#FFFFFF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink);background:#FAFAF7;line-height:1.6}
+.wrap{max-width:840px;margin:0 auto;padding:48px 40px 72px;background:var(--bg)}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+h1{font-size:32px;font-weight:900;letter-spacing:-.03em;color:var(--navy);line-height:1.08}
+.sub{font-size:15px;color:var(--ink-2);margin-top:14px;max-width:640px}
+.cta{display:inline-flex;align-items:center;gap:10px;margin:28px 0 8px;padding:15px 24px;background:var(--green);color:#fff;text-decoration:none;font-weight:800;font-size:13px;letter-spacing:.06em;border-radius:8px}
+.cta:hover{background:#0A8055}
+.cta .arrow{font-weight:900}
+.online{display:inline-block;margin-left:14px;font-size:13px;color:var(--blue);text-decoration:none;font-weight:600}
+.online:hover{text-decoration:underline}
+h2{font-size:15px;font-weight:800;letter-spacing:.04em;color:var(--navy);text-transform:uppercase;margin:38px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--navy)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:8px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td code{font-size:12.5px;background:#F3F5F8;padding:2px 6px;border-radius:4px;color:var(--navy);font-weight:600}
+.tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.tag.off{background:var(--green-soft);color:var(--green)}
+.tag.on{background:#FEF3C7;color:var(--amber)}
+.note{background:var(--amber-soft);border:1px solid #FCD34D;border-radius:10px;padding:16px 20px;margin:18px 0;font-size:13.5px;color:#78350F}
+.note strong{color:#92400E}
+.note .nt{font-weight:800;color:var(--amber);display:block;margin-bottom:6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 36px}
+.cols .c{font-size:13px;color:var(--ink-2);padding:6px 0;border-bottom:1px solid var(--line)}
+.cols .c strong{color:var(--navy);font-weight:700}
+.partners{display:flex;gap:36px;flex-wrap:wrap;font-size:13.5px;color:var(--ink-2);margin-top:4px}
+.partners b{display:block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:4px}
+.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.foot a{color:var(--green);text-decoration:none}
+ul.sources{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 28px;font-size:13px;color:var(--ink-2)}
+ul.sources li{padding-left:16px;position:relative}
+ul.sources li::before{content:"·";position:absolute;left:4px;color:var(--green);font-weight:800}
+@media(max-width:680px){.wrap{padding:28px 20px}.cols,ul.sources{grid-template-columns:1fr}h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Redes Ceará · Produto final</div>
+  <h1>Diagnóstico Territorial<br>Fortaleza e Maracanaú</h1>
+  <p class="sub">Mapeamento de pobreza, inclusão produtiva, segurança alimentar e rede institucional em dois municípios da Região Metropolitana de Fortaleza — 57 bairros, cerca de 585 mil habitantes acompanhados.</p>
+
+  <a class="cta" href="index.html">Abrir o diagnóstico <span class="arrow">→</span></a>
+  <a class="online" href="https://bfernlucas.github.io/redes_ceara/" target="_blank" rel="noopener">ou acessar a versão online ↗</a>
+
+  <div class="note">
+    <span class="nt">⚠ Importante — uso offline x online</span>
+    Quase tudo neste pacote funciona <strong>offline</strong> (basta abrir <code>index.html</code>). As <strong>exceções são os dois painéis interativos</strong> (<code>fortaleza.html</code> e <code>maracanau.html</code>): os mapas e gráficos carregam bibliotecas e camadas de mapa de servidores externos, então <strong>precisam de internet</strong>. Sem conexão, use a <strong>versão online</strong> ou os <strong>3 PDFs / apresentações</strong>, que cobrem todo o conteúdo de forma portátil.
+  </div>
+
+  <h2>O que está no pacote</h2>
+  <table>
+    <thead><tr><th>Arquivo</th><th>O que é</th><th>Offline?</th></tr></thead>
+    <tbody>
+      <tr><td><code>index.html</code></td><td>Página inicial — porta de entrada do diagnóstico.</td><td><span class="tag off">Offline ✓</span></td></tr>
+      <tr><td><code>fortaleza.html</code></td><td>Painel interativo de Fortaleza (13 bairros · 2 territórios · 8 abas).</td><td><span class="tag on">Internet</span></td></tr>
+      <tr><td><code>maracanau.html</code></td><td>Painel interativo de Maracanaú (44 bairros · 6 regiões · 8 abas).</td><td><span class="tag on">Internet</span></td></tr>
+      <tr><td><code>resumo_executivo.html</code></td><td>Hub das 3 apresentações de slides (Fortaleza, Maracanaú e Síntese).</td><td><span class="tag off">Offline ✓</span></td></tr>
+      <tr><td><code>report_fortaleza.html</code> · <code>.pdf</code></td><td>Apresentação executiva de Fortaleza (19 slides).</td><td><span class="tag off">Offline ✓</span></td></tr>
+      <tr><td><code>report_maracanau.html</code> · <code>.pdf</code></td><td>Apresentação executiva de Maracanaú (19 slides).</td><td><span class="tag off">Offline ✓</span></td></tr>
+      <tr><td><code>report_geral.html</code> · <code>.pdf</code></td><td>Síntese do trabalho (15 slides).</td><td><span class="tag off">Offline ✓</span></td></tr>
+      <tr><td><code>policy_brief.html</code></td><td>Policy brief — revisão de literatura e recomendações.</td><td><span class="tag off">Offline ✓</span></td></tr>
+      <tr><td><code>assets/</code></td><td>Imagens e logos usados nas páginas.</td><td><span class="tag off">Offline ✓</span></td></tr>
+      <tr><td><code>data/</code></td><td>Bases brutas (Receita Federal, IBGE, MDS…) e dicionário de dados.</td><td><span class="tag off">Offline ✓</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Como abrir</h2>
+  <div class="cols">
+    <div class="c"><strong>Modo simples:</strong> clique duas vezes em <code>index.html</code> — abre no navegador, sem instalar nada.</div>
+    <div class="c"><strong>Modo recomendado (mapas):</strong> use a versão online, onde os painéis interativos funcionam 100%.</div>
+    <div class="c"><strong>Servidor local (opcional):</strong> na pasta do pacote, rode <code>python3 -m http.server 8000</code> e abra <code>http://localhost:8000</code>.</div>
+    <div class="c"><strong>Para apresentar:</strong> abra qualquer <code>report_*.html</code> e use as setas do teclado; ou os PDFs correspondentes.</div>
+  </div>
+
+  <h2>Realização e Parceria</h2>
+  <div class="partners">
+    <div><b>Realização</b>Instituto Localiza · Movimento Bem Maior · Somos Um</div>
+    <div><b>Parceria</b>Fundação Dom Cabral · Pacto Contra a Fome</div>
+  </div>
+
+  <h2>Fontes de dados</h2>
+  <ul class="sources">
+    <li>IBGE — Censo 2022 (agregados por bairro)</li>
+    <li>MDS / CadÚnico — 2025</li>
+    <li>IPEA — Mapa das OSCs, 2024</li>
+    <li>Receita Federal — CNPJs por bairro, 2024</li>
+    <li>INEP — Censo Escolar, 2023</li>
+    <li>CNES / DataSUS — 2024</li>
+    <li>SSPDS-CE — segurança, 2024</li>
+    <li>Cartografia — OpenStreetMap / CARTO</li>
+  </ul>
+
+  <div class="foot">
+    <strong>Redes Ceará · Diagnóstico Territorial · 2026</strong><br>
+    Elaboração: Lucas Fernandes · <a href="mailto:limbersocial@gmail.com">limbersocial@gmail.com</a><br>
+    Versão online: <a href="https://bfernlucas.github.io/redes_ceara/">bfernlucas.github.io/redes_ceara</a>
+  </div>
+</div>
+</body>
+</html>
