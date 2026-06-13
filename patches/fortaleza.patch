@@ -1,0 +1,29 @@
+diff --git a/fortaleza.html b/fortaleza.html
+index 9ed9fa1..6d4e742 100644
+--- a/fortaleza.html
++++ b/fortaleza.html
+@@ -89,7 +89,7 @@ button,select,input,textarea{font:inherit}
+ /* Tab navigation */
+ .tabs{
+   position:sticky;
+-  top:56px;
++  top:54px;
+   z-index:999;
+   background:#FFFFFF;
+   border-bottom:2px solid var(--line);
+@@ -1006,7 +1006,7 @@ th.sortable[title]::after{content:''}
+ 
+ /* Responsive */
+ @media(max-width:1100px){
+-  .tabs{top:56px}
++  .tabs{top:54px}
+   .grid.hero,.grid.two,.grid.three,.grid.four{grid-template-columns:1fr}
+   .map-analytics-layout{grid-template-columns:1fr}
+   .comparison-grid{grid-template-columns:1fr}
+@@ -1420,7 +1420,7 @@ th.sortable[title]::after{content:''}
+     </div>
+     <div class="panel" style="margin-top:12px">
+       <div class="panel-head">
+-        <div><h3 class="panel-title">Concentração de capital social por bairro (dez/2024)</h3><p class="panel-sub">Médias e grandes empresas (porte "Demais") · Use os 5 filtros acima do mapa (busca, tipo, bairro, território e setor CNAE) para refinar a visualização · Clique nos clusters para expandir e nos bairros sombreados para ver capital acumulado e detalhes</p></div>
++        <div><h3 class="panel-title">Concentração de capital social por bairro (dez/2024)</h3><p class="panel-sub">Médias e grandes empresas (porte "Demais") · Filtros: tipo (matriz/filial), bairro, território e setor CNAE · Destaque: filtre por "Somente Matrizes" para identificar sedes de empresas no território · Clique nos clusters para expandir e nos bairros sombreados para detalhes</p></div>
+       </div>
