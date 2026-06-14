@@ -1106,7 +1106,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="panel">
       <div class="panel-head">
         <div><h3 class="panel-title">Mapa analítico</h3></div>
-        <div class="filters"><select id="visao-indicador"></select></div>
+        <div class="filters"><select id="visao-regiao"></select><select id="visao-bairro"></select><select id="visao-indicador"></select></div>
       </div>
       <div class="map-analytics-layout">
         <div id="map-visao" class="map-box split"></div>
@@ -1128,6 +1128,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
         <div class="note-box" id="note-visao"></div>
       </div>
     </div>
+    <div class="grid three" style="margin-top:16px" id="visao-region-cards"></div>
     <div class="grid two" style="margin-top:16px">
       <div class="panel">
         <div class="panel-head"><div><h3 class="panel-title" id="chart-visao-title">Extrema pobreza por bairro (MDS, 2025)</h3><p class="panel-sub" id="chart-visao-sub">% dos domicílios</p></div></div>
@@ -1150,7 +1151,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="decision"><h3>Análise</h3><p>A população se distribui de forma desigual: Pajuçara concentra 22 mil habitantes enquanto bairros como Parque Santa Maria e Picada têm menos de 600. As densidades mais altas estão nos conjuntos Jereissati e Conjunto Timbó. A população não-branca é amplamente majoritária, chegando a 96,6% em Olho d'Água do Pitaguari.</p></div>
     <div class="panel">
       <div class="panel-head"><div><h3 class="panel-title">Distribuição espacial (IBGE, 2022)</h3></div>
-        <div class="filters"><select id="demo-indicador"></select></div>
+        <div class="filters"><select id="demo-regiao"></select><select id="demo-bairro"></select><select id="demo-indicador"></select></div>
       </div>
       <div class="map-analytics-layout">
         <div id="map-demo" class="map-box split"></div>
@@ -1183,7 +1184,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="section-head"><span class="section-kicker">Vulnerabilidade</span><h2 class="section-title">Pobreza e privação</h2><p class="section-desc">Extrema pobreza, CadÚnico (2025), analfabetismo e rendimento por bairro.</p></div>
     <div class="decision"><h3>Análise</h3><p>A incidência de CadÚnico ultrapassa 100% em Acaracuzinho I. A extrema pobreza ultrapassa 50% dos domicílios em Parque Santa Maria, Jari e Parque Tropical. O analfabetismo é mais alto em Olho d'Água do Pitaguari (13,6%) e Mucunã (12,2%).</p></div>
     <div class="panel">
-      <div class="panel-head"><div><h3 class="panel-title">Vulnerabilidade por bairro (MDS, 2025)</h3></div><div class="filters"><select id="vuln-indicador"></select></div></div>
+      <div class="panel-head"><div><h3 class="panel-title">Vulnerabilidade por bairro (MDS, 2025)</h3></div><div class="filters"><select id="vuln-regiao"></select><select id="vuln-bairro"></select><select id="vuln-indicador"></select></div></div>
       <div class="map-analytics-layout">
         <div id="map-vuln" class="map-box split"></div>
         <div class="analysis-side">
@@ -1216,6 +1217,10 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Moradores por domicílio (IBGE Censo, 2022)</h3><p class="panel-sub">Média de moradores por domicílio</p></div></div><div class="chart-box"><canvas id="chart-vuln-mordom" class="chart tall"></canvas></div></div>
       <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Responsáveis por domicílio (IBGE Censo, 2022)</h3><p class="panel-sub">Número de responsáveis pelo domicílio</p></div></div><div class="chart-box"><canvas id="chart-vuln-resp" class="chart tall"></canvas></div></div>
     </div>
+    <div class="grid two" style="margin-top:22px">
+      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">Famílias no CadÚnico (MDS, 2025)</h3><p class="panel-sub">% de famílias inscritas no Cadastro Único em relação ao total de domicílios</p></div></div><div class="chart-box"><canvas id="chart-vuln-cad" class="chart tall"></canvas></div></div>
+      <div class="panel"><div class="panel-head"><div><h3 class="panel-title">CadÚnico vs Extrema Pobreza (MDS, 2025)</h3><p class="panel-sub">Comparativo dos dois indicadores por bairro</p></div></div><div class="chart-box"><canvas id="chart-vuln-cad-vs-epob" class="chart tall"></canvas></div></div>
+    </div>
   </section>
 
   <!-- INFRAESTRUTURA -->
@@ -1223,7 +1228,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="section-head"><span class="section-kicker">Infraestrutura</span><h2 class="section-title">O que a cidade oferece</h2><p class="section-desc">Cobertura de saneamento, saúde e equipamentos públicos por bairro (IBGE, 2022 · CNES, 2024).</p></div>
     <div class="decision"><h3>Análise</h3><p>O esgotamento sanitário é o maior gargalo. Diversos bairros têm menos de 5% de cobertura de esgoto. A água e a coleta de lixo apresentam cobertura próxima da universalidade. Equipamentos concentram-se nos bairros mais populosos.</p></div>
     <div class="panel">
-      <div class="panel-head"><div><h3 class="panel-title">Cobertura de serviços (IBGE, 2022)</h3></div><div class="filters"><select id="infra-indicador"></select></div></div>
+      <div class="panel-head"><div><h3 class="panel-title">Cobertura de serviços (IBGE, 2022)</h3></div><div class="filters"><select id="infra-regiao"></select><select id="infra-bairro"></select><select id="infra-indicador"></select></div></div>
       <div class="map-analytics-layout">
         <div id="map-infra" class="map-box split"></div>
         <div class="analysis-side">
@@ -1895,7 +1900,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
               </span>
             </span>
           </h3>
-          <p class="panel-sub">Cinco critérios qualitativos ancorados nos indicadores agregados. Notas relativas entre os 6 territórios de Maracanaú.</p>
+          <p class="panel-sub">Cinco critérios qualitativos ancorados nos indicadores agregados. Notas relativas entre os 6 territórios de Maracanaú · clique no cabeçalho para ordenar (1.º clique: maior → menor)</p>
         </div>
       </div>
       <div class="matrix-wrap">
@@ -2349,7 +2354,7 @@ function createMap(containerId){
   return map;
 }
 
-function paintMap(containerId,indicatorKey,colorSet){
+function paintMap(containerId,indicatorKey,colorSet,filterFn){
   const m=MAPS[containerId];if(!m) return;
   const colors=colorSet||CHOROPLETH_COLORS;
   const ind=INDICATORS[indicatorKey];
@@ -2364,6 +2369,7 @@ function paintMap(containerId,indicatorKey,colorSet){
     style:feature=>{
       const d=findData(feature.properties.nome);
       const v=d?d[indicatorKey]:null;
+      if(filterFn && d && !filterFn(d)){return{fillColor:'#E8E8E8',weight:0,stroke:false,fillOpacity:.22};}
       return{fillColor:getColor(v,breaks,colors),weight:0,stroke:false,fillOpacity:.78};
     },
     onEachFeature:(feature,layer)=>{
@@ -2410,17 +2416,45 @@ function populateSelect(id,indicators){
   return sel;
 }
 
+function setupMapFilters(prefix, onchange){
+  const regSel=document.getElementById(prefix+'-regiao');
+  const baiSel=document.getElementById(prefix+'-bairro');
+  if(!regSel||!baiSel) return function(){return null;};
+  const allBairros=[...DATA].map(d=>d.b).sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  regSel.innerHTML='<option value="">Todas as regiões</option>'+REGION_ORDER.map(r=>'<option value="'+r+'">'+r+'</option>').join('');
+  function fillBairros(reg){
+    const list=reg?allBairros.filter(b=>(REGION_MAP[b]||'')===reg):allBairros;
+    baiSel.innerHTML='<option value="">Todos os bairros</option>'+list.map(b=>'<option value="'+b+'">'+b+'</option>').join('');
+  }
+  fillBairros('');
+  regSel.addEventListener('change',function(){
+    fillBairros(regSel.value);
+    baiSel.value='';
+    if(onchange) onchange();
+  });
+  baiSel.addEventListener('change',function(){if(onchange) onchange();});
+  return function(){
+    const rv=regSel.value, bv=baiSel.value;
+    if(!rv&&!bv) return null;
+    return function(d){
+      if(bv && d.b!==bv) return false;
+      if(rv && (REGION_MAP[d.b]||'')!==rv) return false;
+      return true;
+    };
+  };
+}
 
 /* ===== MAP ANALYSIS HELPERS ===== */
 function mean(arr,key){const v=arr.filter(d=>d[key]!=null&&!isNaN(d[key]));return v.length?v.reduce((s,d)=>s+d[key],0)/v.length:null}
 function median(arr,key){const v=arr.map(d=>d[key]).filter(x=>x!=null&&!isNaN(x)).sort((a,b)=>a-b);if(!v.length)return null;const m=Math.floor(v.length/2);return v.length%2?v[m]:(v[m-1]+v[m])/2}
-function renderAnalysis(section,indicatorKey){
+function renderAnalysis(section,indicatorKey,filterFn){
   const ind=INDICATORS[indicatorKey];if(!ind)return;
   const titleEl=document.getElementById('map-summary-title-'+section);
   const textEl=document.getElementById('map-summary-'+section);
   const insightsEl=document.getElementById('map-insights-'+section);
   if(!titleEl||!textEl||!insightsEl)return;
-  const valid=DATA.filter(d=>d[indicatorKey]!=null&&!isNaN(d[indicatorKey]));
+  let valid=DATA.filter(d=>d[indicatorKey]!=null&&!isNaN(d[indicatorKey]));
+  if(filterFn) valid=valid.filter(filterFn);
   if(!valid.length){titleEl.textContent=ind.label;textEl.textContent='Dados insuficientes para este indicador.';insightsEl.innerHTML='';return;}
   const sorted=[...valid].sort((a,b)=>b[indicatorKey]-a[indicatorKey]);
   const top=sorted[0];const bottom=sorted[sorted.length-1];
@@ -2458,21 +2492,47 @@ function initOverview(){
     <div class="kpi"><div class="label">Renda do responsável</div><div class="value">${fmt(totalRenda,'money')}</div><div class="sub">IBGE Censo, 2022</div></div>`;
   
   const sel=populateSelect('visao-indicador',['epob','esg','cad','pop','rendaPC','renda','osc','emp','anal']);
+  const visaoFilter=setupMapFilters('visao',refreshVisao);
   createMap('map-visao');
-  paintMap('map-visao','epob',VULN_COLORS);
-  renderAnalysis('visao','epob');
-  sel.addEventListener('change',()=>{
+  function refreshVisao(){
     const k=sel.value;
     const isVuln=['epob','cad','anal'].includes(k);
-    paintMap('map-visao',k,isVuln?VULN_COLORS:CHOROPLETH_COLORS);
-    renderAnalysis('visao',k);
-    updateVisaoChart(k);
+    paintMap('map-visao',k,isVuln?VULN_COLORS:CHOROPLETH_COLORS,visaoFilter());
+    renderAnalysis('visao',k,visaoFilter());
+  }
+  refreshVisao();
+  sel.addEventListener('change',()=>{
+    refreshVisao();
+    updateVisaoChart(sel.value);
   });
 
   const sorted=[...DATA].sort((a,b)=>(b.epob||0)-(a.epob||0));
   makeBar('chart-visao-epob',sorted.map(d=>d.b),[{data:sorted.map(d=>((d.epob||0)*100).toFixed(1)),backgroundColor:sorted.map(d=>(d.epob||0)>.4?UI.danger:(d.epob||0)>.25?UI.gold:UI.blue),borderRadius:5}],{plugins:{tooltip:{callbacks:{label:ctx=>ctx.parsed.x+'%'}}}});
   const sortedRenda=[...DATA].sort((a,b)=>(b.rendaPC||0)-(a.rendaPC||0));
   makeBar('chart-visao-rendapc',sortedRenda.map(d=>d.b),[{data:sortedRenda.map(d=>Math.round(d.rendaPC||0)),backgroundColor:sortedRenda.map(d=>(d.rendaPC||0)>2000?UI.blue:(d.rendaPC||0)>1000?UI.gold:UI.danger),borderRadius:5}],{plugins:{tooltip:{callbacks:{label:ctx=>'R$ '+Number(ctx.parsed.x).toLocaleString('pt-BR')}}}});
+
+  // Region summary cards
+  const cardsEl=document.getElementById('visao-region-cards');
+  if(cardsEl && typeof REGION_ORDER!=='undefined' && typeof REGION_MAP!=='undefined'){
+    cardsEl.innerHTML=REGION_ORDER.map((reg,i)=>{
+      const bairros=DATA.filter(d=>(REGION_MAP[d.b]||'')===reg);
+      const pop=bairros.reduce((s,d)=>s+(d.pop||0),0);
+      const totPop=DATA.reduce((s,d)=>s+(d.pop||0),0);
+      const avgEpob=pop?bairros.reduce((s,d)=>s+((d.epob||0)*(d.pop||0)),0)/pop:0;
+      const avgRendaPC=pop?bairros.reduce((s,d)=>s+((d.rendaPC||0)*(d.pop||0)),0)/pop:0;
+      const avgEsg=pop?bairros.reduce((s,d)=>s+((d.esg||0)*(d.pop||0)),0)/pop:0;
+      const col=(typeof REGION_COLORS!=='undefined'?REGION_COLORS[reg]:null)||'#7C3AED';
+      return `<div class="territory-card${i%2?' alt':''}" style="margin:0;border-left-color:${col}">
+        <h4 style="color:${col}!important">${reg}</h4>
+        <p>${bairros.length} bairros · ${fmt(pop,'int')} hab. (${((pop/totPop)*100).toFixed(1)}%)</p>
+        <div class="mini">
+          <div><strong>${fmt(avgEpob,'pct')}</strong><span class="small">Ext. pobreza</span></div>
+          <div><strong>${fmt(avgRendaPC,'money')}</strong><span class="small">Renda PC</span></div>
+          <div><strong>${fmt(avgEsg,'pct')}</strong><span class="small">Rede esgoto</span></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
 }
 
 function updateVisaoChart(k){
@@ -2502,10 +2562,11 @@ function updateVisaoChart(k){
 
 function initDemo(){
   const sel=populateSelect('demo-indicador',['pop','dens','raca','mulh']);
+  const demoFilter=setupMapFilters('demo',refreshDemo);
   createMap('map-demo');
-  paintMap('map-demo','pop');
-  renderAnalysis('demo','pop');
-  sel.addEventListener('change',()=>{paintMap('map-demo',sel.value);renderAnalysis('demo',sel.value)});
+  function refreshDemo(){paintMap('map-demo',sel.value,null,demoFilter());renderAnalysis('demo',sel.value,demoFilter());}
+  refreshDemo();
+  sel.addEventListener('change',refreshDemo);
   
   const byPop=[...DATA].sort((a,b)=>(b.pop||0)-(a.pop||0));
   makeBar('chart-demo-pop',byPop.map(d=>d.b),[{data:byPop.map(d=>d.pop||0),backgroundColor:UI.blue,borderRadius:5}]);
@@ -2515,14 +2576,15 @@ function initDemo(){
 
 function initVuln(){
   const sel=populateSelect('vuln-indicador',['epob','cad','anal','rendaPC','renda']);
+  const vulnFilter=setupMapFilters('vuln',refreshVuln);
   createMap('map-vuln');
-  paintMap('map-vuln','epob',VULN_COLORS);
-  renderAnalysis('vuln','epob');
-  sel.addEventListener('change',()=>{
+  function refreshVuln(){
     const k=sel.value;
-    paintMap('map-vuln',k,k==='renda'?CHOROPLETH_COLORS:VULN_COLORS);
-    renderAnalysis('vuln',k);
-  });
+    paintMap('map-vuln',k,k==='renda'?CHOROPLETH_COLORS:VULN_COLORS,vulnFilter());
+    renderAnalysis('vuln',k,vulnFilter());
+  }
+  refreshVuln();
+  sel.addEventListener('change',refreshVuln);
 
   const byEpob=[...DATA].sort((a,b)=>(b.epob||0)-(a.epob||0));
   makeBar('chart-vuln-epob',byEpob.map(d=>d.b),[{data:byEpob.map(d=>((d.epob||0)*100).toFixed(1)),backgroundColor:byEpob.map(d=>(d.epob||0)>.4?UI.danger:(d.epob||0)>.25?UI.gold:UI.blue),borderRadius:5}],{plugins:{tooltip:{callbacks:{label:ctx=>ctx.parsed.x+'%'}}}});
@@ -2540,14 +2602,21 @@ function initVuln(){
   // Responsáveis por domicílio (Censo 2022)
   const byResp=[...DATA].filter(d=>d.resp>0).sort((a,b)=>b.resp-a.resp);
   makeBar('chart-vuln-resp',byResp.map(d=>d.b),[{data:byResp.map(d=>d.resp),backgroundColor:UI.blue,borderRadius:5}],{plugins:{tooltip:{callbacks:{label:ctx=>Number(ctx.parsed.x).toLocaleString('pt-BR')+' responsáveis'}}}});
+  // CadÚnico chart
+  const byCad=[...DATA].filter(d=>d.cad!=null).sort((a,b)=>(b.cad||0)-(a.cad||0));
+  makeBar('chart-vuln-cad',byCad.map(d=>d.b),[{data:byCad.map(d=>((d.cad||0)*100).toFixed(1)),backgroundColor:byCad.map(d=>(d.cad||0)>1?UI.danger:(d.cad||0)>.7?UI.gold:UI.teal),borderRadius:5}],{plugins:{tooltip:{callbacks:{label:ctx=>ctx.parsed.x+'%'}}}});
+  // CadÚnico vs Extrema Pobreza scatter-like bar
+  const byCadEpob=[...DATA].filter(d=>d.cad!=null&&d.epob!=null).sort((a,b)=>(b.cad||0)-(a.cad||0));
+  makeBar('chart-vuln-cad-vs-epob',byCadEpob.map(d=>d.b),[{label:'CadÚnico',data:byCadEpob.map(d=>((d.cad||0)*100).toFixed(1)),backgroundColor:'rgba(124,58,237,0.7)',borderRadius:5},{label:'Ext. Pobreza',data:byCadEpob.map(d=>((d.epob||0)*100).toFixed(1)),backgroundColor:'rgba(192,57,43,0.6)',borderRadius:5}],{plugins:{tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.parsed.x+'%'}}}});
 }
 
 function initInfra(){
   const sel=populateSelect('infra-indicador',['esg','agua','lixo']);
+  const infraFilter=setupMapFilters('infra',refreshInfra);
   createMap('map-infra');
-  paintMap('map-infra','esg');
-  renderAnalysis('infra','esg');
-  sel.addEventListener('change',()=>{paintMap('map-infra',sel.value);renderAnalysis('infra',sel.value)});
+  function refreshInfra(){paintMap('map-infra',sel.value,null,infraFilter());renderAnalysis('infra',sel.value,infraFilter());}
+  refreshInfra();
+  sel.addEventListener('change',refreshInfra);
   
   const withSaude=DATA.filter(d=>d.esaude>0).sort((a,b)=>b.esaude-a.esaude);
   makeBar('chart-infra-saude',withSaude.map(d=>d.b),[{data:withSaude.map(d=>d.esaude),backgroundColor:UI.blue,borderRadius:5}]);

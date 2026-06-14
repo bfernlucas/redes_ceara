@@ -461,27 +461,6 @@ th.sortable .sort-icon{font-size:10px;color:var(--muted);opacity:.45;margin-left
 th.sort-asc .sort-icon,th.sort-desc .sort-icon{opacity:1;color:var(--brand)}
 th.sort-asc,th.sort-desc{background:rgba(11,79,168,.06)}
 th.sortable[title]::after{content:''}
-.sort-hint{position:relative}
-.sort-hint::after{
-  content:'clique para ordenar';
-  position:absolute;
-  bottom:calc(100% + 6px);
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--navy);
-  color:#fff;
-  font-size:10px;
-  font-weight:500;
-  letter-spacing:.02em;
-  padding:4px 10px;
-  border-radius:4px;
-  white-space:nowrap;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .15s;
-  z-index:10;
-}
-.sort-hint:hover::after{opacity:1}
 
 /* Comparison table */
 .comp-table{border-collapse:collapse;width:100%}
@@ -732,6 +711,7 @@ th.sortable[title]::after{content:''}
   padding:4px 8px;margin-bottom:8px;
   text-transform:uppercase;
 }
+.popup-kicker.bairro{background:rgba(255,255,255,.1);margin-left:4px}
 .popup-title{font-size:15px;line-height:1.3;font-weight:800;margin:0 0 6px;color:#fff}
 .popup-ter{font-size:11px;color:rgba(255,255,255,.82);text-transform:uppercase;letter-spacing:.06em;margin:0}
 .osc-popup-body{padding:14px 16px 16px}
@@ -1037,12 +1017,12 @@ th.sortable[title]::after{content:''}
 }
 
 /* OSC legend */
-.osc-legend-item{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:6px;cursor:pointer;transition:opacity .15s,background .15s;background:#FAFBFC}
-.osc-legend-item:hover{background:#F0F4F8}
+.osc-legend-item{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:4px;cursor:pointer;transition:background .15s;font-size:12px;color:var(--text);user-select:none}
+.osc-legend-item:hover{background:#f0f4f8}
 .osc-legend-item.dimmed{opacity:.35}
-.osc-legend-item .osc-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.osc-legend-item .osc-label{font-size:11px;font-weight:600;color:var(--text);white-space:nowrap}
-.osc-legend-item .osc-count{margin-left:auto;font-size:11px;font-weight:800;color:var(--navy);flex-shrink:0}
+.osc-legend-item .osc-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;border:1.5px solid rgba(255,255,255,.5);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.osc-legend-item .osc-label{flex:1;font-size:11px}
+.osc-legend-item .osc-count{font-size:11px;font-weight:700;color:var(--muted)}
 .osc-bairro-row{display:flex;align-items:center;gap:8px;padding:6px 10px;font-size:11px;border-bottom:1px solid var(--line-2)}
 .osc-bairro-name{font-weight:600;color:var(--text);flex:1}
 .osc-bairro-val{font-weight:800;color:var(--navy)}
@@ -1302,6 +1282,16 @@ th.sortable[title]::after{content:''}
         <div class="chart-box"><canvas id="chart-vuln-renda" class="chart tall"></canvas></div>
       </div>
     </div>
+    <div class="grid two" style="margin-top:22px">
+      <div class="panel">
+        <div class="panel-head"><div><h3 class="panel-title">Moradores por domicílio (IBGE Censo, 2022)</h3><p class="panel-sub">Média de moradores por domicílio</p></div></div>
+        <div class="chart-box"><canvas id="chart-vuln-mordom" class="chart tall"></canvas></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><div><h3 class="panel-title">Responsáveis por domicílio (IBGE Censo, 2022)</h3><p class="panel-sub">Número de responsáveis pelo domicílio</p></div></div>
+        <div class="chart-box"><canvas id="chart-vuln-resp" class="chart tall"></canvas></div>
+      </div>
+    </div>
   </section>
 
   <section id="section-infra" class="section">
@@ -1403,7 +1393,7 @@ th.sortable[title]::after{content:''}
     </div>
 
     <!-- KPIs MGE -->
-    <div style="margin:0 0 12px;padding:0 4px">
+    <div style="margin:0 0 12px;padding:0 4px;margin-bottom:8px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Médias e grandes empresas</span>
         <span style="flex:1;height:1px;background:var(--line-2)"></span>
@@ -1412,13 +1402,13 @@ th.sortable[title]::after{content:''}
     <div class="kpi-grid six" id="kpi-mge"></div>
 
     <!-- MAPA CAPITAL SOCIAL POR BAIRRO -->
-    <div style="margin:20px 0 12px;padding:0 4px">
+    <div style="margin:20px 0 6px;padding:0 4px">
       <div style="display:flex;align-items:center;gap:12px">
         <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Mapa de concentração</span>
         <span style="flex:1;height:1px;background:var(--line-2)"></span>
       </div>
     </div>
-    <div class="panel" style="margin-top:12px">
+    <div class="panel" style="margin-top:18px">
       <div class="panel-head">
         <div><h3 class="panel-title">Concentração de capital social por bairro (dez/2024)</h3><p class="panel-sub">Médias e grandes empresas (porte "Demais") · Filtros: tipo (matriz/filial), bairro, território e setor CNAE · Destaque: filtre por "Somente Matrizes" para identificar sedes de empresas no território · Clique nos clusters para expandir e nos bairros sombreados para detalhes</p></div>
       </div>
@@ -1563,7 +1553,7 @@ th.sortable[title]::after{content:''}
       <p>O Grande Mucuripe concentra o maior volume absoluto de empresas, enquanto o Grande Bom Jardim apresenta participação mais elevada de MEIs — indicando uma economia de base com potencial para programas de formalização, microcrédito e fortalecimento de circuitos econômicos locais.</p>
     </div>
 
-    <div class="grid two">
+    <div class="grid two" style="margin-top:18px">
       <div class="panel">
         <div class="panel-head"><div><h3 class="panel-title">Volume empresarial por bairro (dez/2024)</h3><p class="panel-sub">Todos os portes</p></div></div>
         <div class="chart-box"><canvas id="chart-econ-emp" class="chart tall"></canvas></div>
@@ -3419,6 +3409,14 @@ function initVuln(){
   const rdRows=[...DATA].sort((a,b)=>(a.renda||0)-(b.renda||0));
   makeBar('chart-vuln-renda',rdRows.map(d=>d.b),[{data:rdRows.map(d=>Math.round(d.renda||0)),backgroundColor:rdRows.map(d=>d.t==='Grande Mucuripe'?UI_COLORS.blueSoft:UI_COLORS.teal),borderRadius:6}],{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'R$ '+Number(ctx.parsed.x).toLocaleString('pt-BR')}}}});
   addTerritoryLegend('chart-vuln-renda');
+  // Moradores por domicílio (Censo 2022) — média = morDom/resp
+  const byMorDom=[...DATA].filter(d=>d.resp>0).sort((a,b)=>(b.morDom/b.resp)-(a.morDom/a.resp));
+  makeBar('chart-vuln-mordom',byMorDom.map(d=>d.b),[{data:byMorDom.map(d=>(d.morDom/d.resp).toFixed(2)),backgroundColor:byMorDom.map(d=>d.t==='Grande Mucuripe'?UI_COLORS.blueSoft:UI_COLORS.teal),borderRadius:6}],{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.parsed.x+' moradores/domicílio'}}}});
+  addTerritoryLegend('chart-vuln-mordom');
+  // Responsáveis por domicílio (Censo 2022)
+  const byResp=[...DATA].filter(d=>d.resp>0).sort((a,b)=>b.resp-a.resp);
+  makeBar('chart-vuln-resp',byResp.map(d=>d.b),[{data:byResp.map(d=>d.resp),backgroundColor:byResp.map(d=>d.t==='Grande Mucuripe'?UI_COLORS.blueSoft:UI_COLORS.teal),borderRadius:6}],{plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>Number(ctx.parsed.x).toLocaleString('pt-BR')+' responsáveis'}}}});
+  addTerritoryLegend('chart-vuln-resp');
 }
 
 function initInfra(){
