@@ -135,8 +135,8 @@ button,select,input,textarea{font:inherit}
   align-items:center;
   gap:8px;
   padding:4px 10px;
-  background:#F3E8FF;
-  border:1px solid #DDD6FE;
+  background:var(--brand-5);
+  border:1px solid var(--brand-4);
   color:var(--brand);
   border-radius:4px;
   font-size:11px;
@@ -162,8 +162,8 @@ button,select,input,textarea{font:inherit}
 /* Commentary / Decision box */
 .decision{
   position:relative;
-  background:#F3E8FF;
-  border:1px solid #DDD6FE;
+  background:var(--brand-5);
+  border:1px solid var(--brand-4);
   border-left:4px solid var(--brand);
   border-radius:var(--radius);
   padding:14px 18px;
@@ -276,7 +276,7 @@ button,select,input,textarea{font:inherit}
   padding:10px;
   border-radius:6px;
   background:rgba(255,255,255,.97);
-  border:1px solid rgba(200,217,245,.9);
+  border:1px solid rgba(221,214,254,.9);
   box-shadow:0 4px 16px rgba(0,0,0,.1);
   backdrop-filter:none;
   overflow:visible !important;
@@ -296,7 +296,7 @@ button,select,input,textarea{font:inherit}
 }
 .map-overlay-badge{
   border-radius:4px;
-  background:#F3E8FF;
+  background:var(--brand-5);
   color:var(--brand);
   padding:5px 8px;
   font-size:10px;
@@ -481,21 +481,21 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
   display:inline-flex;
   border-radius:3px;
   padding:3px 8px;
-  background:#F3E8FF;
+  background:var(--brand-5);
   border:none;
   color:var(--brand);
   font-size:11px;
   font-weight:600;
 }
-.tag.gbj{background:#F3E8FF;color:var(--green)}
+.tag.gbj{background:var(--brand-5);color:var(--green)}
 .chip{
   display:inline-flex;
   align-items:center;
   gap:6px;
   border-radius:4px;
   padding:5px 10px;
-  background:#F3E8FF;
-  border:1px solid #DDD6FE;
+  background:var(--brand-5);
+  border:1px solid var(--brand-4);
   color:var(--navy);
   font-size:11px;
   font-weight:600;
@@ -900,7 +900,7 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
 .tipo-badge{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:700;letter-spacing:.04em}
 .tipo-m{background:#e0f2e9;color:#7C3AED}
 .tipo-f{background:#fef3cd;color:#7c5c00}
-.sector-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:600;background:#F3E8FF;color:#7C3AED;white-space:nowrap}
+.sector-tag{display:inline-block;padding:2px 7px;border-radius:3px;font-size:11px;font-weight:600;background:var(--brand-5);color:var(--brand);white-space:nowrap}
 .region-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
 
 /* Adicionalidade tab */
@@ -1784,6 +1784,43 @@ th.sort-asc,th.sort-desc{background:rgba(124,58,237,.06)}
     <div class="decision">
       <h3>Leitura integrada</h3>
       <p>O radar revela três perfis regionais distintos em Maracanaú. <strong>Regiões periféricas</strong> (polígonos amplos) concentram múltiplas fragilidades simultâneas — extrema pobreza elevada, déficit sanitário e alta informalidade econômica — demandando intervenções multisetoriais articuladas. <strong>Regiões centrais e industriais</strong> (polígonos mais contidos) apresentam fragilidades pontuais, geralmente em um ou dois eixos, que podem ser endereçadas com ações temáticas focalizadas. <strong>O eixo Pajuçara–Distrito Industrial</strong> combina necessidade moderada com forte base institucional (OSCs + empresas), oferecendo as melhores condições para articulação em rede. A comparação cruzada dos 8 eixos é fundamental: um território com alto déficit de esgoto <em>e</em> alta informalidade demanda resposta diferente de outro com déficit apenas em renda. O radar permite essa leitura integrada, evitando priorização baseada em indicadores isolados.</p>
+    </div>
+
+    <div style="margin:28px 0 6px;padding:0 4px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em">Radar de Capacidade Institucional</span>
+        <span style="flex:1;height:1px;background:var(--line-2)"></span>
+      </div>
+    </div>
+    <div class="decision">
+      <h3>Como ler o radar de capacidade</h3>
+      <p>Enquanto o radar de vulnerabilidades mede fragilidades (quanto maior, pior), o radar de capacidade mede forças (quanto maior, melhor). Os 8 eixos captam recursos disponíveis em cada região: infraestrutura sanitária, renda, base empresarial, presença de OSCs, educação, saúde, formalização econômica e cobertura hídrica. Um polígono maior indica mais recursos acumulados. Comparar os dois radares revela onde há necessidade SEM capacidade (prioridade para investimento externo) e onde há capacidade para ação autônoma.</p>
+    </div>
+    <div class="panel" style="margin-top:12px">
+      <div class="panel-head">
+        <div>
+          <h3 class="panel-title">Capacidade institucional por região</h3>
+          <p class="panel-sub">Radar com 8 indicadores positivos ponderados por população. Quanto maior o polígono, maior a capacidade da região.</p>
+        </div>
+      </div>
+      <div class="map-analytics-layout" style="align-items:start;padding:0 24px 24px">
+        <div style="background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:16px 12px 20px">
+          <div style="position:relative;height:440px"><canvas id="chart-capacity-radar"></canvas></div>
+          <div id="capacity-radar-legend" style="display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line-2);font-size:11px"></div>
+        </div>
+        <div id="capacity-reading" style="display:flex;flex-direction:column;gap:10px;overflow-y:auto;max-height:560px;padding-right:4px"></div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:12px;margin-bottom:16px">
+      <div class="panel-head">
+        <div><h3 class="panel-title">Guia dos 8 eixos de capacidade</h3><p class="panel-sub">Cada eixo representa uma dimensão normalizada (0 a 1). Quanto maior o valor, maior a capacidade naquela dimensão.</p></div>
+      </div>
+      <div style="padding:16px 24px 20px;display:grid;grid-template-columns:1fr 1fr;gap:10px 24px">
+        <div style="padding:8px 12px;background:#ECFDF5;border-radius:6px;border-left:3px solid #059669"><strong style="font-size:12px;color:#065F46">Infraestrutura</strong><div style="font-size:12px;color:var(--text);margin-top:4px;line-height:1.6"><strong>Cobertura de esgoto</strong> — rede de esgotamento sanitário<br><strong>Cobertura hídrica</strong> — rede de abastecimento de água</div></div>
+        <div style="padding:8px 12px;background:var(--brand-5);border-radius:6px;border-left:3px solid var(--brand)"><strong style="font-size:12px;color:var(--brand)">Economia</strong><div style="font-size:12px;color:var(--text);margin-top:4px;line-height:1.6"><strong>Renda relativa</strong> — renda per capita normalizada<br><strong>Formalização</strong> — proporção de empresas não-MEI</div></div>
+        <div style="padding:8px 12px;background:#FEF9C3;border-radius:6px;border-left:3px solid #CA8A04"><strong style="font-size:12px;color:#854D0E">Capital social</strong><div style="font-size:12px;color:var(--text);margin-top:4px;line-height:1.6"><strong>Densidade empresarial</strong> — empresas por mil habitantes<br><strong>Presença de OSCs</strong> — organizações por mil habitantes</div></div>
+        <div style="padding:8px 12px;background:#F0F4FF;border-radius:6px;border-left:3px solid #6366F1"><strong style="font-size:12px;color:#3730A3">Serviços públicos</strong><div style="font-size:12px;color:var(--text);margin-top:4px;line-height:1.6"><strong>Educação (IDEB)</strong> — desempenho escolar médio<br><strong>Cobertura de saúde</strong> — unidades de saúde per capita</div></div>
+      </div>
     </div>
 
     <div style="margin:24px 0 6px;padding:0 4px">
@@ -4023,6 +4060,17 @@ function initComp(){
     {key:'mulh',    label:'Chefia feminina',     transform:v=>v}
   ];
 
+  const CAPACITY_INDS = [
+    {key:'esg',     label:'Cobertura de esgoto',  transform:v=>Math.min(1,v||0)},
+    {key:'agua',    label:'Cobertura hídrica',     transform:v=>Math.min(1,v||0)},
+    {key:'rendaPC', label:'Renda relativa',        transform:v=>Math.min(1,(v||0)/3000)},
+    {key:'meiShare',label:'Formalização',          transform:v=>1-(v||0)},
+    {key:'_empPc',  label:'Densidade empresarial', transform:v=>v},
+    {key:'_oscPc',  label:'Presença de OSCs',      transform:v=>v},
+    {key:'_ideb',   label:'Educação (IDEB)',       transform:v=>v},
+    {key:'_saude',  label:'Cobertura de saúde',    transform:v=>v}
+  ];
+
   // ─── Agregadores ───────────────────────────────────────────────────────────
   function aggregate(rows, key, mode){
     if(mode==='sum') return rows.reduce((s,r)=>s+(+r[key]||0),0);
@@ -4041,6 +4089,17 @@ function initComp(){
       const raw = aggregate(rows, ind.key, 'wmean');
       values['rdr_'+ind.key] = ind.transform(raw);
     });
+    const empPcVal = pop > 0 ? aggregate(rows,'emp','sum') / pop * 1000 : 0;
+    const oscPcVal = pop > 0 ? aggregate(rows,'osc','sum') / pop * 1000 : 0;
+    const idebRows = rows.filter(r=>r.ideb_i!=null&&r.ideb_f!=null);
+    const idebAvgVal = idebRows.length > 0 && pop > 0
+      ? rows.reduce((s,r)=>s+((+r.ideb_i||0)+(+r.ideb_f||0))/2*(+r.pop||0),0)/pop : 0;
+    const saudeUnitsVal = rows.reduce((s,r)=>s+(+r.esaude||0)+(+r.caps||0)+(+r.esf||0),0);
+    const saudePcVal = pop > 0 ? saudeUnitsVal / pop * 10000 : 0;
+    values['_empPc'] = empPcVal;
+    values['_oscPc'] = oscPcVal;
+    values['_ideb'] = idebAvgVal;
+    values['_saude'] = saudePcVal;
     groupAgg[g] = {rows, pop, bairros:rows.length, values};
   });
 
@@ -4050,6 +4109,23 @@ function initComp(){
   RADAR_INDS.forEach(ind=>{
     const raw = aggregate(DATA, ind.key, 'wmean');
     muni.values['rdr_'+ind.key] = ind.transform(raw);
+  });
+
+  // Normalize capacity indicators (0-1) across groups
+  const capMaxes = {};
+  ['_empPc','_oscPc','_ideb','_saude'].forEach(k => {
+    capMaxes[k] = Math.max(...GROUPS.map(g => groupAgg[g].values[k] || 0), 0.001);
+  });
+  GROUPS.forEach(g => {
+    CAPACITY_INDS.forEach(ind => {
+      let raw;
+      if(ind.key.startsWith('_')) {
+        raw = (groupAgg[g].values[ind.key] || 0) / capMaxes[ind.key];
+      } else {
+        raw = aggregate(groupAgg[g].rows, ind.key, 'wmean');
+      }
+      groupAgg[g].values['cap_'+ind.key] = ind.transform(raw);
+    });
   });
 
   // ─── 1) Mapa de divisão regional ───────────────────────────────────────────
@@ -4344,6 +4420,93 @@ function initComp(){
   renderRadar();
   renderReading();
   renderHeatmap();
+
+  // ─── Radar de Capacidade Institucional ──────────────────────────────────────
+  function renderCapacityRadar(){
+    destroyChart('chart-capacity-radar');
+    const canvas = document.getElementById('chart-capacity-radar');
+    if(!canvas) return;
+    const labels = CAPACITY_INDS.map(i=>i.label);
+    const datasets = GROUPS.map(g=>{
+      const col = GROUP_COLORS[g] || '#888';
+      return {
+        label: g,
+        data: CAPACITY_INDS.map(ind => {
+          const v = groupAgg[g].values['cap_'+ind.key] || 0;
+          return v * 100;
+        }),
+        _raw: CAPACITY_INDS.map(ind => groupAgg[g].values['cap_'+ind.key] || 0),
+        borderColor: col,
+        backgroundColor: col+'22',
+        pointBackgroundColor: col,
+        pointRadius: 3,
+        pointHoverRadius: 5,
+        borderWidth: 2
+      };
+    });
+    CHARTS['chart-capacity-radar'] = new Chart(canvas, {
+      type:'radar',
+      data:{labels, datasets},
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        scales:{
+          r:{
+            beginAtZero:true,
+            max:100,
+            ticks:{display:false},
+            pointLabels:{font:{size:11,weight:'600'},color:'#5C6E7E'},
+            grid:{color:'rgba(200,210,220,.25)'},
+            angleLines:{color:'rgba(200,210,220,.2)'}
+          }
+        },
+        plugins:{
+          legend:{display:false},
+          tooltip:{
+            callbacks:{
+              label:ctx => {
+                const raw = ctx.dataset._raw[ctx.dataIndex];
+                return `${ctx.dataset.label}: ${(raw*100).toFixed(1)}%`;
+              }
+            }
+          }
+        }
+      }
+    });
+    const legendEl = document.getElementById('capacity-radar-legend');
+    if(legendEl){
+      legendEl.innerHTML = GROUPS.map(g => {
+        const col = GROUP_COLORS[g] || '#888';
+        return `<span style="display:inline-flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:${col}"></span><span style="font-weight:600;color:var(--navy)">${g}</span></span>`;
+      }).join('');
+    }
+    const readEl = document.getElementById('capacity-reading');
+    if(readEl){
+      readEl.innerHTML = GROUPS.map(g => {
+        const gd = groupAgg[g];
+        const col = GROUP_COLORS[g] || '#888';
+        const capValues = CAPACITY_INDS.map(ind => ({label:ind.label, val:gd.values['cap_'+ind.key]||0}));
+        const sorted = [...capValues].sort((a,b)=>b.val-a.val);
+        const top3 = sorted.slice(0,3);
+        const bot3 = sorted.slice(-3).reverse();
+        const avgCap = capValues.reduce((s,c)=>s+c.val,0)/capValues.length;
+        const cls = avgCap >= 0.60 ? 'Alta' : avgCap >= 0.40 ? 'Moderada' : 'Baixa';
+        const clsColor = avgCap >= 0.60 ? '#065F46' : avgCap >= 0.40 ? '#854D0E' : '#7F1D1D';
+        const clsBg = avgCap >= 0.60 ? '#DCFCE7' : avgCap >= 0.40 ? '#FEF9C3' : '#FEE2E2';
+        return `<div style="background:#fff;border:1px solid var(--line-2);border-left:4px solid ${col};border-radius:8px;padding:12px 14px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <strong style="font-size:13px;color:var(--navy)">${g}</strong>
+            <span style="padding:3px 10px;border-radius:4px;font-size:10px;font-weight:700;background:${clsBg};color:${clsColor}">${cls} (${(avgCap*100).toFixed(0)}%)</span>
+          </div>
+          <div style="margin-top:8px;font-size:11px;line-height:1.6">
+            <div style="color:#065F46;margin-bottom:4px"><strong>Pontos fortes:</strong> ${top3.map(c=>`${c.label} (${(c.val*100).toFixed(0)}%)`).join(', ')}</div>
+            <div style="color:#7F1D1D"><strong>Gaps:</strong> ${bot3.map(c=>`${c.label} (${(c.val*100).toFixed(0)}%)`).join(', ')}</div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+  }
+  renderCapacityRadar();
 
   // ─── IPT: Índice de Priorização Territorial ────────────────────
   const iptData = GROUPS.map(g => {
