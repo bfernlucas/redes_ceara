@@ -1,6 +1,8 @@
 name: Apply patches
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - feat/capacity-radar
 jobs:
   apply:
     runs-on: ubuntu-latest
@@ -9,9 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
-      - name: Apply patch
+          ref: feat/capacity-radar
+          fetch-depth: 0
+      - name: Apply patch to main
         run: |
+          git checkout main
           git apply patches/capacity-radar.patch
       - name: Commit and push
         run: |
@@ -22,7 +26,8 @@ jobs:
           git push origin main
       - name: Cleanup
         run: |
+          git checkout feat/capacity-radar
           git rm patches/capacity-radar.patch
           git rm .github/workflows/apply-patches.yml
           git commit -m 'chore: remove applied patches'
-          git push origin main
+          git push origin feat/capacity-radar
