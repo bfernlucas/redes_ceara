@@ -1,9 +1,6 @@
-name: Apply dashboard patches
+name: Apply patches
 on:
-  push:
-    paths:
-      - 'patches/*.patch'
-    branches: [main]
+  workflow_dispatch:
 jobs:
   apply:
     runs-on: ubuntu-latest
@@ -11,24 +8,21 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Apply patches
+        with:
+          ref: main
+      - name: Apply patch
         run: |
-          for patch in patches/*.patch; do
-            echo "Applying $patch"
-            git apply "$patch" || echo "Patch $patch failed - may already be applied"
-          done
+          git apply patches/capacity-radar.patch
       - name: Commit and push
         run: |
           git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          if git diff --quiet; then
-            echo 'No changes to commit'
-          else
-            git add fortaleza.html maracanau.html
-            git commit -m 'Apply dashboard harmonization patches'
-            git push
-            rm -rf patches/
-            git add -A
-            git commit -m 'chore: remove applied patches'
-            git push
-          fi
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add fortaleza.html maracanau.html
+          git commit -m 'Adiciona Radar de Capacidade Institucional e padroniza CSS entre municípios'
+          git push origin main
+      - name: Cleanup
+        run: |
+          git rm patches/capacity-radar.patch
+          git rm .github/workflows/apply-patches.yml
+          git commit -m 'chore: remove applied patches'
+          git push origin main
